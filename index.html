@@ -15,26 +15,31 @@
 </head>
 <body>
     <header style="position: relative;">
-        <button id="themeToggle" class="themeToggle theme-toggle" style="position: absolute; top: 1rem; right: 1rem;" aria-label="Toggle Theme">
-            <!-- Sun Icon -->
-            <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <!-- Moon Icon -->
-            <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-        </button>
-        <h1>Dimensionless Numbers</h1>
-        <p>물리적 현상의 핵심을 파악하는 무차원수 계산기</p>
+        <div class="header-controls">
+            <button id="langToggle" class="theme-toggle lang-toggle" aria-label="Toggle Language">
+                KO/EN
+            </button>
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <!-- Sun Icon -->
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <!-- Moon Icon -->
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+        <h1 data-i18n="page_title">Dimensionless Numbers</h1>
+        <p data-i18n="page_subtitle">물리적 현상의 핵심을 파악하는 무차원수 계산기</p>
     </header>
 
     <main>
@@ -44,7 +49,7 @@
                 <div>
                     <h2>Reynolds Number</h2>
                     <p class="formula">Re = ρvL / μ</p>
-                    <p>유체의 관성력과 점성력의 비를 나타내며, 유동이 층류인지 난류인지 판단하는 지표입니다.</p>
+                    <p data-i18n="reynolds_short_desc">유체의 관성력과 점성력의 비를 나타내며, 유동이 층류인지 난류인지 판단하는 지표입니다.</p>
                 </div>
             </article>
 
@@ -53,7 +58,7 @@
                 <div>
                     <h2>Mach Number</h2>
                     <p class="formula">Ma = v / c</p>
-                    <p>유체의 속도와 음속의 비를 나타내며, 압축성 유동의 특성을 결정합니다.</p>
+                    <p data-i18n="mach_short_desc">유체의 속도와 음속의 비를 나타내며, 압축성 유동의 특성을 결정합니다.</p>
                 </div>
             </article>
 
@@ -62,7 +67,7 @@
                 <div>
                     <h2>Nusselt Number</h2>
                     <p class="formula">Nu = hL / k</p>
-                    <p>대류 열전달과 전도 열전달의 비를 나타내며, 대류가 열전달에 기여하는 정도를 결정합니다.</p>
+                    <p data-i18n="nusselt_short_desc">대류 열전달과 전도 열전달의 비를 나타내며, 대류가 열전달에 기여하는 정도를 결정합니다.</p>
                 </div>
             </article>
 
@@ -71,7 +76,7 @@
                 <div>
                     <h2>Prandtl Number</h2>
                     <p class="formula">Pr = μc_p / k</p>
-                    <p>운동량 확산과 열 확산의 비를 나타내며, 유체의 물리적 특성만으로 결정됩니다.</p>
+                    <p data-i18n="prandtl_short_desc">운동량 확산과 열 확산의 비를 나타내며, 유체의 물리적 특성만으로 결정됩니다.</p>
                 </div>
             </article>
 
@@ -80,7 +85,7 @@
                 <div>
                     <h2>Schmidt Number</h2>
                     <p class="formula">Sc = μ / (ρD)</p>
-                    <p>점성 확산율과 분자 확산율의 비를 나타내며, 유동 내의 대류 질량전달을 설명합니다.</p>
+                    <p data-i18n="schmidt_short_desc">점성 확산율과 분자 확산율의 비를 나타내며, 유동 내의 대류 질량전달을 설명합니다.</p>
                 </div>
             </article>
 
@@ -89,7 +94,7 @@
                 <div>
                     <h2>Peclet Number</h2>
                     <p class="formula">Pe = vL / α</p>
-                    <p>유동에 의한 이송(Advection)과 확산(Diffusion)의 비를 나타냅니다.</p>
+                    <p data-i18n="peclet_short_desc">유동에 의한 이송(Advection)과 확산(Diffusion)의 비를 나타냅니다.</p>
                 </div>
             </article>
 
@@ -98,7 +103,7 @@
                 <div>
                     <h2>Strouhal Number</h2>
                     <p class="formula">St = fL / v</p>
-                    <p>비상시 유동(Unsteady flow)의 진동 특성을 나타내는 무차원수입니다.</p>
+                    <p data-i18n="strouhal_short_desc">비상시 유동(Unsteady flow)의 진동 특성을 나타내는 무차원수입니다.</p>
                 </div>
             </article>
 
@@ -107,7 +112,7 @@
                 <div>
                     <h2>Froude Number</h2>
                     <p class="formula">Fr = v / √(gL)</p>
-                    <p>관성력과 중력의 비를 나타내며, 개수로 유동이나 선박 공학에서 중요합니다.</p>
+                    <p data-i18n="froude_short_desc">관성력과 중력의 비를 나타내며, 개수로 유동이나 선박 공학에서 중요합니다.</p>
                 </div>
             </article>
 
@@ -116,7 +121,7 @@
                 <div>
                     <h2>Weber Number</h2>
                     <p class="formula">We = ρv²L / σ</p>
-                    <p>관성력과 표면장력의 비를 나타내며, 액적의 분열이나 기포 형성 분석에 사용됩니다.</p>
+                    <p data-i18n="weber_short_desc">관성력과 표면장력의 비를 나타내며, 액적의 분열이나 기포 형성 분석에 사용됩니다.</p>
                 </div>
             </article>
 
@@ -125,7 +130,7 @@
                 <div>
                     <h2>Knudsen Number</h2>
                     <p class="formula">Kn = λ / L</p>
-                    <p>분자 평균 자유 행로와 특성 길이의 비를 나타내며, 연속체 가설의 타당성을 판단합니다.</p>
+                    <p data-i18n="knudsen_short_desc">분자 평균 자유 행로와 특성 길이의 비를 나타내며, 연속체 가설의 타당성을 판단합니다.</p>
                 </div>
             </article>
         </section>
@@ -139,7 +144,7 @@
                 <!-- Content will be dynamically injected via script.js -->
             </div>
             <div id="resultContainer" class="result-container">
-                <p class="result-label">Result</p>
+                <p class="result-label" data-i18n="result_label">Result</p>
                 <p id="resultValue" class="result-value">0.00</p>
                 <p id="resultInfo" class="result-info"></p>
             </div>
@@ -148,8 +153,8 @@
 
     <footer>
         <div class="footer-links" style="margin-bottom: 1rem;">
-            <a href="privacy.html" style="color: var(--text-secondary); margin: 0 10px; text-decoration: none;">Privacy Policy</a> | 
-            <a href="terms.html" style="color: var(--text-secondary); margin: 0 10px; text-decoration: none;">Terms of Service</a>
+            <a href="privacy.html" style="color: var(--text-secondary); margin: 0 10px; text-decoration: none;" data-i18n="privacy_policy">Privacy Policy</a> | 
+            <a href="terms.html" style="color: var(--text-secondary); margin: 0 10px; text-decoration: none;" data-i18n="terms_service">Terms of Service</a>
         </div>
         <p>&copy; 2026 Dimensionless Number Calculator. All rights reserved.</p>
     </footer>
