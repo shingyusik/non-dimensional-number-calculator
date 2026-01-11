@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimensionless Number Calculator | 무차원수 계산기</title>
+    <meta name="description" content="레이놀즈 수, 마하 수 등 다양한 무차원수를 계산하고 그 물리적 의미를 확인하세요.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Dimensionless Numbers</h1>
+        <p>물 물리적 현상의 핵심을 파악하는 무차원수 계산기</p>
+    </header>
+
+    <main>
+        <section class="grid">
+            <!-- Reynolds Number Card -->
+            <article class="card" onclick="openModal('reynolds')">
+                <div>
+                    <h2>Reynolds Number</h2>
+                    <p class="formula">Re = ρvL / μ</p>
+                    <p>유체의 관성력과 점성력의 비를 나타내며, 유동이 층류인지 난류인지 판단하는 지표입니다.</p>
+                </div>
+            </article>
+
+            <!-- Mach Number Card -->
+            <article class="card" onclick="openModal('mach')">
+                <div>
+                    <h2>Mach Number</h2>
+                    <p class="formula">Ma = v / c</p>
+                    <p>유체의 속도와 음속의 비를 나타내며, 압축성 유동의 특성을 결정합니다.</p>
+                </div>
+            </article>
+
+            <!-- Nusselt Number Card -->
+            <article class="card" onclick="openModal('nusselt')">
+                <div>
+                    <h2>Nusselt Number</h2>
+                    <p class="formula">Nu = hL / k</p>
+                    <p>대류 열전달과 전도 열전달의 비를 나타내며, 대류가 열전달에 기여하는 정도를 결정합니다.</p>
+                </div>
+            </article>
+
+            <!-- Prandtl Number Card -->
+            <article class="card" onclick="openModal('prandtl')">
+                <div>
+                    <h2>Prandtl Number</h2>
+                    <p class="formula">Pr = μc_p / k</p>
+                    <p>운동량 확산과 열 확산의 비를 나타내며, 유체의 물리적 특성만으로 결정됩니다.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- Modal for Calculators -->
+    <div id="calculatorModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div id="modalBody">
+                <!-- Content will be dynamically injected via script.js -->
+            </div>
+            <div id="resultContainer" class="result-container">
+                <p class="result-label">Result</p>
+                <p id="resultValue" class="result-value">0.00</p>
+                <p id="resultInfo" class="result-info"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Dimensionless Number Calculator. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
