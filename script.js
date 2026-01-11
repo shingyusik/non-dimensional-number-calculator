@@ -57,6 +57,74 @@ const calculators = {
         ],
         calculate: (vals) => (vals.mu * vals.cp) / vals.k,
         getInfo: (res) => `Pr ≈ ${res.toFixed(1)}: Fluid property characteristic.`
+    },
+    schmidt: {
+        title: "Schmidt Number",
+        inputs: [
+            { id: 'mu', label: 'Dynamic Viscosity (μ) [Pa·s]', placeholder: 'e.g. 0.001' },
+            { id: 'rho', label: 'Density (ρ) [kg/m³]', placeholder: 'e.g. 1000' },
+            { id: 'D', label: 'Mass Diffusivity (D) [m²/s]', placeholder: 'e.g. 1e-9' }
+        ],
+        calculate: (vals) => vals.mu / (vals.rho * vals.D),
+        getInfo: (res) => "Sc relates momentum and mass diffusivity."
+    },
+    peclet: {
+        title: "Peclet Number",
+        inputs: [
+            { id: 'v', label: 'Velocity (v) [m/s]', placeholder: 'e.g. 2.0' },
+            { id: 'L', label: 'Characteristic Length (L) [m]', placeholder: 'e.g. 0.5' },
+            { id: 'alpha', label: 'Thermal Diffusivity (α) [m²/s]', placeholder: 'e.g. 1e-7' }
+        ],
+        calculate: (vals) => (vals.v * vals.L) / vals.alpha,
+        getInfo: (res) => "Pe > 100: Advection dominates over diffusion."
+    },
+    strouhal: {
+        title: "Strouhal Number",
+        inputs: [
+            { id: 'f', label: 'Frequency of vortex shedding (f) [Hz]', placeholder: 'e.g. 10' },
+            { id: 'L', label: 'Characteristic Length (L) [m]', placeholder: 'e.g. 0.1' },
+            { id: 'v', label: 'Velocity (v) [m/s]', placeholder: 'e.g. 5' }
+        ],
+        calculate: (vals) => (vals.f * vals.L) / vals.v,
+        getInfo: (res) => "St represents non-steady flow oscillations."
+    },
+    froude: {
+        title: "Froude Number",
+        inputs: [
+            { id: 'v', label: 'Velocity (v) [m/s]', placeholder: 'e.g. 3.0' },
+            { id: 'L', label: 'Characteristic Length (L) [m]', placeholder: 'e.g. 5.0' },
+            { id: 'g', label: 'Gravity (g) [m/s²]', placeholder: '9.81' }
+        ],
+        calculate: (vals) => vals.v / Math.sqrt(vals.g * vals.L),
+        getInfo: (res) => {
+            if (res < 1) return "Subcritical flow (상류)";
+            if (res === 1) return "Critical flow (한계류)";
+            return "Supercritical flow (사류)";
+        }
+    },
+    weber: {
+        title: "Weber Number",
+        inputs: [
+            { id: 'rho', label: 'Density (ρ) [kg/m³]', placeholder: 'e.g. 1000' },
+            { id: 'v', label: 'Velocity (v) [m/s]', placeholder: 'e.g. 2.0' },
+            { id: 'L', label: 'Characteristic Length (L) [m]', placeholder: 'e.g. 0.01' },
+            { id: 'sigma', label: 'Surface Tension (σ) [N/m]', placeholder: 'e.g. 0.072' }
+        ],
+        calculate: (vals) => (vals.rho * Math.pow(vals.v, 2) * vals.L) / vals.sigma,
+        getInfo: (res) => "We relates inertia to surface tension."
+    },
+    knudsen: {
+        title: "Knudsen Number",
+        inputs: [
+            { id: 'lambda', label: 'Mean Free Path (λ) [m]', placeholder: 'e.g. 6.8e-8' },
+            { id: 'L', label: 'Characteristic Length (L) [m]', placeholder: 'e.g. 0.001' }
+        ],
+        calculate: (vals) => vals.lambda / vals.L,
+        getInfo: (res) => {
+            if (res < 0.01) return "Continuum flow (연속체 유동)";
+            if (res < 0.1) return "Slip flow (미끄럼 유동)";
+            return "Transition/Free molecular flow";
+        }
     }
 };
 
@@ -118,7 +186,13 @@ function runCalculation() {
     const resultValue = document.getElementById('resultValue');
     const resultInfo = document.getElementById('resultInfo');
     
-    resultValue.innerText = result.toLocaleString(undefined, { maximumFractionDigits: 4 });
+    // Improved formatting for small and large numbers
+    if (Math.abs(result) < 0.0001 || Math.abs(result) > 1000000) {
+        resultValue.innerText = result.toExponential(4);
+    } else {
+        resultValue.innerText = result.toLocaleString(undefined, { maximumFractionDigits: 4 });
+    }
+    
     resultInfo.innerText = calc.getInfo(result);
     
     resultContainer.classList.add('active');
