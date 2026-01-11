@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
 
 :root {
-    /* Color Palette */
+    /* Default Dark Theme (Current) */
     --bg-color: #0c0e14;
     --card-bg: rgba(255, 255, 255, 0.05);
     --card-border: rgba(255, 255, 255, 0.1);
@@ -12,12 +12,26 @@
     --text-secondary: #94a3b8;
     --success: #10b981;
     --error: #ef4444;
+    --input-bg: rgba(255, 255, 255, 0.03); 
+    --modal-bg: #161a23;
 
     /* Effects */
     --glass-blur: blur(12px);
     --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
     --transition-speed: 0.3s;
+}
+
+[data-theme="light"] {
+    /* Light Theme Overrides */
+    --bg-color: #f8fafc; /* Very light slate */
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --card-border: rgba(0, 0, 0, 0.1);
+    --text-primary: #1e293b; /* Dark slate */
+    --text-secondary: #64748b;
+    --input-bg: rgba(0, 0, 0, 0.05);
+    --modal-bg: #ffffff;
+    --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -46,6 +60,7 @@ header h1 {
     font-weight: 700;
     background: var(--accent-gradient);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 0.5rem;
 }
@@ -53,6 +68,26 @@ header h1 {
 header p {
     color: var(--text-secondary);
     font-weight: 300;
+}
+
+.theme-toggle {
+    background: none;
+    border: 1px solid var(--card-border);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.theme-toggle:hover {
+    background: var(--card-bg);
+    transform: rotate(15deg);
 }
 
 main {
@@ -147,7 +182,7 @@ main {
 }
 
 .modal-content {
-    background: #161a23;
+    background: var(--modal-bg);
     width: 100%;
     max-width: 500px;
     border-radius: 2rem;
@@ -185,7 +220,7 @@ main {
 
 .input-group input {
     width: 100%;
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--input-bg);
     border: 1px solid var(--card-border);
     padding: 0.8rem 1rem;
     border-radius: 0.8rem;

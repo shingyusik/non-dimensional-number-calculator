@@ -205,3 +205,48 @@ window.onclick = function(event) {
         closeModal();
     }
 }
+
+/**
+ * Theme Toggle Logic
+ */
+const themeToggleBtn = document.getElementById('themeToggle');
+const sunIcon = document.getElementById('sunIcon');
+const moonIcon = document.getElementById('moonIcon');
+const htmlEl = document.documentElement;
+
+// Function to set theme
+function setTheme(theme) {
+    if (theme === 'light') {
+        htmlEl.setAttribute('data-theme', 'light');
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+    } else {
+        htmlEl.removeAttribute('data-theme');
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+    }
+    localStorage.setItem('theme', theme);
+}
+
+// Initial check
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+    setTheme(savedTheme);
+} else {
+    // Check system preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        setTheme('light');
+    } else {
+        setTheme('dark');
+    }
+}
+
+// Event Listener
+themeToggleBtn.addEventListener('click', () => {
+    const currentTheme = htmlEl.getAttribute('data-theme');
+    if (currentTheme === 'light') {
+        setTheme('dark');
+    } else {
+        setTheme('light');
+    }
+});
