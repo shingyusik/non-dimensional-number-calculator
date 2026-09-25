@@ -1,0 +1,19 @@
+.guide-page header { text-align: left; max-width: 860px; margin: 0 auto; }
+.guide-page header h1 { font-size: clamp(2rem, 5vw, 2.8rem); }
+.guide-page main { max-width: 860px; padding-top: 0; }
+.guide-page a { color: var(--accent-secondary); }
+.guide-page h2 { margin: 2rem 0 0.7rem; font-size: 1.4rem; }
+.guide-page p, .guide-page li { margin: 0.75rem 0; line-height: 1.8; }
+.guide-page ul { padding-left: 1.4rem; }
+.guide-page .eyebrow { color: var(--accent-secondary); font-weight: 600; }
+.guide-page .formula-box, .guide-page .example-box {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+}
+.guide-page .formula-box strong { font: 700 1.25rem 'Courier New', monospace; }
+.guide-page .guide-cta { display: inline-block; background: var(--accent-gradient); color: white; padding: 0.75rem 1.1rem; border-radius: 0.65rem; text-decoration: none; font-weight: 600; }
+.guide-page .source { color: var(--text-secondary); font-size: 0.9rem; }
+.guide-page nav a { margin-right: 1rem; }

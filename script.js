@@ -13,9 +13,9 @@ const translations = {
         mach_short_desc: "유체의 속도와 음속의 비를 나타내며, 압축성 유동의 특성을 결정합니다.",
         nusselt_short_desc: "대류 열전달과 전도 열전달의 비를 나타내며, 대류가 열전달에 기여하는 정도를 결정합니다.",
         prandtl_short_desc: "운동량 확산과 열 확산의 비를 나타내며, 유체의 물리적 특성만으로 결정됩니다.",
-        schmidt_short_desc: "점성 확산율과 분자 확산율의 비를 나타내며, 유동 내의 대류 질량전달을 설명합니다.",
+        schmidt_short_desc: "운동량 확산율과 물질의 분자 확산율을 비교합니다.",
         peclet_short_desc: "유동에 의한 이송(Advection)과 확산(Diffusion)의 비를 나타냅니다.",
-        strouhal_short_desc: "비상시 유동(Unsteady flow)의 진동 특성을 나타내는 무차원수입니다.",
+        strouhal_short_desc: "비정상 유동(Unsteady flow)의 진동 특성을 나타내는 무차원수입니다.",
         froude_short_desc: "관성력과 중력의 비를 나타내며, 개수로 유동이나 선박 공학에서 중요합니다.",
         weber_short_desc: "관성력과 표면장력의 비를 나타내며, 액적의 분열이나 기포 형성 분석에 사용됩니다.",
         knudsen_short_desc: "분자 평균 자유 행로와 특성 길이의 비를 나타내며, 연속체 가설의 타당성을 판단합니다.",
@@ -23,7 +23,8 @@ const translations = {
         privacy_policy: "개인정보처리방침",
         terms_service: "이용약관",
         calculate_btn: "계산하기",
-        alert_fill_all: "모든 값을 입력해 주세요."
+        alert_fill_all: "모든 값을 입력해 주세요.",
+        alert_invalid_values: "0으로 나눌 수 없으며 음수 입력은 사용할 수 없습니다. 값을 확인해 주세요."
     },
     en: {
         page_title: "Dimensionless Numbers",
@@ -42,7 +43,8 @@ const translations = {
         privacy_policy: "Privacy Policy",
         terms_service: "Terms of Service",
         calculate_btn: "Calculate",
-        alert_fill_all: "Please enter all values."
+        alert_fill_all: "Please enter all values.",
+        alert_invalid_values: "Check the values: negative inputs and division by zero are not supported."
     }
 };
 
@@ -50,14 +52,14 @@ const calculators = {
     reynolds: {
         title: "Reynolds Number",
         description: {
-            ko: "레이놀즈 수(Reynolds Number)는 유체 역학에서 가장 중요한 무차원수 중 하나로, 관성력과 점성력의 비를 나타냅니다. 이 수는 유동이 층류(Laminar)인지 난류(Turbulent)인지를 예측하는 데 사용됩니다.<br><br><strong>공식:</strong> Re = ρvL / μ<br>여기서 ρ는 밀도, v는 속도, L은 특성 길이, μ는 동점성 계수입니다.<br><br>일반적으로 파이프 유동에서 Re < 2300이면 층류, Re > 4000이면 난류로 간주하며, 그 사이는 천이 구역입니다.",
+            ko: "레이놀즈 수(Reynolds Number)는 관성 효과와 점성 효과를 비교합니다.<br><br><strong>공식:</strong> Re = ρvL / μ<br>ρ는 밀도, v는 속도, L은 특성 길이, μ는 점성 계수입니다. 원형 관의 내부 유동에서는 관 안지름을 L로 사용합니다.<br><br>화면의 층류·난류 구분은 원형 관 유동의 대략적인 기준입니다. 다른 형상에는 그대로 적용하지 마세요.",
             en: "Reynolds Number is the ratio of inertial forces to viscous forces within a fluid which is subjected to relative internal movement due to different fluid velocities. It is used to predict flow patterns in different fluid flow situations.<br><br><strong>Formula:</strong> Re = ρvL / μ<br>Where ρ is density, v is velocity, L is characteristic length, and μ is dynamic viscosity.<br><br>Generally, for pipe flow, Re < 2300 indicates laminar flow, and Re > 4000 indicates turbulent flow."
         },
         inputs: [
             { id: 'v', label: { ko: '속도 (v) [m/s]', en: 'Velocity (v) [m/s]' }, placeholder: 'e.g. 2.0' },
             { id: 'rho', label: { ko: '밀도 (ρ) [kg/m³]', en: 'Density (ρ) [kg/m³]' }, placeholder: 'e.g. 1000' },
             { id: 'L', label: { ko: '특성 길이 (L) [m]', en: 'Characteristic Length (L) [m]' }, placeholder: 'e.g. 0.5' },
-            { id: 'mu', label: { ko: '동점성 계수 (μ) [Pa·s]', en: 'Dynamic Viscosity (μ) [Pa·s]' }, placeholder: 'e.g. 0.001' }
+            { id: 'mu', label: { ko: '점성 계수 (μ) [Pa·s]', en: 'Dynamic Viscosity (μ) [Pa·s]' }, placeholder: 'e.g. 0.001' }
         ],
         calculate: (vals) => (vals.rho * vals.v * vals.L) / vals.mu,
         getInfo: (res) => {
@@ -87,7 +89,7 @@ const calculators = {
     nusselt: {
         title: "Nusselt Number",
         description: {
-            ko: "누셀트 수(Nusselt Number)는 경계면에서의 대류 열전달과 전도 열전달의 비율을 나타냅니다. 이 값이 클수록 대류에 의한 열전달이 활발함을 의미합니다.<br><br><strong>공식:</strong> Nu = hL / k<br>여기서 h는 대류 열전달 계수, L은 특성 길이, k는 유체의 열전도율입니다. Nu = 1 이면 순수 전도만 일어나는 상태에 가깝습니다.",
+            ko: "누셀트 수(Nusselt Number)는 선택한 길이 척도에서 표면의 대류 열전달 계수와 유체의 열전도를 비교합니다.<br><br><strong>공식:</strong> Nu = hL / k<br>h는 대류 열전달 계수, L은 형상에 맞는 특성 길이, k는 유체의 열전도율입니다. 서로 다른 조건을 비교하려면 L의 정의를 일치시키세요.",
             en: "Nusselt Number is the ratio of convective to conductive heat transfer at a boundary in a fluid. A larger Nusselt number corresponds to more active convection.<br><br><strong>Formula:</strong> Nu = hL / k<br>Where h is convective heat transfer coefficient, L is characteristic length, k is thermal conductivity."
         },
         inputs: [
@@ -97,8 +99,8 @@ const calculators = {
         ],
         calculate: (vals) => (vals.h * vals.L) / vals.k,
         getInfo: (res) => ({
-            ko: "Nu > 1: 전도보다 대류가 우세함",
-            en: "Nu > 1: Convection is more effective than conduction."
+            ko: "같은 기준으로 계산한 다른 조건의 Nu와 비교하세요",
+            en: "Compare Nu with other cases using the same length scale."
         })
     },
     prandtl: {
@@ -108,7 +110,7 @@ const calculators = {
             en: "Prandtl Number is the ratio of momentum diffusivity (kinematic viscosity) to thermal diffusivity. It depends only on the fluid type and its state.<br><br><strong>Formula:</strong> Pr = μc_p / k = ν / α"
         },
         inputs: [
-            { id: 'mu', label: { ko: '동점성 계수 (μ) [Pa·s]', en: 'Dynamic Viscosity (μ) [Pa·s]' }, placeholder: 'e.g. 0.001' },
+            { id: 'mu', label: { ko: '점성 계수 (μ) [Pa·s]', en: 'Dynamic Viscosity (μ) [Pa·s]' }, placeholder: 'e.g. 0.001' },
             { id: 'cp', label: { ko: '비열 (c_p) [J/kgK]', en: 'Specific Heat Capacity (c_p) [J/kgK]' }, placeholder: 'e.g. 4180' },
             { id: 'k', label: { ko: '열전도율 (k) [W/mK]', en: 'Thermal Conductivity (k) [W/mK]' }, placeholder: 'e.g. 0.6' }
         ],
@@ -125,7 +127,7 @@ const calculators = {
             en: "Schmidt Number is a dimensionless number defined as the ratio of momentum diffusivity (kinematic viscosity) and mass diffusivity. It relates the relative thickness of the hydrodynamic layer and mass-transfer boundary layer."
         },
         inputs: [
-            { id: 'mu', label: { ko: '동점성 계수 (μ) [Pa·s]', en: 'Dynamic Viscosity (μ) [Pa·s]' }, placeholder: 'e.g. 0.001' },
+            { id: 'mu', label: { ko: '점성 계수 (μ) [Pa·s]', en: 'Dynamic Viscosity (μ) [Pa·s]' }, placeholder: 'e.g. 0.001' },
             { id: 'rho', label: { ko: '밀도 (ρ) [kg/m³]', en: 'Density (ρ) [kg/m³]' }, placeholder: 'e.g. 1000' },
             { id: 'D', label: { ko: '질량 확산 계수 (D) [m²/s]', en: 'Mass Diffusivity (D) [m²/s]' }, placeholder: 'e.g. 1e-9' }
         ],
@@ -148,14 +150,14 @@ const calculators = {
         ],
         calculate: (vals) => (vals.v * vals.L) / vals.alpha,
         getInfo: (res) => ({
-            ko: "Pe > 100: 확산보다 이송이 지배적임",
-            en: "Pe > 100: Advection dominates over diffusion."
+            ko: "Pe가 클수록 선택한 길이에서 이송 효과가 상대적으로 큽니다",
+            en: "Larger Pe indicates stronger advection relative to diffusion."
         })
     },
     strouhal: {
         title: "Strouhal Number",
         description: {
-            ko: "스트로할 수(Strouhal Number)는 비상시 유동(Unsteady flow)에서의 진동 특성을 나타냅니다. 예를 들어, 바람에 흔들리는 전선이나 카르만 와류(Karman Vortex Street) 현상을 분석할 때 중요합니다.",
+            ko: "스트로할 수(Strouhal Number)는 비정상 유동(Unsteady flow)에서의 진동 특성을 나타냅니다. 예를 들어, 바람에 흔들리는 전선이나 카르만 와류(Karman Vortex Street) 현상을 분석할 때 중요합니다.",
             en: "Strouhal Number represents the oscillating flow mechanisms. It is often used to describe oscillating flow mechanisms such as Karman vortex street."
         },
         inputs: [
@@ -172,7 +174,7 @@ const calculators = {
     froude: {
         title: "Froude Number",
         description: {
-            ko: "프루드 수(Froude Number)는 유체의 관성력과 중력의 비율을 나타냅니다. 개수로(Open channel) 유동이나 선박의 조파 저항 등을 해석할 때 필수적인 무차원수입니다.",
+            ko: "프루드 수(Froude Number)는 유속과 중력에 관련된 파동 속도 척도를 비교합니다. 개수로 유동이나 선박 주변 물결에 쓰지만, 두 경우의 특성 길이와 해석 기준은 다릅니다.",
             en: "Froude Number is a dimensionless number defined as the ratio of the flow inertia to the external field (the latter in many applications simply being gravity)."
         },
         inputs: [
@@ -182,9 +184,9 @@ const calculators = {
         ],
         calculate: (vals) => vals.v / Math.sqrt(vals.g * vals.L),
         getInfo: (res) => {
-            if (res < 1) return { ko: "상류 (Subcritical flow)", en: "Subcritical flow" };
-            if (res === 1) return { ko: "한계류 (Critical flow)", en: "Critical flow" };
-            return { ko: "사류 (Supercritical flow)", en: "Supercritical flow" };
+            if (res < 1) return { ko: "개수로에서 L이 수심 척도라면 상류", en: "Subcritical if L is the open-channel depth scale" };
+            if (res === 1) return { ko: "개수로에서 L이 수심 척도라면 한계류", en: "Critical if L is the open-channel depth scale" };
+            return { ko: "개수로에서 L이 수심 척도라면 사류", en: "Supercritical if L is the open-channel depth scale" };
         }
     },
     weber: {
@@ -306,6 +308,10 @@ function runCalculation() {
     }
     
     const result = calc.calculate(vals);
+    if (Object.values(vals).some(value => value < 0) || !Number.isFinite(result)) {
+        alert(translations[currentLang].alert_invalid_values);
+        return;
+    }
     const resultContainer = document.getElementById('resultContainer');
     const resultValue = document.getElementById('resultValue');
     const resultInfo = document.getElementById('resultInfo');
@@ -410,3 +416,11 @@ if (savedLang) {
     const browserLang = navigator.language.startsWith('ko') ? 'ko' : 'en';
     setLanguage(browserLang); 
 }
+
+// Guide pages link directly to their calculator.
+function openCalculatorFromHash() {
+    const type = location.hash.slice(1);
+    if (calculators[type]) openModal(type);
+}
+window.addEventListener('hashchange', openCalculatorFromHash);
+openCalculatorFromHash();
