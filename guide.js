@@ -5,9 +5,13 @@ function applyTheme(theme) {
     if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
     else document.documentElement.removeAttribute('data-theme');
     localStorage.setItem('theme', theme);
-    document.getElementById('themeToggle').textContent = theme === 'light'
-        ? (pageLanguage === 'ko' ? '다크 모드' : 'Dark mode')
-        : (pageLanguage === 'ko' ? '라이트 모드' : 'Light mode');
+    document.getElementById('sunIcon').style.display = theme === 'light' ? 'none' : 'block';
+    document.getElementById('moonIcon').style.display = theme === 'light' ? 'block' : 'none';
+    const label = theme === 'light'
+        ? (pageLanguage === 'ko' ? '다크 모드로 전환' : 'Switch to dark mode')
+        : (pageLanguage === 'ko' ? '라이트 모드로 전환' : 'Switch to light mode');
+    document.getElementById('themeToggle').setAttribute('aria-label', label);
+    document.getElementById('themeToggle').title = label;
 }
 
 const savedTheme = localStorage.getItem('theme');
