@@ -185,15 +185,33 @@ main {
 }
 
 .card .calc-open, .card .guide-link {
-    display: inline-block;
-    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
     margin-top: 0.8rem;
-    color: var(--accent-secondary);
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    transition: filter 0.2s, background-color 0.2s;
 }
 
-.card .calc-open { background: none; border: 0; cursor: pointer; font: inherit; }
+.card .calc-open {
+    color: white;
+    background: var(--accent-gradient);
+    border: 0;
+    cursor: pointer;
+}
+
+.card .guide-link {
+    color: var(--accent-secondary);
+    background: var(--card-bg);
+    border: 1px solid var(--accent-secondary);
+}
+
+.card .calc-open:hover, .card .guide-link:hover { filter: brightness(1.15); }
 
 .calc-open:focus-visible, .guide-link:focus-visible {
     outline: 3px solid var(--accent-secondary);
