@@ -9,6 +9,12 @@ const translations = {
     ko: {
         page_title: "Dimensionless Numbers",
         page_subtitle: "물리적 현상의 핵심을 파악하는 무차원수 계산기",
+        intro_title: "계산값을 해석하기 전에",
+        intro_text: "무차원수는 조건이 다른 유동·열전달 문제를 비교할 때 쓰는 비율입니다. 공식에 숫자를 넣기 전에 특성 길이와 물성값이 현재 문제에 맞는지 확인하세요.",
+        intro_step1: "아래에서 필요한 계산기를 엽니다.",
+        intro_step2: "입력 단위를 맞춰 계산하고, 각 항목의 해설에서 예제와 적용 범위를 확인합니다.",
+        intro_step3: "결과를 설계나 실험에 사용한다면 원래 물성 자료와 경계 조건을 다시 확인합니다.",
+        open_calculator: "계산기 열기",
         reynolds_short_desc: "유체의 관성력과 점성력의 비를 나타내며, 유동이 층류인지 난류인지 판단하는 지표입니다.",
         mach_short_desc: "유체의 속도와 음속의 비를 나타내며, 압축성 유동의 특성을 결정합니다.",
         nusselt_short_desc: "대류 열전달과 전도 열전달의 비를 나타내며, 대류가 열전달에 기여하는 정도를 결정합니다.",
@@ -29,6 +35,12 @@ const translations = {
     en: {
         page_title: "Dimensionless Numbers",
         page_subtitle: "Calculator for dimensionless numbers finding the core of physical phenomena",
+        intro_title: "Before interpreting a result",
+        intro_text: "Dimensionless numbers compare flow and heat-transfer problems under different conditions. Before entering values, check that the characteristic length and material properties match your case.",
+        intro_step1: "Open the calculator you need below.",
+        intro_step2: "Use consistent units, then read the worked example and limits in its guide.",
+        intro_step3: "For design or experiments, verify the source properties and boundary conditions.",
+        open_calculator: "Open calculator",
         reynolds_short_desc: "Ratio of inertial forces to viscous forces, determining if flow is laminar or turbulent.",
         mach_short_desc: "Ratio of flow velocity to the speed of sound, determining compressibility effects.",
         nusselt_short_desc: "Ratio of convective to conductive heat transfer, indicating the effectiveness of convection.",
@@ -237,6 +249,14 @@ function updateStaticText() {
         if (langData[key]) {
             el.innerText = langData[key];
         }
+    });
+
+    document.querySelectorAll('[data-guide]').forEach(link => {
+        const type = link.dataset.guide;
+        if (!calculators[type]) return;
+        if (!link.dataset.koLabel) link.dataset.koLabel = link.textContent;
+        link.textContent = currentLang === 'ko' ? link.dataset.koLabel : `${calculators[type].title} guide & example`;
+        link.href = currentLang === 'ko' ? `guides/${type}` : `en/guides/${type}`;
     });
 
     // Update Language Toggle Button text
