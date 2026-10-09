@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>기체 유동 모델 선택: 마하 수와 누센 수를 따로 확인하기 | Dimensionless Number Calculator</title><meta name="description" content="압축성과 분자 길이 척도는 서로 다른 판단입니다. 등엔트로피 관계로 오차 척도를 검산합니다.">
+<link rel="canonical" href="https://calctool.cc/guides/gas-models">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/gas-models"><link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/gas-models">
+<link rel="stylesheet" href="/style.css?v=20260926c"><link rel="stylesheet" href="/guide.css?v=20261009"><link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head><body class="guide-page"><header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/en/guides/gas-models" aria-label="Switch to English">EN</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button></div><p class="eyebrow">유체역학 이론과 검산</p><h1>기체 유동 모델 선택: 마하 수와 누센 수를 따로 확인하기</h1><p>압축성과 분자 길이 척도는 서로 다른 판단입니다. 등엔트로피 관계로 오차 척도를 검산합니다.</p></header><main>
+<p class="source">내용·수치 검산: 2026-10-09</p>
+<section><h2>두 가지 가정은 서로 다른 질문입니다</h2><p>비압축성 가정은 밀도 변화를 무시할 수 있는가라는 질문입니다. 연속체 가정은 분자 이동 길이에 비해 관심 길이가 충분히 큰가라는 질문입니다. 낮은 마하 수만으로 연속체 모델을 확정할 수 없고, 작은 누센 수만으로 밀도가 일정하다고 할 수 없습니다.</p><p>아래 음속과 정체 상태 관계는 열량적으로 완전한 이상기체, 일정한 비열비, 단열·등엔트로피인 감속을 가정합니다. 충격파, 큰 마찰 손실, 열 유입이나 강한 희박화가 있는 장치 전체에 그대로 적용하는 식이 아닙니다.</p></section>
+<section><h2>계산 전에 상태와 길이를 정하기</h2><div class="table-wrap"><table><caption>정적 상태와 정체 상태를 구분합니다.</caption><thead><tr><th scope="col">변수</th><th scope="col">단위</th><th scope="col">의미</th></tr></thead><tbody><tr><th scope="row">γ</th><td>무차원</td><td>비열비 cₚ/cᵥ</td></tr><tr><th scope="row">R</th><td>J/(kg·K)</td><td>해당 기체의 비기체상수</td></tr><tr><th scope="row">T, T₀</th><td>K</td><td>국소 정적 온도, 등엔트로피 정체 온도</td></tr><tr><th scope="row">v, c</th><td>m/s</td><td>국소 속도와 국소 음속</td></tr><tr><th scope="row">ρ, ρ₀</th><td>kg/m³</td><td>정적 밀도와 등엔트로피 정체 밀도</td></tr><tr><th scope="row">p, p₀</th><td>Pa</td><td>정적 압력과 등엔트로피 정체 압력</td></tr><tr><th scope="row">λ, L</th><td>m</td><td>평균 자유 행로와 관심 특성 길이</td></tr></tbody></table></div><p>섭씨 온도를 c = √(γRT)에 직접 넣지 마세요. R은 보편 기체상수의 mol 단위 값이 아니라 kg 기준 값입니다. λ는 같은 기체·압력·온도 조건의 값을 사용하고, 미세 유로에서는 장치 전체 길이보다 유로 폭이나 관련 구배 길이가 더 적절할 수 있습니다.</p></section>
+<section><h2>마하 수를 정체 상태 관계로 연결하기</h2><p>이상기체의 음속은 c² = γRT이고 Ma = v/c입니다. 단열의 가역 감속에서 에너지 보존은 cₚT₀ = cₚT + v²/2입니다. cₚ = γR/(γ−1)을 대입하면 아래 첫 식을 얻습니다. 등엔트로피 관계 p/ρᵞ = 일정과 이상기체 식을 함께 쓰면 나머지 비도 얻습니다.</p><div class="formula-box"><strong>T₀/T = 1 + (γ−1)Ma²/2<br>ρ₀/ρ = (T₀/T)^(1/(γ−1))<br>p₀/p = (T₀/T)^(γ/(γ−1))</strong></div><p>이 비는 해당 지점에서 이상적인 감속을 했을 때의 정체 상태와 비교한 것입니다. 실제 유로의 입구·출구 변화량을 대신하지 않습니다. 허용 밀도 오차는 목적에 맞게 정하고, Ma가 작다는 이름만으로 정밀도를 판단하지 마세요.</p></section>
+<section><h2>구성한 기체 예제에서 수치 비교하기</h2><p>예시 입력 γ = 1.4, R = 287 J/(kg·K), T = 300 K이면 c = √120540 = <strong>347.1887 m/s</strong>입니다. 다음 속도는 이 음속에 맞춰 구성했습니다. 실제 대기 상태의 인증값으로 쓰지 않습니다.</p><div class="table-wrap"><table><caption>동일한 정적 온도에서 등엔트로피 정체 상태와 비교</caption><thead><tr><th scope="col">Ma / v</th><th scope="col">T₀/T</th><th scope="col">ρ₀/ρ</th><th scope="col">p₀/p</th></tr></thead><tbody><tr><th scope="row">0.3 / 104.1566 m/s</th><td>1.018</td><td>1.04561</td><td>1.06443</td></tr><tr><th scope="row">0.8 / 277.7510 m/s</th><td>1.128</td><td>1.35137</td><td>1.52434</td></tr></tbody></table></div><p>이 예제의 대수 관계에서는 Ma = 0.3이어도 밀도비가 약 4.56% 다릅니다. 저속의 안내값을 적용하기 전에 요구 정밀도와 비교하세요.</p></section>
+<section><h2>작은 장치에서는 Kn을 별도로 확인하기</h2><p>설명용 평균 자유 행로 λ = 6.8×10⁻⁸ m를 고정합니다. L = 0.001 m에서는 Kn = 6.8×10⁻⁵이지만 L = 10⁻⁶ m에서는 Kn = 0.068입니다. 속도를 그대로 둔 길이 비교에서는 Ma는 변하지 않습니다. 이 점이 Ma와 Kn을 별도로 확인하는 이유입니다.</p><p>0.068이라는 값이면 벽 미끄럼과 온도 점프 등 희박화 효과를 검토해야 합니다. 필요한 경계 모델은 표면과 정확도 조건에 따라 달라집니다. 연속체의 비미끄럼 Navier–Stokes 모델을 크기 변경 전과 똑같이 적용할 근거가 되지 않습니다. 위 길이 비교는 λ를 고정한 예제이며 압력 변경에 따른 λ 변화까지 계산한 것은 아닙니다.</p></section>
+<section><h2>모델을 선택할 때 남길 기록</h2><ul><li>Ma 계산에 사용한 국소 T와 음속 산정 가정을 적습니다.</li><li>비압축성 근사의 허용 밀도 오차를 정합니다.</li><li>Kn의 λ와 L이 어느 상태·형상·구배를 표현하는지 적습니다.</li><li>충격파가 있으면 등엔트로피 관계를 그 충격파를 가로질러 적용하지 않습니다.</li><li>열적 비평형이나 큰 희박화에서는 이 이상기체 정체 상태 비교만으로 모델을 검증할 수 없습니다.</li></ul></section>
+<nav aria-label="계산기"><a href="/#mach">Mach 계산기</a><a href="/#knudsen">Knudsen 계산기</a></nav>
+<p class="source">공식·개념 출처: <a href="https://www.grc.nasa.gov/www/k-12/airplane/isentrop.html">NASA Glenn — Isentropic Flow Equations</a> · <a href="https://ntrs.nasa.gov/api/citations/19930022543/downloads/19930022543.pdf">NASA — Knudsen-number and slip discussion, pp. 106–107</a>. 유도와 입력·검산 예제는 이 글을 위해 구성했습니다. 실측 데이터나 출처의 예제를 복제한 것이 아닙니다.</p><nav aria-label="관련 학습 자료"><a href="/">전체 계산기</a><a href="/guides/model-similarity">축척 모형 비교</a><a href="/guides/transport-scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a></nav>
+</main><footer><a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a><p>© 2026 Dimensionless Number Calculator</p></footer><script src="/guide.js?v=20260926c" defer></script></body></html>

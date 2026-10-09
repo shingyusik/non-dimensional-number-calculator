@@ -5,7 +5,7 @@ Static bilingual calculator and worked guides served at https://calctool.cc.
 ## Content
 
 - `index.html`: ten calculators and the learning library.
-- `guides/`, `en/guides/`: Korean and English explanations, pipe-flow cross-checks and scale-model comparisons.
+- `guides/`, `en/guides/`: Korean and English explanations, pipe-flow cross-checks, scale-model comparisons and four theory chapters: pipe energy/pressure loss, transport scales, gas-model assumptions and interfacial/time scales.
 - `script.js`: calculator formulas, language selection and homepage calculator fragments.
 - `guide.js`: guide language and theme controls.
 

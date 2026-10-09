@@ -44,13 +44,29 @@ for file, page in pages.items():
 
 ns = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
 sitemap_urls = {n.text for n in ET.parse(ROOT/'sitemap.xml').findall('s:url/s:loc', ns)}
+chapters = {
+    'pipe-flow': {'reynolds', 'prandtl', 'peclet'},
+    'model-similarity': {'reynolds', 'froude'},
+    'pipe-energy': {'reynolds'},
+    'transport-scales': {'reynolds', 'prandtl', 'schmidt', 'peclet', 'nusselt'},
+    'gas-models': {'mach', 'knudsen'},
+    'interface-time-scales': {'reynolds', 'weber', 'froude', 'strouhal'},
+}
 for prefix in ('', 'en/'):
-    for slug in ('pipe-flow', 'model-similarity'):
+    for slug, links in chapters.items():
         file = ROOT/f'{prefix}guides/{slug}.html'
         expected = f'https://calctool.cc/{prefix}guides/{slug}'
         assert pages[file].canonical == expected
         assert expected in sitemap_urls
         assert 'id="langToggle"' in file.read_text()
         assert 'data-other-url=' in file.read_text()
-        assert '/#reynolds' in pages[file].links
-print(f'PASS: {len(pages)} HTML pages; local links, fragments, duplicate IDs, 4 bilingual canonical/sitemap entries')
+        text = file.read_text()
+        language = 'en' if prefix else 'ko'
+        assert f'<html lang="{language}">' in text
+        other_prefix = '' if prefix else 'en/'
+        assert f'data-other-url="/{other_prefix}guides/{slug}"' in text
+        for calculator in links:
+            assert f'/#{calculator}' in pages[file].links
+        assert 'hreflang="ko"' in text and 'hreflang="en"' in text
+        assert '<caption>' in text and 'scope="col"' in text
+print(f'PASS: {len(pages)} HTML pages; local links, fragments, duplicate IDs, 12 bilingual chapter canonical/sitemap entries and calculator connections')
