@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>관 유동에서 Re·Pr·Pe를 함께 검산하기 | Dimensionless Number Calculator</title><meta name="description" content="단위 변환, 물성의 일관성, 결과 해석을 한 번의 계산 흐름으로 확인합니다.">
+<link rel="canonical" href="https://calctool.cc/guides/pipe-flow">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/pipe-flow"><link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/pipe-flow">
+<link rel="stylesheet" href="/style.css?v=20260926c"><link rel="stylesheet" href="/guide.css?v=20261009">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head><body class="guide-page"><header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/en/guides/pipe-flow" aria-label="Switch to English">EN</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button></div><p class="eyebrow">실전 계산 노트</p><h1>관 유동에서 Re·Pr·Pe를 함께 검산하기</h1><p>단위 변환, 물성의 일관성, 결과 해석을 한 번의 계산 흐름으로 확인합니다.</p></header><main>
+<p class="source">검산·내용 확인: 2026-10-09</p>
+
+<section><h2>계산으로 답할 질문을 먼저 정하기</h2><p>지름 10 mm인 원형 관에 평균 속도 0.2 m/s로 유체가 흐른다고 가정해 봅니다. 여기서 알고 싶은 것은 관성·점성의 상대적인 크기와 열이 이송·확산되는 척도입니다. 이 두 질문은 서로 다르므로 레이놀즈 수 하나만 계산해서 열전달까지 결론내리면 안 됩니다. 아래 예제는 동일한 입력으로 세 계산기를 연결하고 결과가 서로 맞는지 확인하는 연습입니다.</p><p>물성값은 설명을 위해 구성한 상수입니다. 특정 온도의 물을 정확히 재현하는 자료가 아니며 실험이나 설계에서는 같은 온도·압력의 물성표로 바꾸어야 합니다. 길이 L은 세 계산에서 모두 관 안지름으로 고정합니다.</p></section>
+<section><h2>1. 입력표를 SI 단위로 정리하기</h2><div class="table-wrap"><table><caption>이 예제에서 함께 사용하는 입력값</caption><thead><tr><th scope="col">물리량</th><th scope="col">입력</th><th scope="col">선택 이유</th></tr></thead><tbody>
+<tr><th scope="row">밀도 ρ</th><td>1000 kg/m³</td><td>점성과 열확산의 환산에 같은 밀도 사용</td></tr>
+<tr><th scope="row">평균 속도 v</th><td>0.2 m/s</td><td>관 단면의 평균값</td></tr>
+<tr><th scope="row">안지름 L</th><td>0.01 m</td><td>10 mm ÷ 1000</td></tr>
+<tr><th scope="row">점성 계수 μ</th><td>0.001 Pa·s</td><td>운동 점성 계수와 구분</td></tr>
+<tr><th scope="row">정압 비열 cₚ</th><td>4200 J/(kg·K)</td><td>열확산 계산에 사용</td></tr>
+<tr><th scope="row">열전도율 k</th><td>0.6 W/(m·K)</td><td>같은 유체의 열전도율</td></tr></tbody></table></div><p>지름을 10으로 입력하면 계산기는 10 m로 해석합니다. Re와 Pe가 모두 1000배 커져도 두 결과의 관계는 유지됩니다. 따라서 교차검산이 맞는 것과 입력 단위가 맞는 것은 별도로 확인해야 합니다.</p></section>
+<section><h2>2. 레이놀즈 수 계산하기</h2><div class="formula-box"><strong>Re = 1000 × 0.2 × 0.01 / 0.001 = 2000</strong></div><p>운동 점성 계수로도 확인할 수 있습니다. ν = μ/ρ = 10⁻⁶ m²/s이므로 Re = vL/ν = 0.002/10⁻⁶ = 2000입니다. Pa·s 단위의 μ를 넣는 칸에 m²/s 단위의 ν를 넣으면 두 계산이 서로 다른 뜻이 됩니다.</p><p>2000은 매끈한 원형 관의 완전히 발달한 유동을 생각할 때 층류 범위의 안내값입니다. 입구 길이, 교란, 거칠기 등은 별도로 검토해야 합니다. 계산기 구간 표시는 그 조건들을 측정하거나 판정한 결과가 아닙니다.</p><a class="guide-cta" href="/#reynolds">Re 계산기에 입력하기</a></section>
+<section><h2>3. 프란틀 수와 열확산 계수 구하기</h2><div class="example-box"><p>Pr = μcₚ/k = 0.001 × 4200 / 0.6 = <strong>7</strong></p><p>α = k/(ρcₚ) = 0.6/(1000 × 4200) = <strong>1.428571… × 10⁻⁷ m²/s</strong></p><p>독립 확인: ν/α = 10⁻⁶ / (1.428571… × 10⁻⁷) = 7</p></div><p>Pr은 이 유체에서 운동량 확산율이 열확산율의 7배라는 뜻입니다. 속도를 두 배로 바꾸어도 여기서 물성값을 고정하면 Pr은 7로 유지됩니다. 결과가 속도에 따라 바뀐다면 다른 물성이나 단위를 섞었는지 확인하세요.</p><a class="guide-cta" href="/#prandtl">Pr 계산기에 입력하기</a></section>
+<section><h2>4. 페클레 수를 두 경로로 확인하기</h2><div class="formula-box"><strong>Pe = vL/α = 0.002/(1.428571… × 10⁻⁷) = 14000</strong></div><p>다른 경로는 Re × Pr = 2000 × 7 = 14000입니다. 식을 전개하면 (ρvL/μ)(μcₚ/k) = ρcₚvL/k = vL/α가 됩니다. 길이·속도·물성 조건을 일치시키면 이 등식은 반올림 오차를 제외하고 성립합니다. α를 먼저 1.43×10⁻⁷로 반올림하면 직접 계산한 Pe는 약 13986이므로 표시값이 조금 달라도 입력 정밀도를 먼저 확인하세요.</p><p>시간 척도로도 읽을 수 있습니다. t<sub>이송</sub> = L/v = 0.05 s, t<sub>확산</sub> = L²/α = 700 s이고 그 비가 14000입니다. 두 시간은 선택한 L에서 만든 척도이며 실제 출구 온도나 관 전체를 가열하는 시간을 예측한 값은 아닙니다.</p><a class="guide-cta" href="/#peclet">Pe 계산기에 입력하기</a></section>
+<section><h2>결과가 맞지 않을 때 확인할 순서</h2><ol><li>L을 한 계산에서는 지름, 다른 계산에서는 관 길이로 썼는지 확인합니다.</li><li>μ와 ν의 단위를 구분하고 비열이 kJ가 아닌 J 단위인지 확인합니다.</li><li>α를 같은 ρ·cₚ·k에서 계산했는지 확인합니다.</li><li>열 Pe와 물질 Pe를 구분합니다. 물질 확산 계수 D로 계산했다면 대응 관계는 Re × Sc입니다.</li></ol><p>같은 예제에서 v만 0.4 m/s로 바꾸면 Re = 4000, Pr = 7, Pe = 28000입니다. 이 변화는 공식의 민감도를 보여 주며, 물성이 변하는 실제 가열 유동의 해답을 대신하지 않습니다.</p></section>
+<section><h2>이 결과로 알 수 없는 것</h2><p>이 세 비율만으로 압력 손실, 대류 열전달 계수 h, 벽 온도 또는 전달 열량을 얻을 수는 없습니다. Nu = hL/k를 계산하려면 먼저 형상과 경계 조건에 맞는 측정값 또는 검증된 상관식으로 h를 정해야 합니다. 계산값과 함께 물성의 출처, 평가 온도, L의 정의를 기록하면 다른 계산과 비교할 수 있습니다.</p></section>
+
+<p class="source">공식·개념 참고: <a href="https://www.grc.nasa.gov/www/k-12/airplane/reynolds.html">NASA Glenn — Reynolds Number</a> · <a href="https://courses.ems.psu.edu/ce574/node/820">Penn State — Dimensionless numbers (transport timescales)</a>. 위 입력과 교차검산은 이 사이트에서 구성한 계산 예제입니다. 물성표나 실험 결과를 인용한 것이 아닙니다.</p><nav aria-label="학습 자료"><a href="/">전체 계산기</a><a href="/guides/model-similarity">축소 모형에서 Re와 Fr을 동시에 맞출 수 있을까?</a></nav>
+</main><footer><a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a><p>© 2026 Dimensionless Number Calculator</p></footer><script src="/guide.js?v=20260926c" defer></script></body></html>

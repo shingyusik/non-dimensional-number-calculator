@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>축소 모형에서 Re와 Fr을 동시에 맞출 수 있을까? | Dimensionless Number Calculator</title><meta name="description" content="1:10 모형의 속도를 두 가지 기준으로 계산하고 서로 충돌하는 이유를 확인합니다.">
+<link rel="canonical" href="https://calctool.cc/guides/model-similarity">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/model-similarity"><link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/model-similarity">
+<link rel="stylesheet" href="/style.css?v=20260926c"><link rel="stylesheet" href="/guide.css?v=20261009">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head><body class="guide-page"><header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/en/guides/model-similarity" aria-label="Switch to English">EN</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button></div><p class="eyebrow">실전 계산 노트</p><h1>축소 모형에서 Re와 Fr을 동시에 맞출 수 있을까?</h1><p>1:10 모형의 속도를 두 가지 기준으로 계산하고 서로 충돌하는 이유를 확인합니다.</p></header><main>
+<p class="source">검산·내용 확인: 2026-10-09</p>
+
+<section><h2>같은 모양만으로는 같은 유동이 되지 않습니다</h2><p>길이가 10 m인 수면 위 물체를 길이 1 m인 기하학적으로 닮은 모형으로 시험한다고 가정합니다. 실물 속도는 5 m/s입니다. 길이를 10분의 1로 줄였으니 속도도 10분의 1로 줄이면 되는지, 혹은 같은 속도를 써야 하는지를 Re와 Fr로 비교해 봅니다. 이 예제는 특정 선박의 성능을 예측하는 시험 계획이 아니라 서로 다른 상사 조건의 차이를 보여 주는 계산 연습입니다.</p><p>실물과 모형 모두 ρ = 1000 kg/m³, μ = 0.001 Pa·s, g = 9.81 m/s²를 사용합니다. 따라서 ν = 10⁻⁶ m²/s입니다. L은 물체의 대표 길이로 일관되게 사용하며 개수로의 수심을 뜻하지 않습니다.</p></section>
+<section><h2>1. 실물의 두 무차원수</h2><div class="example-box"><p>Re<sub>실물</sub> = 1000 × 5 × 10 / 0.001 = <strong>50,000,000</strong></p><p>Fr<sub>실물</sub> = 5 / √(9.81 × 10) ≈ <strong>0.5048</strong></p></div><p>첫 숫자는 점성에 대한 관성의 척도이며 둘째는 중력에 관련된 척도입니다. 여기서 Fr이 1보다 작다고 해서 관 유동이나 선박 주위 유동을 개수로의 상류라고 부르면 안 됩니다. 계산기 표시의 조건과 L의 정의를 먼저 확인하세요.</p></section>
+<section><h2>2. Fr을 맞추는 모형 속도</h2><p>모형과 실물의 중력이 같으면 v<sub>모형</sub>/√L<sub>모형</sub> = v<sub>실물</sub>/√L<sub>실물</sub>이어야 합니다. 길이비 λ = L<sub>모형</sub>/L<sub>실물</sub> = 0.1이므로 속도비는 √λ입니다.</p><div class="formula-box"><strong>v<sub>모형</sub> = 5 × √0.1 ≈ 1.5811 m/s</strong></div><p>이 속도를 넣으면 Fr<sub>모형</sub> ≈ 0.5048로 실물과 같습니다. 그러나 Re<sub>모형</sub> ≈ 1,581,139가 됩니다. 비율로 확인하면 Re<sub>모형</sub>/Re<sub>실물</sub> = λ<sup>3/2</sup> ≈ 0.03162입니다. Fr을 맞춰도 점성에 대한 상대적 척도는 실물의 약 3.16%입니다.</p></section>
+<section><h2>3. Re를 맞추는 모형 속도</h2><p>같은 유체에서 Re를 맞추려면 v<sub>모형</sub>L<sub>모형</sub> = v<sub>실물</sub>L<sub>실물</sub>입니다. 따라서 v<sub>모형</sub> = 5 × 10/1 = 50 m/s가 필요합니다. 이 경우 Fr<sub>모형</sub> = 50/√9.81 ≈ 15.9638이므로 실물 Fr의 약 31.62배입니다.</p><div class="table-wrap"><table><caption>길이 1 m 모형에 적용하는 세 가지 속도</caption><thead><tr><th scope="col">조건</th><th scope="col">속도 (m/s)</th><th scope="col">Re</th><th scope="col">Fr</th></tr></thead><tbody><tr><th scope="row">실물과 같은 속도</th><td>5</td><td>5,000,000</td><td>1.5964</td></tr><tr><th scope="row">Fr 일치</th><td>1.5811</td><td>약 1,581,139</td><td>0.5048</td></tr><tr><th scope="row">Re 일치</th><td>50</td><td>50,000,000</td><td>15.9638</td></tr></tbody></table></div><p>표의 Fr 일치 행은 반올림하지 않은 속도 5√0.1로 계산했습니다. 표시된 1.5811을 입력하면 마지막 자리에는 작은 차이가 생깁니다.</p></section>
+<section><h2>4. 무엇을 바꾸어야 두 조건이 맞을까요?</h2><p>Fr 속도를 유지하면서 Re까지 맞추려면 모형의 운동 점성 계수가 ν<sub>모형</sub> = λ<sup>3/2</sup>ν<sub>실물</sub> = 3.1623×10⁻⁸ m²/s이어야 합니다. 이것은 식에서 유도한 필요 조건이지 사용할 수 있는 실제 유체의 추천값은 아닙니다. 밀도를 바꾸면 μ = ρν의 관계도 다시 맞춰야 합니다.</p><p>이처럼 속도 하나를 바꾸는 것만으로 모든 중요한 무차원수를 동시에 맞출 수는 없습니다. 표면장력이 중요하면 Weber 수도, 압축성이 중요하면 Mach 수도 추가 검토 대상입니다. 모든 수를 무조건 계산하기보다 어떤 현상을 모사하려는지부터 정하는 편이 유용합니다.</p></section>
+<section><h2>시험 결과를 비교할 때 남길 기록</h2><ul><li>λ가 모형/실물인지 실물/모형인지 명시합니다.</li><li>L의 정의, 형상비, 수면·벽 등 경계 조건을 함께 기록합니다.</li><li>일치시킨 수와 일치시키지 못한 수를 구분해 기록합니다.</li><li>Re에 관 내부 층류·난류 경계를, Fr에 개수로 임계 기준을 기계적으로 적용하지 않습니다.</li></ul><p>Fr이 일치했다는 사실만으로 전체 항력, 표면 마찰 또는 실물 성능이 검증된 것은 아닙니다. 위 표는 동일 유체·중력에서 축척이 만드는 차이를 정량적으로 보여 주는 출발점입니다.</p></section>
+<nav aria-label="계산기 열기"><a href="/#reynolds">Re 계산기</a><a href="/#froude">Fr 계산기</a><a href="/guides/weber">We 해설</a></nav>
+
+<p class="source">공식·개념 참고: <a href="https://www.grc.nasa.gov/www/k-12/airplane/reynolds.html">NASA Glenn — Reynolds Number</a> · <a href="https://ocw.mit.edu/courses/2-154-maneuvering-and-control-of-surface-and-underwater-vehicles-13-49-fall-2004/dd2b3f06232fe4d7f919712f60be10ab_lec5.pdf">MIT OpenCourseWare — Similitude, §5.2 (PDF)</a>. 위 입력과 교차검산은 이 사이트에서 구성한 계산 예제입니다. 물성표나 실험 결과를 인용한 것이 아닙니다.</p><nav aria-label="학습 자료"><a href="/">전체 계산기</a><a href="/guides/pipe-flow">관 유동에서 Re·Pr·Pe를 함께 검산하기</a></nav>
+</main><footer><a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a><p>© 2026 Dimensionless Number Calculator</p></footer><script src="/guide.js?v=20260926c" defer></script></body></html>

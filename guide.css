@@ -36,3 +36,10 @@
 .guide-page nav a:hover { background: rgba(6, 182, 212, 0.14); }
 .guide-page nav a:focus-visible, .guide-page .header-controls button:focus-visible { outline: 3px solid var(--accent-secondary); outline-offset: 3px; }
 .guide-page nav { margin: 1.5rem 0; }
+
+.guide-page .table-wrap { max-width: 100%; overflow-x: auto; margin: 1.5rem 0; }
+.guide-page table { width: 100%; min-width: 480px; border-collapse: collapse; line-height: 1.6; }
+.guide-page caption { text-align: left; font-weight: 600; margin-bottom: 0.75rem; }
+.guide-page th, .guide-page td { padding: 0.75rem; border: 1px solid var(--card-border); text-align: left; }
+.guide-page th { background: var(--card-bg); }
+.guide-page .formula-box { overflow-wrap: anywhere; }

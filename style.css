@@ -119,6 +119,9 @@ main {
 .site-intro h2 { margin-bottom: 0.5rem; }
 .site-intro p, .site-intro li { color: var(--text-secondary); line-height: 1.7; }
 .site-intro ol { padding-left: 1.4rem; margin-top: 0.8rem; }
+.site-intro ul { padding-left: 1.4rem; }
+.site-intro a { color: var(--accent-secondary); }
+.site-intro a:focus-visible { outline: 3px solid var(--accent-secondary); outline-offset: 3px; }
 
 .grid {
     display: grid;
