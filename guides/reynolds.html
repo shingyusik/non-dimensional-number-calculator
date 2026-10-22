@@ -14,9 +14,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>레이놀즈 수 계산법·예제·해석 | 무차원수 계산기</title>
-<meta name="description" content="원형 관 예제(ρ=1000, v=0.2, L=0.01, μ=0.001)로 Re=2000을 구하고, 2300·4000 경계를 관이 아닌 형상에 그대로 쓰면 안 되는 이유를 설명합니다.">
-<meta name="robots" content="noindex, follow">
+<meta name="description" content="가정용 급수관 예제(ρ=998.2, v=1.2, L=0.015, μ=0.001)로 Re=17,968을 구하고, 2300·4000 경계를 관이 아닌 형상에 그대로 쓰면 안 되는 이유를 설명합니다.">
 <link rel="canonical" href="https://calctool.cc/guides/reynolds">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/reynolds"><link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/reynolds">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/guides/reynolds">
 <link rel="stylesheet" href="../style.css?v=20261022">
 <link rel="stylesheet" href="../guide.css?v=20261022">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
@@ -39,13 +40,71 @@
                 </svg>
             </button></div><p class="eyebrow">계산 방법과 해석</p><h1>레이놀즈 수 <small>(Reynolds Number)</small></h1><p>공식에 값을 넣는 방법과 결과를 읽을 때 확인할 조건을 정리했습니다.</p></header>
 <main>
-<section aria-labelledby="why"><h2 id="why">언제 쓰나요?</h2><p>관성 효과와 점성 효과의 상대적인 크기를 비교합니다. 관 안의 물 흐름이나 물체 주위 유동을 비교할 때 사용하지만, 같은 숫자라도 형상과 특성 길이가 다르면 해석이 달라집니다.</p></section>
-<section aria-labelledby="inputs"><h2 id="inputs">공식과 입력값</h2><div class="formula-box"><strong>Re = ρvL / μ</strong></div><p>ρ는 밀도(kg/m³), v는 유동 속도(m/s), L은 특성 길이(m), μ는 점성 계수(Pa·s)입니다. 원형 관 내부 유동을 비교할 때는 관의 안지름을 L로 사용합니다. 운동 점성 계수 ν(m²/s)를 알고 있다면 Re = vL/ν를 써야 하며 μ와 ν를 혼동하면 결과가 달라집니다.</p><a class="guide-cta" href="/calculators/reynolds">이 값으로 계산하기</a></section>
-<section aria-labelledby="example"><h2 id="example">직접 계산한 예제</h2><div class="example-box"><p>가상의 원형 관에서 ρ = 1000 kg/m³, v = 0.2 m/s, L = 0.01 m, μ = 0.001 Pa·s를 입력하면 1000 × 0.2 × 0.01 ÷ 0.001 = 2000입니다. 단위는 서로 소거되어 결과에 단위가 없습니다.</p></div></section>
-<section aria-labelledby="meaning"><h2 id="meaning">결과는 어떻게 읽나요?</h2><p>이 예시는 원형 관의 평균 유속과 안지름을 사용했으므로 대략 층류 영역으로 읽을 수 있습니다. 사이트의 2300·4000 경계는 이런 관 내부 유동을 위한 간단한 안내입니다.</p></section>
-<section aria-labelledby="caution"><h2 id="caution">적용할 때 주의할 점</h2><p>관 입구, 거친 벽, 곡관 또는 관이 아닌 형상에는 같은 경계를 그대로 적용하지 마세요. 점성 계수는 온도에 따라 달라질 수 있으므로 측정 조건과 일치하는 값을 넣어야 합니다.</p></section>
-<section aria-labelledby="related"><h2 id="related">관련 무차원수</h2><p>이 무차원수와 함께 계산하거나 비교하는 경우가 많은 수입니다.</p><ul><li><a href="/guides/froude">프루드 수 (Fr)</a>: 자유 수면이 있는 축소 모형에서는 같은 유체로 Re와 Fr을 동시에 맞추기 어렵습니다.</li><li><a href="/guides/weber">웨버 수 (We)</a>: 같은 L과 v로 계산하면 We/Re = μv/σ가 되어 점성과 표면장력을 직접 비교할 수 있습니다.</li><li><a href="/guides/strouhal">스트로할 수 (St)</a>: 와류 방출 주파수는 St로 나타내고, 그 실험의 Re를 함께 기록해야 비교할 수 있습니다.</li><li><a href="/guides/peclet">페클레 수 (Pe)</a>: 같은 L·v·물성을 쓰면 열 페클레 수는 Re × Pr과 같습니다.</li></ul></section>
-<p class="source">공식·개념 확인: <a href="https://www.grc.nasa.gov/www/k-12/airplane/reynolds.html" rel="noopener noreferrer">NASA Glenn — Reynolds Number</a>. 예제의 입력값과 계산 과정은 이 사이트에서 설명을 위해 구성했습니다.</p>
+<section aria-labelledby="why"><h2 id="why">관성 응력과 점성 응력의 비</h2>
+<p>레이놀즈 수는 흐름 속에서 관성이 만드는 응력과 점성이 만드는 응력을 비교합니다. 속도가 v만큼 바뀔 때 생기는 압력 변화는 ρv² 정도이고, 길이 L에 걸친 속도 구배가 만드는 점성 전단응력은 μv/L 정도입니다. 앞의 값을 뒤의 값으로 나누면 Re = ρvL/μ가 남습니다. MIT HST 강의자료는 관 지름 d를 길이로 써서 같은 비를 Re<sub>d</sub> = ρvd/μ = vd/ν로 정의하고, NASA Glenn 자료는 운동량 방정식의 관성항과 점성항을 비교해 같은 식을 유도합니다.</p>
+<p>Re가 크면 점성의 영향은 벽 가까이의 얇은 경계층과 후류에만 남고, Re가 작으면 점성이 흐름 전체를 지배합니다. NASA Glenn 자료는 1,000만 정도의 Re라면 점성력이 작아 비점성 근사를 쓸 수 있고, 100 정도라면 점성을 반드시 고려해야 한다고 설명합니다. 다만 MIT Drela 강의 노트가 지적하듯 박리가 생기는 뭉툭한 물체에서는 Re가 커도 점성이 모든 힘에 영향을 미칩니다. 날개 시위 기준 Re는 나비가 약 5,000, 보잉 777이 약 5,000만이라는 예시도 같은 노트에 실려 있습니다.</p>
+</section>
+<section aria-labelledby="inputs"><h2 id="inputs">μ와 ν를 구분하고 특성 길이를 고르는 법</h2><div class="formula-box"><strong>Re = ρvL / μ = vL / ν</strong></div>
+<p>ρ는 밀도(kg/m³), v는 속도(m/s), L은 특성 길이(m), μ는 점성계수(Pa·s)입니다. 동점성계수 ν = μ/ρ(m²/s)를 쓰면 밀도 없이 Re = vL/ν로 계산합니다. 두 점성은 단위가 다르므로, 자료에 ν만 있는데 그 값을 μ 칸에 넣으면 결과가 밀도만큼 틀어집니다. 기체에서는 μ가 압력에 거의 영향을 받지 않지만 ρ와 ν는 압력에 따라 달라지므로, 같은 온도라도 압력 조건을 맞춰야 합니다.</p>
+<p>원형 관 안 흐름에서는 안지름과 단면 평균 유속을 씁니다. 사각 덕트처럼 원형이 아닌 관은 수력 지름 D<sub>h</sub> = 4A/P(A는 단면적, P는 젖은 둘레)를 L로 씁니다. 물체 주위 흐름에서는 원기둥 지름이나 날개 시위처럼 관례적으로 정해진 길이를 쓰므로, 문헌의 Re와 비교할 때는 L의 정의부터 확인합니다.</p>
+<div class="table-wrap"><table><caption>대표 유체의 점성과 vL = 0.01 m²/s(예: 1 m/s × 10 mm)일 때의 Re</caption><thead><tr><th scope="col">유체</th><th scope="col">ρ [kg/m³]</th><th scope="col">μ [Pa·s]</th><th scope="col">ν [m²/s]</th><th scope="col">vL = 0.01 m²/s일 때 Re</th></tr></thead><tbody>
+<tr><th scope="row">물 20 °C</th><td>998.2</td><td>1.0000×10⁻³</td><td>1.0020×10⁻⁶</td><td>9,980</td></tr>
+<tr><th scope="row">물 60 °C</th><td>983.2</td><td>4.677×10⁻⁴</td><td>4.757×10⁻⁷</td><td>21,022</td></tr>
+<tr><th scope="row">공기 20 °C, 1 atm 환산</th><td>1.2043</td><td>1.819×10⁻⁵</td><td>1.5104×10⁻⁵</td><td>662</td></tr>
+<tr><th scope="row">공기 20 °C, 98.1 kPa</th><td>1.166</td><td>1.819×10⁻⁵</td><td>15.61×10⁻⁶</td><td>641</td></tr>
+<tr><th scope="row">전혈(밀도는 가정값)</th><td>1050(가정)</td><td>0.004(약 4 cP)</td><td>3.81×10⁻⁶</td><td>2,625</td></tr>
+</tbody></table></div>
+<p>물은 IAEA 표 3.3의 포화액 값을 저압 액체 근사로 썼습니다. 공기는 IAEA 표 3.1(98.1 kPa) 값이며, 1 atm 밀도는 이상기체 비례로 환산한 값입니다. 혈액 점성 약 4 cP는 MIT HST 자료 값이고, 혈액 밀도는 그 자료에 없어서 1050 kg/m³로 가정했습니다. 물을 20 °C에서 60 °C로 데우면 점성이 절반 아래로 떨어져, 같은 관과 유속에서도 Re가 두 배 넘게 커집니다.</p>
+<a class="guide-cta" href="/calculators/reynolds">이 값으로 계산하기</a></section>
+<section aria-labelledby="example"><h2 id="example">가정용 수도관·대동맥·공조 덕트 예제</h2>
+<section class="example" aria-labelledby="ex-house-pipe"><h3 id="ex-house-pipe">예제 1. 가정용 급수관의 레이놀즈 수</h3>
+<p><strong>주어진 값</strong>: 안지름 15 mm, 평균 유속 1.2 m/s는 가정한 운전 조건입니다. 물성은 IAEA 표 3.3의 20 °C 값 ρ = 998.2 kg/m³, μ = 1.0000×10⁻³ Pa·s, ν = 1.0020×10⁻⁶ m²/s를 씁니다.</p>
+<p><strong>단위 변환</strong>: D = 15 mm = 0.015 m입니다. 유량은 (π/4) × 0.015² × 1.2 m³/s로, 분당 약 12.7 L입니다.</p>
+<p><strong>계산</strong>: Re = 998.2 × 1.2 × 0.015 ÷ 0.001 = 17,968입니다. ν로 계산하면 1.2 × 0.015 ÷ 1.0020×10⁻⁶ = 17,964가 나오는데, 표의 μ/ρ = 1.0018×10⁻⁶과 ν 값 사이의 반올림 차이 때문이며 0.02% 수준입니다.</p>
+<p><strong>해석</strong>: 2300을 훨씬 넘으므로 일반적인 수도꼭지 유량에서 관 안 흐름은 난류입니다. 수도관에서 층류를 보려면 물을 아주 가늘게 틀어야 한다는 뜻이기도 합니다. 같은 관에서 Re가 2300이 되는 유속은 2300 × 0.001 ÷ (998.2 × 0.015) = 0.154 m/s, 유량으로는 분당 약 1.63 L입니다. 같은 관에 60 °C 온수(IAEA 표 3.3, ρ = 983.2 kg/m³, μ = 4.677×10⁻⁴ Pa·s)가 같은 유속으로 흐르면 Re = 37,840으로, 찬물보다 약 2.1배 커집니다.</p>
+</section>
+<section class="example" aria-labelledby="ex-aorta"><h3 id="ex-aorta">예제 2. 사람 대동맥의 평균 레이놀즈 수</h3>
+<p><strong>주어진 값</strong>: MIT HST 자료 표 1의 사람 대동맥 평균 속도 48 cm/s, 지름 2.5 cm와 같은 자료의 전혈 점성 약 4 cP를 씁니다. 혈액 밀도 1050 kg/m³는 이 자료에 없는 값이라 가정값으로 둡니다.</p>
+<p><strong>단위 변환</strong>: v = 48 cm/s = 0.48 m/s, D = 2.5 cm = 0.025 m, μ = 4 cP = 0.004 Pa·s입니다.</p>
+<p><strong>계산</strong>: Re = 1050 × 0.48 × 0.025 ÷ 0.004 = 3,150입니다. 밀도를 1000이나 1100 kg/m³로 바꾸면 3,000~3,300이 되므로, 밀도 가정이 결과에 주는 영향은 ±5% 정도입니다.</p>
+<p><strong>해석</strong>: 계산기에 넣으면 천이 구간으로 표시되지만, 이 값을 그대로 판정에 쓰면 안 됩니다. 혈액은 전단율에 따라 점성이 변하는 비뉴턴 유체라서 4 cP는 큰 혈관에서 쓰는 근사값이고, 대동맥 흐름은 박동하므로 평균 속도로 구한 Re는 순간 값을 대표하지 않습니다. MIT HST 자료는 정상 대동맥판을 지나는 흐름이 첨두 Re가 10⁴ 가까이 되는데도 층류로 관찰된다고 적고 있습니다. 원관 정상류의 기준을 박동류에 옮겨 쓰면 이런 관찰과 맞지 않습니다. 같은 자료의 개 장간막 혈관 표(표 5)에도 상행대동맥의 첨두 Re가 4500으로 실려 있는데, 이것 역시 사람의 정상값이 아니라 개에서 얻은 첨두값이라는 점을 구분해야 합니다.</p>
+</section>
+<section class="example" aria-labelledby="ex-duct"><h3 id="ex-duct">예제 3. 사각 공조 덕트에서 수력 지름으로 구하는 Re</h3>
+<p><strong>주어진 값</strong>: 단면 400 mm × 200 mm, 평균 풍속 4 m/s는 가정값입니다. 공기는 20 °C, 1 atm 환산 ν = 1.5104×10⁻⁵ m²/s(IAEA 표 3.1의 μ와 이상기체 환산 밀도로 계산)를 씁니다.</p>
+<p><strong>단위 변환</strong>: A = 0.4 × 0.2 = 0.08 m², P = 2 × (0.4 + 0.2) = 1.2 m이므로 D<sub>h</sub> = 4 × 0.08 ÷ 1.2 = 0.267 m입니다.</p>
+<p><strong>계산</strong>: 반올림하기 전의 D<sub>h</sub>(0.26666… m)로 계산하면 Re = 4 × D<sub>h</sub> ÷ 1.5104×10⁻⁵ = 70,621입니다. 표 3.1의 98.1 kPa 값 ν = 15.61×10⁻⁶을 그대로 쓰면 68,332로, 압력 조건 차이만으로 약 3% 달라집니다.</p>
+<p><strong>해석</strong>: 짧은 변 0.2 m를 L로 잡으면 52,966, 긴 변 0.4 m를 잡으면 105,932가 나와 2배 차이가 납니다. 덕트 마찰 상관식은 대부분 수력 지름 기준이므로 D<sub>h</sub>로 계산한 값을 씁니다. 어느 경우든 난류이지만, 2300 같은 원관 천이 기준이 사각 단면에 그대로 맞는다고 가정하지는 않습니다. 같은 덕트라도 어떤 길이를 썼는지 적지 않은 Re는 다른 사람이 검산할 수 없으므로, 설계 문서에는 D<sub>h</sub> 값을 함께 기록합니다.</p>
+</section>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">2300과 4000을 경계로 읽을 때 알아 둘 점</h2>
+<p>MIT HST 자료는 균일한 원형 단면 관의 흐름이 "typically becomes turbulent when Re<sub>d</sub> &gt; 2300"이라고 쓰면서, 좁은 오리피스에서 큰 관이나 저장조로 나가는 흐름은 Re가 10 정도로 낮아도 난류가 될 수 있다고 덧붙입니다. 즉 2300은 매끈한 원형 관에서 완전히 발달한 흐름에 대한 대표값입니다. 입구 교란, 진동, 벽 거칠기, 곡관, 급확대가 있으면 천이 위치가 달라집니다.</p>
+<p>문서마다 쓰는 경계값도 조금씩 다릅니다. TU Delft 교재(LibreTexts)는 Darcy 마찰계수 64/Re를 쓰는 층류 구간을 Re &lt; 2320으로 나누고, 미국 에너지부 WIPP 성능평가 문서는 시추 이수 흐름 모델에서 2100을 단일 경계로 가정합니다. 이 사이트의 계산기는 Re &lt; 2300을 층류, Re &gt; 4000을 난류, 그 사이를 천이로 표시합니다. 비교에 등호가 없으므로 정확히 2300이나 4000이 나오면 천이 구간으로 표시됩니다.</p>
+<p>층류 구간에서는 MIT HST 자료의 입구 길이 식 L<sub>e</sub>/D = 0.065 Re<sub>d</sub>로 속도 분포가 완전히 발달하는 데 필요한 길이를 어림할 수 있습니다. 예를 들어 Re = 2000이면 L<sub>e</sub>는 지름의 130배입니다. 관 길이가 이보다 짧으면 완전발달 흐름을 전제로 한 마찰계수와 열전달 상관식이 맞지 않습니다.</p>
+</section>
+<section aria-labelledby="caution"><h2 id="caution">레이놀즈 수 계산에서 자주 생기는 실수</h2>
+<ul>
+<li><strong>단위</strong>: mm를 m로, cP를 Pa·s(1 cP = 0.001 Pa·s)로 바꾸지 않으면 결과가 1000배 틀어집니다. cm/s 속도도 100으로 나눠야 합니다.</li>
+<li><strong>속도 정의</strong>: 원형 관에서는 유량을 단면적으로 나눈 평균 유속을 씁니다. 층류에서 중심선 최대 속도는 평균의 2배이므로, 그 값을 넣으면 Re도 2배가 됩니다.</li>
+<li><strong>물성 온도</strong>: 물의 점성은 20 °C와 60 °C 사이에서 2배 넘게 변합니다. 측정이나 운전 온도에 맞는 값을 넣어야 합니다.</li>
+<li><strong>Re만으로 내리는 결론</strong>: Re는 흐름 성격을 가늠하는 출발점일 뿐 압력손실이나 열전달량을 직접 주지 않습니다. 압력손실에는 관 길이와 마찰계수가, 열전달에는 Pr과 누셀트 수 상관식이 더 필요합니다.</li>
+</ul>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">레이놀즈 수 계산에서 자주 묻는 질문</h2>
+<details><summary>μ 칸에 동점성계수 ν를 넣으면 어떻게 되나요?</summary><p>물이라면 ν ≈ 1×10⁻⁶ m²/s를 μ 칸에 넣는 셈이 되어, ρ가 한 번 더 곱해진 값이 나옵니다. 물에서는 결과가 약 1000배 커지고 공기에서는 약 1.2배 커집니다. 자료에 ν만 있다면 μ = ρν로 바꿔 넣거나 Re = vL/ν로 직접 계산합니다.</p></details>
+<details><summary>2300 대신 2000이나 2100을 쓰는 자료가 있는데 어느 쪽이 맞나요?</summary><p>모두 원형 관 천이를 대략 나타내는 관례값이며, 실제 천이는 입구 조건과 교란에 따라 달라집니다. 경계 근처의 Re가 나왔다면 한 숫자로 층류와 난류를 가르기보다, 두 경우의 압력손실이나 열전달을 모두 계산해 설계 여유를 확인하는 편이 안전합니다. 천이 구간에서는 흐름이 층류와 난류 사이를 오가며 압력손실 측정값이 시간에 따라 흔들릴 수도 있습니다.</p></details>
+<details><summary>계산기에서 Re = 4000이 천이로 나오는 것은 오류인가요?</summary><p>오류가 아닙니다. 계산기는 4000보다 클 때만 난류로 표시하므로 정확히 4000은 천이 구간에 들어갑니다. 실제 흐름에서 4000과 4001 사이에 뚜렷한 경계가 있는 것은 아니므로, 표시는 대략적인 안내로 읽습니다.</p></details>
+<details><summary>혈액처럼 점성이 변하는 유체도 Re를 계산할 수 있나요?</summary><p>대표 점성을 정하면 계산할 수 있지만 근사값입니다. MIT HST 자료는 전혈을 전단율에 따라 점성이 낮아지는 비뉴턴 유체로 설명합니다. 큰 혈관에서는 약 4 cP를 쓰는 경우가 많지만, 가는 혈관이나 낮은 전단율에서는 겉보기 점성이 달라집니다.</p></details>
+<details><summary>사각 덕트에서는 어떤 길이를 L로 넣나요?</summary><p>수력 지름 D<sub>h</sub> = 4A/P를 넣습니다. 예제 3의 400 mm × 200 mm 덕트는 D<sub>h</sub> = 0.267 m입니다. 한 변의 길이를 넣으면 마찰계수 상관식과 맞지 않는 Re가 나옵니다.</p></details>
+</section>
+<section aria-labelledby="related"><h2 id="related">관련 무차원수</h2><p>레이놀즈 수는 아래 수들과 같은 길이·속도로 계산해 함께 기록할 때 비교 가치가 생깁니다.</p><ul><li><a href="/guides/froude">프루드 수 (Fr)</a>: 자유 수면이 있는 모형 시험은 Fr을 맞추면 Re가 어긋나므로, 두 값을 함께 보고 어느 쪽을 포기할지 정합니다.</li><li><a href="/guides/weber">웨버 수 (We)</a>: 같은 L과 v에서 We/Re = μv/σ이므로, 액적과 분무 문제에서 점성과 표면장력 중 무엇이 앞서는지 가늠할 수 있습니다.</li><li><a href="/guides/strouhal">스트로할 수 (St)</a>: 원기둥 와류 방출 주파수는 Re 범위에 따라 St가 달라지므로 Re를 함께 적어야 비교할 수 있습니다.</li><li><a href="/guides/peclet">페클레 수 (Pe)</a>: Re에 Pr을 곱하면 열 Pe가 되어, 운동량과 열 중 어느 쪽의 확산이 빠른지 함께 볼 수 있습니다.</li></ul></section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">참고 자료</h2><ul>
+<li>MIT OpenCourseWare (HST.542J): <a href="https://ocw.mit.edu/courses/hst-542j-quantitative-physiology-organ-transport-systems-spring-2004/5384df8b0795c292af407d5cfb4a3106_fluid_mechanics.pdf" rel="noopener noreferrer">Physiological Fluid Mechanics</a>. Re<sub>d</sub> 정의, 원형 관 2300과 오리피스 흐름, 입구 길이 0.065 Re<sub>d</sub>, 표 1 대동맥 48 cm/s·2.5 cm, 전혈 약 4 cP와 비뉴턴 성질, 대동맥판 층류 관찰</li>
+<li>NASA Glenn Research Center: <a href="https://www.grc.nasa.gov/www/k-12/airplane/reynolds.html" rel="noopener noreferrer">Reynolds Number</a>. 관성력과 점성력의 비로서 Re 유도, 큰 Re와 작은 Re의 의미</li>
+<li>MIT OpenCourseWare (16.01): <a href="https://ocw.mit.edu/courses/16-01-unified-engineering-i-ii-iii-iv-fall-2005-spring-2006/c6603238ec448ee22dc1c988898b51a5_f05_fall.pdf" rel="noopener noreferrer">Fluids Lecture 5 Notes</a>. 시위 기준 Re 예시, 경계층 두께와 박리하는 물체에서 점성의 역할</li>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering</a>. 표 3.1 건조 공기, 표 3.3 포화수 물성</li>
+<li>Engineering LibreTexts (TU Delft): <a href="https://eng.libretexts.org/Bookshelves/Civil_Engineering/Slurry_Transport_%28Miedema%29/03%3A_Pressure_Losses_with_Homogeneous_Liquid_Flow/3.02%3A_The_Darcy-Weisbach_Friction_Factor" rel="noopener noreferrer">3.2 The Darcy-Weisbach Friction Factor</a>. 층류 64/Re와 2320 구분</li>
+<li>U.S. DOE WIPP: <a href="https://www.wipp.energy.gov/information_repository/cra/2009_cra/cra/Appendix_PA/Appendix_PA.pdf" rel="noopener noreferrer">CRA-2009 Appendix PA</a>. 시추 이수 흐름 모델에서 2100을 층류·난류 경계로 가정</li>
+</ul></section>
 <nav aria-label="다른 해설"><a href="/">전체 계산기</a><a href="/guides/mach">다음: 마하 수</a><a href="/guides/pipe-flow">관 유동에서 Re·Pr·Pe를 함께 검산하기</a></nav>
 <nav aria-label="이론 심화"><a href="/guides/pipe-energy">관의 압력손실: 보존법칙에서 포아죄유 해까지</a><a href="/guides/transport-scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a></nav>
 </main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>

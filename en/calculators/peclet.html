@@ -58,35 +58,67 @@
 <noscript><p>This calculator runs in your browser with JavaScript. If JavaScript is off, apply the formula above by hand.</p></noscript>
 <p class="source">Your inputs are calculated by your browser on this page; the operator does not receive or store them.</p>
 </section>
-<section aria-labelledby="meaning"><h2 id="meaning">Comparing advection and diffusion as times</h2>
-<p>Pe = vL/α is easiest to read as a ratio of times. The flow crosses a length L in the transit time L/v, while diffusion needs a time of order L²/α to spread over the same length. Dividing the diffusion time by the transit time gives vL/α. When Pe is much larger than 1, heat is carried away by the flow before it can spread; when it is much smaller, diffusion wins.</p>
-<p>In the pipe-flow note the transit time is 0.05 s and the diffusion time 700 s, a ratio of 14000. Both times are scales built on the chosen L, not predictions of how long heating takes.</p>
+<section aria-labelledby="meaning"><h2 id="meaning">Reading the result as a ratio of two times</h2>
+<p>The result is the diffusion time L²/α divided by the transit time L/v. For the 60 °C water in Example 1 below, the flow crosses the 15 mm diameter at 0.5 m/s in 0.03 s, while heat needs a time of order 1,421 s to diffuse across the same diameter. Their ratio is Pe = 47,378. Both times are scales built on the chosen L, not predictions of how long the fluid takes to heat up.</p>
+<p>The result text only says that a larger Pe means relatively stronger advection. It does not split the result into named regimes, as the Reynolds calculator does, because Pe has no cutoff that holds for every problem.</p>
 </section>
 <section aria-labelledby="variables"><h2 id="variables">Variables and SI units</h2>
 <div class="table-wrap"><table><caption>Inputs of the Péclet number calculator</caption><thead><tr><th scope="col">Symbol</th><th scope="col">Meaning</th><th scope="col">SI unit</th><th scope="col">Example</th></tr></thead><tbody>
 <tr><th scope="row">v</th><td>Representative speed along the chosen length</td><td>m/s</td><td>0.01</td></tr>
 <tr><th scope="row">L</th><td>Length over which advection and diffusion are compared</td><td>m</td><td>0.1</td></tr>
 <tr><th scope="row">α</th><td>α = k/(ρcₚ)</td><td>m²/s</td><td>1e-7</td></tr>
-</tbody></table></div></section>
+</tbody></table></div>
+<p>The “Fill example values” button enters v = 0.01 m/s, L = 0.1 m and α = 1×10⁻⁷ m²/s and returns Pe = 10,000. These values only demonstrate the input format and do not describe a particular device.</p></section>
 <section aria-labelledby="units"><h2 id="units">When α is not given directly</h2>
 <ul>
-<li>Compute α = k/(ρcₚ). The water-like example in the pipe-flow note gives 0.6 ÷ (1000 × 4200) ≈ 1.43×10⁻⁷ m²/s.</li>
-<li>Data in mm²/s convert to m²/s by multiplying by 10⁻⁶.</li>
-<li>With the same L, v and properties, Re × Pr gives the same number, which makes a handy cross-check.</li>
+<li>If a property table lists only k, ρ and cₚ, compute α = k/(ρcₚ). The 60 °C saturated-water values in IAEA Table 3.3 give 0.6510 ÷ (983.2 × 4183) = 1.583 × 10⁻⁷ m²/s.</li>
+<li>The fields accept exponent notation, so type 1.583e-7. Data in mm²/s convert to m²/s by multiplying by 10⁻⁶.</li>
+<li>If you already have Re and Pr, compare their product with this result to catch input mistakes. A gap above about 1% usually means mixed property sources or units.</li>
 <li>Pick v and L to match the direction you care about: the diameter for diffusion across a pipe, or the pipe length for transport along it.</li>
 </ul>
 </section>
 <section aria-labelledby="mass"><h2 id="mass">Using it as a mass Péclet number</h2>
-<p>Enter the molecular diffusivity D of a species (m²/s) in the α field and the calculator returns vL/D, the mass Péclet number, which equals Re × Sc. Read “thermal diffusion” in the explanation as “mass diffusion”. Because D in liquids is usually much smaller than α, the mass Péclet number is often far larger than the thermal one in the same flow.</p>
+<p>Enter the molecular diffusivity D of a species (m²/s) in the α field and the calculator returns vL/D, the mass Péclet number, which equals Re × Sc. Read “thermal diffusion” in the explanation as “mass diffusion”. Oxygen in 20 °C water has D = 1.97 × 10⁻⁹ m²/s (Cornell, Wilke–Chang estimate), about 73 times smaller than α for water at the same temperature, so the mass Pe in the same flow is larger by that factor.</p>
+</section>
+<section aria-labelledby="calc-examples"><h2 id="calc-examples">Calculator input examples</h2>
+<section class="example" aria-labelledby="ex-hx-tube"><h3 id="ex-hx-tube">Example 1. Heat-exchanger tube carrying 60 °C water</h3>
+<p><strong>Conditions</strong>: a 15 mm inner diameter and 0.5 m/s velocity are assumed operating conditions. Properties are the 60 °C saturated-water values in IAEA Table 3.3 (ρ = 983.2 kg/m³, μ = 4.677×10⁻⁴ Pa·s, k = 0.6510 W/(m·K), cₚ = 4183 J/(kg·K), Pr = 3.005), used as an approximation for low-pressure liquid water.</p>
+<p><strong>Calculator input</strong>: v = 0.5, L = 0.015, α = 1.583e-7 gives Pe = 47,378.</p>
+<p><strong>Cross-check</strong>: Re = 983.2 × 0.5 × 0.015 ÷ 4.677×10⁻⁴ = 15,767, and multiplying by Pr = 3.005 gives 47,378 again.</p>
+<p><strong>Reading it</strong>: the flow is turbulent by Re, so this Pe is a comparison based on molecular diffusion. Wall heat transfer has to come from a turbulent Nusselt-number correlation, not from Pe.</p>
+</section>
+<section class="example" aria-labelledby="ex-air-duct"><h3 id="ex-air-duct">Example 2. Pe versus Re in a 20 °C air duct</h3>
+<p><strong>Conditions</strong>: a 0.2 m characteristic length and 2 m/s air speed are assumed. Air properties are k = 0.0258 W/(m·K) and cₚ = 1000 J/(kg·K) from IAEA Table 3.1, with the table's 98.1 kPa density scaled to 1 atm as an ideal gas, 1.2043 kg/m³. That gives α = 0.0258 ÷ (1.2043 × 1000) = 2.142 × 10⁻⁵ m²/s.</p>
+<p><strong>Calculator input</strong>: v = 2, L = 0.2, α = 2.142e-5 gives Pe = 18,674.</p>
+<p><strong>Cross-check</strong>: with the 1 atm kinematic viscosity 1.5104×10⁻⁵ m²/s, Re = 2 × 0.2 ÷ 1.5104×10⁻⁵ = 26,483. Using the same properties, Pr = ν/α = 0.705, and Re × Pr ≈ 1.87 × 10⁴, matching the calculator.</p>
+<p><strong>Reading it</strong>: air has a Pr a little below 1, so Pe comes out slightly below Re. For water, Pe is 3 to 7 times Re at the same Re, so changing the fluid also changes how thick the thermal layer is relative to the velocity layer.</p>
+</section>
+<section class="example" aria-labelledby="ex-cell-pe"><h3 id="ex-cell-pe">Example 3. Cell Péclet number from a CFD grid spacing</h3>
+<p><strong>Conditions</strong>: 20 °C water (α = 1.435 × 10⁻⁷ m²/s, computed from IAEA Table 3.3) flows at 0.1 m/s through a region meshed at an assumed 0.5 mm spacing. The Penn State page notes that the grid spacing is sometimes used as the length in Pe.</p>
+<p><strong>Calculator input</strong>: v = 0.1, L = 0.0005, α = 1.435e-7 gives a cell Pe of 348. On the same grid, dissolved oxygen (D = 1.97 × 10⁻⁹ m²/s) has a cell Pe of 2.54 × 10⁴.</p>
+<p><strong>Reading it</strong>: the textbook condition for central differencing to give a non-oscillating solution of the steady 1D advection-diffusion equation is a cell Pe of 2 or less. Meeting it here would need a spacing of 2α/v = 2.87 μm, so practical solvers use upwind-type schemes and check the effect of their numerical diffusion through a grid-dependence study.</p>
+</section>
 </section>
 <section aria-labelledby="criteria"><h2 id="criteria">Interpreting the size</h2>
-<p>The example uses v = 0.01 m/s, L = 0.1 m and α = 1×10⁻⁷ m²/s, giving Pe = 10,000. Around Pe ≈ 1 both advection and diffusion matter, but no single number is a universal boundary. In turbulent flow, mixing by eddies can be far stronger than molecular diffusion, so a Pe built on molecular α should not be read as the actual temperature field or heat-transfer rate. Surface heat transfer is handled separately through the Nusselt number and h.</p>
+<p>Around Pe ≈ 1 both advection and diffusion matter, but no single number is a universal boundary. In turbulent flow, mixing by eddies can be far stronger than molecular diffusion, so a Pe built on molecular α should not be read as the actual temperature field or heat-transfer rate. For porous-media data, enter the pore velocity (Darcy velocity divided by porosity) as v to match the Penn State definition.</p>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">Questions about the Péclet calculator</h2>
+<details><summary>I entered a diffusivity D in the α field and the result text still talks about advection. Is the number right?</summary><p>Yes. The calculator simply divides vL by the third input, so entering D gives the mass Péclet number directly. Read the diffusion in the result text as mass diffusion.</p></details>
+<details><summary>How do I enter very small values such as 1e-7?</summary><p>The fields accept exponent notation, so type 1e-7 or 1.435e-7. Writing 0.0000001 makes it easy to miscount zeros.</p></details>
+<details><summary>For air, Pe comes out close to Re. Is that expected?</summary><p>Yes. With the same v and L, Pe/Re = ν/α = Pr, and Pr for 20 °C air is about 0.71. In Example 2, Pe = 18,674 is about 30% below Re = 26,483.</p></details>
+<details><summary>Can I use this calculator to check the cell Péclet number of a CFD mesh?</summary><p>Enter the grid spacing as L. Keep in mind that the result guides the choice of discretisation scheme, not the physics, so do not mix it with the advection-to-diffusion ratio of the whole device.</p></details>
 </section>
 <section aria-labelledby="more"><h2 id="more">Related guides and calculators</h2>
 <h3>Guide</h3><ul><li><a href="/en/guides/peclet">Péclet number guide: worked example and cautions</a></li></ul>
-<h3>Calculation notes</h3><ul><li><a href="/en/guides/pipe-flow">Cross-check Re, Pr and Pe for pipe flow</a>: One input set through three calculators, checking that Pe = Re × Pr.</li><li><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a>: Diffusion lengths versus transit times, and where a heat-transfer coefficient comes from.</li></ul>
-<h3>Related calculators</h3><ul><li><a href="/en/calculators/prandtl">Prandtl number (Pr)</a>: With the same L, v and properties, the thermal Péclet number also equals Re × Pr.</li><li><a href="/en/calculators/schmidt">Schmidt number (Sc)</a>: Using molecular diffusivity D instead of α gives the mass Péclet number, equal to Re × Sc.</li><li><a href="/en/calculators/nusselt">Nusselt number (Nu)</a>: Pe compares advection with diffusion; the size of surface heat transfer is handled separately by Nu.</li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/pipe-flow">Cross-check Re, Pr and Pe for pipe flow</a>: follows one input set step by step and matches this calculator's output against the product of the Reynolds and Prandtl results.</li><li><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a>: shows how a Pe from this page turns into a boundary-layer thickness or a diffusion distance.</li></ul>
+<h3>Related calculators</h3><ul><li><a href="/en/calculators/prandtl">Prandtl number (Pr)</a>: get Pr from k, μ and cₚ, then multiply by Re to check the result here.</li><li><a href="/en/calculators/schmidt">Schmidt number (Sc)</a>: with a diffusivity D, compute Sc first and compare Re × Sc with the mass Pe from this page.</li><li><a href="/en/calculators/nusselt">Nusselt number (Nu)</a>: switch to it when you need the heat actually exchanged at a wall.</li></ul>
 </section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">References</h2><ul>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering</a>. Water (Table 3.3) for Examples 1 and 3, air (Table 3.1) for Example 2</li>
+<li>Michigan Technological University: <a href="https://pages.mtu.edu/~fmorriso/cm3120/lectures/2021_CM3120_module2_6alectureIV.pdf" rel="noopener noreferrer">CM3120 Module 2 Lecture IV</a>. Pe = Re × Pr and Pe = Re × Sc used in the cross-checks</li>
+<li>Penn State CE 574: <a href="https://courses.ems.psu.edu/ce574/node/820" rel="noopener noreferrer">6.6 Dimensionless Numbers</a>. Porous-media Pe definition and grid spacing as the length scale</li>
+<li>Cornell University: <a href="https://www.compost.css.cornell.edu/oxygen/oxygen.diff.water.html" rel="noopener noreferrer">Calculating the Oxygen Diffusion Coefficient in Water</a>. Oxygen diffusivity in 20 °C water</li>
+</ul></section>
 </main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
 <script src="/calculators.js?v=20261022" defer></script>
 <script src="/calculator-page.js?v=20261022" defer></script>

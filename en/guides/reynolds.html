@@ -14,8 +14,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Reynolds Number: formula, example and interpretation | Dimensionless Number Calculator</title>
-<meta name="description" content="A circular-pipe example (ρ=1000, v=0.2, L=0.01, μ=0.001) gives Re=2000; see why the 2300 and 4000 limits should not be reused for other geometries.">
+<meta name="description" content="A household-pipe example (ρ=998.2, v=1.2, L=0.015, μ=0.001) gives Re=17,968; see why the 2300 and 4000 limits should not be reused for other geometries.">
 <link rel="canonical" href="https://calctool.cc/en/guides/reynolds">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/reynolds"><link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/reynolds">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/guides/reynolds">
 <link rel="stylesheet" href="../../style.css?v=20261022">
 <link rel="stylesheet" href="../../guide.css?v=20261022">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
@@ -38,13 +40,71 @@
                 </svg>
             </button></div><p class="eyebrow">Method and interpretation</p><h1>Reynolds Number</h1><p>See how to enter values, calculate a result, and check the limits of its interpretation.</p></header>
 <main>
-<section aria-labelledby="why"><h2 id="why">When is it useful?</h2><p>Reynolds number compares the relative importance of inertia and viscosity. It helps compare flow inside a pipe or around an object, but the same value can mean something different if the geometry or reference length changes.</p></section>
-<section aria-labelledby="inputs"><h2 id="inputs">Formula and inputs</h2><div class="formula-box"><strong>Re = ρvL / μ</strong></div><p>Enter density ρ in kg/m³, flow speed v in m/s, characteristic length L in m, and dynamic viscosity μ in Pa·s. For flow inside a circular pipe, L is usually its inner diameter. If you have kinematic viscosity ν in m²/s instead, use Re = vL/ν; do not enter ν as μ.</p><a class="guide-cta" href="/en/calculators/reynolds">Open this calculator</a></section>
-<section aria-labelledby="example"><h2 id="example">Worked example</h2><div class="example-box"><p>For an illustrative circular pipe, let ρ = 1000 kg/m³, v = 0.2 m/s, L = 0.01 m, and μ = 0.001 Pa·s. Then Re = 1000 × 0.2 × 0.01 ÷ 0.001 = 2000. The units cancel.</p></div></section>
-<section aria-labelledby="meaning"><h2 id="meaning">Interpreting the result</h2><p>With mean velocity and inner diameter for this pipe example, 2000 is approximately in the laminar-flow range. The calculator’s 2300 and 4000 boundaries are simplified guidance for internal pipe flow.</p></section>
-<section aria-labelledby="caution"><h2 id="caution">Limits and cautions</h2><p>Do not carry the pipe thresholds over to a pipe entrance, bend, rough wall, or another geometry unchanged. Use viscosity measured or tabulated at the relevant temperature.</p></section>
-<section aria-labelledby="related"><h2 id="related">Related dimensionless numbers</h2><p>Numbers that are often calculated or compared alongside this one.</p><ul><li><a href="/en/guides/froude">Froude number (Fr)</a>: In free-surface scale models, Re and Fr generally cannot both be matched with the same fluid.</li><li><a href="/en/guides/weber">Weber number (We)</a>: With the same L and v, We/Re = μv/σ, which compares viscosity with surface tension directly.</li><li><a href="/en/guides/strouhal">Strouhal number (St)</a>: Vortex-shedding frequencies are reported as St, and only compare well when the Re of each test is recorded.</li><li><a href="/en/guides/peclet">Péclet number (Pe)</a>: With the same L, v and properties, the thermal Péclet number equals Re × Pr.</li></ul></section>
-<p class="source">Formula and concept reference: <a href="https://www.grc.nasa.gov/www/k-12/airplane/reynolds.html" rel="noopener noreferrer">NASA Glenn — Reynolds Number</a>. We created the sample inputs and calculations for this guide.</p>
+<section aria-labelledby="why"><h2 id="why">Inertial stress over viscous stress</h2>
+<p>Re compares the stress created by inertia with the stress created by viscosity. A velocity change v produces a pressure change of order ρv², and a velocity gradient over L produces a shear stress of order μv/L; their ratio is Re = ρvL/μ. The MIT HST notes define it with tube diameter d as Re<sub>d</sub> = ρvd/μ = vd/ν, and NASA Glenn derives the same form from the inertial and viscous terms of the momentum equation.</p>
+<p>At high Re, viscosity matters only in thin boundary layers and wakes; at low Re it governs the whole flow. NASA Glenn puts it as Re near 10 million (viscous forces small, flow essentially inviscid) versus near 100 (viscosity must be considered). Drela's MIT notes add that separated bluff-body flows stay viscosity-dominated at any Re; chord Re runs from about 5,000 (butterfly) to 50 million (Boeing 777).</p>
+</section>
+<section aria-labelledby="inputs"><h2 id="inputs">Dynamic versus kinematic viscosity, and the length scale</h2><div class="formula-box"><strong>Re = ρvL / μ = vL / ν</strong></div>
+<p>ρ is density (kg/m³), v speed (m/s), L the characteristic length (m) and μ dynamic viscosity (Pa·s). With kinematic viscosity ν = μ/ρ (m²/s), Re = vL/ν needs no density. Entering ν where μ belongs is off by a factor of ρ. In gases μ barely depends on pressure, but ρ and ν do, so match the pressure as well as the temperature.</p>
+<p>Inside a round pipe, use the inner diameter and the mean velocity. For non-circular ducts use the hydraulic diameter D<sub>h</sub> = 4A/P (area A, wetted perimeter P). External flows use a conventional length (cylinder diameter, wing chord); check L before comparing.</p>
+<div class="table-wrap"><table><caption>Viscosities of common fluids and Re at vL = 0.01 m²/s (for example 1 m/s × 10 mm)</caption><thead><tr><th scope="col">Fluid</th><th scope="col">ρ [kg/m³]</th><th scope="col">μ [Pa·s]</th><th scope="col">ν [m²/s]</th><th scope="col">Re at vL = 0.01 m²/s</th></tr></thead><tbody>
+<tr><th scope="row">Water 20 °C</th><td>998.2</td><td>1.0000×10⁻³</td><td>1.0020×10⁻⁶</td><td>9,980</td></tr>
+<tr><th scope="row">Water 60 °C</th><td>983.2</td><td>4.677×10⁻⁴</td><td>4.757×10⁻⁷</td><td>21,022</td></tr>
+<tr><th scope="row">Air 20 °C, scaled to 1 atm</th><td>1.2043</td><td>1.819×10⁻⁵</td><td>1.5104×10⁻⁵</td><td>662</td></tr>
+<tr><th scope="row">Air 20 °C, 98.1 kPa</th><td>1.166</td><td>1.819×10⁻⁵</td><td>15.61×10⁻⁶</td><td>641</td></tr>
+<tr><th scope="row">Whole blood (density assumed)</th><td>1050 (assumed)</td><td>0.004 (about 4 cP)</td><td>3.81×10⁻⁶</td><td>2,625</td></tr>
+</tbody></table></div>
+<p>Water: IAEA Table 3.3 saturated liquid, used as low-pressure water. Air: IAEA Table 3.1 (98.1 kPa), with the 1 atm density scaled as an ideal gas. Blood viscosity of about 4 cP is from MIT HST; the notes give no density, so 1050 kg/m³ is assumed. Heating water from 20 °C to 60 °C more than halves μ and more than doubles Re in the same pipe.</p>
+<a class="guide-cta" href="/en/calculators/reynolds">Open this calculator</a></section>
+<section aria-labelledby="example"><h2 id="example">Examples: household pipe, aorta, HVAC duct</h2>
+<section class="example" aria-labelledby="ex-house-pipe"><h3 id="ex-house-pipe">Example 1. Household water supply pipe</h3>
+<p><strong>Given</strong>: inner diameter 15 mm and mean velocity 1.2 m/s (assumed). Water at 20 °C from IAEA Table 3.3: ρ = 998.2 kg/m³, μ = 1.0000×10⁻³ Pa·s, ν = 1.0020×10⁻⁶ m²/s.</p>
+<p><strong>Units</strong>: D = 15 mm = 0.015 m. Flow rate (π/4) × 0.015² × 1.2 m³/s, about 12.7 L per minute.</p>
+<p><strong>Calculation</strong>: Re = 998.2 × 1.2 × 0.015 ÷ 0.001 = 17,968. Using ν gives 1.2 × 0.015 ÷ 1.0020×10⁻⁶ = 17,964; the 0.02% gap is rounding between μ/ρ = 1.0018×10⁻⁶ and the tabulated ν.</p>
+<p><strong>Interpretation</strong>: well above 2300, so the flow at normal tap rates is turbulent. Re = 2300 would need 2300 × 0.001 ÷ (998.2 × 0.015) = 0.154 m/s, about 1.63 L per minute. With 60 °C water (IAEA Table 3.3, ρ = 983.2 kg/m³, μ = 4.677×10⁻⁴ Pa·s) at the same speed, Re = 37,840, about 2.1 times the cold-water value.</p>
+</section>
+<section class="example" aria-labelledby="ex-aorta"><h3 id="ex-aorta">Example 2. Mean Reynolds number in the human aorta</h3>
+<p><strong>Given</strong>: mean velocity 48 cm/s and diameter 2.5 cm for the human aorta (MIT HST, Table 1) and whole-blood viscosity of about 4 cP from the same notes. Blood density 1050 kg/m³ is an assumption.</p>
+<p><strong>Units</strong>: v = 0.48 m/s, D = 0.025 m, μ = 4 cP = 0.004 Pa·s.</p>
+<p><strong>Calculation</strong>: Re = 1050 × 0.48 × 0.025 ÷ 0.004 = 3,150. A density of 1000 or 1100 kg/m³ gives 3,000 to 3,300, so the assumption moves the result by about ±5%.</p>
+<p><strong>Interpretation</strong>: the calculator says transitional, but do not take that literally. Blood is non-Newtonian (4 cP is a large-vessel approximation) and aortic flow is pulsatile, so a mean-velocity Re misses instantaneous conditions. The MIT notes report that flow through the normal aortic valve is observed to be laminar despite peak Re near 10⁴, which a steady-pipe threshold would not predict. The notes' Table 5 lists a peak Re of 4500 in the ascending aorta, but that is dog data.</p>
+</section>
+<section class="example" aria-labelledby="ex-duct"><h3 id="ex-duct">Example 3. Rectangular HVAC duct with a hydraulic diameter</h3>
+<p><strong>Given</strong>: a 400 mm × 200 mm section and 4 m/s mean air speed (assumed). Air at 20 °C, ν = 1.5104×10⁻⁵ m²/s at 1 atm (from IAEA Table 3.1 μ and the ideal-gas density).</p>
+<p><strong>Units</strong>: A = 0.4 × 0.2 = 0.08 m², P = 2 × (0.4 + 0.2) = 1.2 m, so D<sub>h</sub> = 4 × 0.08 ÷ 1.2 = 0.267 m.</p>
+<p><strong>Calculation</strong>: with the unrounded D<sub>h</sub> (0.26666… m), Re = 4 × D<sub>h</sub> ÷ 1.5104×10⁻⁵ = 70,621. The 98.1 kPa table value ν = 15.61×10⁻⁶ gives 68,332, about 3% lower from pressure alone.</p>
+<p><strong>Interpretation</strong>: using the short side 0.2 m gives 52,966 and the long side 0.4 m gives 105,932, a factor of two apart. Duct friction correlations use D<sub>h</sub>. The flow is turbulent either way, but round-pipe thresholds such as 2300 need not hold for a rectangle.</p>
+</section>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">Reading 2300 and 4000 as boundaries</h2>
+<p>The MIT HST notes say flow in a uniform circular tube "typically becomes turbulent when Re<sub>d</sub> &gt; 2300", and that flow leaving a narrow orifice into a larger tube or reservoir can turn turbulent at Re as low as 10. So 2300 is a typical value for fully developed flow in a smooth round pipe; inlet disturbances, vibration, roughness, bends and sudden expansions all move it.</p>
+<p>Documents also differ. The TU Delft text on LibreTexts uses Re &lt; 2320 for the laminar 64/Re range, and the U.S. DOE WIPP performance assessment assumes a single 2100 cutoff in a drilling-fluid model. This site's calculator shows Re &lt; 2300 as laminar, Re &gt; 4000 as turbulent and the rest as transitional; the comparisons are strict, so exactly 2300 or 4000 is labelled transitional.</p>
+<p>For laminar flow, the MIT HST entrance-length estimate L<sub>e</sub>/D = 0.065 Re<sub>d</sub> gives 130 diameters at Re = 2000. In shorter pipes, fully developed friction and heat-transfer correlations do not apply.</p>
+</section>
+<section aria-labelledby="caution"><h2 id="caution">Common mistakes when computing Re</h2>
+<ul>
+<li><strong>Units</strong>: skipping mm to m or cP to Pa·s (1 cP = 0.001 Pa·s) makes Re wrong by 1000; cm/s must be divided by 100.</li>
+<li><strong>Velocity</strong>: use flow rate over area. In laminar flow the centre-line maximum is twice the mean, which doubles Re.</li>
+<li><strong>Property temperature</strong>: water viscosity changes by more than a factor of two between 20 °C and 60 °C.</li>
+<li><strong>Stopping at Re</strong>: Re does not give pressure loss or heat transfer; those also need pipe length and a friction factor, or Pr and a Nusselt correlation.</li>
+</ul>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">Frequently asked questions about Reynolds number calculations</h2>
+<details><summary>What happens if I put kinematic viscosity ν in the μ field?</summary><p>The result is multiplied by ρ: about 1000 times too large for water and about 1.2 times for air. Convert with μ = ρν or compute Re = vL/ν directly.</p></details>
+<details><summary>Some sources use 2000 or 2100 instead of 2300. Which is right?</summary><p>All are conventions for round-pipe transition, which really depends on inlet conditions and disturbances. Near the boundary, compute pressure loss or heat transfer for both regimes and check the design margin.</p></details>
+<details><summary>The calculator shows Re = 4000 as transitional. Is that a bug?</summary><p>No. It labels turbulent only above 4000, so exactly 4000 falls in the transitional band. Real flow has no sharp line between 4000 and 4001.</p></details>
+<details><summary>Can Re be computed for fluids like blood whose viscosity varies?</summary><p>Yes, with a representative viscosity, but only approximately. MIT HST describes whole blood as shear-thinning; about 4 cP is common for large vessels, while small vessels and low shear rates give different apparent viscosities.</p></details>
+<details><summary>Which length goes into L for a rectangular duct?</summary><p>The hydraulic diameter D<sub>h</sub> = 4A/P, 0.267 m for the 400 mm × 200 mm duct in Example 3. One side length gives an Re that does not match friction correlations.</p></details>
+</section>
+<section aria-labelledby="related"><h2 id="related">Related dimensionless numbers</h2><p>Record Re with these, on the same length and speed.</p><ul><li><a href="/en/guides/froude">Froude number (Fr)</a>: free-surface model tests that match Fr miss Re, so compare both and decide which to give up.</li><li><a href="/en/guides/weber">Weber number (We)</a>: with the same L and v, We/Re = μv/σ shows whether viscosity or surface tension leads in drops and sprays.</li><li><a href="/en/guides/strouhal">Strouhal number (St)</a>: cylinder shedding St changes with Re range, so record Re with it.</li><li><a href="/en/guides/peclet">Péclet number (Pe)</a>: Re times Pr gives the thermal Pe, showing whether momentum or heat diffuses faster.</li></ul></section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">References</h2><ul>
+<li>MIT OpenCourseWare (HST.542J): <a href="https://ocw.mit.edu/courses/hst-542j-quantitative-physiology-organ-transport-systems-spring-2004/5384df8b0795c292af407d5cfb4a3106_fluid_mechanics.pdf" rel="noopener noreferrer">Physiological Fluid Mechanics</a>. Re<sub>d</sub>, 2300, orifice flow, 0.065 Re<sub>d</sub> entrance length, Table 1 aorta, blood 4 cP, aortic valve</li>
+<li>NASA Glenn Research Center: <a href="https://www.grc.nasa.gov/www/k-12/airplane/reynolds.html" rel="noopener noreferrer">Reynolds Number</a>. Re as inertial over viscous forces; high and low Re</li>
+<li>MIT OpenCourseWare (16.01): <a href="https://ocw.mit.edu/courses/16-01-unified-engineering-i-ii-iii-iv-fall-2005-spring-2006/c6603238ec448ee22dc1c988898b51a5_f05_fall.pdf" rel="noopener noreferrer">Fluids Lecture 5 Notes</a>. Chord Re examples; boundary layers and separation</li>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering</a>. Tables 3.1 (dry air) and 3.3 (saturated water)</li>
+<li>Engineering LibreTexts (TU Delft): <a href="https://eng.libretexts.org/Bookshelves/Civil_Engineering/Slurry_Transport_%28Miedema%29/03%3A_Pressure_Losses_with_Homogeneous_Liquid_Flow/3.02%3A_The_Darcy-Weisbach_Friction_Factor" rel="noopener noreferrer">3.2 The Darcy-Weisbach Friction Factor</a>. Laminar 64/Re below 2320</li>
+<li>U.S. DOE WIPP: <a href="https://www.wipp.energy.gov/information_repository/cra/2009_cra/cra/Appendix_PA/Appendix_PA.pdf" rel="noopener noreferrer">CRA-2009 Appendix PA</a>. 2100 as the laminar-turbulent cutoff in a drilling-fluid model</li>
+</ul></section>
 <nav aria-label="Other guides"><a href="/">All calculators</a><a href="/en/guides/mach">Next: Mach Number</a><a href="/en/guides/pipe-flow">Cross-check Re, Pr and Pe for pipe flow</a></nav>
 <nav aria-label="Theory in depth"><a href="/en/guides/pipe-energy">Pipe pressure loss: from conservation laws to Poiseuille flow</a><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a></nav>
 </main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
