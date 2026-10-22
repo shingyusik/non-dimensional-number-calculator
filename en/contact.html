@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact: report errors through GitHub Issues | Dimensionless Number Calculator</title>
+<meta name="description" content="How to report a calculation or guide error on GitHub Issues, with a report template for inputs, units and the expected value, and advice on keeping personal data off a public board.">
+<link rel="canonical" href="https://calctool.cc/en/contact">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/contact">
+<link rel="alternate" hreflang="en" href="https://calctool.cc/en/contact">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/contact">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="/style.css?v=20261022">
+<link rel="stylesheet" href="/guide.css?v=20261022">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
+</head>
+<body class="guide-page">
+<header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/contact" aria-label="한국어로 전환">한글</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button></div><p class="eyebrow">Contact</p><h1>Contact</h1><p>Where to reach the operator and how to report an error.</p></header>
+<main>
+<section aria-labelledby="channel"><h2 id="channel">How to reach us</h2>
+<p>The only contact channel for this site is <a href="https://github.com/shingyusik/non-dimensional-number-calculator/issues">GitHub Issues</a>. Email and phone enquiries are not accepted. Opening an issue requires signing in to a GitHub account. The site is run by one person, so response times cannot be promised, but issues are read and answered with a note on whether a fix was made.</p>
+<p class="notice"><strong>GitHub Issues is a public board that anyone can read.</strong> Do not post personal information such as your name, email address, phone number, employer or address, internal company material, or design values that must stay confidential. If you posted something by mistake, you can edit or delete it yourself, or ask the operator to hide or delete it.</p></section>
+<section aria-labelledby="topics"><h2 id="topics">What you can raise</h2>
+<ul>
+<li>A result that disagrees with the formula or a textbook value</li>
+<li>Errors in a guide’s explanation, units or sources</li>
+<li>Broken links, layout problems or buttons that do not work</li>
+<li>Awkward or inconsistent Korean and English text</li>
+<li>Suggestions for new dimensionless numbers or examples</li>
+<li>Questions or requests about the privacy policy</li>
+</ul>
+<p>Reviews of specific designs and guarantees of results are not offered. See the <a href="/en/terms">terms of use</a> for how results may be used.</p></section>
+<section aria-labelledby="report"><h2 id="report">What to include in an error report</h2>
+<p>The following details let the operator reproduce the problem and find its cause quickly.</p>
+<ol>
+<li>The page address and calculator (for example /en/calculators/reynolds, Reynolds number)</li>
+<li>The values you entered and the unit of each, exactly as typed</li>
+<li>The result shown on screen</li>
+<li>The value you expected and where it comes from (textbook and page, paper, or your own working)</li>
+<li>For display problems, your browser and device</li>
+</ol>
+<pre class="report-template">Title: [Reynolds number] Result differs from textbook example
+Page: /en/calculators/reynolds
+Inputs: ρ = 998 kg/m³, v = 1.5 m/s, L = 0.05 m, μ = 0.001 Pa·s
+Result shown: (value on screen)
+Expected value and source: (textbook and page, or working)</pre>
+<p>The numbers above only illustrate the format. If you cannot cite a source for the expected value, include your working and it can be checked together.</p></section>
+<section aria-labelledby="selfcheck"><h2 id="selfcheck">Before you report</h2>
+<p>Units are the most common reason a result looks wrong. Check that lengths were not entered in mm, viscosity in cP or specific heat in kJ. Swapping dynamic viscosity μ with kinematic viscosity ν, or using a different characteristic length from your textbook, also changes the value. Each calculator page lists the usual conversions in its variables table and unit notes. If a difference remains after that, please report it.</p></section>
+<section aria-labelledby="privacy-requests"><h2 id="privacy-requests">Privacy requests</h2>
+<p>Requests to access, correct, delete or stop processing personal information are also handled through GitHub Issues. Even if the request involves personal information, write only the type of request in the issue; the operator will reply in the issue with the next steps. Data used for statistics and advertising is processed directly by Google and Microsoft, so you can adjust it immediately through their settings pages. Details are in the <a href="/en/privacy">privacy policy</a>.</p></section>
+</main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
+<script src="/guide.js?v=20261022" defer></script>
+</body></html>
