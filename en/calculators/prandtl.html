@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prandtl Number Calculator (Pr = μcₚ/k) | Dimensionless Number Calculator</title>
+<meta name="description" content="Compute Pr from viscosity, specific heat and conductivity. Avoid kJ-versus-J and cP-versus-Pa·s slips, and compare against the rough Pr ranges of gases, water, oils and liquid metals.">
+<link rel="canonical" href="https://calctool.cc/en/calculators/prandtl">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/calculators/prandtl">
+<link rel="alternate" hreflang="en" href="https://calctool.cc/en/calculators/prandtl">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/calculators/prandtl">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="/style.css?v=20261022">
+<link rel="stylesheet" href="/guide.css?v=20261022">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
+</head>
+<body class="guide-page">
+<header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/calculators/prandtl" aria-label="한국어로 전환">한글</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button></div><p class="eyebrow">Heat transfer · Calculator</p><h1>Prandtl number calculator <small>(Pr)</small></h1><p>Calculate the Prandtl number from dynamic viscosity, specific heat at constant pressure and thermal conductivity. All three must describe the same fluid at the same temperature.</p></header>
+<main>
+<section class="calc-panel" aria-labelledby="calc">
+<h2 id="calc">Enter values and calculate</h2>
+<div class="formula-box"><strong>Pr = μcₚ / k</strong></div>
+<form id="calcForm" data-calculator="prandtl" novalidate>
+<div class="input-group"><label for="in-mu">Dynamic Viscosity (μ) [Pa·s]</label><input type="number" id="in-mu" name="mu" step="any" inputmode="decimal" placeholder="e.g. 0.001" data-example="0.001"></div>
+<div class="input-group"><label for="in-cp">Specific Heat Capacity (c_p) [J/kgK]</label><input type="number" id="in-cp" name="cp" step="any" inputmode="decimal" placeholder="e.g. 4180" data-example="4180"></div>
+<div class="input-group"><label for="in-k">Thermal Conductivity (k) [W/mK]</label><input type="number" id="in-k" name="k" step="any" inputmode="decimal" placeholder="e.g. 0.6" data-example="0.6"></div>
+<div class="calc-actions"><button type="submit" class="calculate-btn">Calculate</button><button type="button" id="fillExample" class="secondary-btn">Fill example values</button></div>
+<p id="calcError" class="form-error" role="alert" hidden></p>
+</form>
+<div id="calcResult" class="result-container" aria-live="polite"><p class="result-label">Result</p><p id="resultValue" class="result-value"></p><p id="resultInfo" class="result-info"></p><p id="resultExplain" class="result-explain"></p></div>
+<noscript><p>This calculator runs in your browser with JavaScript. If JavaScript is off, apply the formula above by hand.</p></noscript>
+<p class="source">Your inputs are calculated by your browser on this page; the operator does not receive or store them.</p>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">Why Pr depends only on the fluid</h2>
+<p>Pr = μcₚ/k equals ν/α, kinematic viscosity ν = μ/ρ divided by thermal diffusivity α = k/(ρcₚ). There is no speed or length in it, so the same fluid at the same temperature and pressure has the same Pr whether it flows through a pipe or over a plate. Reynolds and Péclet numbers describe the flow; the Prandtl number describes the fluid.</p>
+</section>
+<section aria-labelledby="variables"><h2 id="variables">Variables and SI units</h2>
+<div class="table-wrap"><table><caption>Inputs of the Prandtl number calculator</caption><thead><tr><th scope="col">Symbol</th><th scope="col">Meaning</th><th scope="col">SI unit</th><th scope="col">Example</th></tr></thead><tbody>
+<tr><th scope="row">μ</th><td>Dynamic viscosity of the fluid</td><td>Pa·s</td><td>0.001</td></tr>
+<tr><th scope="row">cₚ</th><td>Specific heat at constant pressure</td><td>J/(kg·K)</td><td>4180</td></tr>
+<tr><th scope="row">k</th><td>Thermal conductivity of the fluid</td><td>W/(m·K)</td><td>0.6</td></tr>
+</tbody></table></div></section>
+<section aria-labelledby="units"><h2 id="units">Common unit mistakes</h2>
+<ul>
+<li>Specific heat in kJ/(kg·K) must be multiplied by 1000. Entering 4.18 instead of 4180 makes Pr a thousand times too small.</li>
+<li>Viscosity in cP must be multiplied by 0.001 to give Pa·s.</li>
+<li>Do not put kinematic viscosity ν (m²/s) in the μ field; the result is off by a factor of the density.</li>
+<li>Taking μ, cₚ and k from tables at different temperatures gives a meaningless result. Liquid viscosity in particular is very temperature-sensitive.</li>
+</ul>
+</section>
+<section aria-labelledby="criteria"><h2 id="criteria">Reading the size of Pr</h2>
+<p>Pr above 1 means momentum diffuses faster than heat; in laminar boundary layers the velocity layer then tends to be thicker than the thermal layer, and the opposite holds below 1. As rough orders of magnitude, gases sit near 1 (air about 0.7), water at room temperature is in single digits, viscous oils reach hundreds or more, and liquid metals are far below 1. A result far outside these ranges is a cue to recheck the units.</p>
+</section>
+<section aria-labelledby="check"><h2 id="check">Example and cross-check</h2>
+<p>The example uses μ = 0.001 Pa·s, cₚ = 4180 J/(kg·K) and k = 0.6 W/(m·K), giving Pr ≈ 6.97. The pipe-flow note uses cₚ = 4200 to get Pr = 7, confirms it again as ν/α, and shows that multiplying by Re = 2000 reproduces the Péclet number of 14000.</p>
+<p>Pr alone does not give a heat-transfer coefficient or a heat flow. It is an input to convective correlations together with Re, or a way to compare the boundary-layer behaviour of two fluids.</p>
+</section>
+<section aria-labelledby="more"><h2 id="more">Related guides and calculators</h2>
+<h3>Guide</h3><ul><li><a href="/en/guides/prandtl">Prandtl number guide: worked example and cautions</a></li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/pipe-flow">Cross-check Re, Pr and Pe for pipe flow</a>: One input set through three calculators, checking that Pe = Re × Pr.</li><li><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a>: Diffusion lengths versus transit times, and where a heat-transfer coefficient comes from.</li></ul>
+<h3>Related calculators</h3><ul><li><a href="/en/calculators/peclet">Péclet number (Pe)</a>: With the same L, v and properties, Pe = Re × Pr.</li><li><a href="/en/calculators/nusselt">Nusselt number (Nu)</a>: Convective heat-transfer correlations commonly give Nu as a function of Re and Pr.</li><li><a href="/en/calculators/schmidt">Schmidt number (Sc)</a>: Sc is Pr with the mass diffusivity D in place of thermal diffusivity α.</li></ul>
+</section>
+</main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
+<script src="/calculators.js?v=20261022" defer></script>
+<script src="/calculator-page.js?v=20261022" defer></script>
+<script src="/guide.js?v=20261022" defer></script>
+</body></html>

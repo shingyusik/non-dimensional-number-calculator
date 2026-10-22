@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weber Number Calculator (We = ρv²L/σ) | Dimensionless Number Calculator</title>
+<meta name="description" content="Compute We for drops, bubbles and sprays. Shows the effect of squared speed, mN/m conversion, whether to use liquid or surrounding-gas density, and the link to curvature pressure.">
+<link rel="canonical" href="https://calctool.cc/en/calculators/weber">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/calculators/weber">
+<link rel="alternate" hreflang="en" href="https://calctool.cc/en/calculators/weber">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/calculators/weber">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="/style.css?v=20261022">
+<link rel="stylesheet" href="/guide.css?v=20261022">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
+</head>
+<body class="guide-page">
+<header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/calculators/weber" aria-label="한국어로 전환">한글</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button></div><p class="eyebrow">Interfaces · Calculator</p><h1>Weber number calculator <small>(We)</small></h1><p>Calculate the Weber number from density, speed, a length and surface tension. It compares inertia with surface tension where the shape of an interface matters, as in drops, bubbles and sprays.</p></header>
+<main>
+<section class="calc-panel" aria-labelledby="calc">
+<h2 id="calc">Enter values and calculate</h2>
+<div class="formula-box"><strong>We = ρv²L / σ</strong></div>
+<form id="calcForm" data-calculator="weber" novalidate>
+<div class="input-group"><label for="in-rho">Density (ρ) [kg/m³]</label><input type="number" id="in-rho" name="rho" step="any" inputmode="decimal" placeholder="e.g. 1000" data-example="1000"></div>
+<div class="input-group"><label for="in-v">Velocity (v) [m/s]</label><input type="number" id="in-v" name="v" step="any" inputmode="decimal" placeholder="e.g. 2" data-example="2"></div>
+<div class="input-group"><label for="in-L">Characteristic Length (L) [m]</label><input type="number" id="in-L" name="L" step="any" inputmode="decimal" placeholder="e.g. 0.01" data-example="0.01"></div>
+<div class="input-group"><label for="in-sigma">Surface Tension (σ) [N/m]</label><input type="number" id="in-sigma" name="sigma" step="any" inputmode="decimal" placeholder="e.g. 0.072" data-example="0.072"></div>
+<div class="calc-actions"><button type="submit" class="calculate-btn">Calculate</button><button type="button" id="fillExample" class="secondary-btn">Fill example values</button></div>
+<p id="calcError" class="form-error" role="alert" hidden></p>
+</form>
+<div id="calcResult" class="result-container" aria-live="polite"><p class="result-label">Result</p><p id="resultValue" class="result-value"></p><p id="resultInfo" class="result-info"></p><p id="resultExplain" class="result-explain"></p></div>
+<noscript><p>This calculator runs in your browser with JavaScript. If JavaScript is off, apply the formula above by hand.</p></noscript>
+<p class="source">Your inputs are calculated by your browser on this page; the operator does not receive or store them.</p>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">A ratio of two pressure scales</h2>
+<p>We = ρv²L/σ divides the inertial pressure scale ρv² by the surface-tension pressure scale σ/L. The curvature pressure that makes the inside of a curved interface higher than the outside is 2σ/R for radius R; the surface-tension note computes 144 Pa for a water drop of radius 1 mm with σ = 0.072 N/m. A large We means the flow is strong enough to overcome pressures like this and deform the interface.</p>
+</section>
+<section aria-labelledby="variables"><h2 id="variables">Variables and SI units</h2>
+<div class="table-wrap"><table><caption>Inputs of the Weber number calculator</caption><thead><tr><th scope="col">Symbol</th><th scope="col">Meaning</th><th scope="col">SI unit</th><th scope="col">Example</th></tr></thead><tbody>
+<tr><th scope="row">ρ</th><td>Density matching the definition used by your reference (liquid or surrounding gas)</td><td>kg/m³</td><td>1000</td></tr>
+<tr><th scope="row">v</th><td>Relative speed between the drop and the surrounding fluid</td><td>m/s</td><td>2</td></tr>
+<tr><th scope="row">L</th><td>Drop diameter, jet diameter and so on</td><td>m</td><td>0.01</td></tr>
+<tr><th scope="row">σ</th><td>Surface tension of the interface between the two fluids</td><td>N/m</td><td>0.072</td></tr>
+</tbody></table></div></section>
+<section aria-labelledby="units"><h2 id="units">Points to watch when entering values</h2>
+<ul>
+<li>Speed is squared: with everything else fixed, doubling v quadruples We. Use the speed of the drop relative to the surrounding fluid.</li>
+<li>Surface tension in mN/m (or dyn/cm) must be divided by 1000 to give N/m; 72 mN/m is 0.072 N/m.</li>
+<li>Which density to use depends on the definition. For aerodynamic breakup of a drop moving through gas, the surrounding gas density is common; for the inertia of a liquid jet itself, the liquid density is used. Match the definition of the data you compare with.</li>
+<li>σ depends on the pair of fluids and on temperature, and surfactants can lower it considerably.</li>
+</ul>
+</section>
+<section aria-labelledby="criteria"><h2 id="criteria">Interpreting the size</h2>
+<p>When We is much larger than 1, inertia overwhelms surface tension; when it is much smaller, surface tension holds the interface shape. The critical value at which drops actually break up depends on how ρ and L are defined, on the surrounding flow and on viscosity, so this calculator does not decide breakup. Use it to compare with experiments or references that use the same definition.</p>
+</section>
+<section aria-labelledby="check"><h2 id="check">Check with the example</h2>
+<p>The example uses ρ = 1000 kg/m³, v = 2 m/s, L = 0.01 m and σ = 0.072 N/m, giving We ≈ 555.56. Halve the speed to 1 m/s and We drops to a quarter, about 138.89. The surface-tension note calculates We ≈ 6.94 and Re = 1000 together for a 2 mm length at 0.5 m/s, then cross-checks them with We/Re = μv/σ.</p>
+</section>
+<section aria-labelledby="more"><h2 id="more">Related guides and calculators</h2>
+<h3>Guide</h3><ul><li><a href="/en/guides/weber">Weber number guide: worked example and cautions</a></li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/interface-time-scales">Surface tension and unsteady flow: connect force ratios to time ratios</a>: We, Re, Fr and St on one length scale; curvature pressure versus capillary time.</li></ul>
+<h3>Related calculators</h3><ul><li><a href="/en/calculators/reynolds">Reynolds number (Re)</a>: With the same L and v, We/Re = μv/σ compares viscosity with surface tension.</li><li><a href="/en/calculators/froude">Froude number (Fr)</a>: With the same L and v, We/Fr² = ρgL²/σ and speed drops out.</li><li><a href="/en/calculators/strouhal">Strouhal number (St)</a>: The squared ratio of capillary time to transit time is We, so St is used alongside it when comparing oscillation periods.</li></ul>
+</section>
+</main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
+<script src="/calculators.js?v=20261022" defer></script>
+<script src="/calculator-page.js?v=20261022" defer></script>
+<script src="/guide.js?v=20261022" defer></script>
+</body></html>

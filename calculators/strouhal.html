@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>스트로할 수 계산기 (St = fL/v) | 무차원수 계산기</title>
+<meta name="description" content="와류 방출 주파수, 원기둥 지름, 유속으로 St를 계산하고 이송 시간과 진동 주기의 비로 읽습니다. rpm·rad/s 환산과 양력·항력 신호 주파수 차이도 짚습니다.">
+<link rel="canonical" href="https://calctool.cc/calculators/strouhal">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/calculators/strouhal">
+<link rel="alternate" hreflang="en" href="https://calctool.cc/en/calculators/strouhal">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/calculators/strouhal">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="/style.css?v=20261022">
+<link rel="stylesheet" href="/guide.css?v=20261022">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
+</head>
+<body class="guide-page">
+<header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/en/calculators/strouhal" aria-label="Switch to English">EN</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button></div><p class="eyebrow">유동 · 계산기</p><h1>스트로할 수 계산기 <small>(St)</small></h1><p>진동 주파수, 길이, 유속으로 스트로할 수를 계산합니다. 원기둥 뒤 와류 방출처럼 흐름 속에서 반복되는 현상을 크기와 속도가 다른 조건과 비교할 때 씁니다.</p></header>
+<main>
+<section class="calc-panel" aria-labelledby="calc">
+<h2 id="calc">값 입력과 계산</h2>
+<div class="formula-box"><strong>St = fL / v</strong></div>
+<form id="calcForm" data-calculator="strouhal" novalidate>
+<div class="input-group"><label for="in-f">와류 방출 주파수 (f) [Hz]</label><input type="number" id="in-f" name="f" step="any" inputmode="decimal" placeholder="예: 10" data-example="10"></div>
+<div class="input-group"><label for="in-L">특성 길이 (L) [m]</label><input type="number" id="in-L" name="L" step="any" inputmode="decimal" placeholder="예: 0.1" data-example="0.1"></div>
+<div class="input-group"><label for="in-v">속도 (v) [m/s]</label><input type="number" id="in-v" name="v" step="any" inputmode="decimal" placeholder="예: 5" data-example="5"></div>
+<div class="calc-actions"><button type="submit" class="calculate-btn">계산하기</button><button type="button" id="fillExample" class="secondary-btn">예제 값 채우기</button></div>
+<p id="calcError" class="form-error" role="alert" hidden></p>
+</form>
+<div id="calcResult" class="result-container" aria-live="polite"><p class="result-label">결과</p><p id="resultValue" class="result-value"></p><p id="resultInfo" class="result-info"></p><p id="resultExplain" class="result-explain"></p></div>
+<noscript><p>이 계산기는 브라우저의 JavaScript로 계산합니다. JavaScript가 꺼져 있으면 위 공식에 직접 값을 넣어 계산해 주세요.</p></noscript>
+<p class="source">입력값은 이 페이지 안에서 브라우저가 계산하며, 운영자가 따로 받거나 저장하지 않습니다.</p>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">St를 시간의 비로 읽기</h2>
+<p>St = fL/v는 유체가 길이 L을 지나가는 시간 L/v를 진동 주기 1/f로 나눈 값입니다. St = 0.2라면 유체가 원기둥 지름만큼 이동하는 동안 진동이 한 주기의 5분의 1만큼 진행한다는 뜻입니다. 이렇게 시간의 비로 바꾸면 크기와 속도가 다른 실험의 주파수를 하나의 숫자로 비교할 수 있습니다.</p>
+<p>식을 뒤집은 f = St·v/L은 St를 알고 있을 때 진동 주파수를 어림하는 데 씁니다. 같은 St라면 속도가 두 배일 때 주파수도 두 배가 됩니다.</p>
+</section>
+<section aria-labelledby="variables"><h2 id="variables">변수와 SI 단위</h2>
+<div class="table-wrap"><table><caption>스트로할 수 계산기의 입력 변수</caption><thead><tr><th scope="col">기호</th><th scope="col">의미</th><th scope="col">SI 단위</th><th scope="col">예제 값</th></tr></thead><tbody>
+<tr><th scope="row">f</th><td>관심 진동의 주파수(예: 와류 방출)</td><td>Hz = 1/s</td><td>10</td></tr>
+<tr><th scope="row">L</th><td>원기둥이면 지름</td><td>m</td><td>0.1</td></tr>
+<tr><th scope="row">v</th><td>자유류 속도</td><td>m/s</td><td>5</td></tr>
+</tbody></table></div></section>
+<section aria-labelledby="units"><h2 id="units">주파수를 넣을 때 확인할 것</h2>
+<ul>
+<li>f는 Hz(초당 횟수)입니다. 회전수 rpm은 60으로 나눠 Hz로 바꿉니다.</li>
+<li>각진동수 ω(rad/s)를 알고 있다면 2π로 나눠야 f가 됩니다. ω를 그대로 넣으면 St가 약 6.28배 커집니다.</li>
+<li>원기둥 뒤 와류 방출에서 양력 변동은 방출 주파수와 같지만 항력 변동은 흔히 그 두 배 주파수로 나타납니다. 어떤 신호에서 f를 읽었는지 기록해 두세요.</li>
+<li>원기둥이라면 지름을, 다른 물체라면 흐름에 수직인 폭을 L로 쓰는 것이 일반적입니다.</li>
+</ul>
+</section>
+<section aria-labelledby="criteria"><h2 id="criteria">0.2라는 값을 어떻게 볼까</h2>
+<p>원기둥 뒤 와류 방출의 St는 꽤 넓은 레이놀즈 수 범위에서 0.2 안팎으로 알려져 있습니다. 하지만 Re, 표면 상태, 주변 교란에 따라 달라지므로 보편 상수처럼 쓰지 않습니다. 문헌 값과 비교할 때는 형상, L의 정의, 주파수를 측정한 신호, 그 실험의 Re를 함께 맞춰야 합니다.</p>
+</section>
+<section aria-labelledby="check"><h2 id="check">예제와 계면 노트의 값</h2>
+<p>예제는 f = 10 Hz, 원기둥 지름 L = 0.1 m, 유속 v = 5 m/s로 St = 0.2입니다. 표면장력 노트에서는 지름 2 mm, 속도 0.5 m/s, 주파수 50 Hz를 써서 이송 시간 0.004 s와 진동 주기 0.02 s의 비로 같은 0.2를 다시 확인합니다. 속도나 주파수가 0이면 비교할 진동이 없거나 0으로 나누게 되므로, 계산기는 이런 입력을 오류로 안내합니다.</p>
+</section>
+<section aria-labelledby="more"><h2 id="more">관련 해설과 계산기</h2>
+<h3>기본 해설</h3><ul><li><a href="/guides/strouhal">스트로할 수 해설: 예제와 주의점</a></li></ul>
+<h3>계산 노트</h3><ul><li><a href="/guides/interface-time-scales">표면장력과 비정상 유동: 힘의 비와 시간의 비 연결하기</a>: We·Re·Fr·St를 같은 길이로 계산하고 곡률 압력과 모세관 시간을 구분합니다.</li></ul>
+<h3>관련 계산기</h3><ul><li><a href="/calculators/reynolds">레이놀즈 수 (Re)</a>: 원기둥 뒤 와류 방출의 St는 Re에 따라 달라지므로 두 값을 함께 적습니다.</li><li><a href="/calculators/weber">웨버 수 (We)</a>: 모세관 시간 √(ρL³/σ)과 이송 시간 L/v의 비를 제곱하면 We가 됩니다. 경계면 진동은 St와 함께 비교합니다.</li><li><a href="/calculators/froude">프루드 수 (Fr)</a>: 자유 수면의 주기 운동에서는 중력 효과(Fr)와 진동 시간(St)을 함께 확인합니다.</li></ul>
+</section>
+</main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>
+<script src="/calculators.js?v=20261022" defer></script>
+<script src="/calculator-page.js?v=20261022" defer></script>
+<script src="/guide.js?v=20261022" defer></script>
+</body></html>

@@ -123,6 +123,15 @@ main {
 .site-intro a { color: var(--accent-secondary); }
 .site-intro a:focus-visible { outline: 3px solid var(--accent-secondary); outline-offset: 3px; }
 
+.category { margin: 0 auto 3rem; }
+.category > h2 { font-size: 1.8rem; margin-bottom: 0.4rem; }
+.category-desc { color: var(--text-secondary); max-width: 850px; margin-bottom: 1.5rem; line-height: 1.7; }
+.category-notes { color: var(--text-secondary); margin-top: 1.25rem; line-height: 1.8; }
+.category-notes a, .category-jump a, .footer-links a { color: var(--accent-secondary); }
+.footer-links { margin-bottom: 1rem; line-height: 2; }
+.footer-links a { margin: 0 0.25rem; text-decoration: none; }
+.footer-links a:hover { text-decoration: underline; }
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -138,7 +147,6 @@ main {
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     transition: transform var(--transition-speed), box-shadow var(--transition-speed), border-color var(--transition-speed);
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -169,7 +177,7 @@ main {
     opacity: 0.05;
 }
 
-.card h2 {
+.card h2, .card h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     color: var(--text-primary);

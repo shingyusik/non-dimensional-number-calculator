@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>프란틀 수 계산기 (Pr = μcₚ/k) | 무차원수 계산기</title>
+<meta name="description" content="점성 계수, 정압 비열, 열전도율로 Pr을 계산합니다. kJ와 J, cP와 Pa·s 환산 실수를 막는 법과 기체·물·기름·액체 금속의 대략적인 Pr 크기를 함께 봅니다.">
+<link rel="canonical" href="https://calctool.cc/calculators/prandtl">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/calculators/prandtl">
+<link rel="alternate" hreflang="en" href="https://calctool.cc/en/calculators/prandtl">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/calculators/prandtl">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="/style.css?v=20261022">
+<link rel="stylesheet" href="/guide.css?v=20261022">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
+</head>
+<body class="guide-page">
+<header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/en/calculators/prandtl" aria-label="Switch to English">EN</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button></div><p class="eyebrow">열전달 · 계산기</p><h1>프란틀 수 계산기 <small>(Pr)</small></h1><p>점성 계수, 정압 비열, 열전도율로 프란틀 수를 계산합니다. 세 값은 같은 유체, 같은 온도에서 평가한 물성이어야 합니다.</p></header>
+<main>
+<section class="calc-panel" aria-labelledby="calc">
+<h2 id="calc">값 입력과 계산</h2>
+<div class="formula-box"><strong>Pr = μcₚ / k</strong></div>
+<form id="calcForm" data-calculator="prandtl" novalidate>
+<div class="input-group"><label for="in-mu">점성 계수 (μ) [Pa·s]</label><input type="number" id="in-mu" name="mu" step="any" inputmode="decimal" placeholder="예: 0.001" data-example="0.001"></div>
+<div class="input-group"><label for="in-cp">비열 (c_p) [J/kgK]</label><input type="number" id="in-cp" name="cp" step="any" inputmode="decimal" placeholder="예: 4180" data-example="4180"></div>
+<div class="input-group"><label for="in-k">열전도율 (k) [W/mK]</label><input type="number" id="in-k" name="k" step="any" inputmode="decimal" placeholder="예: 0.6" data-example="0.6"></div>
+<div class="calc-actions"><button type="submit" class="calculate-btn">계산하기</button><button type="button" id="fillExample" class="secondary-btn">예제 값 채우기</button></div>
+<p id="calcError" class="form-error" role="alert" hidden></p>
+</form>
+<div id="calcResult" class="result-container" aria-live="polite"><p class="result-label">결과</p><p id="resultValue" class="result-value"></p><p id="resultInfo" class="result-info"></p><p id="resultExplain" class="result-explain"></p></div>
+<noscript><p>이 계산기는 브라우저의 JavaScript로 계산합니다. JavaScript가 꺼져 있으면 위 공식에 직접 값을 넣어 계산해 주세요.</p></noscript>
+<p class="source">입력값은 이 페이지 안에서 브라우저가 계산하며, 운영자가 따로 받거나 저장하지 않습니다.</p>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">Pr이 유체만으로 정해지는 이유</h2>
+<p>Pr = μcₚ/k는 운동 점성 계수 ν = μ/ρ를 열확산 계수 α = k/(ρcₚ)로 나눈 ν/α와 같습니다. 식에 속도나 길이가 없기 때문에, 같은 유체가 같은 온도·압력에 있다면 관 속을 흐르든 평판 위를 흐르든 Pr은 같습니다. 레이놀즈 수나 페클레 수가 흐름의 조건을 설명한다면, 프란틀 수는 유체 자체의 성격을 설명합니다.</p>
+</section>
+<section aria-labelledby="variables"><h2 id="variables">변수와 SI 단위</h2>
+<div class="table-wrap"><table><caption>프란틀 수 계산기의 입력 변수</caption><thead><tr><th scope="col">기호</th><th scope="col">의미</th><th scope="col">SI 단위</th><th scope="col">예제 값</th></tr></thead><tbody>
+<tr><th scope="row">μ</th><td>유체의 점성 계수</td><td>Pa·s</td><td>0.001</td></tr>
+<tr><th scope="row">cₚ</th><td>정압 비열</td><td>J/(kg·K)</td><td>4180</td></tr>
+<tr><th scope="row">k</th><td>유체의 열전도율</td><td>W/(m·K)</td><td>0.6</td></tr>
+</tbody></table></div></section>
+<section aria-labelledby="units"><h2 id="units">단위에서 자주 틀리는 곳</h2>
+<ul>
+<li>비열을 kJ/(kg·K)로 찾았다면 1000을 곱해 J/(kg·K)로 넣습니다. 4.18을 그대로 넣으면 Pr이 1000분의 1이 됩니다.</li>
+<li>점성 계수가 cP 단위라면 0.001을 곱해 Pa·s로 바꿉니다.</li>
+<li>운동 점성 계수 ν(m²/s)를 μ 칸에 넣지 마세요. 밀도만큼 차이가 납니다.</li>
+<li>μ, cₚ, k를 서로 다른 온도의 표에서 가져오면 의미 없는 값이 나옵니다. 특히 액체의 점성 계수는 온도에 민감합니다.</li>
+</ul>
+</section>
+<section aria-labelledby="criteria"><h2 id="criteria">값의 크기로 읽는 법</h2>
+<p>Pr이 1보다 크면 운동량이 열보다 빠르게 퍼집니다. 층류 경계층에서는 이때 속도 경계층이 온도 경계층보다 두꺼운 경향이 있고, Pr이 1보다 작으면 반대가 됩니다. 대략적인 크기를 보면 기체는 1 근처(공기는 약 0.7), 물은 상온에서 한 자릿수, 점성이 큰 기름은 수백 이상, 액체 금속은 1보다 훨씬 작습니다. 계산 결과가 이 범위에서 크게 벗어난다면 단위를 다시 확인하세요.</p>
+</section>
+<section aria-labelledby="check"><h2 id="check">예제와 교차검산</h2>
+<p>예제는 μ = 0.001 Pa·s, cₚ = 4180 J/(kg·K), k = 0.6 W/(m·K)로 Pr ≈ 6.97입니다. 관 유동 노트에서는 cₚ = 4200으로 Pr = 7을 얻고, ν/α로 다시 계산해도 7이 나오는지 확인합니다. 같은 노트에서 Re = 2000과 곱한 14000이 페클레 수 계산 결과와 일치하는 것도 볼 수 있습니다.</p>
+<p>Pr만으로 열전달 계수나 전달 열량을 구할 수는 없습니다. 대류 열전달 상관식에 Re와 함께 넣는 입력으로 쓰거나, 두 유체의 경계층 성격을 비교하는 데 씁니다.</p>
+</section>
+<section aria-labelledby="more"><h2 id="more">관련 해설과 계산기</h2>
+<h3>기본 해설</h3><ul><li><a href="/guides/prandtl">프란틀 수 해설: 예제와 주의점</a></li></ul>
+<h3>계산 노트</h3><ul><li><a href="/guides/pipe-flow">관 유동에서 Re·Pr·Pe를 함께 검산하기</a>: 같은 입력으로 세 계산기를 연결하고 Pe = Re × Pr이 맞는지 확인합니다.</li><li><a href="/guides/transport-scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a>: 확산 길이와 이송 시간을 비교하고 열전달 계수가 어디서 오는지 구분합니다.</li></ul>
+<h3>관련 계산기</h3><ul><li><a href="/calculators/peclet">페클레 수 (Pe)</a>: 같은 L·v·물성이면 Pe = Re × Pr입니다.</li><li><a href="/calculators/nusselt">누셀트 수 (Nu)</a>: 대류 열전달 상관식은 흔히 Nu를 Re와 Pr의 함수로 줍니다.</li><li><a href="/calculators/schmidt">슈미트 수 (Sc)</a>: Sc는 Pr의 열확산 계수 α 자리에 물질 확산 계수 D를 넣은 지표입니다.</li></ul>
+</section>
+</main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>
+<script src="/calculators.js?v=20261022" defer></script>
+<script src="/calculator-page.js?v=20261022" defer></script>
+<script src="/guide.js?v=20261022" defer></script>
+</body></html>

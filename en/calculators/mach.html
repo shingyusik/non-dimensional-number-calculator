@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mach Number Calculator (Ma = v/c) | Dimensionless Number Calculator</title>
+<meta name="description" content="Divide flow speed by the local speed of sound to get the Mach number. Includes computing c from temperature, km/h and knot conversions, and why the regime limits are approximate.">
+<link rel="canonical" href="https://calctool.cc/en/calculators/mach">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/calculators/mach">
+<link rel="alternate" hreflang="en" href="https://calctool.cc/en/calculators/mach">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/calculators/mach">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="/style.css?v=20261022">
+<link rel="stylesheet" href="/guide.css?v=20261022">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
+</head>
+<body class="guide-page">
+<header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/calculators/mach" aria-label="한국어로 전환">한글</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button></div><p class="eyebrow">Gases and compressibility · Calculator</p><h1>Mach number calculator <small>(Ma)</small></h1><p>Calculate the Mach number from the flow speed and the speed of sound at the same point. What you enter for the speed of sound largely decides how good the answer is.</p></header>
+<main>
+<section class="calc-panel" aria-labelledby="calc">
+<h2 id="calc">Enter values and calculate</h2>
+<div class="formula-box"><strong>Ma = v / c</strong></div>
+<form id="calcForm" data-calculator="mach" novalidate>
+<div class="input-group"><label for="in-v">Flow Velocity (v) [m/s]</label><input type="number" id="in-v" name="v" step="any" inputmode="decimal" placeholder="e.g. 170" data-example="170"></div>
+<div class="input-group"><label for="in-c">Speed of Sound (c) [m/s]</label><input type="number" id="in-c" name="c" step="any" inputmode="decimal" placeholder="e.g. 340" data-example="340"></div>
+<div class="calc-actions"><button type="submit" class="calculate-btn">Calculate</button><button type="button" id="fillExample" class="secondary-btn">Fill example values</button></div>
+<p id="calcError" class="form-error" role="alert" hidden></p>
+</form>
+<div id="calcResult" class="result-container" aria-live="polite"><p class="result-label">Result</p><p id="resultValue" class="result-value"></p><p id="resultInfo" class="result-info"></p><p id="resultExplain" class="result-explain"></p></div>
+<noscript><p>This calculator runs in your browser with JavaScript. If JavaScript is off, apply the formula above by hand.</p></noscript>
+<p class="source">Your inputs are calculated by your browser on this page; the operator does not receive or store them.</p>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">Why divide by the speed of sound?</h2>
+<p>How much a gas changes density as it speeds up depends on its speed relative to the speed of sound, not on the absolute speed. The same 200 m/s gives different Mach numbers in cold and warm air. The Mach number is the first check on whether compressibility matters.</p>
+<p>Treating air as an ideal gas with γ = 1.4 and R = 287 J/(kg·K), the speed of sound is c = √(γRT). At 300 K that is √(1.4 × 287 × 300) ≈ 347 m/s. T must be an absolute temperature in kelvin.</p>
+</section>
+<section aria-labelledby="variables"><h2 id="variables">Variables and SI units</h2>
+<div class="table-wrap"><table><caption>Inputs of the Mach number calculator</caption><thead><tr><th scope="col">Symbol</th><th scope="col">Meaning</th><th scope="col">SI unit</th><th scope="col">Example</th></tr></thead><tbody>
+<tr><th scope="row">v</th><td>Local flow speed or speed relative to the gas</td><td>m/s</td><td>170</td></tr>
+<tr><th scope="row">c</th><td>Speed of sound in the same medium at the same temperature</td><td>m/s</td><td>340</td></tr>
+</tbody></table></div></section>
+<section aria-labelledby="units"><h2 id="units">Choosing the speed of sound</h2>
+<ul>
+<li>The 340 m/s placeholder is a rough room-temperature value for air. Recalculate c when temperature or altitude changes.</li>
+<li>Where temperature varies along the flow, as in a nozzle, use the local speed of sound at the point of interest.</li>
+<li>Convert km/h to m/s by dividing by 3.6. One knot is about 0.514 m/s.</li>
+<li>Gases other than air have different γ and R, so do not reuse the value for air.</li>
+</ul>
+</section>
+<section aria-labelledby="criteria"><h2 id="criteria">What the regime labels mean</h2>
+<p>The calculator labels Ma &lt; 0.8 subsonic, 0.8 to 1.2 transonic, 1.2 to 5 supersonic and 5 or more hypersonic. These are conventional, approximate limits that vary between references. In the transonic band the free stream is still below the speed of sound, yet the flow can locally exceed it where it accelerates, such as over the upper surface of a wing.</p>
+<p>Ma ≈ 0.3 is a common reference when judging whether the incompressible approximation is acceptable. From the isentropic relation with γ = 1.4, the ratio of stagnation to static density at Ma = 0.3 is about 1.046. Whether that difference is acceptable depends on the accuracy you need.</p>
+</section>
+<section aria-labelledby="check"><h2 id="check">Check with the example</h2>
+<p>The example uses v = 170 m/s and c = 340 m/s, so Ma = 0.5. The same 170 m/s in colder air with c = 300 m/s gives about 0.567. Remembering that the Mach number can rise while the speed stays the same avoids mistakes when comparing altitudes.</p>
+</section>
+<section aria-labelledby="limits"><h2 id="limits">What the Mach number cannot tell you</h2>
+<p>Ma alone does not locate shock waves or give pressure distributions, drag or structural margins. Check viscous effects with the Reynolds number and molecular length scales with the Knudsen number. The gas-model note explains why those checks stay separate.</p>
+</section>
+<section aria-labelledby="more"><h2 id="more">Related guides and calculators</h2>
+<h3>Guide</h3><ul><li><a href="/en/guides/mach">Mach number guide: worked example and cautions</a></li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/gas-models">Choosing gas-flow models: check Mach and Knudsen numbers separately</a>: Compressibility and molecular length scales, checked separately with isentropic relations.</li></ul>
+<h3>Related calculators</h3><ul><li><a href="/en/calculators/knudsen">Knudsen number (Kn)</a>: Compressibility (Ma) and molecular length scales (Kn) test different assumptions, so check them separately.</li><li><a href="/en/calculators/reynolds">Reynolds number (Re)</a>: Even in high-speed gas flow, the importance of viscosity is checked separately with Re.</li></ul>
+</section>
+</main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
+<script src="/calculators.js?v=20261022" defer></script>
+<script src="/calculator-page.js?v=20261022" defer></script>
+<script src="/guide.js?v=20261022" defer></script>
+</body></html>
