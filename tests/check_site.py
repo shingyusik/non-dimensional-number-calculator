@@ -1,12 +1,19 @@
-"""Run with python3 tests/check_site.py."""
+"""Run with python3 tests/check_site.py. Builds the site with build.sh into a
+temporary directory and checks that output, i.e. what Cloudflare Pages serves."""
 from difflib import SequenceMatcher
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse
+import atexit
 import re
+import shutil
+import subprocess
+import tempfile
 import xml.etree.ElementTree as ET
 
-ROOT = Path(__file__).resolve().parents[1]
+REPO = Path(__file__).resolve().parents[1]
+ROOT = Path(tempfile.mkdtemp(prefix='calctool-build-')) / 'dist'
+atexit.register(shutil.rmtree, ROOT.parent, ignore_errors=True)
 SITE = 'https://calctool.cc'
 GA4_ID = 'G-4L6KGPWDN7'
 ADSENSE = 'pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516'
@@ -107,6 +114,38 @@ def file_of(url):
         return target / 'index.html'
     return target.with_suffix('.html')
 
+
+# Build output: every repository file is either published unchanged or listed
+# here as a development file, and development files never reach the output.
+DEV_FILES = {'.gitignore', 'README.md', 'DEPLOY.md', 'build.sh'}
+DEV_DIRS = ('tests/',)
+subprocess.run(['sh', str(REPO / 'build.sh'), str(ROOT)], check=True)
+again = ROOT.parent / 'again'
+subprocess.run(['sh', str(REPO / 'build.sh'), str(again)], check=True)
+
+
+def tree(base):
+    return {str(f.relative_to(base)): f.read_bytes() for f in base.rglob('*') if f.is_file()}
+
+
+built = tree(ROOT)
+assert built == tree(again), 'build.sh output differs between two runs'
+try:
+    listed = subprocess.run(['git', 'ls-files', '--cached', '--others', '--exclude-standard'],
+                            cwd=REPO, check=True, capture_output=True, text=True).stdout.splitlines()
+    source = {f for f in listed if (REPO / f).is_file()}
+except (OSError, subprocess.CalledProcessError):
+    source = {str(f.relative_to(REPO)) for f in REPO.rglob('*') if f.is_file()
+              and not f.relative_to(REPO).parts[0].startswith(('.git', 'dist', '__pycache__'))}
+dev = {f for f in source if f in DEV_FILES or f.startswith(DEV_DIRS)}
+assert not dev & set(built), f'Development files in build output: {sorted(dev & set(built))}'
+assert set(built) <= source, f'Build output has files not in the repository: {sorted(set(built) - source)}'
+missing = source - dev - set(built)
+assert not missing, f'Files neither published by build.sh nor listed in DEV_FILES/DEV_DIRS: {sorted(missing)}'
+for f, data in built.items():
+    assert data == (REPO / f).read_bytes(), f'{f}: build output differs from the repository'
+for f in ('_redirects', '404.html', 'ads.txt', 'robots.txt', 'sitemap.xml', 'index.html'):
+    assert f in built, f'{f} missing from the build output root'
 
 texts = {p: p.read_text(encoding='utf-8') for p in ROOT.rglob('*.html')}
 pages = {p: Page(t) for p, t in texts.items()}
@@ -286,6 +325,6 @@ for file in (ROOT/'privacy.html', ROOT/'en/privacy.html'):
 
 for chars, r in sorted(warnings):
     print(f'WARN: {r} body has {chars} characters (< {WARN_BODY})')
-print(f'PASS: {len(pages)} HTML pages; links, fragments, IDs, lang/canonical/GA4/AdSense/footer, unique titles and descriptions, '
+print(f'PASS: build.sh output ({len(built)} files, deterministic, no development files); {len(pages)} HTML pages; links, fragments, IDs, lang/canonical/GA4/AdSense/footer, unique titles and descriptions, '
       f'{len(sitemap_urls)} sitemap URLs (>= {MIN_BODY} chars, no redirects or noindex), {len(noindex)} noindex pages, hreflang pairs, '
       f'calculator pages, _redirects and privacy disclosures')
