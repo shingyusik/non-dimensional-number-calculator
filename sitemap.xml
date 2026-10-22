@@ -1,113 +1,215 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://calctool.cc/</loc>
-    <lastmod>2026-09-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://calctool.cc/privacy.html</loc>
-    <lastmod>2026-01-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://calctool.cc/about</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://calctool.cc/terms.html</loc>
-    <lastmod>2026-01-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://calctool.cc/calculators/froude</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://calctool.cc/guides/reynolds</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://calctool.cc/calculators/knudsen</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://calctool.cc/guides/mach</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://calctool.cc/calculators/mach</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://calctool.cc/guides/nusselt</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://calctool.cc/calculators/nusselt</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://calctool.cc/guides/prandtl</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://calctool.cc/calculators/peclet</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://calctool.cc/guides/schmidt</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://calctool.cc/calculators/prandtl</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://calctool.cc/guides/peclet</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://calctool.cc/calculators/reynolds</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://calctool.cc/guides/strouhal</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://calctool.cc/calculators/schmidt</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://calctool.cc/guides/froude</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://calctool.cc/calculators/strouhal</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://calctool.cc/guides/weber</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://calctool.cc/calculators/weber</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://calctool.cc/guides/knudsen</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://calctool.cc/contact</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/about</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/calculators/froude</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/calculators/knudsen</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/calculators/mach</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/calculators/nusselt</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/calculators/peclet</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/calculators/prandtl</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/calculators/reynolds</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/calculators/schmidt</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/calculators/strouhal</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/calculators/weber</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/contact</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/guides/</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
     <loc>https://calctool.cc/en/guides/froude</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/guides/gas-models</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/guides/interface-time-scales</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
     <loc>https://calctool.cc/en/guides/knudsen</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
     <loc>https://calctool.cc/en/guides/mach</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/guides/model-similarity</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
     <loc>https://calctool.cc/en/guides/nusselt</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
     <loc>https://calctool.cc/en/guides/peclet</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/guides/pipe-energy</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/guides/pipe-flow</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
     <loc>https://calctool.cc/en/guides/prandtl</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
     <loc>https://calctool.cc/en/guides/reynolds</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
     <loc>https://calctool.cc/en/guides/schmidt</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
     <loc>https://calctool.cc/en/guides/strouhal</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/guides/transport-scales</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
   <url>
     <loc>https://calctool.cc/en/guides/weber</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-22</lastmod>
   </url>
-<url><loc>https://calctool.cc/guides/pipe-flow</loc><lastmod>2026-10-09</lastmod></url>
-<url><loc>https://calctool.cc/en/guides/pipe-flow</loc><lastmod>2026-10-09</lastmod></url>
-<url><loc>https://calctool.cc/guides/model-similarity</loc><lastmod>2026-10-09</lastmod></url>
-<url><loc>https://calctool.cc/en/guides/model-similarity</loc><lastmod>2026-10-09</lastmod></url>
-<url><loc>https://calctool.cc/guides/pipe-energy</loc><lastmod>2026-10-09</lastmod></url>
-<url><loc>https://calctool.cc/en/guides/pipe-energy</loc><lastmod>2026-10-09</lastmod></url>
-<url><loc>https://calctool.cc/guides/transport-scales</loc><lastmod>2026-10-09</lastmod></url>
-<url><loc>https://calctool.cc/en/guides/transport-scales</loc><lastmod>2026-10-09</lastmod></url>
-<url><loc>https://calctool.cc/guides/gas-models</loc><lastmod>2026-10-09</lastmod></url>
-<url><loc>https://calctool.cc/en/guides/gas-models</loc><lastmod>2026-10-09</lastmod></url>
-<url><loc>https://calctool.cc/guides/interface-time-scales</loc><lastmod>2026-10-09</lastmod></url>
-<url><loc>https://calctool.cc/en/guides/interface-time-scales</loc><lastmod>2026-10-09</lastmod></url>
+  <url>
+    <loc>https://calctool.cc/en/privacy</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/en/terms</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/guides/</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/guides/gas-models</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/guides/interface-time-scales</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/guides/model-similarity</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/guides/pipe-energy</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/guides/pipe-flow</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/guides/transport-scales</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/privacy</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://calctool.cc/terms</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
 </urlset>

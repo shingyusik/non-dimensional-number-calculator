@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Froude Number Calculator (Fr = v/√gL) | Dimensionless Number Calculator</title>
+<meta name="description" content="Compute Fr from channel depth or ship length and check subcritical, critical and supercritical flow. Explains why the choice of L changes the reading, with a 1:10 scale-model speed example.">
+<link rel="canonical" href="https://calctool.cc/en/calculators/froude">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/calculators/froude">
+<link rel="alternate" hreflang="en" href="https://calctool.cc/en/calculators/froude">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/calculators/froude">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="/style.css?v=20261022">
+<link rel="stylesheet" href="/guide.css?v=20261022">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
+</head>
+<body class="guide-page">
+<header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/calculators/froude" aria-label="한국어로 전환">한글</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button></div><p class="eyebrow">Fluid flow · Calculator</p><h1>Froude number calculator <small>(Fr)</small></h1><p>Calculate the Froude number from speed, a length and gravitational acceleration. The formula is the same for open channels and ships, but L and the way to read the result are not.</p></header>
+<main>
+<section class="calc-panel" aria-labelledby="calc">
+<h2 id="calc">Enter values and calculate</h2>
+<div class="formula-box"><strong>Fr = v / √(gL)</strong></div>
+<form id="calcForm" data-calculator="froude" novalidate>
+<div class="input-group"><label for="in-v">Velocity (v) [m/s]</label><input type="number" id="in-v" name="v" step="any" inputmode="decimal" placeholder="e.g. 3" data-example="3"></div>
+<div class="input-group"><label for="in-L">Characteristic Length (L) [m]</label><input type="number" id="in-L" name="L" step="any" inputmode="decimal" placeholder="e.g. 5" data-example="5"></div>
+<div class="input-group"><label for="in-g">Gravity (g) [m/s²]</label><input type="number" id="in-g" name="g" step="any" inputmode="decimal" placeholder="e.g. 9.81" data-example="9.81"></div>
+<div class="calc-actions"><button type="submit" class="calculate-btn">Calculate</button><button type="button" id="fillExample" class="secondary-btn">Fill example values</button></div>
+<p id="calcError" class="form-error" role="alert" hidden></p>
+</form>
+<div id="calcResult" class="result-container" aria-live="polite"><p class="result-label">Result</p><p id="resultValue" class="result-value"></p><p id="resultInfo" class="result-info"></p><p id="resultExplain" class="result-explain"></p></div>
+<noscript><p>This calculator runs in your browser with JavaScript. If JavaScript is off, apply the formula above by hand.</p></noscript>
+<p class="source">Your inputs are calculated by your browser on this page; the operator does not receive or store them.</p>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">What speed is √(gL)?</h2>
+<p>In shallow water, √(gh) is the speed scale at which small surface waves travel (h is the depth). The Froude number compares the flow speed with this wave speed. Below 1, surface disturbances can travel upstream against the flow; above 1, they are swept downstream.</p>
+</section>
+<section aria-labelledby="variables"><h2 id="variables">Variables and SI units</h2>
+<div class="table-wrap"><table><caption>Inputs of the Froude number calculator</caption><thead><tr><th scope="col">Symbol</th><th scope="col">Meaning</th><th scope="col">SI unit</th><th scope="col">Example</th></tr></thead><tbody>
+<tr><th scope="row">v</th><td>Mean flow speed or ship speed</td><td>m/s</td><td>3</td></tr>
+<tr><th scope="row">L</th><td>Flow depth (hydraulic depth) for channels, waterline length for ships</td><td>m</td><td>5</td></tr>
+<tr><th scope="row">g</th><td>Gravitational acceleration</td><td>m/s²</td><td>9.81</td></tr>
+</tbody></table></div></section>
+<section aria-labelledby="units"><h2 id="units">Choosing L</h2>
+<ul>
+<li>For a wide rectangular channel, use the flow depth.</li>
+<li>For irregular channels, the hydraulic depth (flow area divided by surface width) is the usual choice.</li>
+<li>For ships, the length Froude number uses the waterline length. Subcritical and supercritical labels do not apply in that case.</li>
+<li>Use g = 9.81 m/s² unless you have a reason not to. Because L sits under a square root, entering it in mm by mistake (1000 times too large) makes Fr about 31.6 times too small.</li>
+</ul>
+</section>
+<section aria-labelledby="criteria"><h2 id="criteria">Reading the result around 1</h2>
+<p>When L is a channel depth scale, Fr &lt; 1 is subcritical, Fr = 1 critical and Fr &gt; 1 supercritical. Where fast supercritical flow turns into slow subcritical flow, the water surface jumps up in a hydraulic jump. A USGS-listed study of lava channels relies on the fact that in water, undular hydraulic jumps are evidence of critical flow with Fr ≈ 1. If your result is very close to 1, the surface may be unstable, so consider the uncertainty in the measured depth as well.</p>
+</section>
+<section aria-labelledby="check"><h2 id="check">Example and scale-model speeds</h2>
+<p>The example uses v = 3 m/s, L = 5 m and g = 9.81 m/s², giving Fr ≈ 0.43. To match Fr in a scale model, the model speed is the full-scale speed times √(scale). For a 1:10 model, 5 m/s becomes about 1.58 m/s. Matching Fr this way with the same water leaves the model Reynolds number at about 0.0316 times full scale. The scale-model note works through why the two conditions conflict.</p>
+</section>
+<section aria-labelledby="more"><h2 id="more">Related guides and calculators</h2>
+<h3>Guide</h3><ul><li><a href="/en/guides/froude">Froude number guide: worked example and cautions</a></li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/model-similarity">Can a scale model match both Re and Fr?</a>: Two candidate speeds for a 1:10 model and why they conflict.</li><li><a href="/en/guides/interface-time-scales">Surface tension and unsteady flow: connect force ratios to time ratios</a>: We, Re, Fr and St on one length scale; curvature pressure versus capillary time.</li></ul>
+<h3>Related calculators</h3><ul><li><a href="/en/calculators/reynolds">Reynolds number (Re)</a>: Matching Fr in a model test usually leaves the model Re well below full scale.</li><li><a href="/en/calculators/weber">Weber number (We)</a>: With the same L and v, We/Fr² = ρgL²/σ: speed cancels, leaving gravity versus surface tension.</li><li><a href="/en/calculators/strouhal">Strouhal number (St)</a>: Fr compares speeds while St compares an oscillation period with a transit time; periodic free-surface motion needs both.</li></ul>
+</section>
+</main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
+<script src="/calculators.js?v=20261022" defer></script>
+<script src="/calculator-page.js?v=20261022" defer></script>
+<script src="/guide.js?v=20261022" defer></script>
+</body></html>

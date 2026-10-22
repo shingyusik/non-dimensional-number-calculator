@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schmidt Number Calculator (Sc = μ/ρD) | Dimensionless Number Calculator</title>
+<meta name="description" content="Compute Sc for a dissolved or gaseous species. Explains why D belongs to a species–fluid pair, how to convert cm²/s, and why liquids and gases give such different Schmidt numbers.">
+<link rel="canonical" href="https://calctool.cc/en/calculators/schmidt">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/calculators/schmidt">
+<link rel="alternate" hreflang="en" href="https://calctool.cc/en/calculators/schmidt">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/calculators/schmidt">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="/style.css?v=20261022">
+<link rel="stylesheet" href="/guide.css?v=20261022">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
+</head>
+<body class="guide-page">
+<header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/calculators/schmidt" aria-label="한국어로 전환">한글</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button></div><p class="eyebrow">Mass transfer · Calculator</p><h1>Schmidt number calculator <small>(Sc)</small></h1><p>Calculate the Schmidt number from viscosity, density and molecular diffusivity. Use it for the spreading of a particular species, not of heat.</p></header>
+<main>
+<section class="calc-panel" aria-labelledby="calc">
+<h2 id="calc">Enter values and calculate</h2>
+<div class="formula-box"><strong>Sc = μ / (ρD)</strong></div>
+<form id="calcForm" data-calculator="schmidt" novalidate>
+<div class="input-group"><label for="in-mu">Dynamic Viscosity (μ) [Pa·s]</label><input type="number" id="in-mu" name="mu" step="any" inputmode="decimal" placeholder="e.g. 0.001" data-example="0.001"></div>
+<div class="input-group"><label for="in-rho">Density (ρ) [kg/m³]</label><input type="number" id="in-rho" name="rho" step="any" inputmode="decimal" placeholder="e.g. 1000" data-example="1000"></div>
+<div class="input-group"><label for="in-D">Mass Diffusivity (D) [m²/s]</label><input type="number" id="in-D" name="D" step="any" inputmode="decimal" placeholder="e.g. 1e-9" data-example="1e-9"></div>
+<div class="calc-actions"><button type="submit" class="calculate-btn">Calculate</button><button type="button" id="fillExample" class="secondary-btn">Fill example values</button></div>
+<p id="calcError" class="form-error" role="alert" hidden></p>
+</form>
+<div id="calcResult" class="result-container" aria-live="polite"><p class="result-label">Result</p><p id="resultValue" class="result-value"></p><p id="resultInfo" class="result-info"></p><p id="resultExplain" class="result-explain"></p></div>
+<noscript><p>This calculator runs in your browser with JavaScript. If JavaScript is off, apply the formula above by hand.</p></noscript>
+<p class="source">Your inputs are calculated by your browser on this page; the operator does not receive or store them.</p>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">How Sc differs from Pr</h2>
+<p>Sc = μ/(ρD) = ν/D compares how fast momentum spreads with how fast the concentration of a species spreads. It is the Prandtl number with mass diffusivity D in place of thermal diffusivity α, which is why it is sometimes called the mass-transfer Prandtl number. Sc above 1 means the concentration boundary layer tends to be thinner than the velocity boundary layer.</p>
+</section>
+<section aria-labelledby="variables"><h2 id="variables">Variables and SI units</h2>
+<div class="table-wrap"><table><caption>Inputs of the Schmidt number calculator</caption><thead><tr><th scope="col">Symbol</th><th scope="col">Meaning</th><th scope="col">SI unit</th><th scope="col">Example</th></tr></thead><tbody>
+<tr><th scope="row">μ</th><td>Dynamic viscosity of the carrier fluid</td><td>Pa·s</td><td>0.001</td></tr>
+<tr><th scope="row">ρ</th><td>Density of the carrier fluid</td><td>kg/m³</td><td>1000</td></tr>
+<tr><th scope="row">D</th><td>Molecular diffusivity of the species in that fluid</td><td>m²/s</td><td>1e-9</td></tr>
+</tbody></table></div></section>
+<section aria-labelledby="units"><h2 id="units">Choosing a value of D</h2>
+<ul>
+<li>D is not a property of one substance; it belongs to a pair, a given species diffusing through a given fluid. Oxygen in water and a large protein in water have different D.</li>
+<li>Molecular diffusivities are typically of order 10⁻⁹ m²/s in liquids and 10⁻⁵ m²/s in gases. A value many orders away from these is a cue to check units.</li>
+<li>Data in cm²/s convert to m²/s by multiplying by 10⁻⁴.</li>
+<li>Entering a turbulent (eddy) diffusivity as D no longer gives a Schmidt number for molecular diffusion.</li>
+<li>μ and ρ belong to the carrier fluid (the solvent).</li>
+</ul>
+</section>
+<section aria-labelledby="criteria"><h2 id="criteria">Reading the result</h2>
+<p>The example assumes a solute in water: μ = 0.001 Pa·s, ρ = 1000 kg/m³ and D = 1×10⁻⁹ m²/s, so Sc = 1000. Gas mixtures often have Sc around 1, while solutes in liquids commonly reach hundreds or more. In the same flow, heat can spread widely while a solute stays in a thin layer.</p>
+<p>Oceanographers use temperature-dependent Schmidt numbers to estimate how fast gases cross the sea surface; the reference manual of the R package marelac describes this use.</p>
+</section>
+<section aria-labelledby="check"><h2 id="check">Link to the Péclet number</h2>
+<p>With the same length and speed, the mass Péclet number is Re × Sc. The thermal and mass diffusion note uses v = 0.2 m/s and L = 0.05 m to get Re = 10000 and Sc = 1000, so the mass Péclet number is 10⁷. The same note shows that over 0.25 s the diffusion length √(Dt) is about 0.01581 mm, far shorter than the thermal length of 0.2236 mm. Entering D in the α field of the Péclet calculator gives the mass Péclet number directly.</p>
+</section>
+<section aria-labelledby="more"><h2 id="more">Related guides and calculators</h2>
+<h3>Guide</h3><ul><li><a href="/en/guides/schmidt">Schmidt number guide: worked example and cautions</a></li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a>: Diffusion lengths versus transit times, and where a heat-transfer coefficient comes from.</li></ul>
+<h3>Related calculators</h3><ul><li><a href="/en/calculators/prandtl">Prandtl number (Pr)</a>: Sc mirrors Pr in heat transfer, with D replacing α.</li><li><a href="/en/calculators/peclet">Péclet number (Pe)</a>: With the same L, v and properties, the mass Péclet number is Re × Sc.</li><li><a href="/en/calculators/nusselt">Nusselt number (Nu)</a>: Just as heat-transfer correlations pair Nu with Pr, mass-transfer correlations use Sc.</li></ul>
+</section>
+</main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
+<script src="/calculators.js?v=20261022" defer></script>
+<script src="/calculator-page.js?v=20261022" defer></script>
+<script src="/guide.js?v=20261022" defer></script>
+</body></html>

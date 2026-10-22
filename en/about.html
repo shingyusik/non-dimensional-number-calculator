@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About calctool.cc: a personal dimensionless-number project</title>
+<meta name="description" content="Who runs calctool.cc and why, how the formulas are checked by automated tests, what the example values are, and the update history since January 2026.">
+<link rel="canonical" href="https://calctool.cc/en/about">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/about">
+<link rel="alternate" hreflang="en" href="https://calctool.cc/en/about">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/about">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="/style.css?v=20261022">
+<link rel="stylesheet" href="/guide.css?v=20261022">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
+</head>
+<body class="guide-page">
+<header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/about" aria-label="한국어로 전환">한글</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button></div><p class="eyebrow">About</p><h1>About calctool.cc</h1><p>Why this calculator exists and how its formulas are checked.</p></header>
+<main>
+<section aria-labelledby="what"><h2 id="what">About this site</h2>
+<p>calctool.cc is a personal project for calculating and interpreting ten dimensionless numbers used in fluid mechanics and heat and mass transfer. It is not run by a company or institution; one person writes and maintains the formulas and guides. No account or sign-in is needed, and calculations run in your browser.</p></section>
+<section aria-labelledby="why"><h2 id="why">Why it exists</h2>
+<p>The formulas are scattered across textbooks and lecture notes, and the same symbol can mean different things depending on how the characteristic length and properties are chosen. This site keeps the formula, the input units and the conditions for reading the result in one place. The calculators only evaluate ratios from your inputs; they do not predict material properties or heat-transfer coefficients.</p></section>
+<section aria-labelledby="contents"><h2 id="contents">What is here</h2>
+<ul>
+<li><a href="/">Home</a>: the ten calculators grouped into fluid flow, heat transfer, mass transfer, interfaces, and gases and compressibility.</li>
+<li>Calculator pages: for each number, the formula, variables and SI units, unit-conversion pitfalls and how to read the result. For example, the <a href="/en/calculators/reynolds">Reynolds number calculator</a>.</li>
+<li><a href="/en/guides/">Guides</a>: a basic guide for each number and six calculation notes that chain several calculators together.</li>
+<li>Korean and English pages are separate; the button at the top right of each page switches language.</li>
+</ul></section>
+<section aria-labelledby="verify"><h2 id="verify">How the formulas are checked</h2>
+<p>The formulas live in the public repository <a href="https://github.com/shingyusik/non-dimensional-number-calculator">non-dimensional-number-calculator</a>. Its <a href="https://github.com/shingyusik/non-dimensional-number-calculator/blob/main/tests/check_calculations.cjs">tests/check_calculations.cjs</a> loads the same formula file the calculators use and compares worked-example results with hand calculations: for instance that one input set gives Re = 2000, Pr = 7 and Pe = 14000, that Pe equals Re × Pr, and that rounded values published in the calculation notes appear unchanged on both the Korean and English pages. tests/check_site.py checks links, page settings and the sitemap. Both are rerun whenever a formula changes.</p></section>
+<section aria-labelledby="examples"><h2 id="examples">About the example values</h2>
+<p>Example inputs in the guides and calculators were constructed to show the calculation steps. They are not certified property tables or measurements, so replace them with data for your actual conditions before using results in design, experiments or safety decisions. Sources for the formulas and concepts are listed at the bottom of each guide.</p></section>
+<section aria-labelledby="history"><h2 id="history">Update history</h2>
+<ul>
+<li>2026-01-11: First release of the calculators, with Korean/English switching and a privacy policy and terms (English).</li>
+<li>2026-01-17: Added visit statistics (Google Analytics 4), usability analytics (Microsoft Clarity) and favicons.</li>
+<li>2026-09-26: Added a basic guide for each of the ten calculators in Korean and English, and moved guides to extension-free URLs.</li>
+<li>2026-10-09: Added notes on pipe-flow cross-checks and scale-model comparison, plus theory notes on pressure loss, heat and mass diffusion, gas-flow models and surface-tension time scales, in both languages.</li>
+<li>2026-10-22: Gave each calculator its own page and grouped the home page by field. Added guide listings, about and contact pages and a 404 page, and rewrote the privacy policy and terms (now also in Korean).</li>
+</ul>
+<p>The full change log is the repository’s <a href="https://github.com/shingyusik/non-dimensional-number-calculator/commits/main">commit history</a>.</p></section>
+<section aria-labelledby="reach"><h2 id="reach">Found a mistake?</h2>
+<p>Report calculation or text errors and broken links through GitHub Issues as described on the <a href="/en/contact">contact page</a>.</p></section>
+</main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
+<script src="/guide.js?v=20261022" defer></script>
+</body></html>

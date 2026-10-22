@@ -1,9 +1,21 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu | Dimensionless Number Calculator</title><meta name="description" content="Derive diffusion scales, compare them with transport times, and identify what a heat-transfer coefficient actually supplies.">
+<html lang="en"><head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu | Dimensionless Number Calculator</title><meta name="description" content="Compare diffusion lengths √(αt) with transit times to separate what Pr, Sc and Pe tell you, and use a Nu=10 example to show why h must be supplied.">
 <link rel="canonical" href="https://calctool.cc/en/guides/transport-scales">
 <link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/transport-scales"><link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/transport-scales">
-<link rel="stylesheet" href="/style.css?v=20260926c"><link rel="stylesheet" href="/guide.css?v=20261009"><link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/guides/transport-scales">
+<link rel="stylesheet" href="/style.css?v=20261022"><link rel="stylesheet" href="/guide.css?v=20261022"><link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
 </head><body class="guide-page"><header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/guides/transport-scales" aria-label="한국어로 전환">KO</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
                 <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
                     <circle cx="12" cy="12" r="5"></circle>
@@ -27,6 +39,6 @@
 <section><h2>An advection-time cross-check</h2><p>Take illustrative ν = 10⁻⁶, α = 2×10⁻⁷ and D = 10⁻⁹ m²/s with v = 0.2 m/s and L = 0.05 m. The SI inputs ρ = 1000, μ = 0.001, k = 0.6 and cₚ = 3000 give the specified ν and α. This constructed set is not a measured fluid property table.</p><div class="example-box"><p>tadv = L/v = <strong>0.25 s</strong></p><p>Diffusion scales: δν = <strong>0.500 mm</strong>, δα = <strong>0.2236 mm</strong>, δD = <strong>0.01581 mm</strong></p><p>Re = <strong>10000</strong>, Pr = <strong>5</strong>, Sc = <strong>1000</strong></p><p>Thermal Pe = <strong>50000 = Re × Pr</strong></p><p>Species Pe = <strong>10000000 = Re × Sc</strong></p></div><p>The identity δ/L ≈ 1/√Pe checks the same time-scale argument. Large Pe means advection crosses the chosen length faster than diffusion crosses it. Diffusion can still control transfer across a much shorter distance normal to a wall.</p></section>
 <section><h2>Nusselt number requires a heat-transfer coefficient</h2><p>Define wall heat flux by q″ = h(Twall − Treference) and connect it to Fourier conduction, q″ = −k(∂T/∂n)wall. The coefficient h contains information about the wall gradient. For a defined linear thermal layer of effective thickness δeff, h = k/δeff and Nu = hL/k = L/δeff. Do not equate that effective length with the earlier pure-diffusion estimate or a 99% thickness.</p><div class="example-box"><p>For a separately supplied h = 120 W/(m²·K), k = 0.6 W/(m·K) and L = 0.05 m, <strong>Nu = 10</strong>. A temperature difference of 20 K gives <strong>q″ = 2400 W/m²</strong>.</p></div><p>The value 120 is an input, not a prediction from Pe. Predicting h needs a solution or correlation with stated geometry, flow regime, local-versus-average convention, wall condition and validity range.</p></section>
 <section><h2>Conditions to keep in a comparison</h2><ul><li>Use the same length, speed and property conditions for Re–Pe checks.</li><li>Use α for heat and the appropriate species D for mass transfer.</li><li>Distinguish diffusion estimates from boundary-layer thickness definitions.</li><li>Record the reference temperature and whether h is local or averaged.</li><li>Matching Pr or Sc alone does not match geometry, wall conditions or transfer rates.</li></ul></section>
-<nav aria-label="Calculators"><a href="/#reynolds">Reynolds calculator</a><a href="/#prandtl">Prandtl calculator</a><a href="/#schmidt">Schmidt calculator</a><a href="/#peclet">Peclet calculator</a><a href="/#nusselt">Nusselt calculator</a></nav>
+<nav aria-label="Calculators"><a href="/en/calculators/reynolds">Reynolds calculator</a><a href="/en/calculators/prandtl">Prandtl calculator</a><a href="/en/calculators/schmidt">Schmidt calculator</a><a href="/en/calculators/peclet">Peclet calculator</a><a href="/en/calculators/nusselt">Nusselt calculator</a></nav>
 <p class="source">Formula and concept references: <a href="https://ocw.mit.edu/courses/3-185-transport-phenomena-in-materials-engineering-fall-2003/a55c74dc21def01fc0054de35574d1e5_3_21.pdf">MIT OpenCourseWare — Lectures on Fluid Flow and Kinetics, §§3–4</a>. Derivations and worked input sets were constructed for this article; they are not measured datasets or copied source examples.</p><nav aria-label="Related learning"><a href="/">All calculators</a><a href="/en/guides/pipe-flow">Pipe-flow cross-check</a><a href="/en/guides/pipe-energy">Pipe pressure loss: from conservation laws to Poiseuille flow</a></nav>
-</main><footer><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a><p>© 2026 Dimensionless Number Calculator</p></footer><script src="/guide.js?v=20260926c" defer></script></body></html>
+</main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer><script src="/guide.js?v=20261022" defer></script></body></html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strouhal Number Calculator (St = fL/v) | Dimensionless Number Calculator</title>
+<meta name="description" content="Compute St from shedding frequency, cylinder diameter and speed, and read it as transit time over oscillation period. Includes rpm and rad/s conversion and lift-versus-drag signal frequencies.">
+<link rel="canonical" href="https://calctool.cc/en/calculators/strouhal">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/calculators/strouhal">
+<link rel="alternate" hreflang="en" href="https://calctool.cc/en/calculators/strouhal">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/calculators/strouhal">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="/style.css?v=20261022">
+<link rel="stylesheet" href="/guide.css?v=20261022">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
+</head>
+<body class="guide-page">
+<header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/calculators/strouhal" aria-label="한국어로 전환">한글</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button></div><p class="eyebrow">Fluid flow · Calculator</p><h1>Strouhal number calculator <small>(St)</small></h1><p>Calculate the Strouhal number from an oscillation frequency, a length and the flow speed. Use it to compare periodic flow phenomena, such as vortex shedding behind a cylinder, across different sizes and speeds.</p></header>
+<main>
+<section class="calc-panel" aria-labelledby="calc">
+<h2 id="calc">Enter values and calculate</h2>
+<div class="formula-box"><strong>St = fL / v</strong></div>
+<form id="calcForm" data-calculator="strouhal" novalidate>
+<div class="input-group"><label for="in-f">Frequency (f) [Hz]</label><input type="number" id="in-f" name="f" step="any" inputmode="decimal" placeholder="e.g. 10" data-example="10"></div>
+<div class="input-group"><label for="in-L">Characteristic Length (L) [m]</label><input type="number" id="in-L" name="L" step="any" inputmode="decimal" placeholder="e.g. 0.1" data-example="0.1"></div>
+<div class="input-group"><label for="in-v">Velocity (v) [m/s]</label><input type="number" id="in-v" name="v" step="any" inputmode="decimal" placeholder="e.g. 5" data-example="5"></div>
+<div class="calc-actions"><button type="submit" class="calculate-btn">Calculate</button><button type="button" id="fillExample" class="secondary-btn">Fill example values</button></div>
+<p id="calcError" class="form-error" role="alert" hidden></p>
+</form>
+<div id="calcResult" class="result-container" aria-live="polite"><p class="result-label">Result</p><p id="resultValue" class="result-value"></p><p id="resultInfo" class="result-info"></p><p id="resultExplain" class="result-explain"></p></div>
+<noscript><p>This calculator runs in your browser with JavaScript. If JavaScript is off, apply the formula above by hand.</p></noscript>
+<p class="source">Your inputs are calculated by your browser on this page; the operator does not receive or store them.</p>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">Reading St as a ratio of times</h2>
+<p>St = fL/v is the transit time L/v divided by the oscillation period 1/f. St = 0.2 means that while the fluid travels one cylinder diameter, the oscillation advances one fifth of a cycle. Expressed this way, frequencies from experiments of different size and speed collapse to a single comparable number.</p>
+<p>Rearranged as f = St·v/L, it gives a rough frequency estimate when St is known. At constant St, doubling the speed doubles the frequency.</p>
+</section>
+<section aria-labelledby="variables"><h2 id="variables">Variables and SI units</h2>
+<div class="table-wrap"><table><caption>Inputs of the Strouhal number calculator</caption><thead><tr><th scope="col">Symbol</th><th scope="col">Meaning</th><th scope="col">SI unit</th><th scope="col">Example</th></tr></thead><tbody>
+<tr><th scope="row">f</th><td>Frequency of the oscillation of interest, such as vortex shedding</td><td>Hz = 1/s</td><td>10</td></tr>
+<tr><th scope="row">L</th><td>Diameter for a cylinder</td><td>m</td><td>0.1</td></tr>
+<tr><th scope="row">v</th><td>Free-stream speed</td><td>m/s</td><td>5</td></tr>
+</tbody></table></div></section>
+<section aria-labelledby="units"><h2 id="units">Entering the frequency</h2>
+<ul>
+<li>f is in hertz (cycles per second). Divide rpm by 60 to get Hz.</li>
+<li>An angular frequency ω in rad/s must be divided by 2π. Entering ω directly makes St about 6.28 times too large.</li>
+<li>Behind a cylinder, lift fluctuates at the shedding frequency, while drag commonly fluctuates at twice that frequency. Record which signal f was read from.</li>
+<li>Use the diameter for a cylinder, or the width across the flow for other bodies.</li>
+</ul>
+</section>
+<section aria-labelledby="criteria"><h2 id="criteria">How to treat the value 0.2</h2>
+<p>Vortex shedding behind a circular cylinder is known to give St around 0.2 over a fairly wide range of Reynolds numbers. It still varies with Re, surface condition and free-stream disturbances, so do not treat it as a universal constant. When comparing with published values, match the geometry, the definition of L, the measured signal and the Re of the experiment.</p>
+</section>
+<section aria-labelledby="check"><h2 id="check">The example and the interface note</h2>
+<p>The example uses f = 10 Hz, a cylinder diameter L = 0.1 m and v = 5 m/s, giving St = 0.2. The surface-tension note reaches the same 0.2 with a 2 mm length, 0.5 m/s and 50 Hz, as the ratio of a 0.004 s transit time to a 0.02 s period. A zero speed or frequency leaves nothing to compare or divides by zero, so the calculator reports such inputs as errors.</p>
+</section>
+<section aria-labelledby="more"><h2 id="more">Related guides and calculators</h2>
+<h3>Guide</h3><ul><li><a href="/en/guides/strouhal">Strouhal number guide: worked example and cautions</a></li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/interface-time-scales">Surface tension and unsteady flow: connect force ratios to time ratios</a>: We, Re, Fr and St on one length scale; curvature pressure versus capillary time.</li></ul>
+<h3>Related calculators</h3><ul><li><a href="/en/calculators/reynolds">Reynolds number (Re)</a>: The Strouhal number of cylinder vortex shedding varies with Re, so the two are reported together.</li><li><a href="/en/calculators/weber">Weber number (We)</a>: Squaring the ratio of capillary time √(ρL³/σ) to transit time L/v gives We; interface oscillations are compared alongside St.</li><li><a href="/en/calculators/froude">Froude number (Fr)</a>: Periodic free-surface motion involves both gravity (Fr) and oscillation timing (St).</li></ul>
+</section>
+</main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
+<script src="/calculators.js?v=20261022" defer></script>
+<script src="/calculator-page.js?v=20261022" defer></script>
+<script src="/guide.js?v=20261022" defer></script>
+</body></html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>레이놀즈 수 계산기 (Re = ρvL/μ) | 무차원수 계산기</title>
+<meta name="description" content="밀도, 유속, 관 지름, 점성 계수를 넣으면 Re를 바로 계산하고 원형 관 기준 층류·천이·난류 안내를 함께 보여 줍니다. cP와 mm 단위 환산 주의점도 정리했습니다.">
+<link rel="canonical" href="https://calctool.cc/calculators/reynolds">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/calculators/reynolds">
+<link rel="alternate" hreflang="en" href="https://calctool.cc/en/calculators/reynolds">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/calculators/reynolds">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="/style.css?v=20261022">
+<link rel="stylesheet" href="/guide.css?v=20261022">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
+</head>
+<body class="guide-page">
+<header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/en/calculators/reynolds" aria-label="Switch to English">EN</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button></div><p class="eyebrow">유동 · 계산기</p><h1>레이놀즈 수 계산기 <small>(Re)</small></h1><p>밀도·속도·길이·점성 계수로 레이놀즈 수를 계산하고, 원형 관에서 쓰는 2300·4000 경계가 어디까지 통하는지 함께 확인합니다.</p></header>
+<main>
+<section class="calc-panel" aria-labelledby="calc">
+<h2 id="calc">값 입력과 계산</h2>
+<div class="formula-box"><strong>Re = ρvL / μ</strong></div>
+<form id="calcForm" data-calculator="reynolds" novalidate>
+<div class="input-group"><label for="in-v">속도 (v) [m/s]</label><input type="number" id="in-v" name="v" step="any" inputmode="decimal" placeholder="예: 0.2" data-example="0.2"></div>
+<div class="input-group"><label for="in-rho">밀도 (ρ) [kg/m³]</label><input type="number" id="in-rho" name="rho" step="any" inputmode="decimal" placeholder="예: 1000" data-example="1000"></div>
+<div class="input-group"><label for="in-L">특성 길이 (L) [m]</label><input type="number" id="in-L" name="L" step="any" inputmode="decimal" placeholder="예: 0.01" data-example="0.01"></div>
+<div class="input-group"><label for="in-mu">점성 계수 (μ) [Pa·s]</label><input type="number" id="in-mu" name="mu" step="any" inputmode="decimal" placeholder="예: 0.001" data-example="0.001"></div>
+<div class="calc-actions"><button type="submit" class="calculate-btn">계산하기</button><button type="button" id="fillExample" class="secondary-btn">예제 값 채우기</button></div>
+<p id="calcError" class="form-error" role="alert" hidden></p>
+</form>
+<div id="calcResult" class="result-container" aria-live="polite"><p class="result-label">결과</p><p id="resultValue" class="result-value"></p><p id="resultInfo" class="result-info"></p><p id="resultExplain" class="result-explain"></p></div>
+<noscript><p>이 계산기는 브라우저의 JavaScript로 계산합니다. JavaScript가 꺼져 있으면 위 공식에 직접 값을 넣어 계산해 주세요.</p></noscript>
+<p class="source">입력값은 이 페이지 안에서 브라우저가 계산하며, 운영자가 따로 받거나 저장하지 않습니다.</p>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">Re가 비교하는 두 효과</h2>
+<p>레이놀즈 수는 흐름의 관성 효과와 점성 효과를 비교합니다. 관성에 해당하는 압력 척도 ρv²를 점성 응력 척도 μv/L로 나누면 ρvL/μ가 됩니다. 운동 점성 계수 ν = μ/ρ를 쓰면 같은 값을 Re = vL/ν로 쓸 수 있습니다.</p>
+<p>크기와 속도가 다른 두 흐름이라도 Re가 같고 형상이 닮았다면 관성과 점성의 균형이 비슷합니다. 모형 실험에서 Re를 맞추려는 이유가 여기에 있습니다. 반대로 Re가 같아도 형상이 다르면 흐름의 모습은 달라질 수 있습니다.</p>
+</section>
+<section aria-labelledby="variables"><h2 id="variables">변수와 SI 단위</h2>
+<div class="table-wrap"><table><caption>레이놀즈 수 계산기의 입력 변수</caption><thead><tr><th scope="col">기호</th><th scope="col">의미</th><th scope="col">SI 단위</th><th scope="col">예제 값</th></tr></thead><tbody>
+<tr><th scope="row">v</th><td>평균 유속 또는 물체와 유체의 상대 속도</td><td>m/s</td><td>0.2</td></tr>
+<tr><th scope="row">ρ</th><td>유체 밀도</td><td>kg/m³</td><td>1000</td></tr>
+<tr><th scope="row">L</th><td>원형 관이면 안지름, 물체 주위 유동이면 물체 크기</td><td>m</td><td>0.01</td></tr>
+<tr><th scope="row">μ</th><td>점성 계수(운동 점성 계수 ν와 다른 값)</td><td>Pa·s = kg/(m·s)</td><td>0.001</td></tr>
+</tbody></table></div></section>
+<section aria-labelledby="units"><h2 id="units">입력 전에 단위를 맞추는 방법</h2>
+<ul>
+<li>관 지름을 mm로 알고 있다면 1000으로 나눠 m로 넣습니다. 안지름 10 mm는 0.01입니다.</li>
+<li>점성 계수를 cP(센티푸아즈)로 찾았다면 1 cP = 0.001 Pa·s이므로 1000으로 나눕니다.</li>
+<li>자료에 운동 점성 계수 ν(m²/s)만 있다면 μ = ρν로 바꿔 넣습니다. ν를 μ 칸에 그대로 넣으면 결과가 밀도 배수만큼 틀어집니다.</li>
+<li>원형 관에서는 유량을 단면적으로 나눈 단면 평균 속도를 v로 씁니다. 중심선 최대 속도를 넣으면 Re가 커집니다.</li>
+</ul>
+</section>
+<section aria-labelledby="criteria"><h2 id="criteria">2300과 4000은 어디까지 맞는 기준인가</h2>
+<p>계산 결과 아래의 층류·천이·난류 표시는 매끈한 원형 관 내부의 완전히 발달한 흐름을 전제로 합니다. Re가 2300보다 작으면 층류, 4000보다 크면 난류, 그 사이는 천이 구간으로 표시합니다.</p>
+<p>이 경계는 안내값입니다. 입구에서 들어오는 교란을 아주 작게 억제하면 2300보다 높은 Re에서도 층류가 유지될 수 있고, 진동이나 거친 벽이 있으면 더 일찍 흐트러질 수 있습니다. 평판, 원기둥, 구 주위의 외부 유동은 L의 정의도 천이가 일어나는 Re도 다르므로 이 표시를 쓰지 않습니다. 비원형 관에서는 수력 지름 4A/P(단면적 A, 젖은 둘레 P)를 L로 쓰는 경우가 많지만 천이 기준까지 원형 관과 같다고 가정하지 마세요.</p>
+</section>
+<section aria-labelledby="check"><h2 id="check">예제 값으로 감각 익히기</h2>
+<p>‘예제 값 채우기’를 누르면 ρ = 1000 kg/m³, v = 0.2 m/s, L = 0.01 m, μ = 0.001 Pa·s가 들어가고 Re = 2000이 나옵니다. 여기서 속도만 0.4 m/s로 바꾸면 4000이 됩니다. Re는 ρ, v, L에 비례하고 μ에 반비례하므로, 입력 하나를 두 배로 바꿨을 때 결과가 어떻게 움직일지 먼저 예상해 보면 단위 실수를 빨리 찾을 수 있습니다.</p>
+</section>
+<section aria-labelledby="limits"><h2 id="limits">Re만으로는 알 수 없는 것</h2>
+<p>레이놀즈 수는 흐름의 성격을 가늠하는 출발점일 뿐 압력손실이나 열전달량을 직접 주지 않습니다. 압력손실에는 관 길이와 마찰 계수가, 열전달에는 프란틀 수와 열전달 계수가 추가로 필요합니다. 관 길이에 따라 같은 Re에서도 압력손실이 어떻게 달라지는지는 압력손실 노트에서 계산해 볼 수 있습니다.</p>
+</section>
+<section aria-labelledby="more"><h2 id="more">관련 해설과 계산기</h2>
+<h3>기본 해설</h3><ul><li><a href="/guides/reynolds">레이놀즈 수 해설: 예제와 주의점</a></li></ul>
+<h3>계산 노트</h3><ul><li><a href="/guides/pipe-flow">관 유동에서 Re·Pr·Pe를 함께 검산하기</a>: 같은 입력으로 세 계산기를 연결하고 Pe = Re × Pr이 맞는지 확인합니다.</li><li><a href="/guides/model-similarity">축소 모형에서 Re와 Fr을 동시에 맞출 수 있을까?</a>: 1:10 모형 속도를 두 기준으로 계산하고 왜 충돌하는지 봅니다.</li><li><a href="/guides/pipe-energy">관의 압력손실: 보존법칙에서 포아죄유 해까지</a>: 같은 Re라도 관 길이에 따라 압력손실이 달라지는 이유를 질량·에너지 수지로 설명합니다.</li><li><a href="/guides/transport-scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a>: 확산 길이와 이송 시간을 비교하고 열전달 계수가 어디서 오는지 구분합니다.</li><li><a href="/guides/interface-time-scales">표면장력과 비정상 유동: 힘의 비와 시간의 비 연결하기</a>: We·Re·Fr·St를 같은 길이로 계산하고 곡률 압력과 모세관 시간을 구분합니다.</li></ul>
+<h3>관련 계산기</h3><ul><li><a href="/calculators/froude">프루드 수 (Fr)</a>: 자유 수면이 있는 축소 모형에서는 같은 유체로 Re와 Fr을 동시에 맞추기 어렵습니다.</li><li><a href="/calculators/weber">웨버 수 (We)</a>: 같은 L과 v로 계산하면 We/Re = μv/σ가 되어 점성과 표면장력을 직접 비교할 수 있습니다.</li><li><a href="/calculators/strouhal">스트로할 수 (St)</a>: 와류 방출 주파수는 St로 나타내고, 그 실험의 Re를 함께 기록해야 비교할 수 있습니다.</li><li><a href="/calculators/peclet">페클레 수 (Pe)</a>: 같은 L·v·물성을 쓰면 열 페클레 수는 Re × Pr과 같습니다.</li></ul>
+</section>
+</main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>
+<script src="/calculators.js?v=20261022" defer></script>
+<script src="/calculator-page.js?v=20261022" defer></script>
+<script src="/guide.js?v=20261022" defer></script>
+</body></html>

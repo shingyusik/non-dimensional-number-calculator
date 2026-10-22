@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>웨버 수 계산법·예제·해석 | 무차원수 계산기</title>
-<meta name="description" content="웨버 수의 공식, 입력 단위, 직접 계산한 예제와 해석할 때 주의할 점을 확인하세요.">
+<meta name="description" content="속도가 제곱으로 들어가는 We=ρv²L/σ를 물방울 예제(We≈555.56)로 계산하고, 액적 지름과 노즐 지름 중 무엇을 L로 둘지 정리합니다.">
+<meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://calctool.cc/guides/weber">
-<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/weber">
-<link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/weber">
-<link rel="stylesheet" href="../style.css?v=20260926c">
-<link rel="stylesheet" href="../guide.css?v=20261009">
+<link rel="stylesheet" href="../style.css?v=20261022">
+<link rel="stylesheet" href="../guide.css?v=20261022">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
 </head>
 <body class="guide-page">
@@ -31,13 +40,14 @@
             </button></div><p class="eyebrow">계산 방법과 해석</p><h1>웨버 수 <small>(Weber Number)</small></h1><p>공식에 값을 넣는 방법과 결과를 읽을 때 확인할 조건을 정리했습니다.</p></header>
 <main>
 <section aria-labelledby="why"><h2 id="why">언제 쓰나요?</h2><p>유체의 관성 효과를 표면장력 효과와 비교합니다. 액적, 기포, 분무처럼 유체 경계면의 모양이 중요한 상황에서 유용합니다.</p></section>
-<section aria-labelledby="inputs"><h2 id="inputs">공식과 입력값</h2><div class="formula-box"><strong>We = ρv²L / σ</strong></div><p>ρ는 밀도(kg/m³), v는 대표 속도(m/s), L은 액적 지름 등 선택한 길이(m), σ는 표면장력(N/m)입니다. 속도가 제곱되므로 측정 속도가 두 배면 다른 값이 같을 때 We는 네 배가 됩니다.</p><a class="guide-cta" href="/#weber">이 값으로 계산하기</a></section>
+<section aria-labelledby="inputs"><h2 id="inputs">공식과 입력값</h2><div class="formula-box"><strong>We = ρv²L / σ</strong></div><p>ρ는 밀도(kg/m³), v는 대표 속도(m/s), L은 액적 지름 등 선택한 길이(m), σ는 표면장력(N/m)입니다. 속도가 제곱되므로 측정 속도가 두 배면 다른 값이 같을 때 We는 네 배가 됩니다.</p><a class="guide-cta" href="/calculators/weber">이 값으로 계산하기</a></section>
 <section aria-labelledby="example"><h2 id="example">직접 계산한 예제</h2><div class="example-box"><p>ρ = 1000 kg/m³, v = 2 m/s, L = 0.01 m, σ = 0.072 N/m라면 We = 1000 × 2² × 0.01 ÷ 0.072 ≈ 555.56입니다.</p></div></section>
 <section aria-labelledby="meaning"><h2 id="meaning">결과는 어떻게 읽나요?</h2><p>이 예시에서는 선택한 척도에서 관성 효과가 표면장력보다 크게 나타납니다. 액적 분열 여부를 숫자 하나로 확정하지는 못하며 구체적인 형상과 주변 유동이 필요합니다.</p></section>
 <section aria-labelledby="caution"><h2 id="caution">적용할 때 주의할 점</h2><p>σ는 두 유체의 경계면과 온도에 맞는 값을 써야 합니다. 액적 지름 대신 노즐 지름을 쓰면 다른 문제의 We가 되므로 비교 기준을 명시하세요.</p></section>
+<section aria-labelledby="related"><h2 id="related">관련 무차원수</h2><p>이 무차원수와 함께 계산하거나 비교하는 경우가 많은 수입니다.</p><ul><li><a href="/guides/reynolds">레이놀즈 수 (Re)</a>: 같은 L과 v로 계산하면 We/Re = μv/σ가 되어 점성과 표면장력을 비교할 수 있습니다.</li><li><a href="/guides/froude">프루드 수 (Fr)</a>: 같은 L과 v로 계산하면 We/Fr² = ρgL²/σ로 속도가 사라집니다.</li><li><a href="/guides/strouhal">스트로할 수 (St)</a>: 모세관 시간과 이송 시간의 비를 제곱하면 We가 되므로, 진동 주기와 비교할 때 St를 함께 씁니다.</li></ul></section>
 <p class="source">공식·개념 확인: <a href="https://ntrs.nasa.gov/api/citations/19680009511/downloads/19680009511.pdf" rel="noopener noreferrer">NASA — Dimensionless Numbers, Weber Number</a>. 예제의 입력값과 계산 과정은 이 사이트에서 설명을 위해 구성했습니다.</p>
 <nav aria-label="다른 해설"><a href="/">전체 계산기</a><a href="/guides/knudsen">다음: 누센 수</a><a href="/guides/model-similarity">축소 모형에서 Re와 Fr을 동시에 맞출 수 있을까?</a></nav>
 <nav aria-label="이론 심화"><a href="/guides/interface-time-scales">표면장력과 비정상 유동: 힘의 비와 시간의 비 연결하기</a></nav>
-</main><footer><a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a><p>© 2026 Dimensionless Number Calculator</p></footer>
-<script src="../guide.js?v=20260926c" defer></script>
+</main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>
+<script src="../guide.js?v=20261022" defer></script>
 </body></html>

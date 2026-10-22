@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Péclet Number Calculator (Pe = vL/α) | Dimensionless Number Calculator</title>
+<meta name="description" content="Get the thermal Péclet number from speed, length and thermal diffusivity, or enter a species diffusivity D for the mass Péclet number. Results are read as a diffusion-to-transit time ratio.">
+<link rel="canonical" href="https://calctool.cc/en/calculators/peclet">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/calculators/peclet">
+<link rel="alternate" hreflang="en" href="https://calctool.cc/en/calculators/peclet">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/calculators/peclet">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="/style.css?v=20261022">
+<link rel="stylesheet" href="/guide.css?v=20261022">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
+</head>
+<body class="guide-page">
+<header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/calculators/peclet" aria-label="한국어로 전환">한글</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button></div><p class="eyebrow">Heat transfer · Calculator</p><h1>Péclet number calculator <small>(Pe)</small></h1><p>Calculate the Péclet number from speed, length and thermal diffusivity. The third field is thermal diffusivity α, so the default is the thermal Péclet number; entering a mass diffusivity gives the mass Péclet number instead.</p></header>
+<main>
+<section class="calc-panel" aria-labelledby="calc">
+<h2 id="calc">Enter values and calculate</h2>
+<div class="formula-box"><strong>Pe = vL / α</strong></div>
+<form id="calcForm" data-calculator="peclet" novalidate>
+<div class="input-group"><label for="in-v">Velocity (v) [m/s]</label><input type="number" id="in-v" name="v" step="any" inputmode="decimal" placeholder="e.g. 0.01" data-example="0.01"></div>
+<div class="input-group"><label for="in-L">Characteristic Length (L) [m]</label><input type="number" id="in-L" name="L" step="any" inputmode="decimal" placeholder="e.g. 0.1" data-example="0.1"></div>
+<div class="input-group"><label for="in-alpha">Thermal Diffusivity (α) [m²/s]</label><input type="number" id="in-alpha" name="alpha" step="any" inputmode="decimal" placeholder="e.g. 1e-7" data-example="1e-7"></div>
+<div class="calc-actions"><button type="submit" class="calculate-btn">Calculate</button><button type="button" id="fillExample" class="secondary-btn">Fill example values</button></div>
+<p id="calcError" class="form-error" role="alert" hidden></p>
+</form>
+<div id="calcResult" class="result-container" aria-live="polite"><p class="result-label">Result</p><p id="resultValue" class="result-value"></p><p id="resultInfo" class="result-info"></p><p id="resultExplain" class="result-explain"></p></div>
+<noscript><p>This calculator runs in your browser with JavaScript. If JavaScript is off, apply the formula above by hand.</p></noscript>
+<p class="source">Your inputs are calculated by your browser on this page; the operator does not receive or store them.</p>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">Comparing advection and diffusion as times</h2>
+<p>Pe = vL/α is easiest to read as a ratio of times. The flow crosses a length L in the transit time L/v, while diffusion needs a time of order L²/α to spread over the same length. Dividing the diffusion time by the transit time gives vL/α. When Pe is much larger than 1, heat is carried away by the flow before it can spread; when it is much smaller, diffusion wins.</p>
+<p>In the pipe-flow note the transit time is 0.05 s and the diffusion time 700 s, a ratio of 14000. Both times are scales built on the chosen L, not predictions of how long heating takes.</p>
+</section>
+<section aria-labelledby="variables"><h2 id="variables">Variables and SI units</h2>
+<div class="table-wrap"><table><caption>Inputs of the Péclet number calculator</caption><thead><tr><th scope="col">Symbol</th><th scope="col">Meaning</th><th scope="col">SI unit</th><th scope="col">Example</th></tr></thead><tbody>
+<tr><th scope="row">v</th><td>Representative speed along the chosen length</td><td>m/s</td><td>0.01</td></tr>
+<tr><th scope="row">L</th><td>Length over which advection and diffusion are compared</td><td>m</td><td>0.1</td></tr>
+<tr><th scope="row">α</th><td>α = k/(ρcₚ)</td><td>m²/s</td><td>1e-7</td></tr>
+</tbody></table></div></section>
+<section aria-labelledby="units"><h2 id="units">When α is not given directly</h2>
+<ul>
+<li>Compute α = k/(ρcₚ). The water-like example in the pipe-flow note gives 0.6 ÷ (1000 × 4200) ≈ 1.43×10⁻⁷ m²/s.</li>
+<li>Data in mm²/s convert to m²/s by multiplying by 10⁻⁶.</li>
+<li>With the same L, v and properties, Re × Pr gives the same number, which makes a handy cross-check.</li>
+<li>Pick v and L to match the direction you care about: the diameter for diffusion across a pipe, or the pipe length for transport along it.</li>
+</ul>
+</section>
+<section aria-labelledby="mass"><h2 id="mass">Using it as a mass Péclet number</h2>
+<p>Enter the molecular diffusivity D of a species (m²/s) in the α field and the calculator returns vL/D, the mass Péclet number, which equals Re × Sc. Read “thermal diffusion” in the explanation as “mass diffusion”. Because D in liquids is usually much smaller than α, the mass Péclet number is often far larger than the thermal one in the same flow.</p>
+</section>
+<section aria-labelledby="criteria"><h2 id="criteria">Interpreting the size</h2>
+<p>The example uses v = 0.01 m/s, L = 0.1 m and α = 1×10⁻⁷ m²/s, giving Pe = 10,000. Around Pe ≈ 1 both advection and diffusion matter, but no single number is a universal boundary. In turbulent flow, mixing by eddies can be far stronger than molecular diffusion, so a Pe built on molecular α should not be read as the actual temperature field or heat-transfer rate. Surface heat transfer is handled separately through the Nusselt number and h.</p>
+</section>
+<section aria-labelledby="more"><h2 id="more">Related guides and calculators</h2>
+<h3>Guide</h3><ul><li><a href="/en/guides/peclet">Péclet number guide: worked example and cautions</a></li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/pipe-flow">Cross-check Re, Pr and Pe for pipe flow</a>: One input set through three calculators, checking that Pe = Re × Pr.</li><li><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a>: Diffusion lengths versus transit times, and where a heat-transfer coefficient comes from.</li></ul>
+<h3>Related calculators</h3><ul><li><a href="/en/calculators/prandtl">Prandtl number (Pr)</a>: With the same L, v and properties, the thermal Péclet number also equals Re × Pr.</li><li><a href="/en/calculators/schmidt">Schmidt number (Sc)</a>: Using molecular diffusivity D instead of α gives the mass Péclet number, equal to Re × Sc.</li><li><a href="/en/calculators/nusselt">Nusselt number (Nu)</a>: Pe compares advection with diffusion; the size of surface heat transfer is handled separately by Nu.</li></ul>
+</section>
+</main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
+<script src="/calculators.js?v=20261022" defer></script>
+<script src="/calculator-page.js?v=20261022" defer></script>
+<script src="/guide.js?v=20261022" defer></script>
+</body></html>

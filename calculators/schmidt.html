@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>슈미트 수 계산기 (Sc = μ/ρD) | 무차원수 계산기</title>
+<meta name="description" content="용질이나 기체 성분의 확산 문제에서 Sc를 계산합니다. D는 성분과 매질의 조합으로 정해진다는 점, cm²/s 환산, 액체와 기체에서 Sc 크기가 크게 다른 이유를 설명합니다.">
+<link rel="canonical" href="https://calctool.cc/calculators/schmidt">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/calculators/schmidt">
+<link rel="alternate" hreflang="en" href="https://calctool.cc/en/calculators/schmidt">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/calculators/schmidt">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="/style.css?v=20261022">
+<link rel="stylesheet" href="/guide.css?v=20261022">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
+</head>
+<body class="guide-page">
+<header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/en/calculators/schmidt" aria-label="Switch to English">EN</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button></div><p class="eyebrow">물질전달 · 계산기</p><h1>슈미트 수 계산기 <small>(Sc)</small></h1><p>점성 계수, 밀도, 분자 확산 계수로 슈미트 수를 계산합니다. 열이 아니라 특정 성분의 농도가 퍼지는 문제에 씁니다.</p></header>
+<main>
+<section class="calc-panel" aria-labelledby="calc">
+<h2 id="calc">값 입력과 계산</h2>
+<div class="formula-box"><strong>Sc = μ / (ρD)</strong></div>
+<form id="calcForm" data-calculator="schmidt" novalidate>
+<div class="input-group"><label for="in-mu">점성 계수 (μ) [Pa·s]</label><input type="number" id="in-mu" name="mu" step="any" inputmode="decimal" placeholder="예: 0.001" data-example="0.001"></div>
+<div class="input-group"><label for="in-rho">밀도 (ρ) [kg/m³]</label><input type="number" id="in-rho" name="rho" step="any" inputmode="decimal" placeholder="예: 1000" data-example="1000"></div>
+<div class="input-group"><label for="in-D">질량 확산 계수 (D) [m²/s]</label><input type="number" id="in-D" name="D" step="any" inputmode="decimal" placeholder="예: 1e-9" data-example="1e-9"></div>
+<div class="calc-actions"><button type="submit" class="calculate-btn">계산하기</button><button type="button" id="fillExample" class="secondary-btn">예제 값 채우기</button></div>
+<p id="calcError" class="form-error" role="alert" hidden></p>
+</form>
+<div id="calcResult" class="result-container" aria-live="polite"><p class="result-label">결과</p><p id="resultValue" class="result-value"></p><p id="resultInfo" class="result-info"></p><p id="resultExplain" class="result-explain"></p></div>
+<noscript><p>이 계산기는 브라우저의 JavaScript로 계산합니다. JavaScript가 꺼져 있으면 위 공식에 직접 값을 넣어 계산해 주세요.</p></noscript>
+<p class="source">입력값은 이 페이지 안에서 브라우저가 계산하며, 운영자가 따로 받거나 저장하지 않습니다.</p>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">Sc와 Pr은 어떻게 다른가</h2>
+<p>Sc = μ/(ρD) = ν/D는 운동량이 퍼지는 빠르기와 어떤 성분의 농도가 퍼지는 빠르기를 비교합니다. 프란틀 수에서 열확산 계수 α가 있던 자리에 물질 확산 계수 D가 들어간 형태라서 물질전달의 프란틀 수라고도 부릅니다. Sc가 1보다 크면 농도 경계층이 속도 경계층보다 얇은 경향이 있습니다.</p>
+</section>
+<section aria-labelledby="variables"><h2 id="variables">변수와 SI 단위</h2>
+<div class="table-wrap"><table><caption>슈미트 수 계산기의 입력 변수</caption><thead><tr><th scope="col">기호</th><th scope="col">의미</th><th scope="col">SI 단위</th><th scope="col">예제 값</th></tr></thead><tbody>
+<tr><th scope="row">μ</th><td>용매(매질)의 점성 계수</td><td>Pa·s</td><td>0.001</td></tr>
+<tr><th scope="row">ρ</th><td>용매(매질)의 밀도</td><td>kg/m³</td><td>1000</td></tr>
+<tr><th scope="row">D</th><td>관심 성분이 그 매질에서 갖는 분자 확산 계수</td><td>m²/s</td><td>1e-9</td></tr>
+</tbody></table></div></section>
+<section aria-labelledby="units"><h2 id="units">D 값을 고를 때 확인할 것</h2>
+<ul>
+<li>D는 한 물질의 고유값이 아니라 ‘어떤 성분이 어떤 매질 속에서’ 퍼지는지에 따라 정해지는 쌍의 물성입니다. 물속 산소와 물속 큰 단백질 분자의 D는 다릅니다.</li>
+<li>액체 속 분자 확산 계수는 대체로 10⁻⁹ m²/s 규모, 기체 속은 대체로 10⁻⁵ m²/s 규모입니다. 입력값의 자릿수가 이와 크게 다르면 단위를 확인하세요.</li>
+<li>자료가 cm²/s 단위라면 10⁻⁴를 곱해 m²/s로 바꿉니다.</li>
+<li>난류 혼합을 나타내는 난류 확산 계수를 D에 넣으면 분자 확산을 비교하는 Sc가 아니게 됩니다.</li>
+<li>μ와 ρ는 성분이 녹아 있는 매질(용매)의 값입니다.</li>
+</ul>
+</section>
+<section aria-labelledby="criteria"><h2 id="criteria">결과 크기 읽기</h2>
+<p>예제는 물속 용질을 가정해 μ = 0.001 Pa·s, ρ = 1000 kg/m³, D = 1×10⁻⁹ m²/s로 Sc = 1000입니다. 기체 혼합물에서는 Sc가 1 안팎인 경우가 많고, 액체 속 용질은 수백 이상으로 커지는 경우가 많습니다. 같은 흐름에서도 열은 넓게 퍼지는데 용질은 얇은 층 안에 머무를 수 있다는 뜻입니다.</p>
+<p>해양학에서는 수온에 따른 Sc를 이용해 기체가 해수면을 통과하는 전달 속도를 추정합니다. R 패키지 marelac의 참조 문서가 이런 쓰임을 설명합니다.</p>
+</section>
+<section aria-labelledby="check"><h2 id="check">페클레 수와 연결하기</h2>
+<p>같은 길이와 속도를 쓰면 물질 페클레 수는 Re × Sc입니다. 열·물질 확산 노트에서는 v = 0.2 m/s, L = 0.05 m일 때 Re = 10000, Sc = 1000으로 물질 페클레 수 10⁷을 확인합니다. 같은 노트에서 0.25초 동안의 확산 길이 √(Dt)는 약 0.01581 mm로, 열확산 길이 0.2236 mm보다 훨씬 짧게 나옵니다. 이 사이트의 페클레 수 계산기에서 α 칸에 D를 넣으면 물질 페클레 수를 바로 구할 수 있습니다.</p>
+</section>
+<section aria-labelledby="more"><h2 id="more">관련 해설과 계산기</h2>
+<h3>기본 해설</h3><ul><li><a href="/guides/schmidt">슈미트 수 해설: 예제와 주의점</a></li></ul>
+<h3>계산 노트</h3><ul><li><a href="/guides/transport-scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a>: 확산 길이와 이송 시간을 비교하고 열전달 계수가 어디서 오는지 구분합니다.</li></ul>
+<h3>관련 계산기</h3><ul><li><a href="/calculators/prandtl">프란틀 수 (Pr)</a>: Sc는 열전달의 Pr에 대응하며, α 대신 D를 쓴다는 점만 다릅니다.</li><li><a href="/calculators/peclet">페클레 수 (Pe)</a>: 같은 L·v·물성이면 물질 페클레 수는 Re × Sc입니다.</li><li><a href="/calculators/nusselt">누셀트 수 (Nu)</a>: 열전달에서 Nu와 Pr을 함께 보듯, 물질전달 상관식에서는 Sc가 함께 쓰입니다.</li></ul>
+</section>
+</main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>
+<script src="/calculators.js?v=20261022" defer></script>
+<script src="/calculator-page.js?v=20261022" defer></script>
+<script src="/guide.js?v=20261022" defer></script>
+</body></html>

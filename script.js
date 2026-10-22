@@ -7,234 +7,134 @@ let currentLang = 'ko'; // Default language
 
 const translations = {
     ko: {
-        page_title: "Dimensionless Numbers",
-        page_subtitle: "물리적 현상의 핵심을 파악하는 무차원수 계산기",
-        intro_title: "계산값을 해석하기 전에",
-        intro_text: "무차원수는 조건이 다른 유동·열전달 문제를 비교할 때 쓰는 비율입니다. 공식에 숫자를 넣기 전에 특성 길이와 물성값이 현재 문제에 맞는지 확인하세요.",
-        intro_step1: "아래에서 필요한 계산기를 엽니다.",
-        intro_step2: "입력 단위를 맞춰 계산하고, 각 항목의 해설에서 예제와 적용 범위를 확인합니다.",
-        intro_step3: "결과를 설계나 실험에 사용한다면 원래 물성 자료와 경계 조건을 다시 확인합니다.",
+        page_title: "무차원수 계산기",
+        page_subtitle: "유동·열전달·물질전달·계면·기체 문제의 무차원수 10종을 계산하고 해석합니다",
+        intro_title: "이 사이트에서 할 수 있는 일",
+        intro_text: "calctool.cc는 유체역학과 열·물질전달에서 쓰는 무차원수 10종을 계산하는 개인 프로젝트입니다. 계산기마다 전용 페이지가 있어 공식, 변수와 SI 단위, 단위를 바꿀 때 자주 틀리는 부분, 결과를 읽는 기준을 계산과 함께 확인할 수 있습니다.",
+        intro_text2: "무차원수는 크기나 조건이 다른 두 문제를 같은 잣대로 비교하게 해 주지만, 특성 길이와 물성값을 어떻게 정했는지에 따라 같은 이름의 수도 다른 뜻이 됩니다. 그래서 이 사이트는 숫자 하나를 내놓는 데서 멈추지 않고 그 숫자가 어떤 가정에서 의미가 있는지를 함께 적어 둡니다. 계산은 브라우저에서 이루어지며, 공식은 공개 저장소의 자동 검사로 예제 값과 대조합니다.",
+        intro_step1: "아래 분야에서 필요한 무차원수를 찾아 계산기 페이지를 엽니다.",
+        intro_step2: "입력 단위를 SI로 맞춰 계산하고, 결과 아래의 해석 문장과 적용 범위를 확인합니다.",
+        intro_step3: "설계나 실험에 쓴다면 원래 물성 자료와 경계 조건을 다시 확인하고, 계산 노트에서 다른 무차원수와 교차검산합니다.",
+        intro_more: "사이트를 만든 이유와 계산식 검증 방법은 소개 페이지에 정리했습니다.",
+        intro_more_link: "소개 보기",
+        jump_label: "분야 바로가기:",
         open_calculator: "계산기 열기",
-        reynolds_short_desc: "유체의 관성력과 점성력의 비를 나타내며, 유동이 층류인지 난류인지 판단하는 지표입니다.",
-        mach_short_desc: "유체의 속도와 음속의 비를 나타내며, 압축성 유동의 특성을 결정합니다.",
-        nusselt_short_desc: "대류 열전달과 전도 열전달의 비를 나타내며, 대류가 열전달에 기여하는 정도를 결정합니다.",
-        prandtl_short_desc: "운동량 확산과 열 확산의 비를 나타내며, 유체의 물리적 특성만으로 결정됩니다.",
-        schmidt_short_desc: "운동량 확산율과 물질의 분자 확산율을 비교합니다.",
-        peclet_short_desc: "유동에 의한 이송(Advection)과 확산(Diffusion)의 비를 나타냅니다.",
-        strouhal_short_desc: "비정상 유동(Unsteady flow)의 진동 특성을 나타내는 무차원수입니다.",
-        froude_short_desc: "관성력과 중력의 비를 나타내며, 개수로 유동이나 선박 공학에서 중요합니다.",
-        weber_short_desc: "관성력과 표면장력의 비를 나타내며, 액적의 분열이나 기포 형성 분석에 사용됩니다.",
-        knudsen_short_desc: "분자 평균 자유 행로와 특성 길이의 비를 나타내며, 연속체 가설의 타당성을 판단합니다.",
+        notes_label: "관련 계산 노트",
+        all_guides: "전체 해설 목록 보기",
+        limits_title: "계산기가 하지 않는 일",
+        limits_text: "이 도구는 입력한 값으로 무차원 비를 계산합니다. 물성값이나 열전달 계수를 자동 예측하지 않습니다. 예제는 학습용 가정이며 실제 측정 자료로 바꾸어 계산해야 합니다.",
         result_label: "결과",
-        privacy_policy: "개인정보처리방침",
-        terms_service: "이용약관",
         calculate_btn: "계산하기",
         alert_fill_all: "모든 값을 입력해 주세요.",
-        alert_invalid_values: "0으로 나눌 수 없으며 음수 입력은 사용할 수 없습니다. 값을 확인해 주세요."
+        alert_invalid_values: "0으로 나눌 수 없으며 음수 입력은 사용할 수 없습니다. 값을 확인해 주세요.",
+        footer_home: "홈",
+        footer_guides: "해설 목록",
+        footer_about: "소개",
+        footer_contact: "문의",
+        privacy_policy: "개인정보처리방침",
+        terms_service: "이용약관",
+        copyright: "© 2026 무차원수 계산기 · calctool.cc",
+        reynolds_short_desc: "유체의 관성력과 점성력의 비를 나타내며, 유동이 층류인지 난류인지 판단하는 지표입니다.",
+        name_reynolds: "레이놀즈 수 (Re)",
+        mach_short_desc: "유체의 속도와 음속의 비를 나타내며, 압축성 유동의 특성을 결정합니다.",
+        name_mach: "마하 수 (Ma)",
+        nusselt_short_desc: "대류 열전달과 전도 열전달의 비를 나타내며, 대류가 열전달에 기여하는 정도를 결정합니다.",
+        name_nusselt: "누셀트 수 (Nu)",
+        prandtl_short_desc: "운동량 확산과 열 확산의 비를 나타내며, 유체의 물리적 특성만으로 결정됩니다.",
+        name_prandtl: "프란틀 수 (Pr)",
+        schmidt_short_desc: "운동량 확산율과 물질의 분자 확산율을 비교합니다.",
+        name_schmidt: "슈미트 수 (Sc)",
+        peclet_short_desc: "유동에 의한 이송(Advection)과 확산(Diffusion)의 비를 나타냅니다.",
+        name_peclet: "페클레 수 (Pe)",
+        strouhal_short_desc: "비정상 유동(Unsteady flow)의 진동 특성을 나타내는 무차원수입니다.",
+        name_strouhal: "스트로할 수 (St)",
+        froude_short_desc: "관성력과 중력의 비를 나타내며, 개수로 유동이나 선박 공학에서 중요합니다.",
+        name_froude: "프루드 수 (Fr)",
+        weber_short_desc: "관성력과 표면장력의 비를 나타내며, 액적의 분열이나 기포 형성 분석에 사용됩니다.",
+        name_weber: "웨버 수 (We)",
+        knudsen_short_desc: "분자 평균 자유 행로와 특성 길이의 비를 나타내며, 연속체 가설의 타당성을 판단합니다.",
+        name_knudsen: "누센 수 (Kn)",
+        cat_flow_title: "유동",
+        cat_flow_desc: "관성·점성·중력의 균형과 흐름 속에서 반복되는 진동을 다룹니다. 관 속 흐름, 개수로, 축소 모형 실험, 원기둥 뒤 와류 방출이 대표적인 예입니다.",
+        cat_heat_title: "열전달",
+        cat_heat_desc: "열이 흐름에 실려 이동하는지, 유체 속으로 확산하는지, 표면에서 얼마나 전달되는지를 서로 다른 비율로 나눠 봅니다.",
+        cat_mass_title: "물질전달",
+        cat_mass_desc: "용질이나 기체 성분의 농도가 퍼지는 문제입니다. 열 대신 특정 성분의 분자 확산 계수 D를 쓴다는 점이 열전달과 다릅니다.",
+        cat_interface_title: "계면",
+        cat_interface_desc: "액적, 기포, 분무처럼 두 유체의 경계면 모양이 결과를 좌우하는 경우 관성과 표면장력을 비교합니다.",
+        cat_gas_title: "기체·압축성",
+        cat_gas_desc: "기체의 밀도 변화가 중요한지(마하 수)와 분자 크기 척도를 무시할 수 있는지(누센 수)를 따로 확인합니다.",
+        note_pipe_flow: "관 유동에서 Re·Pr·Pe를 함께 검산하기",
+        note_model_similarity: "축소 모형에서 Re와 Fr을 동시에 맞출 수 있을까?",
+        note_pipe_energy: "관의 압력손실: 보존법칙에서 포아죄유 해까지",
+        note_transport_scales: "열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할",
+        note_gas_models: "기체 유동 모델 선택: 마하 수와 누센 수를 따로 확인하기",
+        note_interface_time_scales: "표면장력과 비정상 유동: 힘의 비와 시간의 비 연결하기"
     },
     en: {
-        page_title: "Dimensionless Numbers",
-        page_subtitle: "Calculator for dimensionless numbers finding the core of physical phenomena",
-        intro_title: "Before interpreting a result",
-        intro_text: "Dimensionless numbers compare flow and heat-transfer problems under different conditions. Before entering values, check that the characteristic length and material properties match your case.",
-        intro_step1: "Open the calculator you need below.",
-        intro_step2: "Use consistent units, then read the worked example and limits in its guide.",
-        intro_step3: "For design or experiments, verify the source properties and boundary conditions.",
+        page_title: "Dimensionless Number Calculator",
+        page_subtitle: "Calculate and interpret ten dimensionless numbers for flow, heat, mass, interface and gas problems",
+        intro_title: "What this site does",
+        intro_text: "calctool.cc is a personal project for calculating ten dimensionless numbers used in fluid mechanics and heat and mass transfer. Each calculator has its own page showing the formula, variables and SI units, common unit-conversion mistakes and how to read the result, right next to the calculation.",
+        intro_text2: "Dimensionless numbers let you compare problems of different size and conditions on one scale, but the same named number can mean different things depending on the chosen length and properties. So the site does not stop at a single number; it also states the assumptions under which that number is meaningful. Calculations run in your browser, and the formulas are checked against worked examples by automated tests in the public repository.",
+        intro_step1: "Find the number you need in the fields below and open its calculator page.",
+        intro_step2: "Enter values in SI units, then read the explanation and limits shown under the result.",
+        intro_step3: "For design or experiments, recheck the source properties and boundary conditions, and cross-check with other numbers in the calculation notes.",
+        intro_more: "Why the site exists and how its formulas are checked are described on the about page.",
+        intro_more_link: "Read the about page",
+        jump_label: "Jump to a field:",
         open_calculator: "Open calculator",
-        reynolds_short_desc: "Ratio of inertial forces to viscous forces, determining if flow is laminar or turbulent.",
-        mach_short_desc: "Ratio of flow velocity to the speed of sound, determining compressibility effects.",
-        nusselt_short_desc: "Ratio of convective to conductive heat transfer, indicating the effectiveness of convection.",
-        prandtl_short_desc: "Ratio of momentum diffusivity to thermal diffusivity, determined solely by fluid properties.",
-        schmidt_short_desc: "Ratio of momentum diffusivity to mass diffusivity, describing convective mass transfer.",
-        peclet_short_desc: "Ratio of advection to diffusion rates.",
-        strouhal_short_desc: "Describes oscillating flow mechanisms in unsteady flow.",
-        froude_short_desc: "Ratio of flow inertia to external field (gravity), important in open-channel flow.",
-        weber_short_desc: "Ratio of inertia to surface tension, used in analyzing droplet formation.",
-        knudsen_short_desc: "Ratio of mean free path to characteristic length, determining validity of continuum assumption.",
+        notes_label: "Related calculation notes",
+        all_guides: "See all guides",
+        limits_title: "What the calculators do not do",
+        limits_text: "The calculators evaluate dimensionless ratios from your inputs. They do not predict material properties or heat-transfer coefficients. The worked inputs are illustrative and must be replaced with data for your conditions.",
         result_label: "Result",
-        privacy_policy: "Privacy Policy",
-        terms_service: "Terms of Service",
         calculate_btn: "Calculate",
         alert_fill_all: "Please enter all values.",
-        alert_invalid_values: "Check the values: negative inputs and division by zero are not supported."
-    }
-};
-
-const calculators = {
-    reynolds: {
-        title: "Reynolds Number",
-        description: {
-            ko: "레이놀즈 수(Reynolds Number)는 관성 효과와 점성 효과를 비교합니다.<br><br><strong>공식:</strong> Re = ρvL / μ<br>ρ는 밀도, v는 속도, L은 특성 길이, μ는 점성 계수입니다. 원형 관의 내부 유동에서는 관 안지름을 L로 사용합니다.<br><br>화면의 층류·난류 구분은 원형 관 유동의 대략적인 기준입니다. 다른 형상에는 그대로 적용하지 마세요.",
-            en: "Reynolds Number is the ratio of inertial forces to viscous forces within a fluid which is subjected to relative internal movement due to different fluid velocities. It is used to predict flow patterns in different fluid flow situations.<br><br><strong>Formula:</strong> Re = ρvL / μ<br>Where ρ is density, v is velocity, L is characteristic length, and μ is dynamic viscosity.<br><br>Generally, for pipe flow, Re < 2300 indicates laminar flow, and Re > 4000 indicates turbulent flow."
-        },
-        inputs: [
-            { id: 'v', label: { ko: '속도 (v) [m/s]', en: 'Velocity (v) [m/s]' }, placeholder: 'e.g. 2.0' },
-            { id: 'rho', label: { ko: '밀도 (ρ) [kg/m³]', en: 'Density (ρ) [kg/m³]' }, placeholder: 'e.g. 1000' },
-            { id: 'L', label: { ko: '특성 길이 (L) [m]', en: 'Characteristic Length (L) [m]' }, placeholder: 'e.g. 0.5' },
-            { id: 'mu', label: { ko: '점성 계수 (μ) [Pa·s]', en: 'Dynamic Viscosity (μ) [Pa·s]' }, placeholder: 'e.g. 0.001' }
-        ],
-        calculate: (vals) => (vals.rho * vals.v * vals.L) / vals.mu,
-        getInfo: (res) => {
-            if (res < 2300) return { ko: "층류 (Laminar Flow)", en: "Laminar Flow" };
-            if (res > 4000) return { ko: "난류 (Turbulent Flow)", en: "Turbulent Flow" };
-            return { ko: "천이 구역 (Transitional Flow)", en: "Transitional Flow" };
-        }
-    },
-    mach: {
-        title: "Mach Number",
-        description: {
-            ko: "마하 수(Mach Number)는 유체의 속도와 그 매질에서의 음속의 비를 나타냅니다. 고속 공기역학에서 압축성 효과를 고려할 때 필수적인 지표입니다.<br><br><strong>공식:</strong> Ma = v / c<br>Ma < 1 은 아음속, Ma > 1 은 초음속을 의미합니다. 초음속 유동에서는 충격파(Shock wave)와 같은 불연속적인 현상이 발생할 수 있습니다.",
-            en: "Mach Number is a dimensionless quantity in fluid dynamics representing the ratio of flow velocity past a boundary to the local speed of sound.<br><br><strong>Formula:</strong> Ma = v / c<br>Ma < 1 is subsonic, Ma > 1 is supersonic. Supersonic flows can lead to shock waves."
-        },
-        inputs: [
-            { id: 'v', label: { ko: '유속 (v) [m/s]', en: 'Flow Velocity (v) [m/s]' }, placeholder: 'e.g. 340' },
-            { id: 'c', label: { ko: '음속 (c) [m/s]', en: 'Speed of Sound (c) [m/s]' }, placeholder: 'e.g. 340' }
-        ],
-        calculate: (vals) => vals.v / vals.c,
-        getInfo: (res) => {
-            if (res < 0.8) return { ko: "아음속 (Subsonic)", en: "Subsonic" };
-            if (res < 1.2) return { ko: "천음속 (Transonic)", en: "Transonic" };
-            if (res < 5.0) return { ko: "초음속 (Supersonic)", en: "Supersonic" };
-            return { ko: "극초음속 (Hypersonic)", en: "Hypersonic" };
-        }
-    },
-    nusselt: {
-        title: "Nusselt Number",
-        description: {
-            ko: "누셀트 수(Nusselt Number)는 선택한 길이 척도에서 표면의 대류 열전달 계수와 유체의 열전도를 비교합니다.<br><br><strong>공식:</strong> Nu = hL / k<br>h는 대류 열전달 계수, L은 형상에 맞는 특성 길이, k는 유체의 열전도율입니다. 서로 다른 조건을 비교하려면 L의 정의를 일치시키세요.",
-            en: "Nusselt Number is the ratio of convective to conductive heat transfer at a boundary in a fluid. A larger Nusselt number corresponds to more active convection.<br><br><strong>Formula:</strong> Nu = hL / k<br>Where h is convective heat transfer coefficient, L is characteristic length, k is thermal conductivity."
-        },
-        inputs: [
-            { id: 'h', label: { ko: '대류 열전달 계수 (h) [W/m²K]', en: 'Convective Heat Transfer Coeff (h) [W/m²K]' }, placeholder: 'e.g. 50' },
-            { id: 'L', label: { ko: '특성 길이 (L) [m]', en: 'Characteristic Length (L) [m]' }, placeholder: 'e.g. 0.1' },
-            { id: 'k', label: { ko: '열전도율 (k) [W/mK]', en: 'Thermal Conductivity (k) [W/mK]' }, placeholder: 'e.g. 0.6' }
-        ],
-        calculate: (vals) => (vals.h * vals.L) / vals.k,
-        getInfo: (res) => ({
-            ko: "같은 기준으로 계산한 다른 조건의 Nu와 비교하세요",
-            en: "Compare Nu with other cases using the same length scale."
-        })
-    },
-    prandtl: {
-        title: "Prandtl Number",
-        description: {
-            ko: "프란틀 수(Prandtl Number)는 운동량 확산(점성)과 열 확산(열전도)의 비율을 나타내는 무차원수입니다. 이는 유체의 고유한 물성치로 결정되며, 속도 경계층과 온도 경계층의 상대적 두께를 비교하는 데 사용됩니다.<br><br><strong>공식:</strong> Pr = μc_p / k = ν / α",
-            en: "Prandtl Number is the ratio of momentum diffusivity (kinematic viscosity) to thermal diffusivity. It depends only on the fluid type and its state.<br><br><strong>Formula:</strong> Pr = μc_p / k = ν / α"
-        },
-        inputs: [
-            { id: 'mu', label: { ko: '점성 계수 (μ) [Pa·s]', en: 'Dynamic Viscosity (μ) [Pa·s]' }, placeholder: 'e.g. 0.001' },
-            { id: 'cp', label: { ko: '비열 (c_p) [J/kgK]', en: 'Specific Heat Capacity (c_p) [J/kgK]' }, placeholder: 'e.g. 4180' },
-            { id: 'k', label: { ko: '열전도율 (k) [W/mK]', en: 'Thermal Conductivity (k) [W/mK]' }, placeholder: 'e.g. 0.6' }
-        ],
-        calculate: (vals) => (vals.mu * vals.cp) / vals.k,
-        getInfo: (res) => ({
-            ko: `Pr ≈ ${res.toFixed(1)}: 유체 고유 특성`,
-            en: `Pr ≈ ${res.toFixed(1)}: Fluid property characteristic.`
-        })
-    },
-    schmidt: {
-        title: "Schmidt Number",
-        description: {
-            ko: "슈미트 수(Schmidt Number)는 운동량 확산율(점성)과 질량 확산율의 비를 나타냅니다. 프란틀 수의 질량 전달 대응물이라고 볼 수 있으며, 속도 경계층과 농도 경계층의 상대적 두께를 결정합니다.",
-            en: "Schmidt Number is a dimensionless number defined as the ratio of momentum diffusivity (kinematic viscosity) and mass diffusivity. It relates the relative thickness of the hydrodynamic layer and mass-transfer boundary layer."
-        },
-        inputs: [
-            { id: 'mu', label: { ko: '점성 계수 (μ) [Pa·s]', en: 'Dynamic Viscosity (μ) [Pa·s]' }, placeholder: 'e.g. 0.001' },
-            { id: 'rho', label: { ko: '밀도 (ρ) [kg/m³]', en: 'Density (ρ) [kg/m³]' }, placeholder: 'e.g. 1000' },
-            { id: 'D', label: { ko: '질량 확산 계수 (D) [m²/s]', en: 'Mass Diffusivity (D) [m²/s]' }, placeholder: 'e.g. 1e-9' }
-        ],
-        calculate: (vals) => vals.mu / (vals.rho * vals.D),
-        getInfo: (res) => ({
-            ko: "Sc는 운동량 확산과 질량 확산의 관계를 나타냄",
-            en: "Sc relates momentum and mass diffusivity."
-        })
-    },
-    peclet: {
-        title: "Peclet Number",
-        description: {
-            ko: "페클레 수(Peclet Number)는 유동에 의한 이송(Advection)과 확산(Diffusion)의 비율을 나타냅니다. 열전달이나 질량전달 문제에서 대류의 중요성을 판단하는 척도가 됩니다.",
-            en: "Peclet Number is a dimensionless number defined to be the ratio of the rate of advection of a physical quantity by the flow to the rate of diffusion of the same quantity."
-        },
-        inputs: [
-            { id: 'v', label: { ko: '속도 (v) [m/s]', en: 'Velocity (v) [m/s]' }, placeholder: 'e.g. 2.0' },
-            { id: 'L', label: { ko: '특성 길이 (L) [m]', en: 'Characteristic Length (L) [m]' }, placeholder: 'e.g. 0.5' },
-            { id: 'alpha', label: { ko: '열확산 계수 (α) [m²/s]', en: 'Thermal Diffusivity (α) [m²/s]' }, placeholder: 'e.g. 1e-7' }
-        ],
-        calculate: (vals) => (vals.v * vals.L) / vals.alpha,
-        getInfo: (res) => ({
-            ko: "Pe가 클수록 선택한 길이에서 이송 효과가 상대적으로 큽니다",
-            en: "Larger Pe indicates stronger advection relative to diffusion."
-        })
-    },
-    strouhal: {
-        title: "Strouhal Number",
-        description: {
-            ko: "스트로할 수(Strouhal Number)는 비정상 유동(Unsteady flow)에서의 진동 특성을 나타냅니다. 예를 들어, 바람에 흔들리는 전선이나 카르만 와류(Karman Vortex Street) 현상을 분석할 때 중요합니다.",
-            en: "Strouhal Number represents the oscillating flow mechanisms. It is often used to describe oscillating flow mechanisms such as Karman vortex street."
-        },
-        inputs: [
-            { id: 'f', label: { ko: '와류 방출 주파수 (f) [Hz]', en: 'Frequency (f) [Hz]' }, placeholder: 'e.g. 10' },
-            { id: 'L', label: { ko: '특성 길이 (L) [m]', en: 'Characteristic Length (L) [m]' }, placeholder: 'e.g. 0.1' },
-            { id: 'v', label: { ko: '속도 (v) [m/s]', en: 'Velocity (v) [m/s]' }, placeholder: 'e.g. 5' }
-        ],
-        calculate: (vals) => (vals.f * vals.L) / vals.v,
-        getInfo: (res) => ({
-            ko: "비정상 유동의 진동 특성을 나타냄",
-            en: "St represents non-steady flow oscillations."
-        })
-    },
-    froude: {
-        title: "Froude Number",
-        description: {
-            ko: "프루드 수(Froude Number)는 유속과 중력에 관련된 파동 속도 척도를 비교합니다. 개수로 유동이나 선박 주변 물결에 쓰지만, 두 경우의 특성 길이와 해석 기준은 다릅니다.",
-            en: "Froude Number is a dimensionless number defined as the ratio of the flow inertia to the external field (the latter in many applications simply being gravity)."
-        },
-        inputs: [
-            { id: 'v', label: { ko: '속도 (v) [m/s]', en: 'Velocity (v) [m/s]' }, placeholder: 'e.g. 3.0' },
-            { id: 'L', label: { ko: '특성 길이 (L) [m]', en: 'Characteristic Length (L) [m]' }, placeholder: 'e.g. 5.0' },
-            { id: 'g', label: { ko: '중력 가속도 (g) [m/s²]', en: 'Gravity (g) [m/s²]' }, placeholder: '9.81' }
-        ],
-        calculate: (vals) => vals.v / Math.sqrt(vals.g * vals.L),
-        getInfo: (res) => {
-            if (res < 1) return { ko: "개수로에서 L이 수심 척도라면 상류", en: "Subcritical if L is the open-channel depth scale" };
-            if (res === 1) return { ko: "개수로에서 L이 수심 척도라면 한계류", en: "Critical if L is the open-channel depth scale" };
-            return { ko: "개수로에서 L이 수심 척도라면 사류", en: "Supercritical if L is the open-channel depth scale" };
-        }
-    },
-    weber: {
-        title: "Weber Number",
-        description: {
-            ko: "웨버 수(Weber Number)는 관성력과 표면장력의 비율을 나타냅니다. 잉크젯 프린팅, 연료 분사, 기포 형성 등 표면장력이 중요한 다상 유동에서 주로 사용됩니다.",
-            en: "Weber Number is a dimensionless number that is often useful in analyzing fluid flows where there is an interface between two different fluids, especially for multiphase flows with strongly curved surfaces."
-        },
-        inputs: [
-            { id: 'rho', label: { ko: '밀도 (ρ) [kg/m³]', en: 'Density (ρ) [kg/m³]' }, placeholder: 'e.g. 1000' },
-            { id: 'v', label: { ko: '속도 (v) [m/s]', en: 'Velocity (v) [m/s]' }, placeholder: 'e.g. 2.0' },
-            { id: 'L', label: { ko: '특성 길이 (L) [m]', en: 'Characteristic Length (L) [m]' }, placeholder: 'e.g. 0.01' },
-            { id: 'sigma', label: { ko: '표면장력 (σ) [N/m]', en: 'Surface Tension (σ) [N/m]' }, placeholder: 'e.g. 0.072' }
-        ],
-        calculate: (vals) => (vals.rho * Math.pow(vals.v, 2) * vals.L) / vals.sigma,
-        getInfo: (res) => ({
-            ko: "관성력과 표면장력의 관계",
-            en: "We relates inertia to surface tension."
-        })
-    },
-    knudsen: {
-        title: "Knudsen Number",
-        description: {
-            ko: "누센 수(Knudsen Number)는 분자의 평균 자유 행로와 시스템의 특성 길이의 비율입니다. 이 수가 매우 작으면(Kn < 0.01) 유체를 연속체로 가정할 수 있지만, 크면 희박 기체 역학(Rarefied Gas Dynamics)을 적용해야 합니다.",
-            en: "Knudsen Number is a dimensionless number defined as the ratio of the molecular mean free path length to a representative physical length scale."
-        },
-        inputs: [
-            { id: 'lambda', label: { ko: '평균 자유 행로 (λ) [m]', en: 'Mean Free Path (λ) [m]' }, placeholder: 'e.g. 6.8e-8' },
-            { id: 'L', label: { ko: '특성 길이 (L) [m]', en: 'Characteristic Length (L) [m]' }, placeholder: 'e.g. 0.001' }
-        ],
-        calculate: (vals) => vals.lambda / vals.L,
-        getInfo: (res) => {
-            if (res < 0.01) return { ko: "연속체 유동 (Continuum flow)", en: "Continuum flow" };
-            if (res < 0.1) return { ko: "미끄럼 유동 (Slip flow)", en: "Slip flow" };
-            return { ko: "천이/자유 분자 유동 (Transition/Free molecular flow)", en: "Transition/Free molecular flow" };
-        }
+        alert_invalid_values: "Check the values: negative inputs and division by zero are not supported.",
+        footer_home: "Home",
+        footer_guides: "Guides",
+        footer_about: "About",
+        footer_contact: "Contact",
+        privacy_policy: "Privacy Policy",
+        terms_service: "Terms of Use",
+        copyright: "© 2026 Dimensionless Number Calculator · calctool.cc",
+        reynolds_short_desc: "Ratio of inertial forces to viscous forces, determining if flow is laminar or turbulent.",
+        name_reynolds: "Reynolds number (Re)",
+        mach_short_desc: "Ratio of flow velocity to the speed of sound, determining compressibility effects.",
+        name_mach: "Mach number (Ma)",
+        nusselt_short_desc: "Ratio of convective to conductive heat transfer, indicating the effectiveness of convection.",
+        name_nusselt: "Nusselt number (Nu)",
+        prandtl_short_desc: "Ratio of momentum diffusivity to thermal diffusivity, determined solely by fluid properties.",
+        name_prandtl: "Prandtl number (Pr)",
+        schmidt_short_desc: "Ratio of momentum diffusivity to mass diffusivity, describing convective mass transfer.",
+        name_schmidt: "Schmidt number (Sc)",
+        peclet_short_desc: "Ratio of advection to diffusion rates.",
+        name_peclet: "Péclet number (Pe)",
+        strouhal_short_desc: "Describes oscillating flow mechanisms in unsteady flow.",
+        name_strouhal: "Strouhal number (St)",
+        froude_short_desc: "Ratio of flow inertia to external field (gravity), important in open-channel flow.",
+        name_froude: "Froude number (Fr)",
+        weber_short_desc: "Ratio of inertia to surface tension, used in analyzing droplet formation.",
+        name_weber: "Weber number (We)",
+        knudsen_short_desc: "Ratio of mean free path to characteristic length, determining validity of continuum assumption.",
+        name_knudsen: "Knudsen number (Kn)",
+        cat_flow_title: "Fluid flow",
+        cat_flow_desc: "Balances between inertia, viscosity and gravity, plus periodic motion inside a flow: pipe flow, open channels, scale-model tests and vortex shedding behind cylinders.",
+        cat_heat_title: "Heat transfer",
+        cat_heat_desc: "Separate ratios for heat carried by the flow, heat diffusing through the fluid, and heat exchanged at a surface.",
+        cat_mass_title: "Mass transfer",
+        cat_mass_desc: "Spreading of a dissolved or gaseous species. The molecular diffusivity D of that species takes the place of thermal diffusivity.",
+        cat_interface_title: "Interfaces",
+        cat_interface_desc: "Droplets, bubbles and sprays, where the shape of the boundary between two fluids depends on inertia versus surface tension.",
+        cat_gas_title: "Gases and compressibility",
+        cat_gas_desc: "Two separate checks for gases: whether density changes matter (Mach number) and whether molecular length scales can be ignored (Knudsen number).",
+        note_pipe_flow: "Cross-check Re, Pr and Pe for pipe flow",
+        note_model_similarity: "Can a scale model match both Re and Fr?",
+        note_pipe_energy: "Pipe pressure loss: from conservation laws to Poiseuille flow",
+        note_transport_scales: "Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu",
+        note_gas_models: "Choosing gas-flow models: check Mach and Knudsen numbers separately",
+        note_interface_time_scales: "Surface tension and unsteady flow: connect force ratios to time ratios"
     }
 };
 
@@ -256,7 +156,17 @@ function updateStaticText() {
         if (!calculators[type]) return;
         if (!link.dataset.koLabel) link.dataset.koLabel = link.textContent;
         link.textContent = currentLang === 'ko' ? link.dataset.koLabel : `${calculators[type].title} guide & example`;
-        link.href = currentLang === 'ko' ? `guides/${type}` : `en/guides/${type}`;
+        link.href = currentLang === 'ko' ? `/guides/${type}` : `/en/guides/${type}`;
+    });
+
+    document.querySelectorAll('[data-calc]').forEach(link => {
+        link.href = currentLang === 'ko' ? `/calculators/${link.dataset.calc}` : `/en/calculators/${link.dataset.calc}`;
+    });
+
+    // Links with an English counterpart keep the Korean URL in href until switched.
+    document.querySelectorAll('[data-en-href]').forEach(link => {
+        if (!link.dataset.koHref) link.dataset.koHref = link.getAttribute('href');
+        link.href = currentLang === 'ko' ? link.dataset.koHref : link.dataset.enHref;
     });
 
     // Update Language Toggle Button text
@@ -336,12 +246,7 @@ function runCalculation() {
     const resultValue = document.getElementById('resultValue');
     const resultInfo = document.getElementById('resultInfo');
     
-    // Improved formatting for small and large numbers
-    if (Math.abs(result) < 0.0001 || Math.abs(result) > 1000000) {
-        resultValue.innerText = result.toExponential(4);
-    } else {
-        resultValue.innerText = result.toLocaleString(undefined, { maximumFractionDigits: 4 });
-    }
+    resultValue.innerText = formatResult(result);
     
     // Get info text based on language
     const infoData = calc.getInfo(result);
@@ -437,7 +342,7 @@ if (savedLang) {
     setLanguage(browserLang); 
 }
 
-// Guide pages link directly to their calculator.
+// Older links such as /#reynolds still open the calculator in a modal.
 function openCalculatorFromHash() {
     const type = location.hash.slice(1);
     if (calculators[type]) openModal(type);

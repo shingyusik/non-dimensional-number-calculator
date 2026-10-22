@@ -1,0 +1,11 @@
+# Old short calculator URLs -> calculator pages
+/reynolds /calculators/reynolds 301
+/mach /calculators/mach 301
+/nusselt /calculators/nusselt 301
+/prandtl /calculators/prandtl 301
+/schmidt /calculators/schmidt 301
+/peclet /calculators/peclet 301
+/strouhal /calculators/strouhal 301
+/froude /calculators/froude 301
+/weber /calculators/weber 301
+/knudsen /calculators/knudsen 301

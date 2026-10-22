@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>프루드 수 계산법·예제·해석 | 무차원수 계산기</title>
-<meta name="description" content="프루드 수의 공식, 입력 단위, 직접 계산한 예제와 해석할 때 주의할 점을 확인하세요.">
+<meta name="description" content="수심 5 m, 유속 3 m/s 개수로에서 Fr≈0.43(상류)을 구합니다. 선박 길이로 계산한 Fr에 상류·사류 해석을 붙이면 안 되는 까닭도 함께 봅니다.">
+<meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://calctool.cc/guides/froude">
-<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/froude">
-<link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/froude">
-<link rel="stylesheet" href="../style.css?v=20260926c">
-<link rel="stylesheet" href="../guide.css?v=20261009">
+<link rel="stylesheet" href="../style.css?v=20261022">
+<link rel="stylesheet" href="../guide.css?v=20261022">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
 </head>
 <body class="guide-page">
@@ -31,13 +40,14 @@
             </button></div><p class="eyebrow">계산 방법과 해석</p><h1>프루드 수 <small>(Froude Number)</small></h1><p>공식에 값을 넣는 방법과 결과를 읽을 때 확인할 조건을 정리했습니다.</p></header>
 <main>
 <section aria-labelledby="why"><h2 id="why">언제 쓰나요?</h2><p>유동 속도와 중력에 관련된 파동 속도 척도를 비교합니다. 개수로 흐름이나 선박 주변 물결을 분석할 때 쓰며, 어떤 L을 쓰는지에 따라 비교 대상이 달라집니다.</p></section>
-<section aria-labelledby="inputs"><h2 id="inputs">공식과 입력값</h2><div class="formula-box"><strong>Fr = v / √(gL)</strong></div><p>v는 유속(m/s), g는 중력 가속도(m/s²), L은 문제에 맞는 길이(m)입니다. 넓은 직사각형 수로의 간단한 예에서는 물 깊이를 L로 둘 수 있습니다. 일반적인 개수로에서는 수리수심 등 적절한 정의를 확인하세요.</p><a class="guide-cta" href="/#froude">이 값으로 계산하기</a></section>
+<section aria-labelledby="inputs"><h2 id="inputs">공식과 입력값</h2><div class="formula-box"><strong>Fr = v / √(gL)</strong></div><p>v는 유속(m/s), g는 중력 가속도(m/s²), L은 문제에 맞는 길이(m)입니다. 넓은 직사각형 수로의 간단한 예에서는 물 깊이를 L로 둘 수 있습니다. 일반적인 개수로에서는 수리수심 등 적절한 정의를 확인하세요.</p><a class="guide-cta" href="/calculators/froude">이 값으로 계산하기</a></section>
 <section aria-labelledby="example"><h2 id="example">직접 계산한 예제</h2><div class="example-box"><p>v = 3 m/s, g = 9.81 m/s², L = 5 m라면 Fr = 3 ÷ √(9.81 × 5) ≈ 0.43입니다.</p></div></section>
 <section aria-labelledby="meaning"><h2 id="meaning">결과는 어떻게 읽나요?</h2><p>개수로에서 적절한 수심 척도를 사용했다면 이 예시의 Fr &lt; 1은 상류(아임계) 흐름을 가리킵니다. Fr = 1은 임계, Fr &gt; 1은 사류(초임계) 구간을 나타내는 기준입니다.</p></section>
 <section aria-labelledby="caution"><h2 id="caution">적용할 때 주의할 점</h2><p>선박 길이로 계산한 Fr에 개수로의 상류·사류 해석을 그대로 붙이면 안 됩니다. L을 어떤 물리량으로 정했는지 계산 결과와 함께 남기세요.</p></section>
+<section aria-labelledby="related"><h2 id="related">관련 무차원수</h2><p>이 무차원수와 함께 계산하거나 비교하는 경우가 많은 수입니다.</p><ul><li><a href="/guides/reynolds">레이놀즈 수 (Re)</a>: 모형 실험에서 Fr을 맞추면 모형의 Re는 실물보다 작아지는 것이 일반적입니다.</li><li><a href="/guides/weber">웨버 수 (We)</a>: 같은 L과 v로 계산하면 We/Fr² = ρgL²/σ가 되어 속도가 사라지고 중력과 표면장력의 비만 남습니다.</li><li><a href="/guides/strouhal">스트로할 수 (St)</a>: Fr이 속도를 비교한다면 St는 진동 주기와 이송 시간을 비교합니다. 주기적인 자유 수면 현상에서는 둘을 함께 봅니다.</li></ul></section>
 <p class="source">공식·개념 확인: <a href="https://www.usgs.gov/publications/can-lava-flow-water-assessing-applications-critical-flow-theory-channelized-basaltic" rel="noopener noreferrer">U.S. Geological Survey — critical flow and Froude number</a>. 예제의 입력값과 계산 과정은 이 사이트에서 설명을 위해 구성했습니다.</p>
 <nav aria-label="다른 해설"><a href="/">전체 계산기</a><a href="/guides/weber">다음: 웨버 수</a><a href="/guides/model-similarity">축소 모형에서 Re와 Fr을 동시에 맞출 수 있을까?</a></nav>
 <nav aria-label="이론 심화"><a href="/guides/interface-time-scales">표면장력과 비정상 유동: 힘의 비와 시간의 비 연결하기</a></nav>
-</main><footer><a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a><p>© 2026 Dimensionless Number Calculator</p></footer>
-<script src="../guide.js?v=20260926c" defer></script>
+</main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>
+<script src="../guide.js?v=20261022" defer></script>
 </body></html>
