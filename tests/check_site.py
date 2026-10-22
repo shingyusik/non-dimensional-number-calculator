@@ -18,7 +18,7 @@ calculators = ['reynolds', 'mach', 'nusselt', 'prandtl', 'schmidt', 'peclet', 's
 # Korean basic guides are under 1,000 characters until the phase-2 rewrite.
 # They stay published and linked, but carry noindex and no hreflang. Remove
 # entries here (and the meta tag) once a page passes the length check.
-NOINDEX_THIN = {'guides/nusselt.html', 'guides/prandtl.html'}
+NOINDEX_THIN = set()
 CLARITY_PAGES = {'index.html', 'privacy.html', 'terms.html'}
 FOOTER = {
     'ko': ['/about', '/contact', '/privacy', '/terms'],

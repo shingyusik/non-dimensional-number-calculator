@@ -57,35 +57,46 @@
 <div id="calcResult" class="result-container" aria-live="polite"><p class="result-label">결과</p><p id="resultValue" class="result-value"></p><p id="resultInfo" class="result-info"></p><p id="resultExplain" class="result-explain"></p></div>
 <noscript><p>이 계산기는 브라우저의 JavaScript로 계산합니다. JavaScript가 꺼져 있으면 위 공식에 직접 값을 넣어 계산해 주세요.</p></noscript>
 <p class="source">입력값은 이 페이지 안에서 브라우저가 계산하며, 운영자가 따로 받거나 저장하지 않습니다.</p>
-</section>
-<section aria-labelledby="meaning"><h2 id="meaning">Pr이 유체만으로 정해지는 이유</h2>
-<p>Pr = μcₚ/k는 운동 점성 계수 ν = μ/ρ를 열확산 계수 α = k/(ρcₚ)로 나눈 ν/α와 같습니다. 식에 속도나 길이가 없기 때문에, 같은 유체가 같은 온도·압력에 있다면 관 속을 흐르든 평판 위를 흐르든 Pr은 같습니다. 레이놀즈 수나 페클레 수가 흐름의 조건을 설명한다면, 프란틀 수는 유체 자체의 성격을 설명합니다.</p>
+</section><section aria-labelledby="meaning"><h2 id="meaning">세 칸에 넣는 값과 결과의 성격</h2>
+<p>이 계산기는 μ × cₚ ÷ k를 그대로 계산합니다. 세 값을 같은 유체, 같은 온도의 물성표 한 줄에서 가져오면 결과는 그 상태의 프란틀 수가 되고, 운동 점성 계수와 열확산 계수의 비 ν/α와 같아집니다. 결과에는 관 지름이나 유속이 전혀 반영되지 않으므로, 같은 물성을 넣는 한 어떤 장치에 대해 계산하든 값이 같습니다. 흐름에 따라 달라지는 열전달 계수는 이 Pr을 Re와 함께 상관식에 넣은 다음 단계에서 구합니다.</p>
 </section>
 <section aria-labelledby="variables"><h2 id="variables">변수와 SI 단위</h2>
-<div class="table-wrap"><table><caption>프란틀 수 계산기의 입력 변수</caption><thead><tr><th scope="col">기호</th><th scope="col">의미</th><th scope="col">SI 단위</th><th scope="col">예제 값</th></tr></thead><tbody>
-<tr><th scope="row">μ</th><td>유체의 점성 계수</td><td>Pa·s</td><td>0.001</td></tr>
-<tr><th scope="row">cₚ</th><td>정압 비열</td><td>J/(kg·K)</td><td>4180</td></tr>
-<tr><th scope="row">k</th><td>유체의 열전도율</td><td>W/(m·K)</td><td>0.6</td></tr>
+<div class="table-wrap"><table><caption>프란틀 수 계산기의 입력 변수와 참고값</caption><thead><tr><th scope="col">기호</th><th scope="col">의미</th><th scope="col">SI 단위</th><th scope="col">예제 값 채우기</th><th scope="col">IAEA 20 °C 물</th></tr></thead><tbody>
+<tr><th scope="row">μ</th><td>유체의 점성 계수</td><td>Pa·s</td><td>0.001</td><td>1.0000 × 10⁻³</td></tr>
+<tr><th scope="row">cₚ</th><td>정압 비열</td><td>J/(kg·K)</td><td>4180</td><td>4185</td></tr>
+<tr><th scope="row">k</th><td>유체의 열전도율</td><td>W/(m·K)</td><td>0.6</td><td>0.5995</td></tr>
 </tbody></table></div></section>
 <section aria-labelledby="units"><h2 id="units">단위에서 자주 틀리는 곳</h2>
 <ul>
-<li>비열을 kJ/(kg·K)로 찾았다면 1000을 곱해 J/(kg·K)로 넣습니다. 4.18을 그대로 넣으면 Pr이 1000분의 1이 됩니다.</li>
-<li>점성 계수가 cP 단위라면 0.001을 곱해 Pa·s로 바꿉니다.</li>
-<li>운동 점성 계수 ν(m²/s)를 μ 칸에 넣지 마세요. 밀도만큼 차이가 납니다.</li>
-<li>μ, cₚ, k를 서로 다른 온도의 표에서 가져오면 의미 없는 값이 나옵니다. 특히 액체의 점성 계수는 온도에 민감합니다.</li>
+<li>물성표가 비열을 kJ/(kg·K)로 주면 1000을 곱합니다. 이를 빠뜨리면 결과가 정확히 1000분의 1이 되며, 숫자의 앞자리는 맞아 보이기 때문에 놓치기 쉽습니다.</li>
+<li>점성 계수가 cP나 mPa·s 단위라면 0.001을 곱해 Pa·s로 바꿉니다. 물성표 머리글에 10⁴(Pa·s)나 10⁶(Pa·s) 같은 배율이 붙어 있으면 표의 숫자를 그 배율로 나눕니다.</li>
+<li>표가 운동 점성 계수 ν(m²/s)만 준다면 같은 온도의 밀도를 곱해 μ = νρ로 바꾼 뒤 넣습니다.</li>
+<li>열전도율이 mW/(m·K)로 실린 자료도 있습니다. 이때는 1000으로 나눕니다.</li>
 </ul>
 </section>
 <section aria-labelledby="criteria"><h2 id="criteria">값의 크기로 읽는 법</h2>
-<p>Pr이 1보다 크면 운동량이 열보다 빠르게 퍼집니다. 층류 경계층에서는 이때 속도 경계층이 온도 경계층보다 두꺼운 경향이 있고, Pr이 1보다 작으면 반대가 됩니다. 대략적인 크기를 보면 기체는 1 근처(공기는 약 0.7), 물은 상온에서 한 자릿수, 점성이 큰 기름은 수백 이상, 액체 금속은 1보다 훨씬 작습니다. 계산 결과가 이 범위에서 크게 벗어난다면 단위를 다시 확인하세요.</p>
+<p>결과가 1보다 크면 운동량이 열보다 빨리 퍼지고, 층류에서는 속도 경계층이 온도 경계층보다 두꺼운 쪽에 가깝습니다. 결과가 1보다 작으면 그 반대입니다. 계산 결과가 맞는지 판단할 때는 다음 범위와 비교해 봅니다. IAEA 표에서 공기는 20 °C부터 1000 °C까지 0.71~0.74이고, 액체 물은 0 °C에서 13.456, 100 °C에서 1.747입니다. 액체 금속은 0.05보다 작은 경우가 많고(450 °C 나트륨 0.0045), 점성이 큰 기름은 물보다 훨씬 큽니다. 물을 넣었는데 0.01 아래나 1000 위의 값이 나왔다면 거의 확실히 단위 배율 문제입니다.</p>
 </section>
-<section aria-labelledby="check"><h2 id="check">예제와 교차검산</h2>
-<p>예제는 μ = 0.001 Pa·s, cₚ = 4180 J/(kg·K), k = 0.6 W/(m·K)로 Pr ≈ 6.97입니다. 관 유동 노트에서는 cₚ = 4200으로 Pr = 7을 얻고, ν/α로 다시 계산해도 7이 나오는지 확인합니다. 같은 노트에서 Re = 2000과 곱한 14000이 페클레 수 계산 결과와 일치하는 것도 볼 수 있습니다.</p>
-<p>Pr만으로 열전달 계수나 전달 열량을 구할 수는 없습니다. 대류 열전달 상관식에 Re와 함께 넣는 입력으로 쓰거나, 두 유체의 경계층 성격을 비교하는 데 씁니다.</p>
+<section aria-labelledby="check"><h2 id="check">계산기 입력으로 따라 하는 예제</h2>
+<section class="example" aria-labelledby="ex-default"><h3 id="ex-default">예제 1. “예제 값 채우기” 입력은 어떤 물인가</h3><p><strong>입력:</strong> 버튼을 누르면 μ = 0.001 Pa·s, cₚ = 4180 J/(kg·K), k = 0.6 W/(m·K)가 채워집니다. 이 값은 실온 물의 물성을 두세 자리로 반올림한 값입니다.</p><p><strong>계산:</strong> Pr = 0.001 × 4180 ÷ 0.6 = 6.97입니다.</p><p><strong>비교:</strong> IAEA 표 3.3의 20 °C 포화수(μ = 1.0000×10⁻³ Pa·s, cₚ = 4185 J/(kg·K), k = 0.5995 W/(m·K))를 넣으면 6.981이 나오고, 이는 표에 실린 Pr과 같습니다. 반올림한 입력은 이보다 0.2% 작은 값을 주므로 개략 계산에는 충분합니다. 다만 다른 계산기 결과와 끝자리까지 맞춰 볼 때는 같은 물성 세트를 계속 쓰는 편이 좋습니다.</p></section>
+<section class="example" aria-labelledby="ex-sodium"><h3 id="ex-sodium">예제 2. 450 °C 액체 나트륨: ν만 주어진 표에서 μ 만들기</h3><p><strong>주어진 값(IAEA 표 3.10, 450 °C 액체):</strong> 운동 점성 계수 3×10⁻⁷ m²/s, 밀도 844 kg/m³, 비열 1.272 kJ/(kg·K), 열전도율 71.2 W/(m·K)이고, 표의 Pr은 0.0045입니다.</p><p><strong>단위 변환:</strong> μ = νρ = 3×10⁻⁷ × 844 = 2.532 × 10⁻⁴ Pa·s, cₚ = 1.272 × 1000 = 1272 J/(kg·K)입니다. 계산기에는 μ 칸에 0.0002532, cₚ 칸에 1272, k 칸에 71.2를 넣습니다.</p><p><strong>계산:</strong> Pr = 2.532×10⁻⁴ × 1272 ÷ 71.2 = 0.00452로 표의 0.0045와 맞습니다. 표의 ν가 한 자리 유효숫자로만 실려 있으므로 결과도 앞의 두 자리까지만 의미가 있습니다.</p><p><strong>해석:</strong> 나트륨은 물보다 점성 계수가 약 4배 작은 수준이지만 열전도율은 100배 이상 큽니다. 그 결과 Pr이 20 °C 물의 약 1/1500로 떨어집니다. 이 범위에서는 물·공기용 관 유동 상관식을 그대로 쓰지 않습니다. INL RELAP-7은 Pr &lt; 0.1인 액체 금속에 Pe를 쓰는 별도의 Nu 식을 적용합니다.</p></section>
+<section class="example" aria-labelledby="ex-unit60"><h3 id="ex-unit60">예제 3. 60 °C 물로 단위 실수를 재현해 보기</h3><p><strong>올바른 입력(IAEA 표 3.3, 60 °C):</strong> μ = 0.0004677 Pa·s, cₚ = 4183 J/(kg·K), k = 0.6510 W/(m·K)를 넣으면 결과는 3.005입니다.</p><p><strong>비열을 kJ로 넣은 경우:</strong> cₚ 칸에 4.183을 넣으면 0.003005가 나옵니다. 숫자 3005는 그대로이고 소수점 위치만 세 자리 옮겨집니다.</p><p><strong>점성 계수를 cP로 넣은 경우:</strong> 같은 물의 점성 계수 0.4677 cP를 μ 칸에 그대로 넣으면 3005가 나옵니다.</p><p><strong>해석:</strong> 두 실수 모두 유효숫자는 올바른 결과와 같아서 결과 화면만 보면 그럴듯해 보입니다. 결과를 위의 크기 범위와 비교하는 습관이 이런 오류를 가장 빨리 잡습니다.</p></section>
+<p>관 유동 계산 노트는 cₚ = 4200으로 Pr = 7을 만들고, 같은 상태를 ν/α로 다시 계산해 7이 되는지 확인합니다. 이어서 Re = 2000에 곱한 14000이 페클레 수 계산기 결과와 일치하는지 봅니다. 이 계산기의 결과를 다른 계산기에 넘길 때도 이렇게 같은 물성 세트를 유지하면 검산이 쉬워집니다.</p>
 </section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">프란틀 수 계산기 사용 질문</h2>
+<details><summary>계산 결과가 물성표에 실린 Pr과 끝자리에서 다릅니다. 무엇이 틀렸나요?</summary><p>대개 틀린 것이 아니라 반올림 차이입니다. IAEA 공기 표처럼 비열이 1.00으로 세 자리만 실린 자료에서는 μcₚ/k가 0.705, 표의 Pr이 0.71로 0.7% 정도 어긋납니다. 차이가 1000배나 10배 단위라면 그때는 단위 배율을 다시 확인합니다.</p></details>
+<details><summary>글리콜 수용액 같은 혼합물은 어떻게 계산하나요?</summary><p>혼합물 자체의 μ, cₚ, k를 같은 온도에서 구해 넣습니다. 성분별 Pr을 농도로 평균하면 안 됩니다. 특히 점성 계수는 농도와 온도에 따라 비선형으로 변하므로, 해당 농도의 물성표나 측정값을 쓰는 것이 안전합니다.</p></details>
+<details><summary>계산한 Pr은 다음에 어디에 쓰나요?</summary><p>보통 레이놀즈 수와 함께 대류 상관식에 넣어 누셀트 수를 구하고, h = Nu × k ÷ D로 열전달 계수를 얻습니다. 이때 상관식이 요구하는 물성 기준 온도와 Pr을 계산한 온도가 같은지 확인합니다.</p></details>
+</section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">참고 자료</h2><ul>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering (2008)</a>. 20 °C·60 °C 포화수(표 3.3), 건조 공기(표 3.1), 450 °C 나트륨(표 3.10)의 물성과 Pr</li>
+<li>MIT OpenCourseWare (3.185): <a href="https://ocw.mit.edu/courses/3-185-transport-phenomena-in-materials-engineering-fall-2003/a55c74dc21def01fc0054de35574d1e5_3_21.pdf" rel="noopener noreferrer">Transport Phenomena in Materials Engineering</a>. Pr = ν/α가 유체 물성이라는 설명과 Pr 약 0.05 미만의 액체 금속 영역</li>
+<li>Idaho National Laboratory: <a href="https://lwrs.inl.gov/content/uploads/11/2024/03/RELAP-7_Theory_Manual.pdf" rel="noopener noreferrer">RELAP-7 Theory Manual, Rev. 2</a>. Pr &lt; 0.1 액체 금속에 쓰는 별도의 Nu 상관식</li>
+</ul></section>
 <section aria-labelledby="more"><h2 id="more">관련 해설과 계산기</h2>
 <h3>기본 해설</h3><ul><li><a href="/guides/prandtl">프란틀 수 해설: 예제와 주의점</a></li></ul>
-<h3>계산 노트</h3><ul><li><a href="/guides/pipe-flow">관 유동에서 Re·Pr·Pe를 함께 검산하기</a>: 같은 입력으로 세 계산기를 연결하고 Pe = Re × Pr이 맞는지 확인합니다.</li><li><a href="/guides/transport-scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a>: 확산 길이와 이송 시간을 비교하고 열전달 계수가 어디서 오는지 구분합니다.</li></ul>
-<h3>관련 계산기</h3><ul><li><a href="/calculators/peclet">페클레 수 (Pe)</a>: 같은 L·v·물성이면 Pe = Re × Pr입니다.</li><li><a href="/calculators/nusselt">누셀트 수 (Nu)</a>: 대류 열전달 상관식은 흔히 Nu를 Re와 Pr의 함수로 줍니다.</li><li><a href="/calculators/schmidt">슈미트 수 (Sc)</a>: Sc는 Pr의 열확산 계수 α 자리에 물질 확산 계수 D를 넣은 지표입니다.</li></ul>
+<h3>계산 노트</h3><ul><li><a href="/guides/pipe-flow">관 유동에서 Re·Pr·Pe를 함께 검산하기</a>: 여기서 구한 Pr을 레이놀즈 수와 곱해 페클레 수 계산기 결과와 맞춰 보는 과정이 나옵니다.</li><li><a href="/guides/transport-scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a>: 이 계산기의 결과가 열 경계층 두께 판단에 어떻게 쓰이는지, 슈미트 수와 어떻게 대응하는지 정리합니다.</li></ul>
+<h3>관련 계산기</h3><ul><li><a href="/calculators/peclet">페클레 수 (Pe)</a>: 이 결과에 Re를 곱한 값과 Pe 계산기 결과를 비교해 입력을 검산합니다.</li><li><a href="/calculators/nusselt">누셀트 수 (Nu)</a>: 상관식으로 얻은 Nu나 측정한 h를 무차원화할 때 같은 k를 씁니다.</li><li><a href="/calculators/schmidt">슈미트 수 (Sc)</a>: 열 대신 물질 확산을 다루며, 액체에서는 Pr보다 훨씬 큰 값이 나옵니다.</li></ul>
 </section>
 </main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>
 <script src="/calculators.js?v=20261022" defer></script>
