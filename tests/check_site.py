@@ -1,5 +1,7 @@
-"""Run with python3 tests/check_site.py. Builds the site with build.sh into a
-temporary directory and checks that output, i.e. what Cloudflare Pages serves."""
+"""Run with python3 tests/check_site.py. Copies the repository files into a
+temporary directory, builds the site there with build.sh and checks that output,
+i.e. what Cloudflare Pages serves. It also checks that build.sh refuses unsafe
+output names, hidden files and symlinks."""
 from difflib import SequenceMatcher
 from html.parser import HTMLParser
 from pathlib import Path
@@ -14,8 +16,10 @@ import tempfile
 import xml.etree.ElementTree as ET
 
 REPO = Path(__file__).resolve().parents[1]
-ROOT = Path(tempfile.mkdtemp(prefix='calctool-build-')) / 'dist'
-atexit.register(shutil.rmtree, ROOT.parent, ignore_errors=True)
+WORK = Path(tempfile.mkdtemp(prefix='calctool-build-'))
+atexit.register(shutil.rmtree, WORK, ignore_errors=True)
+SRC = WORK / 'src'
+ROOT = SRC / 'dist'
 SITE = 'https://calctool.cc'
 GA4_ID = 'G-4L6KGPWDN7'
 ADSENSE = 'pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516'
@@ -132,17 +136,7 @@ def file_of(url):
 # here as a development file, and development files never reach the output.
 DEV_FILES = {'.gitignore', 'README.md', 'DEPLOY.md', 'build.sh'}
 DEV_DIRS = ('tests/',)
-subprocess.run(['sh', str(REPO / 'build.sh'), str(ROOT)], check=True)
-again = ROOT.parent / 'again'
-subprocess.run(['sh', str(REPO / 'build.sh'), str(again)], check=True)
 
-
-def tree(base):
-    return {str(f.relative_to(base)): f.read_bytes() for f in base.rglob('*') if f.is_file()}
-
-
-built = tree(ROOT)
-assert built == tree(again), 'build.sh output differs between two runs'
 try:
     listed = subprocess.run(['git', 'ls-files', '--cached', '--others', '--exclude-standard'],
                             cwd=REPO, check=True, capture_output=True, text=True).stdout.splitlines()
@@ -150,6 +144,80 @@ try:
 except (OSError, subprocess.CalledProcessError):
     source = {str(f.relative_to(REPO)) for f in REPO.rglob('*') if f.is_file()
               and not f.relative_to(REPO).parts[0].startswith(('.git', 'dist', '__pycache__'))}
+
+
+def copy_source(dest):
+    for f in source:
+        (dest / f).parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(REPO / f, dest / f)
+
+
+def build(base, *args):
+    return subprocess.run(['sh', str(base / 'build.sh'), *args], cwd=WORK, capture_output=True, text=True)
+
+
+def tree(base):
+    return {str(f.relative_to(base)): f.read_bytes() for f in base.rglob('*') if f.is_file()}
+
+
+copy_source(SRC)
+for out in ('dist', 'again'):
+    result = build(SRC, out)
+    assert result.returncode == 0, f'build.sh {out} failed: {result.stderr}'
+again = SRC / 'again'
+
+# build.sh hardening, in a scratch copy so the checked build stays clean.
+SCRATCH = WORK / 'scratch'
+copy_source(SCRATCH)
+outside = WORK / 'x'
+outside.mkdir()
+(outside / 'keep').write_text('keep')
+(SCRATCH / '.hidden').mkdir()
+(SCRATCH / '.hidden' / 'keep').write_text('keep')
+for bad in ('', '../x', str(outside), '/tmp/x', '.hidden', '.', '..', 'a/b', 'dist/..', 'x y',
+            'calculators', 'en', 'guides', 'tests', 'index.html', 'tests/'):
+    before = tree(WORK)
+    result = build(SCRATCH, bad)
+    assert result.returncode != 0 and 'refusing' in result.stderr, f'build.sh accepted output {bad!r}'
+    assert tree(WORK) == before, f'build.sh {bad!r} changed files before refusing'
+(SCRATCH / '.hidden.html').write_text('hidden')
+(SCRATCH / 'guides' / '.draft.html').write_text('hidden')
+(SCRATCH / 'en' / '.drafts').mkdir()
+(SCRATCH / 'en' / '.drafts' / 'page.html').write_text('hidden')
+result = build(SCRATCH, 'out')
+assert result.returncode == 0, f'build.sh with dotfiles present failed: {result.stderr}'
+hidden = [f for f in tree(SCRATCH / 'out') if any(part.startswith('.') for part in Path(f).parts)]
+assert not hidden, f'build.sh published hidden files: {hidden}'
+for link, target in (('calculators/linked.html', '../index.html'), ('linked.html', 'index.html'),
+                     ('robots.txt', 'index.html'), ('guides', 'en/guides')):
+    path = SCRATCH / link
+    saved = path.with_name(path.name + '.saved')
+    if path.exists():
+        path.rename(saved)
+    path.symlink_to(target)
+    (SCRATCH / 'out' / 'keep').write_text('keep')
+    result = build(SCRATCH, 'out')
+    assert result.returncode != 0 and 'symlink' in result.stderr, f'build.sh accepted symlink {link}'
+    assert (SCRATCH / 'out' / 'keep').exists(), f'build.sh deleted the old output before refusing {link}'
+    path.unlink()
+    if saved.exists():
+        saved.rename(path)
+shutil.move(str(SCRATCH / 'en'), str(WORK / 'en-moved'))
+result = build(SCRATCH, 'out')
+assert result.returncode != 0, 'build.sh succeeded with a published directory missing'
+fake = WORK / 'fakebin'
+fake.mkdir()
+(fake / 'find').write_text('#!/bin/sh\necho "find: simulated failure" >&2\nexit 1\n')
+(fake / 'find').chmod(0o755)
+shutil.move(str(WORK / 'en-moved'), str(SCRATCH / 'en'))
+result = subprocess.run(['sh', str(SCRATCH / 'build.sh'), 'out'], cwd=WORK, capture_output=True, text=True,
+                        env={'PATH': f'{fake}:/usr/bin:/bin'})
+assert result.returncode != 0 and 'simulated failure' in result.stderr, 'build.sh ignored a find failure'
+assert (SCRATCH / 'out' / 'keep').exists(), 'build.sh deleted the old output after a find failure'
+
+
+built = tree(ROOT)
+assert built == tree(again), 'build.sh output differs between two runs'
 dev = {f for f in source if f in DEV_FILES or f.startswith(DEV_DIRS)}
 assert not dev & set(built), f'Development files in build output: {sorted(dev & set(built))}'
 assert set(built) <= source, f'Build output has files not in the repository: {sorted(set(built) - source)}'
@@ -409,7 +477,7 @@ for css in [*ROOT.glob('*.css'), *pages]:
 
 for chars, r in sorted(warnings):
     print(f'WARN: {r} body has {chars} characters (< {WARN_BODY})')
-print(f'PASS: build.sh output ({len(built)} files, deterministic, no development files); {len(pages)} HTML pages; links, fragments, IDs, lang/canonical/GA4/AdSense/footer, unique titles and descriptions, '
+print(f'PASS: build.sh output ({len(built)} files, deterministic, no development files; unsafe output names, hidden files, symlinks and find failures refused); {len(pages)} HTML pages; links, fragments, IDs, lang/canonical/GA4/AdSense/footer, unique titles and descriptions, '
       f'{len(sitemap_urls)} sitemap URLs (>= {MIN_BODY} chars, no redirects or noindex), {len(noindex)} noindex pages, hreflang pairs, '
       f'calculator pages, _redirects, privacy disclosures; '
       f'_headers (HSTS, frames, CSP report-only with {len(inline)} script and {len(handlers)} handler hashes, script hosts {sorted(hosts)})')

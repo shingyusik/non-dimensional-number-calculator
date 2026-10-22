@@ -2,7 +2,7 @@
 
 Cloudflare Pages project `non-dimensional-number-calculator`, connected to `shingyusik/non-dimensional-number-calculator`, production branch `main`.
 
-Site files stay in the repository root. `sh build.sh` copies an allowlist of them into `dist/`: root `*.html`, `*.css`, `*.js`, `*.png`, `*.svg`, `*.ico`, the `*.html` files under `calculators/`, `en/` and `guides/`, and `_headers`, `_redirects`, `404.html`, `ads.txt`, `robots.txt`, `sitemap.xml`. Nothing else is published (`README.md`, `DEPLOY.md`, `build.sh`, `tests/`, `.git*`). A new kind of site file must be added to `build.sh`; `tests/check_site.py` fails until every repository file is either published or listed as a development file.
+Site files stay in the repository root. `sh build.sh` copies an allowlist of them into `dist/`: root `*.html`, `*.css`, `*.js`, `*.png`, `*.svg`, `*.ico`, the `*.html` files under `calculators/`, `en/` and `guides/`, and `_headers`, `_redirects`, `404.html`, `ads.txt`, `robots.txt`, `sitemap.xml`. Nothing else is published (`README.md`, `DEPLOY.md`, `build.sh`, `tests/`, `.git*`). Hidden files and directories are skipped, and a symlink in the published set stops the build. The output must be a plain directory name in the repository root (`dist` by default); empty names, absolute paths, names with `/` or `..`, names starting with `.`, source directories and tracked paths are refused before anything is deleted. A new kind of site file must be added to `build.sh`; `tests/check_site.py` fails until every repository file is either published or listed as a development file.
 
 ## Pages build settings
 

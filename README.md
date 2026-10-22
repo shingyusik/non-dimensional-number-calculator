@@ -33,7 +33,7 @@ git diff --check
 
 Checks cover local links, lang/canonical/hreflang, analytics and ad tags, footers, unique titles and descriptions, sitemap entries (final URLs, minimum body length, no noindex pages), redirects, the privacy disclosures and numerical examples using shipped formulas. Desktop/mobile layout requires browser verification.
 
-`tests/check_site.py` runs `build.sh` into a temporary directory and checks that output: deterministic, every site file present, no development files, and the `_headers` values (HSTS, frame denial, report-only CSP covering every inline script hash and external script host).
+`tests/check_site.py` runs `build.sh` into a temporary directory and checks that output: deterministic, every site file present, no development files, that unsafe output names, hidden files, symlinks and `find` failures make `build.sh` fail, and the `_headers` values (HSTS, frame denial, report-only CSP covering every inline script hash and external script host).
 
 ## Deployment
 
