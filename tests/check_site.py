@@ -399,6 +399,14 @@ for file, page in pages.items():
         else:
             assert "'self'" in script_src
 
+# Stylesheets imported from other hosts (Google Fonts in style.css) need style-src.
+style_src = csp.get('style-src', csp['default-src'])
+for css in [*ROOT.glob('*.css'), *pages]:
+    for host in re.findall(r"@import\s+url\(['\"]?https://([^/'\")]+)", css.read_text(encoding='utf-8')):
+        assert f'https://{host}' in style_src, f'{rel(css)}: stylesheet host {host} not in style-src'
+        if host == 'fonts.googleapis.com':
+            assert 'https://fonts.gstatic.com' in csp.get('font-src', []), 'Google Fonts needs https://fonts.gstatic.com in font-src'
+
 for chars, r in sorted(warnings):
     print(f'WARN: {r} body has {chars} characters (< {WARN_BODY})')
 print(f'PASS: build.sh output ({len(built)} files, deterministic, no development files); {len(pages)} HTML pages; links, fragments, IDs, lang/canonical/GA4/AdSense/footer, unique titles and descriptions, '
