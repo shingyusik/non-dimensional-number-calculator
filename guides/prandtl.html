@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>프란틀 수 계산법·예제·해석 | 무차원수 계산기</title>
-<meta name="description" content="프란틀 수의 공식, 입력 단위, 직접 계산한 예제와 해석할 때 주의할 점을 확인하세요.">
+<meta name="description" content="점성 계수·비열·열전도율을 같은 온도에서 가져와야 하는 까닭을 Pr≈6.97 예제로 보여 주고, Pr=ν/α로 바꿔 쓰는 방법을 덧붙였습니다.">
+<meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://calctool.cc/guides/prandtl">
-<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/prandtl">
-<link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/prandtl">
-<link rel="stylesheet" href="../style.css?v=20260926c">
-<link rel="stylesheet" href="../guide.css?v=20261009">
+<link rel="stylesheet" href="../style.css?v=20261022">
+<link rel="stylesheet" href="../guide.css?v=20261022">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
 </head>
 <body class="guide-page">
@@ -31,13 +40,14 @@
             </button></div><p class="eyebrow">계산 방법과 해석</p><h1>프란틀 수 <small>(Prandtl Number)</small></h1><p>공식에 값을 넣는 방법과 결과를 읽을 때 확인할 조건을 정리했습니다.</p></header>
 <main>
 <section aria-labelledby="why"><h2 id="why">언제 쓰나요?</h2><p>운동량이 퍼지는 속도와 열이 퍼지는 속도의 비를 나타냅니다. 유체의 열전달 문제에서 속도 경계층과 온도 경계층의 상대적인 성격을 이해하는 데 사용합니다.</p></section>
-<section aria-labelledby="inputs"><h2 id="inputs">공식과 입력값</h2><div class="formula-box"><strong>Pr = μcₚ / k</strong></div><p>μ는 점성 계수(Pa·s), cₚ는 정압 비열(J/kg·K), k는 열전도율(W/m·K)입니다. 같은 온도와 상태에서 평가한 유체 물성을 넣으세요. 동등한 식 Pr = ν/α에서는 ν가 운동 점성 계수, α가 열확산 계수입니다.</p><a class="guide-cta" href="/#prandtl">이 값으로 계산하기</a></section>
+<section aria-labelledby="inputs"><h2 id="inputs">공식과 입력값</h2><div class="formula-box"><strong>Pr = μcₚ / k</strong></div><p>μ는 점성 계수(Pa·s), cₚ는 정압 비열(J/kg·K), k는 열전도율(W/m·K)입니다. 같은 온도와 상태에서 평가한 유체 물성을 넣으세요. 동등한 식 Pr = ν/α에서는 ν가 운동 점성 계수, α가 열확산 계수입니다.</p><a class="guide-cta" href="/calculators/prandtl">이 값으로 계산하기</a></section>
 <section aria-labelledby="example"><h2 id="example">직접 계산한 예제</h2><div class="example-box"><p>가상의 물성값 μ = 0.001 Pa·s, cₚ = 4180 J/kg·K, k = 0.6 W/m·K를 대입하면 Pr = 0.001 × 4180 ÷ 0.6 ≈ 6.97입니다. 예시 값은 실제 설계 물성표를 대체하지 않습니다.</p></div></section>
 <section aria-labelledby="meaning"><h2 id="meaning">결과는 어떻게 읽나요?</h2><p>Pr이 1보다 크면 이 정의에서는 운동량 확산율이 열확산율보다 큽니다. Pr은 유체 물성의 비이므로 이것만으로 대류 열전달 계수나 열량을 구할 수 없습니다.</p></section>
 <section aria-labelledby="caution"><h2 id="caution">적용할 때 주의할 점</h2><p>온도에 따라 세 물성이 변합니다. 서로 다른 온도에서 가져온 μ, cₚ, k를 섞거나 점성 계수 μ와 운동 점성 계수 ν를 서로 바꾸어 넣지 마세요.</p></section>
+<section aria-labelledby="related"><h2 id="related">관련 무차원수</h2><p>이 무차원수와 함께 계산하거나 비교하는 경우가 많은 수입니다.</p><ul><li><a href="/guides/peclet">페클레 수 (Pe)</a>: 같은 L·v·물성이면 Pe = Re × Pr입니다.</li><li><a href="/guides/nusselt">누셀트 수 (Nu)</a>: 대류 열전달 상관식은 흔히 Nu를 Re와 Pr의 함수로 줍니다.</li><li><a href="/guides/schmidt">슈미트 수 (Sc)</a>: Sc는 Pr의 열확산 계수 α 자리에 물질 확산 계수 D를 넣은 지표입니다.</li></ul></section>
 <p class="source">공식·개념 확인: <a href="https://mitocw.ups.edu.ec/courses/aeronautics-and-astronautics/16-050-thermal-energy-fall-2002/lecture-notes/10_part3.pdf" rel="noopener noreferrer">MIT — Introduction to Engineering Heat Transfer</a>. 예제의 입력값과 계산 과정은 이 사이트에서 설명을 위해 구성했습니다.</p>
 <nav aria-label="다른 해설"><a href="/">전체 계산기</a><a href="/guides/schmidt">다음: 슈미트 수</a><a href="/guides/pipe-flow">관 유동에서 Re·Pr·Pe를 함께 검산하기</a></nav>
 <nav aria-label="이론 심화"><a href="/guides/transport-scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a></nav>
-</main><footer><a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a><p>© 2026 Dimensionless Number Calculator</p></footer>
-<script src="../guide.js?v=20260926c" defer></script>
+</main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>
+<script src="../guide.js?v=20261022" defer></script>
 </body></html>

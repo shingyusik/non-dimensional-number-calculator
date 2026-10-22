@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nusselt Number: formula, example and interpretation | Dimensionless Number Calculator</title>
-<meta name="description" content="Learn the Nusselt Number formula, input units, a worked example, and when its interpretation applies.">
+<meta name="description" content="An h=50 W/m²K example gives Nu≈8.33. This guide also explains that the tool never predicts h and why mean and local Nusselt numbers should not be mixed.">
 <link rel="canonical" href="https://calctool.cc/en/guides/nusselt">
-<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/nusselt">
-<link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/nusselt">
-<link rel="stylesheet" href="../../style.css?v=20260926c">
-<link rel="stylesheet" href="../../guide.css?v=20261009">
+<link rel="stylesheet" href="../../style.css?v=20261022">
+<link rel="stylesheet" href="../../guide.css?v=20261022">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
 </head>
 <body class="guide-page">
@@ -31,13 +39,14 @@
             </button></div><p class="eyebrow">Method and interpretation</p><h1>Nusselt Number</h1><p>See how to enter values, calculate a result, and check the limits of its interpretation.</p></header>
 <main>
 <section aria-labelledby="why"><h2 id="why">When is it useful?</h2><p>Nusselt number compares surface convective heat transfer with conduction through the fluid over a chosen length scale. It helps compare heat-transfer conditions when the geometry and definitions are consistent.</p></section>
-<section aria-labelledby="inputs"><h2 id="inputs">Formula and inputs</h2><div class="formula-box"><strong>Nu = hL / k</strong></div><p>Enter convective heat-transfer coefficient h in W/(m²·K), characteristic length L in m, and fluid thermal conductivity k in W/(m·K). The coefficient h must come from a measurement or a separate correlation; this calculator does not predict it.</p><a class="guide-cta" href="/#nusselt">Open this calculator</a></section>
+<section aria-labelledby="inputs"><h2 id="inputs">Formula and inputs</h2><div class="formula-box"><strong>Nu = hL / k</strong></div><p>Enter convective heat-transfer coefficient h in W/(m²·K), characteristic length L in m, and fluid thermal conductivity k in W/(m·K). The coefficient h must come from a measurement or a separate correlation; this calculator does not predict it.</p><a class="guide-cta" href="/en/calculators/nusselt">Open this calculator</a></section>
 <section aria-labelledby="example"><h2 id="example">Worked example</h2><div class="example-box"><p>With h = 50 W/(m²·K), L = 0.1 m, and k = 0.6 W/(m·K), Nu = 50 × 0.1 ÷ 0.6 ≈ 8.33. The units cancel when entered consistently.</p></div></section>
 <section aria-labelledby="meaning"><h2 id="meaning">Interpreting the result</h2><p>For the same geometry, length definition, and fluid-property basis, a larger Nu indicates a larger convective coefficient relative to conduction. Nu is neither heat flux nor total heat transferred.</p></section>
 <section aria-labelledby="caution"><h2 id="caution">Limits and cautions</h2><p>Choose L for the geometry, such as pipe diameter or distance along a plate. An average Nu based on average h is not directly interchangeable with a local Nu.</p></section>
+<section aria-labelledby="related"><h2 id="related">Related dimensionless numbers</h2><p>Numbers that are often calculated or compared alongside this one.</p><ul><li><a href="/en/guides/prandtl">Prandtl number (Pr)</a>: Convective heat-transfer correlations commonly give Nu as a function of Re and Pr.</li><li><a href="/en/guides/peclet">Péclet number (Pe)</a>: Pe compares advection and diffusion times but does not supply the heat-transfer coefficient h.</li><li><a href="/en/guides/schmidt">Schmidt number (Sc)</a>: In mass-transfer problems, Sc takes the place that Pr has in heat transfer.</li></ul></section>
 <p class="source">Formula and concept reference: <a href="https://pu.edu.pk/images/image/Lecture-Notes/CHE-216-Part-10.pdf" rel="noopener noreferrer">University of the Punjab — Heat Transfer lecture notes</a>. We created the sample inputs and calculations for this guide.</p>
 <nav aria-label="Other guides"><a href="/">All calculators</a><a href="/en/guides/prandtl">Next: Prandtl Number</a><a href="/en/guides/pipe-flow">Cross-check Re, Pr and Pe for pipe flow</a></nav>
 <nav aria-label="Theory in depth"><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a></nav>
-</main><footer><a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a><p>© 2026 Dimensionless Number Calculator</p></footer>
-<script src="../../guide.js?v=20260926c" defer></script>
+</main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
+<script src="../../guide.js?v=20261022" defer></script>
 </body></html>

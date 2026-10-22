@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guides by field: dimensionless-number calculators and notes | calctool.cc</title>
+<meta name="description" content="Browse ten calculators, their basic guides and six cross-checking calculation notes, grouped into fluid flow, heat transfer, mass transfer, interfaces, and gases and compressibility.">
+<link rel="canonical" href="https://calctool.cc/en/guides/">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/">
+<link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/guides/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="/style.css?v=20261022">
+<link rel="stylesheet" href="/guide.css?v=20261022">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
+</head>
+<body class="guide-page">
+<header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/guides/" aria-label="한국어로 전환">한글</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button></div><p class="eyebrow">Guides</p><h1>Guides and calculators by field</h1><p>Calculators, basic guides and calculation notes, grouped by field.</p></header>
+<main>
+<p>This page lists the site’s calculators, the basic guide for each dimensionless number, and the calculation notes, grouped by field. Calculator pages let you calculate while checking the formula, units and how to read the result. Basic guides walk through one example to show how inputs are chosen. Calculation notes chain several numbers on one input set and check that they agree.</p>
+<p>Numbers are grouped by the problems they are mainly used for. The Péclet number also applies to mass transfer, but it sits under heat transfer because this site’s calculator takes thermal diffusivity; notes that span several fields are listed under each of them.</p>
+<section aria-labelledby="cat-flow"><h2 id="cat-flow">Fluid flow</h2><p>Balances between inertia, viscosity and gravity, plus periodic motion inside a flow: pipe flow, open channels, scale-model tests and vortex shedding behind cylinders.</p>
+<h3>Calculators</h3><ul><li><a href="/en/calculators/reynolds">Reynolds number (Re)</a>: Inertia versus viscosity, with circular-pipe regime guidance.</li><li><a href="/en/calculators/froude">Froude number (Fr)</a>: Flow speed versus gravity-wave speed: channels and ships.</li><li><a href="/en/calculators/strouhal">Strouhal number (St)</a>: Oscillation period versus transit time: vortex shedding.</li></ul>
+<h3>Basic guides</h3><ul><li><a href="/en/guides/reynolds">Reynolds number guide</a>: Re for a pipe example and the limits of the 2300 and 4000 thresholds.</li><li><a href="/en/guides/froude">Froude number guide</a>: Fr from a channel depth and the subcritical/supercritical split.</li><li><a href="/en/guides/strouhal">Strouhal number guide</a>: St from vortex shedding behind a cylinder.</li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/pipe-flow">Cross-check Re, Pr and Pe for pipe flow</a>: One input set through three calculators, checking that Pe = Re × Pr.</li><li><a href="/en/guides/model-similarity">Can a scale model match both Re and Fr?</a>: Two candidate speeds for a 1:10 model and why they conflict.</li><li><a href="/en/guides/pipe-energy">Pipe pressure loss: from conservation laws to Poiseuille flow</a>: Mass and energy balances show why the same Re can give different pressure losses.</li></ul></section>
+<section aria-labelledby="cat-heat"><h2 id="cat-heat">Heat transfer</h2><p>Separate ratios for heat carried by the flow, heat diffusing through the fluid, and heat exchanged at a surface.</p>
+<h3>Calculators</h3><ul><li><a href="/en/calculators/nusselt">Nusselt number (Nu)</a>: Convection versus conduction over the same length.</li><li><a href="/en/calculators/prandtl">Prandtl number (Pr)</a>: Momentum versus thermal diffusivity; a fluid property.</li><li><a href="/en/calculators/peclet">Péclet number (Pe)</a>: Advection versus diffusion, for heat or mass.</li></ul>
+<h3>Basic guides</h3><ul><li><a href="/en/guides/nusselt">Nusselt number guide</a>: Turning a given h into Nu, and mean versus local values.</li><li><a href="/en/guides/prandtl">Prandtl number guide</a>: Pr from properties at one temperature.</li><li><a href="/en/guides/peclet">Péclet number guide</a>: Pe from thermal diffusivity, distinguished from the mass Pe.</li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a>: Diffusion lengths versus transit times, and where a heat-transfer coefficient comes from.</li><li><a href="/en/guides/pipe-flow">Cross-check Re, Pr and Pe for pipe flow</a>: One input set through three calculators, checking that Pe = Re × Pr.</li></ul></section>
+<section aria-labelledby="cat-mass"><h2 id="cat-mass">Mass transfer</h2><p>Spreading of a dissolved or gaseous species. The molecular diffusivity D of that species takes the place of thermal diffusivity.</p>
+<h3>Calculators</h3><ul><li><a href="/en/calculators/schmidt">Schmidt number (Sc)</a>: Momentum versus mass diffusivity.</li></ul>
+<h3>Basic guides</h3><ul><li><a href="/en/guides/schmidt">Schmidt number guide</a>: Sc for a solute in water and what D represents.</li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a>: Diffusion lengths versus transit times, and where a heat-transfer coefficient comes from.</li></ul></section>
+<section aria-labelledby="cat-interface"><h2 id="cat-interface">Interfaces</h2><p>Droplets, bubbles and sprays, where the shape of the boundary between two fluids depends on inertia versus surface tension.</p>
+<h3>Calculators</h3><ul><li><a href="/en/calculators/weber">Weber number (We)</a>: Inertia versus surface tension: drops and sprays.</li></ul>
+<h3>Basic guides</h3><ul><li><a href="/en/guides/weber">Weber number guide</a>: We for a water drop and the choice of L.</li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/interface-time-scales">Surface tension and unsteady flow: connect force ratios to time ratios</a>: We, Re, Fr and St on one length scale; curvature pressure versus capillary time.</li></ul></section>
+<section aria-labelledby="cat-gas"><h2 id="cat-gas">Gases and compressibility</h2><p>Two separate checks for gases: whether density changes matter (Mach number) and whether molecular length scales can be ignored (Knudsen number).</p>
+<h3>Calculators</h3><ul><li><a href="/en/calculators/mach">Mach number (Ma)</a>: Flow speed versus speed of sound: compressibility.</li><li><a href="/en/calculators/knudsen">Knudsen number (Kn)</a>: Mean free path versus device size: the continuum check.</li></ul>
+<h3>Basic guides</h3><ul><li><a href="/en/guides/mach">Mach number guide</a>: Ma from speed and sound speed; free-stream versus local.</li><li><a href="/en/guides/knudsen">Knudsen number guide</a>: Kn from mean free path and channel size.</li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/gas-models">Choosing gas-flow models: check Mach and Knudsen numbers separately</a>: Compressibility and molecular length scales, checked separately with isentropic relations.</li></ul></section>
+</main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
+<script src="/guide.js?v=20261022" defer></script>
+</body></html>

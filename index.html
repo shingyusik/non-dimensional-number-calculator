@@ -20,21 +20,22 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dimensionless Number Calculator | 무차원수 계산기</title>
-    <meta name="description" content="무차원수 계산기(Dimensionless Number Calculator)를 통해 레이놀즈 수, 마하 수, 누셀트 수 등 다양한 공학적 무차원수를 쉽고 정확하게 계산하고 그 의미를 학습하세요.">
-    <meta property="og:title" content="Dimensionless Number Calculator | 무차원수 계산기">
-    <meta property="og:description" content="레이놀즈 수, 마하 수 등 다양한 무차원수를 계산하고 그 물리적 의미를 확인하세요.">
+    <title>무차원수 계산기: 레이놀즈·마하·누셀트 등 10종 계산과 해석 | calctool.cc</title>
+    <meta name="description" content="레이놀즈, 프루드, 누셀트, 프란틀, 웨버, 마하, 누센 등 무차원수 10종을 분야별로 정리한 계산기입니다. 공식과 SI 단위, 결과 해석 기준을 확인하며 브라우저에서 바로 계산합니다.">
+    <meta property="og:title" content="무차원수 계산기 | calctool.cc">
+    <meta property="og:description" content="유동·열전달·물질전달·계면·기체 분야의 무차원수 10종을 계산하고, 결과를 어떤 가정에서 읽어야 하는지 함께 확인하세요.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://calctool.cc/">
     <link rel="canonical" href="https://calctool.cc/">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="style.css?v=20261009">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516"
-     crossorigin="anonymous"></script>
+    <link rel="alternate" hreflang="ko" href="https://calctool.cc/">
+    <link rel="alternate" hreflang="x-default" href="https://calctool.cc/">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/style.css?v=20261022">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
 </head>
 <body>
     <header style="position: relative;">
@@ -43,7 +44,6 @@
                 KO/EN
             </button>
             <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
-                <!-- Sun Icon -->
                 <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
                     <circle cx="12" cy="12" r="5"></circle>
                     <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -55,156 +55,163 @@
                     <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                     <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                 </svg>
-                <!-- Moon Icon -->
                 <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
             </button>
         </div>
-        <h1 data-i18n="page_title">Dimensionless Numbers</h1>
-        <p data-i18n="page_subtitle">물리적 현상의 핵심을 파악하는 무차원수 계산기</p>
+        <h1 data-i18n="page_title">무차원수 계산기</h1>
+        <p data-i18n="page_subtitle">유동·열전달·물질전달·계면·기체 문제의 무차원수 10종을 계산하고 해석합니다</p>
     </header>
 
     <main>
         <section class="site-intro" aria-labelledby="intro-title">
-            <h2 id="intro-title" data-i18n="intro_title">계산값을 해석하기 전에</h2>
-            <p data-i18n="intro_text">무차원수는 조건이 다른 유동·열전달 문제를 비교할 때 쓰는 비율입니다. 공식에 숫자를 넣기 전에 특성 길이와 물성값이 현재 문제에 맞는지 확인하세요.</p>
+            <h2 id="intro-title" data-i18n="intro_title">이 사이트에서 할 수 있는 일</h2>
+            <p data-i18n="intro_text">calctool.cc는 유체역학과 열·물질전달에서 쓰는 무차원수 10종을 계산하는 개인 프로젝트입니다. 계산기마다 전용 페이지가 있어 공식, 변수와 SI 단위, 단위를 바꿀 때 자주 틀리는 부분, 결과를 읽는 기준을 계산과 함께 확인할 수 있습니다.</p>
+            <p data-i18n="intro_text2">무차원수는 크기나 조건이 다른 두 문제를 같은 잣대로 비교하게 해 주지만, 특성 길이와 물성값을 어떻게 정했는지에 따라 같은 이름의 수도 다른 뜻이 됩니다. 그래서 이 사이트는 숫자 하나를 내놓는 데서 멈추지 않고 그 숫자가 어떤 가정에서 의미가 있는지를 함께 적어 둡니다. 계산은 브라우저에서 이루어지며, 공식은 공개 저장소의 자동 검사로 예제 값과 대조합니다.</p>
             <ol>
-                <li data-i18n="intro_step1">아래에서 필요한 계산기를 엽니다.</li>
-                <li data-i18n="intro_step2">입력 단위를 맞춰 계산하고, 각 항목의 해설에서 예제와 적용 범위를 확인합니다.</li>
-                <li data-i18n="intro_step3">결과를 설계나 실험에 사용한다면 원래 물성 자료와 경계 조건을 다시 확인합니다.</li>
+                <li data-i18n="intro_step1">아래 분야에서 필요한 무차원수를 찾아 계산기 페이지를 엽니다.</li>
+                <li data-i18n="intro_step2">입력 단위를 SI로 맞춰 계산하고, 결과 아래의 해석 문장과 적용 범위를 확인합니다.</li>
+                <li data-i18n="intro_step3">설계나 실험에 쓴다면 원래 물성 자료와 경계 조건을 다시 확인하고, 계산 노트에서 다른 무차원수와 교차검산합니다.</li>
             </ol>
+            <p><span data-i18n="intro_more">사이트를 만든 이유와 계산식 검증 방법은 소개 페이지에 정리했습니다.</span> <a href="/about" data-en-href="/en/about" data-i18n="intro_more_link">소개 보기</a></p>
+            <p class="category-jump"><span data-i18n="jump_label">분야 바로가기:</span> <a href="#cat-flow" data-i18n="cat_flow_title">유동</a> · <a href="#cat-heat" data-i18n="cat_heat_title">열전달</a> · <a href="#cat-mass" data-i18n="cat_mass_title">물질전달</a> · <a href="#cat-interface" data-i18n="cat_interface_title">계면</a> · <a href="#cat-gas" data-i18n="cat_gas_title">기체·압축성</a> · <a href="/guides/" data-en-href="/en/guides/" data-i18n="all_guides">전체 해설 목록 보기</a></p>
         </section>
-        <section class="grid" id="guides">
-            <!-- Reynolds Number Card -->
-            <article class="card" onclick="openModal('reynolds')">
+        <div id="guides">
+        <section class="category" id="cat-flow" aria-labelledby="cat-flow-title">
+            <h2 id="cat-flow-title" data-i18n="cat_flow_title">유동</h2>
+            <p class="category-desc" data-i18n="cat_flow_desc">관성·점성·중력의 균형과 흐름 속에서 반복되는 진동을 다룹니다. 관 속 흐름, 개수로, 축소 모형 실험, 원기둥 뒤 와류 방출이 대표적인 예입니다.</p>
+            <div class="grid">
+            <article class="card">
                 <div>
-                    <h2>Reynolds Number</h2>
+                    <h3 data-i18n="name_reynolds">레이놀즈 수 (Re)</h3>
                     <p class="formula">Re = ρvL / μ</p>
                     <p data-i18n="reynolds_short_desc">유체의 관성력과 점성력의 비를 나타내며, 유동이 층류인지 난류인지 판단하는 지표입니다.</p>
                 </div>
-                <button type="button" class="calc-open" data-i18n="open_calculator" onclick="event.stopPropagation(); openModal('reynolds')">계산기 열기</button>
-                <a class="guide-link" href="guides/reynolds" data-guide="reynolds" onclick="event.stopPropagation()">레이놀즈 수 계산법·예제</a>
+                <a class="calc-open" href="/calculators/reynolds" data-calc="reynolds" data-i18n="open_calculator">계산기 열기</a>
+                <a class="guide-link" href="/guides/reynolds" data-guide="reynolds">레이놀즈 수 계산법·예제</a>
             </article>
-
-            <!-- Mach Number Card -->
-            <article class="card" onclick="openModal('mach')">
+            <article class="card">
                 <div>
-                    <h2>Mach Number</h2>
-                    <p class="formula">Ma = v / c</p>
-                    <p data-i18n="mach_short_desc">유체의 속도와 음속의 비를 나타내며, 압축성 유동의 특성을 결정합니다.</p>
-                </div>
-                <button type="button" class="calc-open" data-i18n="open_calculator" onclick="event.stopPropagation(); openModal('mach')">계산기 열기</button>
-                <a class="guide-link" href="guides/mach" data-guide="mach" onclick="event.stopPropagation()">마하 수 계산법·예제</a>
-            </article>
-
-            <!-- Nusselt Number Card -->
-            <article class="card" onclick="openModal('nusselt')">
-                <div>
-                    <h2>Nusselt Number</h2>
-                    <p class="formula">Nu = hL / k</p>
-                    <p data-i18n="nusselt_short_desc">대류 열전달과 전도 열전달의 비를 나타내며, 대류가 열전달에 기여하는 정도를 결정합니다.</p>
-                </div>
-                <button type="button" class="calc-open" data-i18n="open_calculator" onclick="event.stopPropagation(); openModal('nusselt')">계산기 열기</button>
-                <a class="guide-link" href="guides/nusselt" data-guide="nusselt" onclick="event.stopPropagation()">누셀트 수 계산법·예제</a>
-            </article>
-
-            <!-- Prandtl Number Card -->
-            <article class="card" onclick="openModal('prandtl')">
-                <div>
-                    <h2>Prandtl Number</h2>
-                    <p class="formula">Pr = μc_p / k</p>
-                    <p data-i18n="prandtl_short_desc">운동량 확산과 열 확산의 비를 나타내며, 유체의 물리적 특성만으로 결정됩니다.</p>
-                </div>
-                <button type="button" class="calc-open" data-i18n="open_calculator" onclick="event.stopPropagation(); openModal('prandtl')">계산기 열기</button>
-                <a class="guide-link" href="guides/prandtl" data-guide="prandtl" onclick="event.stopPropagation()">프란틀 수 계산법·예제</a>
-            </article>
-
-            <!-- Schmidt Number Card -->
-            <article class="card" onclick="openModal('schmidt')">
-                <div>
-                    <h2>Schmidt Number</h2>
-                    <p class="formula">Sc = μ / (ρD)</p>
-                    <p data-i18n="schmidt_short_desc">운동량 확산율과 물질의 분자 확산율을 비교합니다.</p>
-                </div>
-                <button type="button" class="calc-open" data-i18n="open_calculator" onclick="event.stopPropagation(); openModal('schmidt')">계산기 열기</button>
-                <a class="guide-link" href="guides/schmidt" data-guide="schmidt" onclick="event.stopPropagation()">슈미트 수 계산법·예제</a>
-            </article>
-
-            <!-- Peclet Number Card -->
-            <article class="card" onclick="openModal('peclet')">
-                <div>
-                    <h2>Peclet Number</h2>
-                    <p class="formula">Pe = vL / α</p>
-                    <p data-i18n="peclet_short_desc">유동에 의한 이송(Advection)과 확산(Diffusion)의 비를 나타냅니다.</p>
-                </div>
-                <button type="button" class="calc-open" data-i18n="open_calculator" onclick="event.stopPropagation(); openModal('peclet')">계산기 열기</button>
-                <a class="guide-link" href="guides/peclet" data-guide="peclet" onclick="event.stopPropagation()">페클레 수 계산법·예제</a>
-            </article>
-
-            <!-- Strouhal Number Card -->
-            <article class="card" onclick="openModal('strouhal')">
-                <div>
-                    <h2>Strouhal Number</h2>
-                    <p class="formula">St = fL / v</p>
-                    <p data-i18n="strouhal_short_desc">비정상 유동(Unsteady flow)의 진동 특성을 나타내는 무차원수입니다.</p>
-                </div>
-                <button type="button" class="calc-open" data-i18n="open_calculator" onclick="event.stopPropagation(); openModal('strouhal')">계산기 열기</button>
-                <a class="guide-link" href="guides/strouhal" data-guide="strouhal" onclick="event.stopPropagation()">스트로할 수 계산법·예제</a>
-            </article>
-
-            <!-- Froude Number Card -->
-            <article class="card" onclick="openModal('froude')">
-                <div>
-                    <h2>Froude Number</h2>
+                    <h3 data-i18n="name_froude">프루드 수 (Fr)</h3>
                     <p class="formula">Fr = v / √(gL)</p>
                     <p data-i18n="froude_short_desc">관성력과 중력의 비를 나타내며, 개수로 유동이나 선박 공학에서 중요합니다.</p>
                 </div>
-                <button type="button" class="calc-open" data-i18n="open_calculator" onclick="event.stopPropagation(); openModal('froude')">계산기 열기</button>
-                <a class="guide-link" href="guides/froude" data-guide="froude" onclick="event.stopPropagation()">프루드 수 계산법·예제</a>
+                <a class="calc-open" href="/calculators/froude" data-calc="froude" data-i18n="open_calculator">계산기 열기</a>
+                <a class="guide-link" href="/guides/froude" data-guide="froude">프루드 수 계산법·예제</a>
             </article>
-
-            <!-- Weber Number Card -->
-            <article class="card" onclick="openModal('weber')">
+            <article class="card">
                 <div>
-                    <h2>Weber Number</h2>
+                    <h3 data-i18n="name_strouhal">스트로할 수 (St)</h3>
+                    <p class="formula">St = fL / v</p>
+                    <p data-i18n="strouhal_short_desc">비정상 유동(Unsteady flow)의 진동 특성을 나타내는 무차원수입니다.</p>
+                </div>
+                <a class="calc-open" href="/calculators/strouhal" data-calc="strouhal" data-i18n="open_calculator">계산기 열기</a>
+                <a class="guide-link" href="/guides/strouhal" data-guide="strouhal">스트로할 수 계산법·예제</a>
+            </article>
+            </div>
+            <p class="category-notes"><strong data-i18n="notes_label">관련 계산 노트</strong>: <a href="/guides/pipe-flow" data-en-href="/en/guides/pipe-flow" data-i18n="note_pipe_flow">관 유동에서 Re·Pr·Pe를 함께 검산하기</a> · <a href="/guides/model-similarity" data-en-href="/en/guides/model-similarity" data-i18n="note_model_similarity">축소 모형에서 Re와 Fr을 동시에 맞출 수 있을까?</a> · <a href="/guides/pipe-energy" data-en-href="/en/guides/pipe-energy" data-i18n="note_pipe_energy">관의 압력손실: 보존법칙에서 포아죄유 해까지</a></p>
+        </section>
+        <section class="category" id="cat-heat" aria-labelledby="cat-heat-title">
+            <h2 id="cat-heat-title" data-i18n="cat_heat_title">열전달</h2>
+            <p class="category-desc" data-i18n="cat_heat_desc">열이 흐름에 실려 이동하는지, 유체 속으로 확산하는지, 표면에서 얼마나 전달되는지를 서로 다른 비율로 나눠 봅니다.</p>
+            <div class="grid">
+            <article class="card">
+                <div>
+                    <h3 data-i18n="name_nusselt">누셀트 수 (Nu)</h3>
+                    <p class="formula">Nu = hL / k</p>
+                    <p data-i18n="nusselt_short_desc">대류 열전달과 전도 열전달의 비를 나타내며, 대류가 열전달에 기여하는 정도를 결정합니다.</p>
+                </div>
+                <a class="calc-open" href="/calculators/nusselt" data-calc="nusselt" data-i18n="open_calculator">계산기 열기</a>
+                <a class="guide-link" href="/guides/nusselt" data-guide="nusselt">누셀트 수 계산법·예제</a>
+            </article>
+            <article class="card">
+                <div>
+                    <h3 data-i18n="name_prandtl">프란틀 수 (Pr)</h3>
+                    <p class="formula">Pr = μcₚ / k</p>
+                    <p data-i18n="prandtl_short_desc">운동량 확산과 열 확산의 비를 나타내며, 유체의 물리적 특성만으로 결정됩니다.</p>
+                </div>
+                <a class="calc-open" href="/calculators/prandtl" data-calc="prandtl" data-i18n="open_calculator">계산기 열기</a>
+                <a class="guide-link" href="/guides/prandtl" data-guide="prandtl">프란틀 수 계산법·예제</a>
+            </article>
+            <article class="card">
+                <div>
+                    <h3 data-i18n="name_peclet">페클레 수 (Pe)</h3>
+                    <p class="formula">Pe = vL / α</p>
+                    <p data-i18n="peclet_short_desc">유동에 의한 이송(Advection)과 확산(Diffusion)의 비를 나타냅니다.</p>
+                </div>
+                <a class="calc-open" href="/calculators/peclet" data-calc="peclet" data-i18n="open_calculator">계산기 열기</a>
+                <a class="guide-link" href="/guides/peclet" data-guide="peclet">페클레 수 계산법·예제</a>
+            </article>
+            </div>
+            <p class="category-notes"><strong data-i18n="notes_label">관련 계산 노트</strong>: <a href="/guides/transport-scales" data-en-href="/en/guides/transport-scales" data-i18n="note_transport_scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a> · <a href="/guides/pipe-flow" data-en-href="/en/guides/pipe-flow" data-i18n="note_pipe_flow">관 유동에서 Re·Pr·Pe를 함께 검산하기</a></p>
+        </section>
+        <section class="category" id="cat-mass" aria-labelledby="cat-mass-title">
+            <h2 id="cat-mass-title" data-i18n="cat_mass_title">물질전달</h2>
+            <p class="category-desc" data-i18n="cat_mass_desc">용질이나 기체 성분의 농도가 퍼지는 문제입니다. 열 대신 특정 성분의 분자 확산 계수 D를 쓴다는 점이 열전달과 다릅니다.</p>
+            <div class="grid">
+            <article class="card">
+                <div>
+                    <h3 data-i18n="name_schmidt">슈미트 수 (Sc)</h3>
+                    <p class="formula">Sc = μ / (ρD)</p>
+                    <p data-i18n="schmidt_short_desc">운동량 확산율과 물질의 분자 확산율을 비교합니다.</p>
+                </div>
+                <a class="calc-open" href="/calculators/schmidt" data-calc="schmidt" data-i18n="open_calculator">계산기 열기</a>
+                <a class="guide-link" href="/guides/schmidt" data-guide="schmidt">슈미트 수 계산법·예제</a>
+            </article>
+            </div>
+            <p class="category-notes"><strong data-i18n="notes_label">관련 계산 노트</strong>: <a href="/guides/transport-scales" data-en-href="/en/guides/transport-scales" data-i18n="note_transport_scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a></p>
+        </section>
+        <section class="category" id="cat-interface" aria-labelledby="cat-interface-title">
+            <h2 id="cat-interface-title" data-i18n="cat_interface_title">계면</h2>
+            <p class="category-desc" data-i18n="cat_interface_desc">액적, 기포, 분무처럼 두 유체의 경계면 모양이 결과를 좌우하는 경우 관성과 표면장력을 비교합니다.</p>
+            <div class="grid">
+            <article class="card">
+                <div>
+                    <h3 data-i18n="name_weber">웨버 수 (We)</h3>
                     <p class="formula">We = ρv²L / σ</p>
                     <p data-i18n="weber_short_desc">관성력과 표면장력의 비를 나타내며, 액적의 분열이나 기포 형성 분석에 사용됩니다.</p>
                 </div>
-                <button type="button" class="calc-open" data-i18n="open_calculator" onclick="event.stopPropagation(); openModal('weber')">계산기 열기</button>
-                <a class="guide-link" href="guides/weber" data-guide="weber" onclick="event.stopPropagation()">웨버 수 계산법·예제</a>
+                <a class="calc-open" href="/calculators/weber" data-calc="weber" data-i18n="open_calculator">계산기 열기</a>
+                <a class="guide-link" href="/guides/weber" data-guide="weber">웨버 수 계산법·예제</a>
             </article>
-
-            <!-- Knudsen Number Card -->
-            <article class="card" onclick="openModal('knudsen')">
+            </div>
+            <p class="category-notes"><strong data-i18n="notes_label">관련 계산 노트</strong>: <a href="/guides/interface-time-scales" data-en-href="/en/guides/interface-time-scales" data-i18n="note_interface_time_scales">표면장력과 비정상 유동: 힘의 비와 시간의 비 연결하기</a></p>
+        </section>
+        <section class="category" id="cat-gas" aria-labelledby="cat-gas-title">
+            <h2 id="cat-gas-title" data-i18n="cat_gas_title">기체·압축성</h2>
+            <p class="category-desc" data-i18n="cat_gas_desc">기체의 밀도 변화가 중요한지(마하 수)와 분자 크기 척도를 무시할 수 있는지(누센 수)를 따로 확인합니다.</p>
+            <div class="grid">
+            <article class="card">
                 <div>
-                    <h2>Knudsen Number</h2>
+                    <h3 data-i18n="name_mach">마하 수 (Ma)</h3>
+                    <p class="formula">Ma = v / c</p>
+                    <p data-i18n="mach_short_desc">유체의 속도와 음속의 비를 나타내며, 압축성 유동의 특성을 결정합니다.</p>
+                </div>
+                <a class="calc-open" href="/calculators/mach" data-calc="mach" data-i18n="open_calculator">계산기 열기</a>
+                <a class="guide-link" href="/guides/mach" data-guide="mach">마하 수 계산법·예제</a>
+            </article>
+            <article class="card">
+                <div>
+                    <h3 data-i18n="name_knudsen">누센 수 (Kn)</h3>
                     <p class="formula">Kn = λ / L</p>
                     <p data-i18n="knudsen_short_desc">분자 평균 자유 행로와 특성 길이의 비를 나타내며, 연속체 가설의 타당성을 판단합니다.</p>
                 </div>
-                <button type="button" class="calc-open" data-i18n="open_calculator" onclick="event.stopPropagation(); openModal('knudsen')">계산기 열기</button>
-                <a class="guide-link" href="guides/knudsen" data-guide="knudsen" onclick="event.stopPropagation()">누센 수 계산법·예제</a>
+                <a class="calc-open" href="/calculators/knudsen" data-calc="knudsen" data-i18n="open_calculator">계산기 열기</a>
+                <a class="guide-link" href="/guides/knudsen" data-guide="knudsen">누센 수 계산법·예제</a>
             </article>
+            </div>
+            <p class="category-notes"><strong data-i18n="notes_label">관련 계산 노트</strong>: <a href="/guides/gas-models" data-en-href="/en/guides/gas-models" data-i18n="note_gas_models">기체 유동 모델 선택: 마하 수와 누센 수를 따로 확인하기</a></p>
         </section>
+        </div>
 
-        <section class="site-intro" aria-labelledby="learning-title">
-            <h2 id="learning-title">실전 계산 노트 / Worked calculation notebooks</h2>
-            <p>공식 하나의 계산을 넘어, 같은 입력으로 여러 결과를 검산하고 길이·단위·적용 조건을 비교합니다.</p>
-            <p>Connect the formulas: cross-check a shared input set and compare units, length scales and assumptions.</p>
-            <ul>
-                <li><a href="/guides/pipe-flow">관 유동의 Re·Pr·Pe 교차검산</a> · <a href="/en/guides/pipe-flow" lang="en">Pipe-flow cross-check (English)</a></li>
-                <li><a href="/guides/model-similarity">축소 모형의 Re·Fr 비교</a> · <a href="/en/guides/model-similarity" lang="en">Scale-model comparison (English)</a></li>
-                <li><a href="/guides/pipe-energy">관의 압력손실: 보존법칙에서 포아죄유 해까지</a> · <a href="/en/guides/pipe-energy" lang="en">Pipe pressure loss: from conservation laws to Poiseuille flow (English)</a></li>
-                <li><a href="/guides/transport-scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a> · <a href="/en/guides/transport-scales" lang="en">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu (English)</a></li>
-                <li><a href="/guides/gas-models">기체 유동 모델 선택: 마하 수와 누센 수를 따로 확인하기</a> · <a href="/en/guides/gas-models" lang="en">Choosing gas-flow models: check Mach and Knudsen numbers separately (English)</a></li>
-                <li><a href="/guides/interface-time-scales">표면장력과 비정상 유동: 힘의 비와 시간의 비 연결하기</a> · <a href="/en/guides/interface-time-scales" lang="en">Surface tension and unsteady flow: connect force ratios to time ratios (English)</a></li>
-            </ul>
-            <p>이 도구는 입력한 값으로 무차원 비를 계산합니다. 물성값이나 열전달 계수를 자동 예측하지 않습니다. 예제는 학습용 가정이며 실제 측정 자료로 바꾸어 계산해야 합니다.</p>
-            <p>The calculators evaluate dimensionless ratios from your inputs. They do not predict material properties or heat-transfer coefficients. The worked inputs are illustrative and must be replaced with data for your conditions.</p>
+        <section class="site-intro" aria-labelledby="limits-title">
+            <h2 id="limits-title" data-i18n="limits_title">계산기가 하지 않는 일</h2>
+            <p data-i18n="limits_text">이 도구는 입력한 값으로 무차원 비를 계산합니다. 물성값이나 열전달 계수를 자동 예측하지 않습니다. 예제는 학습용 가정이며 실제 측정 자료로 바꾸어 계산해야 합니다.</p>
         </section>
     </main>
 
-    <!-- Modal for Calculators -->
+    <!-- Modal kept for legacy /#name links -->
     <div id="calculatorModal" class="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">&times;</button>
@@ -212,7 +219,7 @@
                 <!-- Content will be dynamically injected via script.js -->
             </div>
             <div id="resultContainer" class="result-container">
-                <p class="result-label" data-i18n="result_label">Result</p>
+                <p class="result-label" data-i18n="result_label">결과</p>
                 <p id="resultValue" class="result-value">0.00</p>
                 <p id="resultInfo" class="result-info"></p>
             </div>
@@ -220,13 +227,11 @@
     </div>
 
     <footer>
-        <div class="footer-links" style="margin-bottom: 1rem;">
-            <a href="privacy.html" style="color: var(--text-secondary); margin: 0 10px; text-decoration: none;" data-i18n="privacy_policy">Privacy Policy</a> | 
-            <a href="terms.html" style="color: var(--text-secondary); margin: 0 10px; text-decoration: none;" data-i18n="terms_service">Terms of Service</a>
-        </div>
-        <p>&copy; 2026 Dimensionless Number Calculator. All rights reserved.</p>
+        <p class="footer-links"><a href="/" data-en-href="/" data-i18n="footer_home">홈</a> · <a href="/guides/" data-en-href="/en/guides/" data-i18n="footer_guides">해설 목록</a> · <a href="/about" data-en-href="/en/about" data-i18n="footer_about">소개</a> · <a href="/contact" data-en-href="/en/contact" data-i18n="footer_contact">문의</a> · <a href="/privacy" data-en-href="/en/privacy" data-i18n="privacy_policy">개인정보처리방침</a> · <a href="/terms" data-en-href="/en/terms" data-i18n="terms_service">이용약관</a></p>
+        <p data-i18n="copyright">© 2026 무차원수 계산기 · calctool.cc</p>
     </footer>
 
-    <script src="script.js?v=20260926b"></script>
+    <script src="/calculators.js?v=20261022"></script>
+    <script src="/script.js?v=20261022"></script>
 </body>
 </html>

@@ -1,9 +1,21 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Choosing gas-flow models: check Mach and Knudsen numbers separately | Dimensionless Number Calculator</title><meta name="description" content="Compressibility and molecular length scales test different assumptions. Use isentropic relations to quantify a comparison.">
+<html lang="en"><head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6KGPWDN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4L6KGPWDN7');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Choosing gas-flow models: check Mach and Knudsen numbers separately | Dimensionless Number Calculator</title><meta name="description" content="Treat compressibility (Mach) and molecular scale (Knudsen) as separate checks, quantified with isentropic density ratios such as 1.046 and 1.351.">
 <link rel="canonical" href="https://calctool.cc/en/guides/gas-models">
 <link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/gas-models"><link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/gas-models">
-<link rel="stylesheet" href="/style.css?v=20260926c"><link rel="stylesheet" href="/guide.css?v=20261009"><link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/guides/gas-models">
+<link rel="stylesheet" href="/style.css?v=20261022"><link rel="stylesheet" href="/guide.css?v=20261022"><link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
 </head><body class="guide-page"><header><div class="header-controls"><button id="langToggle" class="theme-toggle lang-toggle" type="button" data-other-url="/guides/gas-models" aria-label="한국어로 전환">KO</button><button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
                 <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
                     <circle cx="12" cy="12" r="5"></circle>
@@ -27,6 +39,6 @@
 <section><h2>A constructed numerical comparison</h2><p>For illustrative γ = 1.4, R = 287 J/(kg·K) and T = 300 K, c = √120540 = <strong>347.1887 m/s</strong>. Speeds below are constructed from that value; they are not certified atmospheric data.</p><div class="table-wrap"><table><caption>Ideal stagnation ratios at a shared static temperature</caption><thead><tr><th scope="col">Ma / v</th><th scope="col">T₀/T</th><th scope="col">ρ₀/ρ</th><th scope="col">p₀/p</th></tr></thead><tbody><tr><th scope="row">0.3 / 104.1566 m/s</th><td>1.018</td><td>1.04561</td><td>1.06443</td></tr><tr><th scope="row">0.8 / 277.7510 m/s</th><td>1.128</td><td>1.35137</td><td>1.52434</td></tr></tbody></table></div><p>Even Ma = 0.3 gives a density ratio about 4.56% above unity in this comparison. A convenient low-speed rule still needs to be checked against the required precision.</p></section>
 <section><h2>Check molecular scales after changing device size</h2><p>Hold an illustrative mean free path λ = 6.8×10⁻⁸ m fixed. At L = 0.001 m, Kn = 6.8×10⁻⁵; at L = 10⁻⁶ m, Kn = 0.068. Holding speed and sound speed fixed leaves Ma unchanged. Thus the size change affects a separate assumption.</p><p>At Kn = 0.068, assess rarefaction effects including wall slip and temperature jump. The appropriate boundary model depends on surfaces and required accuracy. Reusing the same no-slip continuum model needs justification. This example changes length at fixed λ; it does not model the change in mean free path caused by changing pressure.</p></section>
 <section><h2>What to record when selecting a model</h2><ul><li>State local temperature and the acoustic assumptions behind Ma.</li><li>Choose an acceptable density error for an incompressible approximation.</li><li>Explain which gas state and physical length λ and L represent.</li><li>Do not apply isentropic ratios across a shock.</li><li>Strong rarefaction or thermal nonequilibrium requires more than this ideal stagnation comparison.</li></ul></section>
-<nav aria-label="Calculators"><a href="/#mach">Mach calculator</a><a href="/#knudsen">Knudsen calculator</a></nav>
+<nav aria-label="Calculators"><a href="/en/calculators/mach">Mach calculator</a><a href="/en/calculators/knudsen">Knudsen calculator</a></nav>
 <p class="source">Formula and concept references: <a href="https://www.grc.nasa.gov/www/k-12/airplane/isentrop.html">NASA Glenn — Isentropic Flow Equations</a> · <a href="https://ntrs.nasa.gov/api/citations/19930022543/downloads/19930022543.pdf">NASA — Knudsen-number and slip discussion, pp. 106–107</a>. Derivations and worked input sets were constructed for this article; they are not measured datasets or copied source examples.</p><nav aria-label="Related learning"><a href="/">All calculators</a><a href="/en/guides/model-similarity">Scale-model comparison</a><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a></nav>
-</main><footer><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a><p>© 2026 Dimensionless Number Calculator</p></footer><script src="/guide.js?v=20260926c" defer></script></body></html>
+</main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer><script src="/guide.js?v=20261022" defer></script></body></html>
