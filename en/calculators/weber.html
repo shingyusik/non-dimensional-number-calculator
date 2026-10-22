@@ -73,21 +73,46 @@
 <ul>
 <li>Speed is squared: with everything else fixed, doubling v quadruples We. Use the speed of the drop relative to the surrounding fluid.</li>
 <li>Surface tension in mN/m (or dyn/cm) must be divided by 1000 to give N/m; 72 mN/m is 0.072 N/m.</li>
+<li>Enter lengths in metres. Spray drop sizes are usually quoted in μm, so multiply by 10⁻⁶: 50 μm is 0.00005 m. Entering a millimetre value as is makes the result 1000 times too large.</li>
 <li>Which density to use depends on the definition. For aerodynamic breakup of a drop moving through gas, the surrounding gas density is common; for the inertia of a liquid jet itself, the liquid density is used. Match the definition of the data you compare with.</li>
 <li>σ depends on the pair of fluids and on temperature, and surfactants can lower it considerably.</li>
 </ul>
 </section>
 <section aria-labelledby="criteria"><h2 id="criteria">Interpreting the size</h2>
-<p>When We is much larger than 1, inertia overwhelms surface tension; when it is much smaller, surface tension holds the interface shape. The critical value at which drops actually break up depends on how ρ and L are defined, on the surrounding flow and on viscosity, so this calculator does not decide breakup. Use it to compare with experiments or references that use the same definition.</p>
+<p>When We is much larger than 1, inertia overwhelms surface tension; when it is much smaller, surface tension holds the interface shape. The critical value at which drops actually break up depends on how ρ and L are defined, on the surrounding flow and on viscosity, so this calculator does not decide breakup. One useful reference is the Ansys CFX theory guide. For We defined with the surrounding gas density, the slip velocity and the drop diameter, it classifies below 12 as vibrational breakup, 12 to 50 as bag breakup, 50 to 100 as bag-and-stamen, 100 to 350 as sheet stripping and above 350 as catastrophic breakup. If you entered a different definition, do not compare the result with these limits directly.</p>
 </section>
-<section aria-labelledby="check"><h2 id="check">Check with the example</h2>
-<p>The example uses ρ = 1000 kg/m³, v = 2 m/s, L = 0.01 m and σ = 0.072 N/m, giving We ≈ 555.56. Halve the speed to 1 m/s and We drops to a quarter, about 138.89. The surface-tension note calculates We ≈ 6.94 and Re = 1000 together for a 2 mm length at 0.5 m/s, then cross-checks them with We/Re = μv/σ.</p>
+<section aria-labelledby="check"><h2 id="check">Examples you can follow with the calculator</h2>
+<section class="example" aria-labelledby="ex-fill">
+<h3 id="ex-fill">Example 1. Recompute the fill-in example with tabulated properties</h3>
+<p><strong>Given.</strong> The "Fill example values" button enters ρ = 1000 kg/m³, v = 2 m/s, L = 0.01 m and σ = 0.072 N/m. These are rounded inputs for a 10 mm stream of water leaving at 2 m/s; the speed and diameter are assumed conditions.</p>
+<p><strong>Calculation.</strong> With the button values, We = 1000 × 2² × 0.01 ÷ 0.072 ≈ 555.56. With tabulated 20 °C properties instead (IAEA density 998.2 kg/m³, OpenStax surface tension 0.0728 N/m), We = 998.2 × 4 × 0.01 ÷ 0.0728 ≈ 548.46. Halve the speed to 1 m/s and the button result drops to a quarter, about 138.89.</p>
+<p><strong>Interpretation.</strong> The rounded and tabulated inputs differ by about 1.3 %, the effect of rounding density and surface tension. Halving the speed, by contrast, cuts the result by 75 %. Speed errors are amplified most, so check the speed first if you have measurements. This value uses the liquid density and the jet diameter, so it is not one to compare with the drop-breakup regime table.</p>
+</section>
+<section class="example" aria-labelledby="ex-critical">
+<h3 id="ex-critical">Example 2. Relative speed that puts a 50 μm drop into bag breakup</h3>
+<p><strong>Given.</strong> A water drop 50 μm in diameter (assumed) sits in air at 20 °C and 1 atm. The air density is 1.2043 kg/m³, the IAEA Table 3.1 value of 1.166 kg/m³ at 98.1 kPa scaled to 1 atm, and the surface tension is 0.0728 N/m. Find the relative speed that reaches We = 12, the start of bag breakup in the Ansys CFX regime table.</p>
+<p><strong>Unit conversion.</strong> 50 μm = 50 × 10⁻⁶ m = 0.00005 m. The curvature pressure scale of this drop is σ/d = 0.0728 ÷ 0.00005 = 1456 Pa.</p>
+<p><strong>Calculation.</strong> Solving We = ρv²d/σ for v gives v = √(We·σ/(ρd)) = √(12 × 0.0728 ÷ (1.2043 × 0.00005)) ≈ 120.4 m/s. Entering ρ = 1.2043, v = 120.4, L = 0.00005 and σ = 0.0728 returns We ≈ 11.99; the gap to 12 comes from rounding the speed.</p>
+<p><strong>Interpretation.</strong> The 0.5 mm drop in the main guide reaches We = 12 at about 38.1 m/s. A drop one tenth the diameter needs √10 ≈ 3.16 times the speed. Fine spray drops are therefore hard to break with ordinary gas speeds, and this calculation works as a first screen for whether to switch on a breakup model.</p>
+</section>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">Using the Weber number calculator</h2>
+<details><summary>Can I enter the drop radius as L?</summary><p>The calculation runs, but you get half the diameter-based value. Some references, such as the MIT surface-tension slides, define We with the radius, so check which length the data you compare with used and enter the same one.</p></details>
+<details><summary>My result is 1000 times larger or smaller than expected.</summary><p>That is almost always a unit problem. A length entered in mm makes the result 1000 times too large; a surface tension entered as the mN/m number makes it 1000 times too small. Convert lengths to m and surface tension to N/m.</p></details>
+<details><summary>Can I use this calculator for a bubble rising through a liquid?</summary><p>Yes. The surrounding liquid is what pushes on the bubble interface, so the usual inputs are the liquid density, the bubble diameter and the relative speed between bubble and liquid. Again, check that the correlation you compare with uses the same definition.</p></details>
+<details><summary>Does the result tell me whether a drop breaks up?</summary><p>The calculator only returns We. If you used the surrounding gas density, the slip velocity and the diameter, you can compare with the Ansys CFX regime table in the interpretation section to judge the breakup mode, but viscosity and exposure time change the actual outcome.</p></details>
 </section>
 <section aria-labelledby="more"><h2 id="more">Related guides and calculators</h2>
-<h3>Guide</h3><ul><li><a href="/en/guides/weber">Weber number guide: worked example and cautions</a></li></ul>
-<h3>Calculation notes</h3><ul><li><a href="/en/guides/interface-time-scales">Surface tension and unsteady flow: connect force ratios to time ratios</a>: We, Re, Fr and St on one length scale; curvature pressure versus capillary time.</li></ul>
+<h3>Guide</h3><ul><li><a href="/en/guides/weber">Weber number guide: worked example and cautions</a>: spray-drop, raindrop and tap-water examples and how the definitions differ.</li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/interface-time-scales">Surface tension and unsteady flow: connect force ratios to time ratios</a>: takes a We from this calculator, pairs it with Re on the same length to judge viscous effects, and compares capillary time with oscillation periods.</li></ul>
 <h3>Related calculators</h3><ul><li><a href="/en/calculators/reynolds">Reynolds number (Re)</a>: With the same L and v, We/Re = μv/σ compares viscosity with surface tension.</li><li><a href="/en/calculators/froude">Froude number (Fr)</a>: With the same L and v, We/Fr² = ρgL²/σ and speed drops out.</li><li><a href="/en/calculators/strouhal">Strouhal number (St)</a>: The squared ratio of capillary time to transit time is We, so St is used alongside it when comparing oscillation periods.</li></ul>
 </section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">References</h2><ul>
+<li>Ansys: <a href="https://ansyshelp.ansys.com/public/views/secured/corp/v251/en/cfx_thry/spray_secondary_breakup.html" rel="noopener noreferrer">CFX Theory Guide, Secondary Breakup Models</a>. Secondary-breakup We definition (surrounding-fluid density, slip velocity, diameter) and regime limits 12/50/100/350</li>
+<li>MIT (J. W. M. Bush): <a href="https://thales.mit.edu/bush/wp-content/uploads/2016/02/Lec3-slides.pdf" rel="noopener noreferrer">Surface Tension, Lecture 3 slides</a>. We = ρU²a/σ written with the radius a</li>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering (2008)</a>. Table 3.1 air density 1.166 kg/m³ (20 °C, 98.1 kPa); Table 3.3 water density 998.2 kg/m³ (20 °C)</li>
+<li>UCF Pressbooks (OpenStax College Physics): <a href="https://pressbooks.online.ucf.edu/phy2053bc/chapter/cohesion-and-adhesion-in-liquids-surface-tension-and-capillary-action/" rel="noopener noreferrer">Surface Tension and Capillary Action</a>. Water surface tension 0.0728 N/m at 20 °C</li>
+</ul></section>
 </main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
 <script src="/calculators.js?v=20261022" defer></script>
 <script src="/calculator-page.js?v=20261022" defer></script>

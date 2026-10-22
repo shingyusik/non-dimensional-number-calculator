@@ -70,23 +70,46 @@
 </tbody></table></div></section>
 <section aria-labelledby="units"><h2 id="units">Entering the frequency</h2>
 <ul>
-<li>f is in hertz (cycles per second). Divide rpm by 60 to get Hz.</li>
+<li>f is in hertz (cycles per second). Divide rpm by 60 to get Hz; 3000 rpm is 50 Hz.</li>
 <li>An angular frequency ω in rad/s must be divided by 2π. Entering ω directly makes St about 6.28 times too large.</li>
-<li>Behind a cylinder, lift fluctuates at the shedding frequency, while drag commonly fluctuates at twice that frequency. Record which signal f was read from.</li>
+<li>Behind a cylinder, lift fluctuates at the shedding frequency while drag fluctuates at twice that frequency. For the same reason the NASA NPARC cylinder case reads the frequency from wake velocity off the centreline rather than from the drag coefficient.</li>
 <li>Use the diameter for a cylinder, or the width across the flow for other bodies.</li>
 </ul>
 </section>
 <section aria-labelledby="criteria"><h2 id="criteria">How to treat the value 0.2</h2>
-<p>Vortex shedding behind a circular cylinder is known to give St around 0.2 over a fairly wide range of Reynolds numbers. It still varies with Re, surface condition and free-stream disturbances, so do not treat it as a universal constant. When comparing with published values, match the geometry, the definition of L, the measured signal and the Re of the experiment.</p>
+<p>NASA TM 107730 reports that St from the peak cylinder noise frequency stays nearly constant at 0.2 over 60 &lt; Re &lt; 10⁶. The Re = 150 experiment cited in the NASA NPARC case, by contrast, gives 0.179–0.182. A result that differs from 0.2 is not automatically wrong: first match the Re, the geometry, the definition of L and the measured signal. A result near 0.4 usually means a 2f signal was read.</p>
 </section>
-<section aria-labelledby="check"><h2 id="check">The example and the interface note</h2>
-<p>The example uses f = 10 Hz, a cylinder diameter L = 0.1 m and v = 5 m/s, giving St = 0.2. The surface-tension note reaches the same 0.2 with a 2 mm length, 0.5 m/s and 50 Hz, as the ratio of a 0.004 s transit time to a 0.02 s period. A zero speed or frequency leaves nothing to compare or divides by zero, so the calculator reports such inputs as errors.</p>
+<section aria-labelledby="check"><h2 id="check">Examples you can follow with the calculator</h2>
+<section class="example" aria-labelledby="ex-fill">
+<h3 id="ex-fill">Example 1. Reading the fill-in values as a real case</h3>
+<p><strong>Given.</strong> The "Fill example values" button enters f = 10 Hz, L = 0.1 m and v = 5 m/s. Take it as a 100 mm post in 5 m/s wind with a 10 Hz wake fluctuation (assumed).</p>
+<p><strong>Calculation.</strong> St = 10 × 0.1 ÷ 5 = 0.2. With ν = 1.5104 × 10⁻⁵ m²/s for air at 20 °C and 1 atm (from IAEA Table 3.1 viscosity and density), Re = 5 × 0.1 ÷ (1.5104 × 10⁻⁵) ≈ 33,104.</p>
+<p><strong>Interpretation.</strong> Re lies within 60 &lt; Re &lt; 10⁶, so St = 0.2 agrees with NASA TM 107730. If the wind rises to 15 m/s, constant St predicts f = 0.2 × 15 ÷ 0.1 = 30 Hz; change v to 15 and f to 30 in the calculator and St stays 0.2.</p>
+</section>
+<section class="example" aria-labelledby="ex-omega">
+<h3 id="ex-omega">Example 2. Entering angular frequency or the drag signal by mistake</h3>
+<p><strong>Given.</strong> A 20 mm cylinder is tested at 12 m/s in a wind tunnel, and the spectral peak of a hot-wire signal on one side of the wake reads ω = 754 rad/s (diameter, speed and reading are assumed).</p>
+<p><strong>Unit conversion.</strong> L = 20 mm = 0.02 m; f = ω/(2π) = 754 ÷ 6.2832 ≈ 120.0 Hz.</p>
+<p><strong>Calculation.</strong> Correct inputs give St = 120.0 × 0.02 ÷ 12 ≈ 0.200, at Re = 12 × 0.02 ÷ (1.5104 × 10⁻⁵) ≈ 15,890. Entering ω in the f box gives St ≈ 1.257. Entering the drag-signal peak of 240.0 Hz from the same test gives St ≈ 0.400.</p>
+<p><strong>Interpretation.</strong> 1.257 flags a unit error and 0.400 a signal-choice error. When a cylinder gives about 2π times or twice 0.2, check the inputs before the formula.</p>
+</section>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">Using the Strouhal number calculator</h2>
+<details><summary>Which speed goes into v?</summary><p>For a single cylinder, the undisturbed free-stream speed upstream. For a probe in a pipe the section-mean and local speeds can differ, and data for tube bundles often use the gap velocity, so follow the definition of the data you compare with.</p></details>
+<details><summary>How do I get a frequency from a known St?</summary><p>The calculator returns St, so compute f = St·v/L by hand and enter it to confirm. A 30 mm cable in 10 m/s wind gives f ≈ 66.7 Hz at St = 0.2.</p></details>
+<details><summary>Why does a zero speed or frequency give an error?</summary><p>Zero speed puts zero in the denominator, and zero frequency means there is no periodic event to compare. For a body oscillating in still fluid, choose another reference speed such as the oscillation velocity amplitude.</p></details>
+<details><summary>What should I watch when comparing CFD St with experiment?</summary><p>Compare at the same Re and from the same signal. In the NASA NPARC case the Re = 150 experiment gave 0.179–0.182, first-order time integration 0.161 and second order 0.180, so time-integration order and record length matter.</p></details>
 </section>
 <section aria-labelledby="more"><h2 id="more">Related guides and calculators</h2>
-<h3>Guide</h3><ul><li><a href="/en/guides/strouhal">Strouhal number guide: worked example and cautions</a></li></ul>
-<h3>Calculation notes</h3><ul><li><a href="/en/guides/interface-time-scales">Surface tension and unsteady flow: connect force ratios to time ratios</a>: We, Re, Fr and St on one length scale; curvature pressure versus capillary time.</li></ul>
-<h3>Related calculators</h3><ul><li><a href="/en/calculators/reynolds">Reynolds number (Re)</a>: The Strouhal number of cylinder vortex shedding varies with Re, so the two are reported together.</li><li><a href="/en/calculators/weber">Weber number (We)</a>: Squaring the ratio of capillary time √(ρL³/σ) to transit time L/v gives We; interface oscillations are compared alongside St.</li><li><a href="/en/calculators/froude">Froude number (Fr)</a>: Periodic free-surface motion involves both gravity (Fr) and oscillation timing (St).</li></ul>
+<h3>Guide</h3><ul><li><a href="/en/guides/strouhal">Strouhal number guide: worked example and cautions</a>: cable, thermowell and NASA CFD examples on when St ≈ 0.2 holds.</li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/interface-time-scales">Surface tension and unsteady flow: connect force ratios to time ratios</a>: rechecks a St from this calculator as transit time over period and compares it with capillary time.</li></ul>
+<h3>Related calculators</h3><ul><li><a href="/en/calculators/reynolds">Reynolds number (Re)</a>: St for vortex shedding behind a cylinder depends on Re, so report both values together.</li><li><a href="/en/calculators/weber">Weber number (We)</a>: The squared ratio of capillary time √(ρL³/σ) to transit time L/v is We, so compare interface oscillations alongside St.</li><li><a href="/en/calculators/froude">Froude number (Fr)</a>: For periodic free-surface motion, check gravity effects (Fr) together with oscillation time (St).</li></ul>
 </section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">References</h2><ul>
+<li>NASA Langley: <a href="https://ntrs.nasa.gov/api/citations/19930022543/downloads/19930022543.pdf" rel="noopener noreferrer">Reynolds Number Influences in Aeronautics (NASA TM 107730)</a>. Cylinder noise-peak St near 0.2 for 60 &lt; Re &lt; 10⁶</li>
+<li>NASA Glenn / NPARC Alliance: <a href="https://www.grc.nasa.gov/www/wind/valid/lamcyl/Study1_files/Study1.html" rel="noopener noreferrer">Laminar Flow over a Circular Cylinder: Study #1</a>. Re 150 experiment 0.179–0.182, CFD 0.161 and 0.180, drag at twice the frequency</li>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering (2008)</a>. Table 3.1 air at 20 °C: viscosity 1.819 × 10⁻⁵ Pa·s, density 1.166 kg/m³ (98.1 kPa)</li>
+</ul></section>
 </main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
 <script src="/calculators.js?v=20261022" defer></script>
 <script src="/calculator-page.js?v=20261022" defer></script>

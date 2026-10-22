@@ -16,6 +16,8 @@
 <title>Strouhal Number: formula, example and interpretation | Dimensionless Number Calculator</title>
 <meta name="description" content="Vortex shedding behind a cylinder gives St=fL/v=0.2 here; recording which oscillation f describes is what makes results comparable between experiments.">
 <link rel="canonical" href="https://calctool.cc/en/guides/strouhal">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/strouhal"><link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/strouhal">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/guides/strouhal">
 <link rel="stylesheet" href="../../style.css?v=20261022">
 <link rel="stylesheet" href="../../guide.css?v=20261022">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
@@ -38,13 +40,78 @@
                 </svg>
             </button></div><p class="eyebrow">Method and interpretation</p><h1>Strouhal Number</h1><p>See how to enter values, calculate a result, and check the limits of its interpretation.</p></header>
 <main>
-<section aria-labelledby="why"><h2 id="why">When is it useful?</h2><p>Strouhal number scales a repeating flow frequency by speed and length. It is used to compare vortex shedding behind a cylinder or other periodic flow across different sizes and speeds.</p></section>
-<section aria-labelledby="inputs"><h2 id="inputs">Formula and inputs</h2><div class="formula-box"><strong>St = fL / v</strong></div><p>Enter the frequency f in Hz, characteristic length L in m, and flow speed v in m/s. For cylinder vortex shedding, the cylinder diameter is a common choice for L. Record what physical signal produced f before comparing results.</p><a class="guide-cta" href="/en/calculators/strouhal">Open this calculator</a></section>
-<section aria-labelledby="example"><h2 id="example">Worked example</h2><div class="example-box"><p>If the shedding frequency is f = 10 Hz, cylinder diameter L = 0.1 m, and flow speed v = 5 m/s, then St = 10 × 0.1 ÷ 5 = 0.2.</p></div></section>
-<section aria-labelledby="meaning"><h2 id="meaning">Interpreting the result</h2><p>The result expresses frequency relative to the flow-through time scale. Comparisons with other experiments require a consistent geometry and frequency measurement.</p></section>
-<section aria-labelledby="caution"><h2 id="caution">Limits and cautions</h2><p>A zero flow speed makes this formula undefined. A zero or unrelated frequency also needs reconsideration before the result can describe a periodic flow.</p></section>
-<section aria-labelledby="related"><h2 id="related">Related dimensionless numbers</h2><p>Numbers that are often calculated or compared alongside this one.</p><ul><li><a href="/en/guides/reynolds">Reynolds number (Re)</a>: The Strouhal number of cylinder vortex shedding varies with Re, so the two are reported together.</li><li><a href="/en/guides/weber">Weber number (We)</a>: Squaring the ratio of capillary time √(ρL³/σ) to transit time L/v gives We; interface oscillations are compared alongside St.</li><li><a href="/en/guides/froude">Froude number (Fr)</a>: Periodic free-surface motion involves both gravity (Fr) and oscillation timing (St).</li></ul></section>
-<p class="source">Formula and concept reference: <a href="https://www.grc.nasa.gov/www/wind/valid/lamcyl/Study1_files/Study1.html" rel="noopener noreferrer">NASA Glenn — Laminar Flow Over a Cylinder</a>. We created the sample inputs and calculations for this guide.</p>
+<section aria-labelledby="why"><h2 id="why">Making a flow-generated period dimensionless</h2>
+<p>The Strouhal number scales the frequency f of a repeating flow event with a length L and a speed U. Written as a ratio of times, its meaning is clear.</p>
+<div class="formula-box"><strong>St = fL / U = (L/U) ÷ (1/f)</strong></div>
+<p>L/U is the time the fluid takes to travel one body size; 1/f is one oscillation period. St = 0.2 means the shedding cycle advances one fifth of a period while the fluid moves one cylinder diameter, so the fluid travels five diameters per cycle. The CFD Direct notes introduce the Strouhal number as the coefficient of the unsteady term in the nondimensional momentum equation, the ratio of transient to steady inertia. Two flows with similar St have equally fast time variation relative to their transit time, whatever their size and speed.</p>
+</section>
+<section aria-labelledby="inputs"><h2 id="inputs">Where to read f, L and U</h2>
+<p>The calculator returns fL/v from f (Hz), L (m) and v (m/s). For vortex shedding from a cylinder, L is the diameter and U the undisturbed free-stream speed upstream. The input most often wrong is f, because the measured signal can show up to twice the shedding frequency.</p>
+<div class="table-wrap"><table><caption>Frequency seen in each signal for cylinder vortex shedding</caption><thead><tr><th scope="col">Signal</th><th scope="col">Frequency</th><th scope="col">Basis</th></tr></thead><tbody>
+<tr><td>Lift coefficient; wake velocity or pressure off the centreline</td><td>Shedding frequency f</td><td>NASA NPARC cylinder case</td></tr>
+<tr><td>Drag coefficient</td><td>2f</td><td>Same: feels both vortices</td></tr>
+<tr><td>Velocity on the wake centreline</td><td>2f</td><td>Same: vortices from both sides pass</td></tr>
+</tbody></table></div>
+<p>Divide rpm by 60 to get Hz and angular frequency ω (rad/s) by 2π; entering ω makes St about 6.28 times too large. Divide km/h by 3.6 for m/s.</p>
+<a class="guide-cta" href="/en/calculators/strouhal">Open this calculator</a>
+</section>
+<section aria-labelledby="props"><h2 id="props">Cylinder St values and the Re range behind them</h2>
+<div class="table-wrap"><table><caption>Cylinder shedding St by source and condition</caption><thead><tr><th scope="col">Value</th><th scope="col">Condition</th><th scope="col">Source</th></tr></thead><tbody>
+<tr><td>St nearly constant at 0.2</td><td>Peak Aeolian-tone frequency, 60 &lt; Re &lt; 10⁶, including the drag crisis</td><td>NASA TM 107730</td></tr>
+<tr><td>St 0.179–0.182</td><td>Re = 150, experiment (Roshko)</td><td>NASA NPARC case</td></tr>
+<tr><td>St 0.150–0.183</td><td>Re = 150, CFD (depends on time-integration order and frequency method)</td><td>NASA NPARC case</td></tr>
+</tbody></table></div>
+<p>NASA TM 107730 notes that above Re ≈ 60 the cylinder flow becomes unstable and forms a von Kármán vortex street. Over that range the drag coefficient changes more than fivefold, with the drag crisis near Re = 5 × 10⁵, yet St from the peak noise frequency stays near 0.2. The Re = 150 experiment gives about 0.18, 10 % lower. Use less than 0.2 below a few hundred, and do not judge Re above 10⁶ from these data.</p>
+<p>Re needs ν: 1.0020 × 10⁻⁶ m²/s for water at 20 °C (IAEA Table 3.3), and for air at 20 °C, μ = 1.819 × 10⁻⁵ Pa·s (IAEA Table 3.1) over the 1 atm density 1.2043 kg/m³, ν = 1.5104 × 10⁻⁵ m²/s.</p>
+</section>
+<section aria-labelledby="example"><h2 id="example">Singing cable, pipe thermowell and a CFD check</h2>
+<section class="example" aria-labelledby="ex-cable">
+<h3 id="ex-cable">Example 1. Shedding frequency of a 30 mm cable in wind</h3>
+<p><strong>Given.</strong> Wind at 36 km/h blows across a 30 mm cable (assumed values). Air at 20 °C, 1 atm: ν = 1.5104 × 10⁻⁵ m²/s.</p>
+<p><strong>Unit conversion.</strong> D = 30 mm = 0.03 m; U = 36 km/h ÷ 3.6 = 10 m/s.</p>
+<p><strong>Calculation.</strong> Re = UD/ν = 10 × 0.03 ÷ (1.5104 × 10⁻⁵) ≈ 19,862, inside the 60 &lt; Re &lt; 10⁶ range where NASA TM 107730 reports St near 0.2. So f = St·U/D = 0.2 × 10 ÷ 0.03 ≈ 66.7 Hz, a period of 0.015 s.</p>
+<p><strong>Interpretation.</strong> 66.7 Hz is a low audible tone; at 15 m/s it rises in proportion to 100 Hz. A 2 m chimney in 20 m/s wind gives Re ≈ 2.65 × 10⁶, outside that range. St = 0.2 would give f = 2 Hz, but that is an extrapolation; comparing it with a structural natural frequency needs data for that Re range.</p>
+</section>
+<section class="example" aria-labelledby="ex-probe">
+<h3 id="ex-probe">Example 2. Vibration frequency of a thermowell in a water pipe</h3>
+<p><strong>Given.</strong> A 10 mm cylindrical thermowell stands across a pipe carrying 20 °C water at 2 m/s at the well (assumed values); ν = 1.0020 × 10⁻⁶ m²/s.</p>
+<p><strong>Unit conversion.</strong> D = 10 mm = 0.01 m.</p>
+<p><strong>Calculation.</strong> Re = 2 × 0.01 ÷ (1.0020 × 10⁻⁶) ≈ 19,960, so St ≈ 0.2 applies: f = 0.2 × 2 ÷ 0.01 = 40 Hz. The drag (in-line) force varies at 2f, exciting in-line vibration at 80 Hz. At 8 m/s, Re ≈ 79,840 and f = 160 Hz.</p>
+<p><strong>Interpretation.</strong> Check whether any operating speed puts f or 2f near the thermowell natural frequency. Near it, shedding can lock in to the structural frequency and amplitudes grow. Because f scales with speed, include speeds passed during start-up and shutdown, not just the maximum.</p>
+</section>
+<section class="example" aria-labelledby="ex-nparc">
+<h3 id="ex-nparc">Example 3. Checking St from the NASA NPARC cylinder CFD</h3>
+<p><strong>Given.</strong> The NPARC case computes laminar flow over a cylinder at Re = 150 and Mach 0.2, with D = 1.0 m and U = 66.8163 m/s. For Run A, the mean nondimensional time between the last four wake-velocity peaks is 31.0, converted with L<sub>r</sub> = 1.0 m and a<sub>r</sub> = 334.01 m/s.</p>
+<p><strong>Unit conversion.</strong> t = 31.0 × L<sub>r</sub>/a<sub>r</sub> = 31.0 × 1.0 ÷ 334.01 ≈ 0.0928 s, so f = 1/t ≈ 10.77 Hz (the page prints 10.777). The Mach number 66.8163 ÷ 334.01 ≈ 0.200 matches the stated condition.</p>
+<p><strong>Calculation.</strong> St = fD/U = 10.77 × 1.0 ÷ 66.8163 ≈ 0.161. Matching the experimental 0.179–0.182 would need f = 11.96–12.16 Hz.</p>
+<p><strong>Interpretation.</strong> Run A, with first-order time integration, is about 11 % below the experimental midpoint (0.1805). Run D, second order with Global Newton iterations, gives 0.180 from peak spacing, inside the experimental range. If unsteady CFD under-predicts St, suspect the time-integration order and time step first. You can repeat the check by entering f = 10.77, L = 1 and v = 66.8163.</p>
+</section>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">When St ≈ 0.2 is good enough for design</h2>
+<ul>
+<li><strong>Compute Re first.</strong> Below about 60 there is no periodic shedding; at a few hundred St is nearer 0.18; above 10⁶ these data do not apply.</li>
+<li><strong>Check the shape.</strong> 0.2 is for a smooth single cylinder. Square sections, tapered chimneys, rough cables and tubes in bundles differ, and bundles often use the gap velocity. Follow the St and speed definition of data for that shape.</li>
+<li><strong>Keep clear of natural frequencies.</strong> If f or 2f is near a structural natural frequency, lock-in can raise amplitude. St cannot predict amplitude, so use it to screen for risky speed bands.</li>
+<li><strong>Use the free-stream speed upstream.</strong> For a probe in a pipe, the mean and local speed can differ; state which one you used.</li>
+</ul>
+</section>
+<section aria-labelledby="caution"><h2 id="caution">Errors in measuring and reading the frequency</h2>
+<p>In the NPARC case, the frequency extraction method alone changes St. For Run A, peak spacing gives 0.161, an FFT over the last 2000 points 0.150, and over 3000 points 0.1667. A record of only a few cycles gives coarse FFT resolution. Record many cycles and compare peak spacing with the FFT.</p>
+<p>Drop the initial transient and use the signal only once it is periodic. A signal from the wake centreline shows 2f and St near 0.4; check the probe location and signal type before calling that a new phenomenon.</p>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">Vortex shedding and Strouhal number FAQ</h2>
+<details><summary>Over what Re range can I use St ≈ 0.2?</summary><p>NASA TM 107730 reports St from the peak cylinder noise frequency near 0.2 across 60 &lt; Re &lt; 10⁶. The Re = 150 experiment gives 0.179–0.182, so use about 0.18 at low Re and check other data above 10⁶.</p></details>
+<details><summary>Why does my St come out near 0.4?</summary><p>You probably read the frequency from drag or from velocity on the wake centreline. As the NPARC case explains, these feel both vortices and vary at twice the shedding frequency. Use lift or a point off the centreline.</p></details>
+<details><summary>My CFD St is 10 % below experiment. What should I change first?</summary><p>In the NPARC case, first-order time integration gave 0.161 and second order with Global Newton gave 0.180. Check time-integration order and time step, then recompute f from a long periodic record.</p></details>
+<details><summary>Can I use St = 0.2 for shapes other than a cylinder?</summary><p>Not directly; 0.2 comes from smooth cylinders. Other sections often take L as the width normal to the flow, but St and the reference speed should come from data for that shape.</p></details>
+</section>
+<section aria-labelledby="related"><h2 id="related">Related dimensionless numbers</h2><p>Re sets the shedding regime; interfaces and free surfaces add other time scales.</p><ul><li><a href="/en/guides/reynolds">Reynolds number (Re)</a>: Whether St ≈ 0.2 applies depends on Re, so report Re with any frequency.</li><li><a href="/en/guides/weber">Weber number (We)</a>: (capillary time √(ρL³/σ) ÷ transit time L/v)² = We; use it with St for oscillating drops or jets.</li><li><a href="/en/guides/froude">Froude number (Fr)</a>: For waves and sloshing driven by gravity, Fr checks gravity and St compares periods.</li></ul></section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">References</h2><ul>
+<li>NASA Langley: <a href="https://ntrs.nasa.gov/api/citations/19930022543/downloads/19930022543.pdf" rel="noopener noreferrer">Reynolds Number Influences in Aeronautics (NASA TM 107730)</a>. Vortex street above Re ≈ 60; drag change over 60 &lt; Re &lt; 10⁶; noise-peak St near 0.2</li>
+<li>NASA Glenn / NPARC Alliance: <a href="https://www.grc.nasa.gov/www/wind/valid/lamcyl/Study1_files/Study1.html" rel="noopener noreferrer">Laminar Flow over a Circular Cylinder: Study #1</a>. Re 150 case; Run A 0.161, FFT 0.150/0.1667; Run D 0.180; experiment 0.179–0.182; 2f in drag</li>
+<li>CFD Direct: <a href="https://doc.cfd.direct/notes/cfd-general-principles/scale-similarity" rel="noopener noreferrer">Notes on CFD: Scale Similarity</a>. St as transient over steady inertia</li>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering (2008)</a>. Tables 3.1 (air) and 3.3 (water)</li>
+</ul></section>
 <nav aria-label="Other guides"><a href="/">All calculators</a><a href="/en/guides/froude">Next: Froude Number</a><a href="/en/guides/model-similarity">Can a scale model match both Re and Fr?</a></nav>
 <nav aria-label="Theory in depth"><a href="/en/guides/interface-time-scales">Surface tension and unsteady flow: connect force ratios to time ratios</a></nav>
 </main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
