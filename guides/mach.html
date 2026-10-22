@@ -15,8 +15,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>마하 수 계산법·예제·해석 | 무차원수 계산기</title>
 <meta name="description" content="170 m/s를 음속 340 m/s로 나눈 Ma=0.5 예제와 함께, 온도와 고도에 따라 음속이 바뀌는 점과 자유류·국소 마하 수의 차이를 짚습니다.">
-<meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://calctool.cc/guides/mach">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/mach"><link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/mach">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/guides/mach">
 <link rel="stylesheet" href="../style.css?v=20261022">
 <link rel="stylesheet" href="../guide.css?v=20261022">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
@@ -39,13 +40,75 @@
                 </svg>
             </button></div><p class="eyebrow">계산 방법과 해석</p><h1>마하 수 <small>(Mach Number)</small></h1><p>공식에 값을 넣는 방법과 결과를 읽을 때 확인할 조건을 정리했습니다.</p></header>
 <main>
-<section aria-labelledby="why"><h2 id="why">언제 쓰나요?</h2><p>속도가 주변 매질의 음속에 비해 얼마나 빠른지를 나타냅니다. 항공기 속도뿐 아니라 노즐이나 고속 기체 유동에서 압축성 효과를 판단할 때 유용합니다.</p></section>
-<section aria-labelledby="inputs"><h2 id="inputs">공식과 입력값</h2><div class="formula-box"><strong>Ma = v / c</strong></div><p>v는 물체와 기체 사이의 상대 속도 또는 관심 지점의 유속(m/s), c는 그 지점 매질의 음속(m/s)입니다. 두 값은 같은 속도 단위로 입력하세요. 음속은 매질과 온도에 따라 달라지므로 고정된 340 m/s를 모든 상황에 쓰면 안 됩니다.</p><a class="guide-cta" href="/calculators/mach">이 값으로 계산하기</a></section>
-<section aria-labelledby="example"><h2 id="example">직접 계산한 예제</h2><div class="example-box"><p>예시로 v = 170 m/s, c = 340 m/s라면 170 ÷ 340 = 0.5입니다. 이는 해당 조건의 음속 절반에 해당한다는 뜻이지, 속도가 항상 같은 절대값이라는 뜻은 아닙니다.</p></div></section>
-<section aria-labelledby="meaning"><h2 id="meaning">결과는 어떻게 읽나요?</h2><p>Ma가 1보다 작으면 전체적으로 아음속, 1 부근이면 천음속 현상을 검토할 필요가 있습니다. 계산기는 편의를 위해 구간 이름을 보여주지만 물체 표면의 국소 유동은 자유류 마하 수와 다를 수 있습니다.</p></section>
-<section aria-labelledby="caution"><h2 id="caution">적용할 때 주의할 점</h2><p>고도나 온도가 바뀌면 같은 v라도 c가 변할 수 있습니다. 이 계산만으로 충격파 위치, 압력, 항력 또는 안전성을 알 수는 없습니다.</p></section>
-<section aria-labelledby="related"><h2 id="related">관련 무차원수</h2><p>이 무차원수와 함께 계산하거나 비교하는 경우가 많은 수입니다.</p><ul><li><a href="/guides/knudsen">누센 수 (Kn)</a>: 압축성(Ma)과 분자 길이 척도(Kn)는 서로 다른 가정을 검토하므로 따로 계산합니다.</li><li><a href="/guides/reynolds">레이놀즈 수 (Re)</a>: 고속 기체 유동에서도 점성 효과의 크기는 Re로 따로 확인합니다.</li></ul></section>
-<p class="source">공식·개념 확인: <a href="https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/role-of-the-mach-number/" rel="noopener noreferrer">NASA Glenn — Role of the Mach Number</a>. 예제의 입력값과 계산 과정은 이 사이트에서 설명을 위해 구성했습니다.</p>
+<section aria-labelledby="why"><h2 id="why">마하 수로 압축성을 가늠하는 원리</h2>
+<p>마하 수는 유속 v를 같은 지점의 음속 c로 나눈 값입니다. 음속은 작은 압력 교란이 기체 안에서 퍼져 나가는 속도이므로, 마하 수는 흐름이 그 교란보다 얼마나 빨리 움직이는지를 나타냅니다.</p>
+<p>NASA Glenn은 운동량 보존식 ρV dV = −dp에 등엔트로피 관계 dp = a² dρ를 대입해 dρ/ρ = −M² dV/V를 유도합니다. 속도가 1% 변할 때 밀도는 약 M²% 변한다는 뜻입니다. M = 0.1이면 밀도 변화가 0.01%에 그치지만, M = 0.8이면 0.64%가 되어 64배로 커집니다. MIT 16.01 강의 노트도 압력 변화율을 Δp/p ~ (γ/2)M²로 어림하고, M² ≪ 1인 저속 유동에서는 압력·밀도·온도 변화가 모두 작아 물성을 거의 일정하게 볼 수 있다고 설명합니다.</p>
+</section>
+<section aria-labelledby="inputs"><h2 id="inputs">음속 c를 정하는 방법</h2>
+<div class="formula-box"><strong>Ma = v / c,  c = √(γRT)</strong></div>
+<p>이상기체에서 음속은 c = √(γRT)입니다. γ는 비열비 c<sub>p</sub>/c<sub>v</sub>입니다. NASA Glenn은 표준 상태 공기에서 γ = 1.4라고 제시하면서, γ가 기체 상태에 따라 달라지는 값이라고 덧붙입니다. R은 기체마다 다른 기체 상수입니다. 공기에는 보통 287 J/(kg·K)를 쓰는데, 이 값은 OpenStax에 실린 일반 기체 상수 8.31 J/(mol·K)를 공기 몰질량 0.02897 kg/mol로 나눠 얻은 값입니다. T는 절대온도(K)이며, 정체 온도가 아니라 그 지점의 정적 온도를 넣어야 합니다.</p>
+<p>v에는 물체와 공기 사이의 상대 속도나 관심 지점의 국소 유속을 넣습니다. 계산기 기본값 v = 170 m/s, c = 340 m/s를 넣으면 Ma = 0.5가 나옵니다. 340 m/s는 Cornell 표준대기 표의 해면값 340.29 m/s(288.15 K)에 가깝습니다. 20 °C 실험실 공기라면 OpenStax가 제시한 343 m/s를 쓰는 편이 조건에 맞습니다.</p>
+<a class="guide-cta" href="/calculators/mach">이 값으로 계산하기</a></section>
+<section aria-labelledby="magnitude"><h2 id="magnitude">매질과 고도별 음속, 100 m/s일 때의 마하 수</h2>
+<p>같은 100 m/s라도 매질과 온도에 따라 마하 수가 다섯 배 이상 달라집니다. 아래 표에서 음속은 출처 표에 실린 값이고, 마하 수는 100 m/s를 그 음속으로 나눠 이 사이트에서 계산했습니다.</p>
+<div class="table-wrap"><table><caption>매질·조건별 음속과 100 m/s 흐름의 마하 수</caption><thead><tr><th scope="col">매질과 조건</th><th scope="col">음속 c (m/s)</th><th scope="col">출처</th><th scope="col">v = 100 m/s일 때 Ma</th></tr></thead><tbody>
+<tr><td>공기, 표준대기 해면(288.15 K)</td><td>340.29</td><td>Cornell 표 1.1</td><td>0.2939</td></tr>
+<tr><td>공기, 20 °C</td><td>343</td><td>OpenStax</td><td>0.2915</td></tr>
+<tr><td>공기, 0 °C</td><td>331</td><td>OpenStax 표 17.1</td><td>0.3021</td></tr>
+<tr><td>공기, 표준대기 11 000 m(216.65 K)</td><td>295.07</td><td>Cornell 표 1.1</td><td>0.3389</td></tr>
+<tr><td>이산화탄소, 0 °C</td><td>259</td><td>OpenStax 표 17.1</td><td>0.3861</td></tr>
+<tr><td>헬륨, 0 °C</td><td>965</td><td>OpenStax 표 17.1</td><td>0.1036</td></tr>
+<tr><td>담수, 20 °C</td><td>1480</td><td>OpenStax 표 17.1</td><td>0.0676</td></tr>
+</tbody></table></div>
+<p>물의 음속 1480 m/s는 펌프·배관에서 흔한 수 m/s 유속보다 수백 배 크기 때문에, 일반적인 수력 계산에서 마하 수는 0에 가깝습니다. 그러나 밸브를 급히 닫을 때 생기는 수격처럼 압력파 전파가 핵심인 문제에서는 액체의 음속이 다시 중요한 입력이 됩니다. 기체 중에서도 이산화탄소는 공기보다 음속이 낮아 같은 유속에서 마하 수가 더 크게 나옵니다.</p>
+</section>
+<section aria-labelledby="example"><h2 id="example">실제 조건으로 계산한 마하 수 예제</h2>
+<section class="example" aria-labelledby="ex-cruise"><h3 id="ex-cruise">예제 1. 고도 11 000 m에서 순항하는 여객기</h3>
+<p><strong>주어진 값:</strong> 표준대기 11 000 m에서 T = 216.65 K, a = 295.07 m/s입니다(Cornell 표 1.1). 순항 진대기속도(TAS) 250 m/s는 설명을 위해 가정한 값입니다.</p>
+<p><strong>단위 확인:</strong> 250 m/s × 3.6 = 900 km/h입니다.</p>
+<p><strong>계산:</strong> Ma = 250 / 295.07 = 0.8473입니다. 같은 250 m/s를 해면 표준대기 음속 340.29 m/s로 나누면 0.7347이 나옵니다. 두 음속의 비 295.07 / 340.29 = 0.8671은 온도비의 제곱근 √(216.65 / 288.15)와 일치하므로, 음속이 온도의 제곱근에 비례한다는 점을 표 값으로 확인할 수 있습니다.</p>
+<p><strong>해석:</strong> 속도는 같아도 11 000 m에서는 마하 수가 약 15% 더 큽니다(0.8473 / 0.7347 = 1.153). 계산기는 0.8 이상이므로 '천음속'으로 표시합니다. (γ/2)M² = 0.7 × 0.8473² ≈ 0.50이므로 압력 변화가 정압의 절반 수준까지 커질 수 있다는 어림이 나오고, 비압축성 해석은 맞지 않습니다. 날개 윗면처럼 흐름이 가속되는 곳에서는 국소 마하 수가 1을 넘을 수 있습니다.</p>
+</section>
+<section class="example" aria-labelledby="ex-duct"><h3 id="ex-duct">예제 2. 20 °C 실험실 덕트에서 0.3 기준 확인하기</h3>
+<p><strong>주어진 값:</strong> 20 °C 공기의 음속은 343 m/s입니다(OpenStax). 덕트 평균 유속 100 m/s는 가정값입니다.</p>
+<p><strong>음속 검산:</strong> γ = 1.4, R = 287 J/(kg·K), T = 273.15 + 20 = 293.15 K를 넣으면 γRT = 117,787.67 m²/s²이고 c = 343.2 m/s입니다. 출처 값 343 m/s와 반올림 범위에서 같습니다.</p>
+<p><strong>계산:</strong> Ma = 100 / 343 = 0.2915입니다. NASA Glenn 등엔트로피 관계에 γ = 1.4를 넣으면 T<sub>0</sub>/T = 1 + 0.2 Ma² = 1.0170, ρ<sub>0</sub>/ρ = (T<sub>0</sub>/T)<sup>2.5</sup> = 1.0430, p<sub>0</sub>/p = (T<sub>0</sub>/T)<sup>3.5</sup> = 1.0608입니다.</p>
+<p><strong>해석:</strong> 이 흐름을 등엔트로피적으로 멈추면 밀도가 약 4.3% 높아집니다. 마하 수가 0.3보다 조금 낮다고 밀도 변화가 0이 되지는 않습니다. 압력손실을 1% 정밀도로 맞춰야 하는 덕트 해석이라면 압축성 솔버를 쓰거나 밀도 변화를 보정해야 하는지 따져 봐야 합니다. 0.3은 수 % 수준의 밀도 변화를 받아들이겠다는 관행적인 기준이며, 물리 법칙이 정한 경계가 아닙니다.</p>
+</section>
+<section class="example" aria-labelledby="ex-nozzle"><h3 id="ex-nozzle">예제 3. 수축 노즐 목이 초크될 때의 상태</h3>
+<p><strong>주어진 값:</strong> 저장조 정체 상태 T<sub>0</sub> = 293.15 K(20 °C), p<sub>0</sub> = 101,325 Pa는 가정값입니다. 수축 노즐이 저압 탱크로 배출하고, 배압이 충분히 낮아 목에서 Ma = 1이 된다고 봅니다. NASA Glenn은 흐름이 초크되면 마하 수가 1이 되며 이때의 상태를 별표(*)로 표시합니다.</p>
+<p><strong>계산:</strong> Ma = 1, γ = 1.4이면 1 + 0.2 × 1² = 1.2입니다. T*/T<sub>0</sub> = 1 / 1.2 = 0.8333이므로 T* = 244.29 K입니다. p*/p<sub>0</sub> = 1.2<sup>−3.5</sup> = 0.5283이므로 p* = 53,528 Pa입니다. ρ*/ρ<sub>0</sub> = 1.2<sup>−2.5</sup> = 0.6339입니다.</p>
+<p><strong>목 유속:</strong> 목에서는 유속이 그 지점의 음속과 같습니다. c* = √(1.4 × 287 × 244.29) = 313.3 m/s입니다. 저장조 온도로 계산한 343.2 m/s가 아니라, 팽창하며 냉각된 목 온도로 구한 음속이라는 점에 주의합니다.</p>
+<p><strong>해석:</strong> 배압이 0.5283 p<sub>0</sub>, 즉 약 53.5 kPa보다 낮아지면 목 상태는 더 변하지 않고 질량유량도 늘지 않습니다. 이 결론은 마찰과 열전달을 무시한 등엔트로피 가정에서 나온 것입니다. 노즐 출구 뒤에 생기는 팽창파와 충격파는 이 관계로 계산할 수 없습니다.</p>
+</section>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">구간 이름과 국소 마하 수 읽기</h2>
+<p>계산기는 Ma &lt; 0.8을 아음속, 0.8~1.2를 천음속, 1.2~5를 초음속, 5 이상을 극초음속으로 표시합니다. 이 경계는 관행적으로 쓰는 대략값이며 문헌마다 조금씩 다릅니다. NASA Glenn은 M이 1에 가까워지면 M²도 1에 가까워져 밀도 변화율이 속도 변화율과 거의 같아지고, 이런 천음속 흐름에서는 압축성을 무시할 수 없다고 설명합니다.</p>
+<p>자유류 마하 수와 국소 마하 수도 구분해야 합니다. 예제 1의 0.8473은 비행기에서 멀리 떨어진 공기를 기준으로 한 값입니다. 날개 윗면에서 흐름이 빨라지면 국소 정적 온도가 내려가 음속은 작아지고 유속은 커지므로, 국소 마하 수는 자유류 값보다 상당히 커질 수 있습니다. CFD 결과를 검토할 때는 경계 조건으로 준 자유류 Ma와 셀마다 계산된 국소 Ma를 따로 확인합니다.</p>
+</section>
+<section aria-labelledby="caution"><h2 id="caution">0.3 기준과 등엔트로피 관계가 맞지 않는 경우</h2>
+<ul>
+<li>충격파를 지나는 흐름: NASA Glenn은 충격파가 생기면 흐름이 비가역이 되어 등엔트로피 관계가 성립하지 않으며, 수직·경사 충격파 관계를 써야 한다고 명시합니다.</li>
+<li>가열 때문에 밀도가 바뀌는 저속 흐름: 연소기나 온도차가 큰 자연대류처럼 열이 밀도를 바꾸는 흐름에서는 Ma가 0.01이어도 밀도가 일정하지 않습니다. 낮은 마하 수는 압력 변화로 생기는 밀도 변화가 작다는 사실만 알려 줍니다.</li>
+<li>공기가 아닌 기체: 이산화탄소, 헬륨, 연소 가스는 γ와 R이 다르므로 공기의 음속이나 0.3 기준에서 계산한 밀도비를 그대로 옮기지 않습니다. 공기도 γ가 상태에 따라 달라지므로 고온 조건에서는 1.4가 맞는지 확인합니다.</li>
+<li>마하 수만으로 항력, 충격파 위치, 구조 안전성을 결정할 수 없습니다. 점성 효과는 레이놀즈 수로, 희박 기체 효과는 누센 수로 따로 판단합니다.</li>
+</ul>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">마하 수 계산에서 자주 묻는 질문</h2>
+<details><summary>음속으로 340 m/s와 343 m/s 중 어느 값을 써야 하나요?</summary><p>340.29 m/s는 표준대기 해면(288.15 K, 즉 15 °C) 값이고 343 m/s는 20 °C 공기 값입니다. 두 값의 차이는 약 0.8%(343 / 340.29 = 1.0080)라서 대략적인 구간 판단에는 영향이 작습니다. 시험이나 해석 조건의 온도를 알고 있다면 c = √(γRT)로 다시 계산하는 편이 정확합니다.</p></details>
+<details><summary>Ma가 0.3보다 작으면 언제나 비압축성으로 풀어도 되나요?</summary><p>그렇지 않습니다. 예제 2처럼 Ma = 0.2915에서도 정체 밀도는 정적 밀도보다 약 4.3% 큽니다. 요구 정확도가 이보다 엄격하거나, 가열·연소처럼 온도 때문에 밀도가 크게 변하는 흐름이라면 마하 수가 작아도 밀도 변화를 모델에 넣어야 합니다.</p></details>
+<details><summary>초크된 수축 노즐에서 배압을 더 낮추면 유량이 늘어나나요?</summary><p>등엔트로피 가정에서는 늘지 않습니다. 목이 Ma = 1에 도달한 뒤에는 목의 온도·압력·밀도가 정체 상태만으로 정해지므로, 유량을 늘리려면 저장조 압력을 높이거나 목 면적을 키워야 합니다. 배압을 낮추면 출구 바깥의 팽창 과정만 달라집니다.</p></details>
+<details><summary>비행기 속도계에 표시된 속도를 그대로 넣어도 되나요?</summary><p>마하 수에는 주변 공기에 대한 진대기속도가 들어갑니다. 지시대기속도는 고도가 높아질수록 진대기속도보다 작게 나타나고, GPS 지상속도에는 바람 성분이 섞여 있습니다. 예제 1의 250 m/s도 진대기속도로 가정한 값입니다.</p></details>
+</section>
+<section aria-labelledby="related"><h2 id="related">관련 무차원수</h2><p>마하 수로 압축성을 확인한 뒤, 같은 기체 흐름에서 다른 가정을 점검할 때 함께 보는 수입니다.</p><ul><li><a href="/guides/knudsen">누센 수 (Kn)</a>: 마하 수가 작아도 미세 유로나 희박 기체에서는 연속체 가정이 깨질 수 있으므로 평균 자유 행로와 길이 척도를 따로 비교합니다.</li><li><a href="/guides/reynolds">레이놀즈 수 (Re)</a>: 순항 여객기처럼 마하 수가 큰 흐름에서도 경계층이 층류인지 난류인지는 Re로 판단합니다.</li></ul></section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">참고 자료</h2><ul>
+<li>NASA Glenn Research Center: <a href="https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/role-of-the-mach-number/" rel="noopener noreferrer">Role of the Mach Number</a>. M = V/a, a² = γRT, dρ/ρ = −M² dV/V 유도와 천음속에서 압축성을 무시할 수 없다는 설명</li>
+<li>NASA Glenn Research Center: <a href="https://www.grc.nasa.gov/www/k-12/airplane/isentrop.html" rel="noopener noreferrer">Isentropic Flow Equations</a>. T/T<sub>0</sub>, p/p<sub>0</sub>, ρ/ρ<sub>0</sub> 관계, Ma = 1 초크 조건, 충격파에서 등엔트로피 관계가 성립하지 않는다는 점</li>
+<li>NASA Glenn Research Center: <a href="https://www.grc.nasa.gov/www/k-12/airplane/specheat.html" rel="noopener noreferrer">Specific Heats</a>. γ = c<sub>p</sub>/c<sub>v</sub>, 표준 상태 공기의 γ = 1.4</li>
+<li>OpenStax: <a href="https://openstax.org/books/university-physics-volume-1/pages/17-2-speed-of-sound" rel="noopener noreferrer">University Physics Volume 1, 17.2 Speed of Sound</a>. 20 °C 공기 343 m/s, 표 17.1의 매질별 음속, R = 8.31 J/(mol·K)와 공기 몰질량 0.02897 kg/mol</li>
+<li>Cornell University MAE 5070: <a href="https://courses.cit.cornell.edu/mae5070/Introduction.pdf" rel="noopener noreferrer">Introduction to Flight Dynamics</a>. 표준대기 표 1.1의 0 m(288.15 K, 340.29 m/s)와 11 000 m(216.65 K, 295.07 m/s) 값</li>
+<li>MIT OpenCourseWare 16.01: <a href="https://ocw.mit.edu/courses/16-01-unified-engineering-i-ii-iii-iv-fall-2005-spring-2006/c6603238ec448ee22dc1c988898b51a5_f05_fall.pdf" rel="noopener noreferrer">Fluids Lecture 5 Notes (M. Drela)</a>. Δp/p ~ (γ/2)M² 어림과 M² ≪ 1 저속 유동의 정의</li>
+</ul></section>
 <nav aria-label="다른 해설"><a href="/">전체 계산기</a><a href="/guides/nusselt">다음: 누셀트 수</a><a href="/guides/model-similarity">축소 모형에서 Re와 Fr을 동시에 맞출 수 있을까?</a></nav>
 <nav aria-label="이론 심화"><a href="/guides/gas-models">기체 유동 모델 선택: 마하 수와 누센 수를 따로 확인하기</a></nav>
 </main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>

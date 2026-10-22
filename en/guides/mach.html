@@ -16,6 +16,8 @@
 <title>Mach Number: formula, example and interpretation | Dimensionless Number Calculator</title>
 <meta name="description" content="Divide 170 m/s by a 340 m/s speed of sound for Ma=0.5, then see how temperature and altitude shift c and why local and free-stream Mach numbers differ.">
 <link rel="canonical" href="https://calctool.cc/en/guides/mach">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/mach"><link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/mach">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/guides/mach">
 <link rel="stylesheet" href="../../style.css?v=20261022">
 <link rel="stylesheet" href="../../guide.css?v=20261022">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
@@ -38,13 +40,75 @@
                 </svg>
             </button></div><p class="eyebrow">Method and interpretation</p><h1>Mach Number</h1><p>See how to enter values, calculate a result, and check the limits of its interpretation.</p></header>
 <main>
-<section aria-labelledby="why"><h2 id="why">When is it useful?</h2><p>Mach number compares speed with the speed of sound in the surrounding medium. It is useful in aircraft, nozzles, and other high-speed gas flows when judging whether compressibility matters.</p></section>
-<section aria-labelledby="inputs"><h2 id="inputs">Formula and inputs</h2><div class="formula-box"><strong>Ma = v / c</strong></div><p>Enter relative object or flow speed v and local sound speed c, both in m/s. The sound speed depends on the gas and its temperature, so 340 m/s is not a universal constant.</p><a class="guide-cta" href="/en/calculators/mach">Open this calculator</a></section>
-<section aria-labelledby="example"><h2 id="example">Worked example</h2><div class="example-box"><p>If v = 170 m/s and c = 340 m/s under the stated conditions, Ma = 170 ÷ 340 = 0.5. This means the speed is half the local sound speed; it is not a fixed absolute speed for all conditions.</p></div></section>
-<section aria-labelledby="meaning"><h2 id="meaning">Interpreting the result</h2><p>Ma below 1 is broadly subsonic; near 1, transonic effects may need attention. The calculator gives convenient regime labels, while local flow around an object may differ from the free-stream Mach number.</p></section>
-<section aria-labelledby="caution"><h2 id="caution">Limits and cautions</h2><p>A change in altitude, temperature, or medium may change c even if v remains the same. This ratio alone cannot predict shock position, pressure, drag, or safety.</p></section>
-<section aria-labelledby="related"><h2 id="related">Related dimensionless numbers</h2><p>Numbers that are often calculated or compared alongside this one.</p><ul><li><a href="/en/guides/knudsen">Knudsen number (Kn)</a>: Compressibility (Ma) and molecular length scales (Kn) test different assumptions, so check them separately.</li><li><a href="/en/guides/reynolds">Reynolds number (Re)</a>: Even in high-speed gas flow, the importance of viscosity is checked separately with Re.</li></ul></section>
-<p class="source">Formula and concept reference: <a href="https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/role-of-the-mach-number/" rel="noopener noreferrer">NASA Glenn — Role of the Mach Number</a>. We created the sample inputs and calculations for this guide.</p>
+<section aria-labelledby="why"><h2 id="why">Why the Mach number signals compressibility</h2>
+<p>Ma = v/c compares the flow speed with the local speed of sound, the speed at which small pressure disturbances travel through the gas.</p>
+<p>NASA Glenn combines the momentum equation ρV dV = −dp with the isentropic relation dp = a² dρ to get dρ/ρ = −M² dV/V: a 1% speed change gives about an M² percent density change, 0.01% at M = 0.1 but 0.64% at M = 0.8 (64 times more). The MIT 16.01 notes estimate Δp/p ~ (γ/2)M² and call a flow low-speed when M² ≪ 1, so pressure, density and temperature stay nearly constant.</p>
+</section>
+<section aria-labelledby="inputs"><h2 id="inputs">Choosing the speed of sound c</h2>
+<div class="formula-box"><strong>Ma = v / c,  c = √(γRT)</strong></div>
+<p>For an ideal gas c = √(γRT). γ = c<sub>p</sub>/c<sub>v</sub> is 1.4 for air at standard day conditions (NASA Glenn), though it depends on the gas state. R for air, 287 J/(kg·K), is 8.31 J/(mol·K) divided by 0.02897 kg/mol, both from OpenStax. T is the local static temperature in kelvin, not the stagnation temperature.</p>
+<p>v is the speed relative to the air or the local flow speed. The default inputs v = 170 m/s and c = 340 m/s give Ma = 0.5; 340 m/s is close to the Cornell sea-level standard value of 340.29 m/s (288.15 K), while 343 m/s (OpenStax) suits 20 °C laboratory air.</p>
+<a class="guide-cta" href="/en/calculators/mach">Open this calculator</a></section>
+<section aria-labelledby="magnitude"><h2 id="magnitude">Sound speed by medium and altitude, and the Mach number of a 100 m/s flow</h2>
+<p>Sound speeds below are from the cited tables; the Mach numbers are 100 m/s divided by them. The spread exceeds a factor of five.</p>
+<div class="table-wrap"><table><caption>Speed of sound by medium and condition, and Ma for a 100 m/s flow</caption><thead><tr><th scope="col">Medium and condition</th><th scope="col">Speed of sound c (m/s)</th><th scope="col">Source</th><th scope="col">Ma at v = 100 m/s</th></tr></thead><tbody>
+<tr><td>Air, standard atmosphere at sea level (288.15 K)</td><td>340.29</td><td>Cornell Table 1.1</td><td>0.2939</td></tr>
+<tr><td>Air, 20 °C</td><td>343</td><td>OpenStax</td><td>0.2915</td></tr>
+<tr><td>Air, 0 °C</td><td>331</td><td>OpenStax Table 17.1</td><td>0.3021</td></tr>
+<tr><td>Air, standard atmosphere at 11 000 m (216.65 K)</td><td>295.07</td><td>Cornell Table 1.1</td><td>0.3389</td></tr>
+<tr><td>Carbon dioxide, 0 °C</td><td>259</td><td>OpenStax Table 17.1</td><td>0.3861</td></tr>
+<tr><td>Helium, 0 °C</td><td>965</td><td>OpenStax Table 17.1</td><td>0.1036</td></tr>
+<tr><td>Fresh water, 20 °C</td><td>1480</td><td>OpenStax Table 17.1</td><td>0.0676</td></tr>
+</tbody></table></div>
+<p>Water's 1480 m/s is hundreds of times the few m/s in pumps and pipes, so Ma is near zero in ordinary hydraulics; the liquid sound speed matters again when pressure waves are the problem, as in water hammer. Carbon dioxide, slower than air, gives a larger Ma at the same speed.</p>
+</section>
+<section aria-labelledby="example"><h2 id="example">Mach number examples from real operating conditions</h2>
+<section class="example" aria-labelledby="ex-cruise"><h3 id="ex-cruise">Example 1. An airliner cruising at 11 000 m</h3>
+<p><strong>Given:</strong> In the standard atmosphere at 11 000 m, T = 216.65 K and a = 295.07 m/s (Cornell Table 1.1). The cruise true airspeed (TAS) of 250 m/s is an assumed value for illustration.</p>
+<p><strong>Units:</strong> 250 m/s × 3.6 = 900 km/h.</p>
+<p><strong>Calculation:</strong> Ma = 250 / 295.07 = 0.8473. Dividing the same 250 m/s by the sea-level standard sound speed of 340.29 m/s gives 0.7347. The sound-speed ratio 295.07 / 340.29 = 0.8671 equals √(216.65 / 288.15): c scales with √T.</p>
+<p><strong>Interpretation:</strong> Same speed, about 15% higher Ma at altitude (0.8473 / 0.7347 = 1.153), labelled transonic. (γ/2)M² = 0.7 × 0.8473² ≈ 0.50: pressure changes of order half the static pressure, so incompressible analysis does not apply, and the local Ma over the wing can exceed 1.</p>
+</section>
+<section class="example" aria-labelledby="ex-duct"><h3 id="ex-duct">Example 2. Checking the 0.3 guideline in a 20 °C laboratory duct</h3>
+<p><strong>Given:</strong> The speed of sound in air at 20 °C is 343 m/s (OpenStax). The mean duct velocity of 100 m/s is assumed.</p>
+<p><strong>Sound-speed check:</strong> γ = 1.4, R = 287 J/(kg·K), T = 273.15 + 20 = 293.15 K give γRT = 117,787.67 m²/s² and c = 343.2 m/s, matching 343 m/s.</p>
+<p><strong>Calculation:</strong> Ma = 100 / 343 = 0.2915. The NASA Glenn isentropic relations with γ = 1.4 give T<sub>0</sub>/T = 1 + 0.2 Ma² = 1.0170, ρ<sub>0</sub>/ρ = (T<sub>0</sub>/T)<sup>2.5</sup> = 1.0430 and p<sub>0</sub>/p = (T<sub>0</sub>/T)<sup>3.5</sup> = 1.0608.</p>
+<p><strong>Interpretation:</strong> Stopping the flow isentropically raises density by about 4.3%, even below Ma 0.3. A duct pressure-loss model that must be 1% accurate may need a compressible solver or a density correction. The 0.3 rule accepts density changes of a few percent; it is a convention, not physics.</p>
+</section>
+<section class="example" aria-labelledby="ex-nozzle"><h3 id="ex-nozzle">Example 3. Throat conditions when a converging nozzle chokes</h3>
+<p><strong>Given:</strong> Assumed reservoir stagnation state T<sub>0</sub> = 293.15 K (20 °C), p<sub>0</sub> = 101,325 Pa; a converging nozzle discharges into a low-pressure tank and the throat reaches Ma = 1. NASA Glenn marks these choked conditions with a star (*).</p>
+<p><strong>Calculation:</strong> With Ma = 1 and γ = 1.4, 1 + 0.2 × 1² = 1.2. T*/T<sub>0</sub> = 1 / 1.2 = 0.8333, so T* = 244.29 K. p*/p<sub>0</sub> = 1.2<sup>−3.5</sup> = 0.5283, so p* = 53,528 Pa. ρ*/ρ<sub>0</sub> = 1.2<sup>−2.5</sup> = 0.6339.</p>
+<p><strong>Throat velocity:</strong> equals the local sound speed, c* = √(1.4 × 287 × 244.29) = 313.3 m/s, based on the cooled throat temperature, not the reservoir value that gave 343.2 m/s.</p>
+<p><strong>Interpretation:</strong> Below a back pressure of 0.5283 p<sub>0</sub> (about 53.5 kPa) the throat state and mass flow stop changing. This assumes no friction or heat transfer, and the expansion waves and shocks downstream of the exit are outside these relations.</p>
+</section>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">Regime labels and the local Mach number</h2>
+<p>The calculator's labels (subsonic below 0.8, transonic 0.8 to 1.2, supersonic 1.2 to 5, hypersonic above 5) are conventional and vary between references. NASA Glenn notes that near M = 1 the density change is about as large as the velocity change, so transonic flow cannot ignore compressibility.</p>
+<p>Example 1's 0.8473 is a free-stream value. Over the upper wing surface the flow speeds up and cools, so the local sound speed falls and the local Ma can be well above it. In CFD, check the boundary-condition Ma separately from the cell-by-cell local Ma.</p>
+</section>
+<section aria-labelledby="caution"><h2 id="caution">When the 0.3 guideline and isentropic relations break down</h2>
+<ul>
+<li>Shocks: NASA Glenn states that the flow becomes irreversible and the normal or oblique shock relations replace the isentropic ones.</li>
+<li>Heated low-speed flow: in combustors or strong natural convection, heat changes the density even at Ma = 0.01. Low Ma only rules out pressure-driven density change.</li>
+<li>Other gases: CO₂, helium and combustion products have their own γ and R, so neither the air sound speed nor air density ratios carry over. Check that γ = 1.4 still holds for hot air.</li>
+<li>Ma alone does not give drag, shock location or structural safety; check viscosity with Re and rarefaction with Kn.</li>
+</ul>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">Mach number calculation questions</h2>
+<details><summary>Should I use 340 m/s or 343 m/s for the speed of sound?</summary><p>340.29 m/s is standard sea level (288.15 K, 15 °C); 343 m/s is 20 °C air. The 0.8% gap (343 / 340.29 = 1.0080) rarely changes a regime check, but if you know the actual temperature, recompute c = √(γRT).</p></details>
+<details><summary>If Ma is below 0.3, can I always treat the flow as incompressible?</summary><p>No. At Ma = 0.2915 (Example 2) stagnation density is still about 4.3% above static. With a tighter accuracy target, or with heating or combustion, model the density variation anyway.</p></details>
+<details><summary>Does lowering the back pressure increase the flow through a choked converging nozzle?</summary><p>Not in isentropic theory. At Ma = 1 the throat state depends only on the stagnation state, so more flow needs a higher reservoir pressure or a larger throat; lower back pressure only changes the expansion outside the exit.</p></details>
+<details><summary>Can I enter the speed shown on an aircraft's airspeed indicator?</summary><p>Use true airspeed. Indicated airspeed reads below true airspeed at altitude, and GPS ground speed includes wind. Example 1's 250 m/s is a true airspeed.</p></details>
+</section>
+<section aria-labelledby="related"><h2 id="related">Related dimensionless numbers</h2><p>After checking compressibility with Ma, use these to test other assumptions about the same gas flow.</p><ul><li><a href="/en/guides/knudsen">Knudsen number (Kn)</a>: Even at a low Mach number, the continuum assumption can fail in microchannels or rarefied gas, so compare the mean free path with the length scale separately.</li><li><a href="/en/guides/reynolds">Reynolds number (Re)</a>: Even at a high Mach number, as for a cruising airliner, Re decides whether the boundary layer is laminar or turbulent.</li></ul></section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">References</h2><ul>
+<li>NASA Glenn Research Center: <a href="https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/role-of-the-mach-number/" rel="noopener noreferrer">Role of the Mach Number</a>. M = V/a, a² = γRT, dρ/ρ = −M² dV/V, transonic compressibility</li>
+<li>NASA Glenn Research Center: <a href="https://www.grc.nasa.gov/www/k-12/airplane/isentrop.html" rel="noopener noreferrer">Isentropic Flow Equations</a>. T/T<sub>0</sub>, p/p<sub>0</sub>, ρ/ρ<sub>0</sub>, choking at Ma = 1, shocks</li>
+<li>NASA Glenn Research Center: <a href="https://www.grc.nasa.gov/www/k-12/airplane/specheat.html" rel="noopener noreferrer">Specific Heats</a>. γ = 1.4 for standard-day air</li>
+<li>OpenStax: <a href="https://openstax.org/books/university-physics-volume-1/pages/17-2-speed-of-sound" rel="noopener noreferrer">University Physics Volume 1, 17.2 Speed of Sound</a>. 343 m/s at 20 °C, Table 17.1, R and molar mass of air</li>
+<li>Cornell University MAE 5070: <a href="https://courses.cit.cornell.edu/mae5070/Introduction.pdf" rel="noopener noreferrer">Introduction to Flight Dynamics</a>. Standard atmosphere Table 1.1, 0 m and 11 000 m</li>
+<li>MIT OpenCourseWare 16.01: <a href="https://ocw.mit.edu/courses/16-01-unified-engineering-i-ii-iii-iv-fall-2005-spring-2006/c6603238ec448ee22dc1c988898b51a5_f05_fall.pdf" rel="noopener noreferrer">Fluids Lecture 5 Notes (M. Drela)</a>. Δp/p ~ (γ/2)M², low-speed flow M² ≪ 1</li>
+</ul></section>
 <nav aria-label="Other guides"><a href="/">All calculators</a><a href="/en/guides/nusselt">Next: Nusselt Number</a><a href="/en/guides/model-similarity">Can a scale model match both Re and Fr?</a></nav>
 <nav aria-label="Theory in depth"><a href="/en/guides/gas-models">Choosing gas-flow models: check Mach and Knudsen numbers separately</a></nav>
 </main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>

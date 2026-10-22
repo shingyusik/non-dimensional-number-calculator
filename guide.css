@@ -57,3 +57,10 @@
 .guide-page .notice { border-left: 4px solid var(--accent-secondary); padding-left: 0.9rem; }
 .guide-page .report-template { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 0.65rem; padding: 1rem; font-size: 0.9rem; }
 .guide-page footer .footer-links a { color: var(--accent-secondary); }
+
+.guide-page .example { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 1rem; padding: 0.25rem 1.25rem; margin: 1.25rem 0; overflow-wrap: anywhere; }
+.guide-page .example h3 { margin-top: 1rem; }
+.guide-page .faq details { border: 1px solid var(--card-border); border-radius: 0.65rem; padding: 0.6rem 1rem; margin: 0.6rem 0; background: var(--card-bg); }
+.guide-page .faq summary { cursor: pointer; font-weight: 600; line-height: 1.6; }
+.guide-page .faq summary:focus-visible { outline: 3px solid var(--accent-secondary); outline-offset: 3px; }
+.guide-page .sources li { font-size: 0.95rem; overflow-wrap: anywhere; }

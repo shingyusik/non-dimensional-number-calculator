@@ -14,8 +14,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Weber Number: formula, example and interpretation | Dimensionless Number Calculator</title>
-<meta name="description" content="Speed enters We=ρv²L/σ squared. A water-drop example reaches We≈555.56, followed by guidance on choosing drop or nozzle diameter as L.">
+<meta name="description" content="Speed enters We=ρv²L/σ squared. A spray-drop example reaches We≈7.44, followed by guidance on choosing gas or liquid density and drop diameter or radius.">
 <link rel="canonical" href="https://calctool.cc/en/guides/weber">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/weber"><link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/weber">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/guides/weber">
 <link rel="stylesheet" href="../../style.css?v=20261022">
 <link rel="stylesheet" href="../../guide.css?v=20261022">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
@@ -38,13 +40,94 @@
                 </svg>
             </button></div><p class="eyebrow">Method and interpretation</p><h1>Weber Number</h1><p>See how to enter values, calculate a result, and check the limits of its interpretation.</p></header>
 <main>
-<section aria-labelledby="why"><h2 id="why">When is it useful?</h2><p>Weber number compares fluid inertia with surface tension. It is useful for droplets, bubbles, sprays, and other flows where a fluid interface affects shape or breakup.</p></section>
-<section aria-labelledby="inputs"><h2 id="inputs">Formula and inputs</h2><div class="formula-box"><strong>We = ρv²L / σ</strong></div><p>Enter density ρ in kg/m³, representative speed v in m/s, characteristic length L in m, and interfacial tension σ in N/m. Because speed is squared, doubling v multiplies We by four if the other inputs stay fixed.</p><a class="guide-cta" href="/en/calculators/weber">Open this calculator</a></section>
-<section aria-labelledby="example"><h2 id="example">Worked example</h2><div class="example-box"><p>For ρ = 1000 kg/m³, v = 2 m/s, L = 0.01 m, and σ = 0.072 N/m, We = 1000 × 2² × 0.01 ÷ 0.072 ≈ 555.56.</p></div></section>
-<section aria-labelledby="meaning"><h2 id="meaning">Interpreting the result</h2><p>For this example and length scale, inertia is large relative to surface tension. The ratio alone does not establish a universal droplet-breakup threshold.</p></section>
-<section aria-labelledby="caution"><h2 id="caution">Limits and cautions</h2><p>Choose σ for the relevant pair of fluids and temperature. A droplet diameter and a nozzle diameter define different Weber numbers; state which one you used.</p></section>
-<section aria-labelledby="related"><h2 id="related">Related dimensionless numbers</h2><p>Numbers that are often calculated or compared alongside this one.</p><ul><li><a href="/en/guides/reynolds">Reynolds number (Re)</a>: With the same L and v, We/Re = μv/σ compares viscosity with surface tension.</li><li><a href="/en/guides/froude">Froude number (Fr)</a>: With the same L and v, We/Fr² = ρgL²/σ and speed drops out.</li><li><a href="/en/guides/strouhal">Strouhal number (St)</a>: The squared ratio of capillary time to transit time is We, so St is used alongside it when comparing oscillation periods.</li></ul></section>
-<p class="source">Formula and concept reference: <a href="https://ntrs.nasa.gov/api/citations/19680009511/downloads/19680009511.pdf" rel="noopener noreferrer">NASA — Dimensionless Numbers, Weber Number</a>. We created the sample inputs and calculations for this guide.</p>
+<section aria-labelledby="why"><h2 id="why">Inertial pressure versus curvature pressure</h2>
+<p>The Weber number compares the pressure a flow exerts on an interface with the pressure surface tension uses to keep it rounded. Flow at speed U carries a pressure of order ρU²; surface tension on a curved surface of size L produces one of order σ/L (2σ/R inside a spherical drop of radius R). Their ratio is the formula.</p>
+<div class="formula-box"><strong>We = ρU² ÷ (σ/L) = ρU²L / σ</strong></div>
+<p>The MIT surface-tension slides write it with the drop radius a as inertia over curvature pressure, and the MIT similitude notes call it the group that indicates the importance of surface tension. Far below 1, surface tension holds the interface shape; far above 1, the flow can deform or tear it. Where the boundary lies depends on how ρ and L are defined.</p>
+</section>
+<section aria-labelledby="inputs"><h2 id="inputs">Which density and which length?</h2>
+<p>The calculator returns ρv²L/σ from ρ (kg/m³), v (m/s), L (m) and σ (N/m). The definition is your choice, and for one drop it can change the result several hundredfold.</p>
+<div class="table-wrap"><table><caption>Weber number definitions commonly used for each type of problem</caption><thead><tr><th scope="col">Problem</th><th scope="col">ρ</th><th scope="col">v</th><th scope="col">L</th></tr></thead><tbody>
+<tr><td>Secondary (aerodynamic) breakup of a drop in gas</td><td>Surrounding gas density</td><td>Slip speed between drop and gas</td><td>Drop diameter (sometimes radius)</td></tr>
+<tr><td>Falling raindrop scaling</td><td>Air density</td><td>Fall speed</td><td>Radius a (MIT slides)</td></tr>
+<tr><td>Liquid jet or sheet leaving a nozzle</td><td>Liquid density</td><td>Jet speed</td><td>Jet diameter or sheet thickness</td></tr>
+</tbody></table></div>
+<p>The Ansys CFX theory guide defines the secondary-breakup We with surrounding-fluid density, slip velocity and particle diameter, noting that the radius is sometimes used. A radius-based value is half the diameter-based one, so check the definition behind any threshold you borrow.</p>
+<a class="guide-cta" href="/en/calculators/weber">Open this calculator</a>
+</section>
+<section aria-labelledby="props"><h2 id="props">How large is We for water and air at 20 °C?</h2>
+<p>Air density 1.166 kg/m³ is the IAEA Table 3.1 value at 98.1 kPa; 1.2043 kg/m³ is that value scaled to 101.325 kPa as an ideal gas (1.166 × 101.325 ÷ 98.1). Water surface tension is 0.0728 N/m from OpenStax; IAEA Table 3.3 gives 72.70 mN/m (0.0727 N/m) for saturated water at 20 °C, about 0.1 % lower.</p>
+<div class="table-wrap"><table><caption>Properties of water and air at 20 °C (with sources)</caption><thead><tr><th scope="col">Property</th><th scope="col">Water</th><th scope="col">Air</th></tr></thead><tbody>
+<tr><td>Density ρ</td><td>998.2 kg/m³ (IAEA Table 3.3)</td><td>1.166 kg/m³ at 98.1 kPa (IAEA Table 3.1); 1.2043 kg/m³ scaled to 1 atm</td></tr>
+<tr><td>Viscosity μ</td><td>1.0000 × 10⁻³ Pa·s (IAEA)</td><td>1.819 × 10⁻⁵ Pa·s (IAEA)</td></tr>
+<tr><td>Water-air surface tension σ</td><td colspan="2">0.0728 N/m (OpenStax), 72.70 mN/m (IAEA)</td></tr>
+</tbody></table></div>
+<p>For a feel of magnitudes, the next table gives σ/L and the speed at which We = 1, v = √(σ/(ρL)), using 1.2043 kg/m³ for air and 998.2 kg/m³ for water.</p>
+<div class="table-wrap"><table><caption>σ/L and the speed giving We = 1 at a water-air interface, by length</caption><thead><tr><th scope="col">L</th><th scope="col">σ/L</th><th scope="col">We = 1 speed, air</th><th scope="col">We = 1 speed, water</th></tr></thead><tbody>
+<tr><td>10 μm</td><td>7,280 Pa</td><td>77.7 m/s</td><td>2.70 m/s</td></tr>
+<tr><td>100 μm</td><td>728 Pa</td><td>24.6 m/s</td><td>0.854 m/s</td></tr>
+<tr><td>1 mm</td><td>72.8 Pa</td><td>7.77 m/s</td><td>0.270 m/s</td></tr>
+<tr><td>10 mm</td><td>7.28 Pa</td><td>2.46 m/s</td><td>0.0854 m/s</td></tr>
+</tbody></table></div>
+<p>Smaller drops have larger curvature pressure, so air needs a much higher relative speed to deform them. At equal length and speed, the water-density We is 998.2 ÷ 1.2043 ≈ 829 times the air-density We; mixing the definitions inverts the conclusion.</p>
+</section>
+<section aria-labelledby="example"><h2 id="example">Spray drop, raindrop and tap-water jet</h2>
+<section class="example" aria-labelledby="ex-spray">
+<h3 id="ex-spray">Example 1. Will a spray-nozzle drop break up in air?</h3>
+<p><strong>Given.</strong> A 0.5 mm water drop moves at 30 m/s relative to still air (assumed diameter and speed). Air at 20 °C, 1 atm: ρ<sub>g</sub> = 1.2043 kg/m³; σ = 0.0728 N/m.</p>
+<p><strong>Unit conversion.</strong> d = 0.5 mm = 0.0005 m; 72.8 mN/m ÷ 1000 = 0.0728 N/m.</p>
+<p><strong>Calculation.</strong> ρ<sub>g</sub>v² = 1.2043 × 30² ≈ 1,084 Pa and σ/d = 0.0728 ÷ 0.0005 = 145.6 Pa, so We = 1.2043 × 30² × 0.0005 ÷ 0.0728 ≈ 7.44.</p>
+<p><strong>Interpretation.</strong> The Ansys CFX guide uses this definition: deformation becomes significant near We = 1, below 12 is vibrational breakup and 12 to 50 is bag breakup. At 7.44 the drop oscillates but stays below bag breakup. It would need v = √(12σ/(ρ<sub>g</sub>d)) ≈ 38.1 m/s for We = 12 and about 77.7 m/s for We = 50. The radius gives We ≈ 3.72, not comparable with those limits; the water density by mistake gives We ≈ 6,170 and a false prediction of shattering. With water viscosity 1.0000 × 10⁻³ Pa·s, Oh = μ/√(ρσd) ≈ 0.0052, so viscosity barely delays breakup.</p>
+</section>
+<section class="example" aria-labelledby="ex-rain">
+<h3 id="ex-rain">Example 2. How large can a raindrop grow?</h3>
+<p><strong>Given.</strong> The MIT slides balance air drag ρ<sub>a</sub>U²a² against weight of order ρga³, giving U ∼ √(ρga/ρ<sub>a</sub>); the drop survives only if ρ<sub>a</sub>U² ∼ ρga is below σ/a. Inputs: water 998.2 kg/m³, air 1.2043 kg/m³, σ = 0.0728 N/m, g = 9.81 m/s², radii a = 1 mm and 3 mm.</p>
+<p><strong>Unit conversion.</strong> a = 0.001 m and 0.003 m; the radius goes into L, as in the slides.</p>
+<p><strong>Calculation.</strong> For a = 1 mm, U ∼ √(998.2 × 9.81 × 0.001 ÷ 1.2043) ≈ 2.85 m/s, and the air-density We = 1.2043 × 2.85² × 0.001 ÷ 0.0728 ≈ 0.135. For a = 3 mm, U ∼ 4.94 m/s and We ≈ 1.21. Here We equals the Bond number Bo = ρga²/σ: for a = 1 mm, Bo = 998.2 × 9.81 × 0.001² ÷ 0.0728 ≈ 0.135. The radius at which We = 1 is the capillary length ℓ<sub>c</sub> = √(σ/(ρg)) = √(0.0728 ÷ (998.2 × 9.81)) ≈ 2.73 mm.</p>
+<p><strong>Interpretation.</strong> Per the slides, drops smaller than the capillary length are held together by surface tension; larger ones are torn apart. They quote about 2 mm (σ = 70 dyn/cm), the same order as 2.73 mm. The speed omits a coefficient, so it is not a terminal velocity. On a diameter basis the values double (0.269 and 2.42).</p>
+</section>
+<section class="example" aria-labelledby="ex-jet">
+<h3 id="ex-jet">Example 3. Liquid Weber number of a tap-water jet</h3>
+<p><strong>Given.</strong> Water leaves a 10 mm outlet at 4 L/min (assumed); 998.2 kg/m³, σ = 0.0728 N/m.</p>
+<p><strong>Unit conversion.</strong> Q = 4 L/min = 4 × 10⁻³ m³ ÷ 60 s ≈ 6.67 × 10⁻⁵ m³/s. A = π × 0.01² ÷ 4 ≈ 7.85 × 10⁻⁵ m², so v = Q/A ≈ 0.849 m/s.</p>
+<p><strong>Calculation.</strong> With liquid density and jet diameter, We = 998.2 × 0.849² × 0.01 ÷ 0.0728 ≈ 98.8. ρv² ≈ 719 Pa against a cylindrical-surface curvature pressure σ/R = 0.0728 ÷ 0.005 = 14.56 Pa. With air density, We ≈ 0.119.</p>
+<p><strong>Interpretation.</strong> Inertia far exceeds curvature pressure, so the water leaves as a continuous stream rather than dripping. An air-density We near 0.1 means the air hardly tears it; a slow stream breaks into drops further down mainly through capillary (Plateau–Rayleigh) instability. The stream accelerates and thins as it falls, so state that We refers to outlet conditions.</p>
+</section>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">Reading the drop-breakup regime table</h2>
+<p>The Ansys CFX guide, citing experiments, lists these regimes for We based on gas density, slip velocity and drop diameter.</p>
+<div class="table-wrap"><table><caption>Breakup regimes of drops in a gas flow (Ansys CFX Theory Guide)</caption><thead><tr><th scope="col">We range</th><th scope="col">Regime</th></tr></thead><tbody>
+<tr><td>We &lt; 12</td><td>Vibrational breakup</td></tr>
+<tr><td>12 &lt; We &lt; 50</td><td>Bag breakup</td></tr>
+<tr><td>50 &lt; We &lt; 100</td><td>Bag-and-stamen breakup</td></tr>
+<tr><td>100 &lt; We &lt; 350</td><td>Sheet stripping</td></tr>
+<tr><td>350 &lt; We</td><td>Catastrophic breakup</td></tr>
+</tbody></table></div>
+<p>Double a radius-based We before comparing. The same guide uses a separate correlation for large Oh; viscosity slows deformation, so expect a higher critical We for viscous liquids and compute Oh too. The table gives the breakup mode, not its speed: a drop that crosses a fast stream briefly may slow down before breakup completes, which is why CFD breakup models also compute a breakup time.</p>
+</section>
+<section aria-labelledby="caution"><h2 id="caution">Common ways to misuse the Weber number</h2>
+<ul>
+<li><strong>Using the absolute speed.</strong> Breakup depends on speed relative to the gas; a drop carried with the stream has a small We even if fast over the ground.</li>
+<li><strong>Treating surface tension as a constant.</strong> OpenStax lists water at 0.0756 (0 °C), 0.0728 (20 °C) and 0.0589 N/m (100 °C), and soapy water at about 0.0370 N/m, roughly half, so surfactant can nearly double We.</li>
+<li><strong>Mixing nozzle diameter and drop diameter.</strong> Nozzle diameter describes primary breakup of the jet; drop diameter describes secondary breakup. Do not compare them with one threshold.</li>
+<li><strong>Deciding from We alone.</strong> Oh, exposure time and gas turbulence change the outcome. Use We for screening and base design on data or validated models with the same definition.</li>
+</ul>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">Weber number questions engineers ask</h2>
+<details><summary>For drop breakup, does ρ mean the water density or the air density?</summary><p>For secondary breakup the usual definition, also used by the Ansys CFX table, takes the gas density. For water and air at 20 °C the two differ by about 829 times, so match your reference first.</p></details>
+<details><summary>Does a drop always break up once We exceeds 12?</summary><p>No. Twelve is the typical bag-breakup onset for the diameter definition. It rises for viscous liquids, and a drop exposed for less than the breakup time slows before breaking. On a radius basis the same onset is about 6.</p></details>
+<details><summary>Can the Weber number explain why raindrops stop growing beyond a certain size?</summary><p>In the MIT scaling, a falling drop’s air-density We equals its Bond number, reaching 1 at the capillary length, about 2.73 mm for water at 20 °C; larger drops are torn apart. Read it as an order of magnitude, not an exact maximum.</p></details>
+<details><summary>How do I convert surface tension given in dyn/cm?</summary><p>1 dyn/cm = 1 mN/m; divide by 1000 for N/m. 70 dyn/cm = 0.070 N/m; 72.70 mN/m = 0.0727 N/m.</p></details>
+</section>
+<section aria-labelledby="related"><h2 id="related">Related dimensionless numbers</h2><p>Interface problems usually also need viscosity, gravity and oscillation periods checked.</p><ul><li><a href="/en/guides/reynolds">Reynolds number (Re)</a>: With the same v and L, We/Re = μv/σ is the capillary number: does viscosity rival surface tension?</li><li><a href="/en/guides/froude">Froude number (Fr)</a>: We/Fr² = ρgL²/σ is the Bond number, used in Example 2 to weigh gravity against surface tension.</li><li><a href="/en/guides/strouhal">Strouhal number (St)</a>: (capillary time √(ρL³/σ) ÷ transit time L/v)² = We; pair with St for drop oscillation or spray pulsation frequencies.</li></ul></section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">References</h2><ul>
+<li>MIT (J. W. M. Bush): <a href="https://thales.mit.edu/bush/wp-content/uploads/2016/02/Lec3-slides.pdf" rel="noopener noreferrer">Surface Tension, Lecture 3 slides</a>. We = ρU²a/σ, Bond number, capillary length about 2 mm, raindrop scaling</li>
+<li>Ansys: <a href="https://ansyshelp.ansys.com/public/views/secured/corp/v251/en/cfx_thry/spray_secondary_breakup.html" rel="noopener noreferrer">CFX Theory Guide, Secondary Breakup Models</a>. We from fluid density, slip velocity, diameter; regimes 12/50/100/350</li>
+<li>MIT OCW (2.154): <a href="https://ocw.mit.edu/courses/2-154-maneuvering-and-control-of-surface-and-underwater-vehicles-13-49-fall-2004/dd2b3f06232fe4d7f919712f60be10ab_lec5.pdf" rel="noopener noreferrer">Similitude lecture notes</a>. We indicates the importance of surface tension</li>
+<li>UCF Pressbooks (OpenStax College Physics): <a href="https://pressbooks.online.ucf.edu/phy2053bc/chapter/cohesion-and-adhesion-in-liquids-surface-tension-and-capillary-action/" rel="noopener noreferrer">Cohesion and Adhesion in Liquids: Surface Tension and Capillary Action</a>. Water σ at 0/20/100 °C, soapy water</li>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering (2008)</a>. Tables 3.1 (air) and 3.3 (water)</li>
+<li>NASA: <a href="https://ntrs.nasa.gov/api/citations/19680009511/downloads/19680009511.pdf" rel="noopener noreferrer">Dimensional Analysis Handbook / Dimensionless Numbers</a>. We as inertia over surface tension</li>
+</ul></section>
 <nav aria-label="Other guides"><a href="/">All calculators</a><a href="/en/guides/knudsen">Next: Knudsen Number</a><a href="/en/guides/model-similarity">Can a scale model match both Re and Fr?</a></nav>
 <nav aria-label="Theory in depth"><a href="/en/guides/interface-time-scales">Surface tension and unsteady flow: connect force ratios to time ratios</a></nav>
 </main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>

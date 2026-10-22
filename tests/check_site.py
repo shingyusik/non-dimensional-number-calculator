@@ -12,13 +12,9 @@ GA4_ID = 'G-4L6KGPWDN7'
 ADSENSE = 'pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516'
 CLARITY = 'clarity.ms/tag/'
 ISSUES = 'https://github.com/shingyusik/non-dimensional-number-calculator/issues'
-MIN_BODY, WARN_BODY = 1000, 1500
+MIN_BODY = 1500
 calculators = ['reynolds', 'mach', 'nusselt', 'prandtl', 'schmidt', 'peclet', 'strouhal', 'froude', 'weber', 'knudsen']
 
-# Korean basic guides are under 1,000 characters until the phase-2 rewrite.
-# They stay published and linked, but carry noindex and no hreflang. Remove
-# entries here (and the meta tag) once a page passes the length check.
-NOINDEX_THIN = {f'guides/{name}.html' for name in calculators}
 CLARITY_PAGES = {'index.html', 'privacy.html', 'terms.html'}
 FOOTER = {
     'ko': ['/about', '/contact', '/privacy', '/terms'],
@@ -32,16 +28,35 @@ TOPIC_WORDS = [
 
 class Page(HTMLParser):
     SKIP = {'nav', 'script', 'style', 'header', 'footer'}
+    VOID = {'br', 'img', 'input', 'meta', 'link', 'hr', 'source', 'wbr'}
+    BLOCK = {'p', 'li', 'h1', 'h2', 'h3', 'h4', 'td', 'th', 'caption', 'summary', 'div', 'section', 'tr', 'details', 'br', 'figcaption', 'dd', 'dt'}
 
     def __init__(self, text):
         super().__init__()
         self.links, self.ids, self.canonical, self.lang = [], set(), None, None
         self.alternates, self.meta, self.title = {}, {}, ''
         self.footer_links, self.body = [], []
+        # Content structure: example sections, FAQ items, reference links, h2 texts
+        # and the text used for the repeated-sentence check.
+        self.examples = self.faqs = 0
+        self.source_links, self.h2, self._sentence_text = set(), [], []
         self._main = self._skip = self._footer = 0
         self._in_title = False
+        self._open, self._h2 = [], None
         self.feed(text)
         self.body_chars = len(re.sub(r'\s', '', ''.join(self.body)))
+
+    def _inside(self, cls):
+        return any(cls in classes for _, classes in self._open)
+
+    def sentences(self):
+        """Sentences of 40+ characters outside the calculator panel, references and table headers."""
+        found = set()
+        for block in ''.join(self._sentence_text).split('\n'):
+            for sentence in re.split(r'(?<=[.?!])\s+', re.sub(r'\s+', ' ', block).strip()):
+                if len(sentence) >= 40:
+                    found.add(sentence)
+        return found
 
     def handle_starttag(self, tag, attributes):
         attrs = dict(attributes)
@@ -65,16 +80,38 @@ class Page(HTMLParser):
             self.meta[attrs['name']] = attrs.get('content', '')
         if tag == 'footer':
             self._footer += 1
+        if tag not in self.VOID:
+            self._open.append((tag, (attrs.get('class') or '').split()))
         if tag == 'main':
             self._main += 1
         elif self._main and tag in self.SKIP:
             self._skip += 1
+        if self._main and not self._skip:
+            if tag == 'section' and 'example' in self._open[-1][1]:
+                self.examples += 1
+            if tag == 'details' and self._inside('faq'):
+                self.faqs += 1
+            if tag == 'a' and self._inside('sources') and re.match(r'https?://', attrs.get('href', '')) and SITE not in attrs['href']:
+                self.source_links.add(attrs['href'])
+            if tag == 'h2':
+                self._h2 = ''
+            if tag in self.BLOCK:
+                self._sentence_text.append('\n')
 
     def handle_endtag(self, tag):
         if tag == 'title':
             self._in_title = False
         if tag == 'footer':
             self._footer -= 1
+        for i in range(len(self._open) - 1, -1, -1):
+            if self._open[i][0] == tag:
+                del self._open[i:]
+                break
+        if tag == 'h2' and self._h2 is not None:
+            self.h2.append(re.sub(r'\s+', ' ', self._h2).strip())
+            self._h2 = None
+        if tag in self.BLOCK:
+            self._sentence_text.append('\n')
         if tag == 'main':
             self._main -= 1
         elif self._main and tag in self.SKIP:
@@ -85,6 +122,10 @@ class Page(HTMLParser):
             self.title += data
         if self._main and not self._skip:
             self.body.append(data)
+            if self._h2 is not None:
+                self._h2 += data
+            if not (self._inside('calc-panel') or self._inside('sources') or any(tag == 'th' for tag, _ in self._open)):
+                self._sentence_text.append(data)
 
 
 def rel(file):
@@ -179,7 +220,6 @@ redirect_rules = [line.split() for line in (ROOT/'_redirects').read_text(encodin
 redirect_sources = {rule[0] for rule in redirect_rules}
 indexable = {f for f in pages if f not in noindex and f != not_found}
 sitemap_files = set()
-warnings = []
 for url in sitemap_urls:
     path = urlparse(url).path
     assert url.startswith(f'{SITE}/'), f'Sitemap URL not on apex https: {url}'
@@ -191,15 +231,11 @@ for url in sitemap_urls:
     assert pages[file].canonical == url, f'Sitemap URL is not canonical: {url}'
     chars = pages[file].body_chars
     assert chars >= MIN_BODY, f'{url}: body has {chars} characters (minimum {MIN_BODY})'
-    if chars < WARN_BODY:
-        warnings.append((chars, rel(file)))
     sitemap_files.add(file)
 assert sitemap_files == indexable, f'Indexable pages missing from sitemap: {sorted(rel(f) for f in indexable - sitemap_files)}'
 
-# Thin pages kept out of the index.
-assert {rel(f) for f in noindex} == NOINDEX_THIN | {'404.html'}, f'Unexpected noindex set: {sorted(rel(f) for f in noindex)}'
-for r in NOINDEX_THIN:
-    assert pages[ROOT / r].meta['robots'] == 'noindex, follow', f'{r}: expected noindex, follow'
+# Only the 404 page is kept out of the index.
+assert noindex == {not_found}, f'Unexpected noindex set: {sorted(rel(f) for f in noindex)}'
 
 # hreflang: reciprocal pairs, x-default = Korean page, nothing on or to noindex pages.
 for file, page in pages.items():
@@ -215,9 +251,10 @@ for file, page in pages.items():
         assert pages[target].alternates == page.alternates, f'{r}: hreflang not reciprocal with {rel(target)}'
 home = pages[ROOT/'index.html']
 assert home.alternates == {'ko': f'{SITE}/', 'x-default': f'{SITE}/'}, 'Home must declare only ko and x-default'
-for r in NOINDEX_THIN:
-    twin = ROOT / 'en' / r
-    assert not pages[twin].alternates, f'{rel(twin)}: drop hreflang while the Korean twin is noindex'
+for name in calculators:
+    for prefix in ('', 'en/'):
+        file = ROOT / f'{prefix}guides/{name}.html'
+        assert set(pages[file].alternates) == {'ko', 'en', 'x-default'}, f'{rel(file)}: missing ko/en/x-default hreflang'
 
 # Calculator pages, redirects and links into them.
 formula_ids = {}
@@ -272,6 +309,41 @@ for prefix in ('', 'en/'):
         assert set(pages[file].alternates) == {'ko', 'en', 'x-default'}
         assert '<caption>' in text and 'scope="col"' in text
 
+# Body pages: basic guides, calculation notes and calculator pages.
+NOTES = list(chapters)
+BASIC = [ROOT / f'{p}guides/{n}.html' for p in ('', 'en/') for n in calculators]
+NOTE_FILES = [ROOT / f'{p}guides/{n}.html' for p in ('', 'en/') for n in NOTES]
+CALC_FILES = [ROOT / f'{p}calculators/{n}.html' for p in ('', 'en/') for n in calculators]
+BODY_PAGES = BASIC + NOTE_FILES + CALC_FILES
+OLD_GUIDE_HEADINGS = {'언제 쓰나요?', '공식과 입력값', '직접 계산한 예제', '결과는 어떻게 읽나요?', '적용할 때 주의할 점',
+                      'When is it useful?', 'Formula and inputs', 'Worked example', 'Interpreting the result', 'Limits and cautions'}
+for file in BODY_PAGES:
+    page, r = pages[file], rel(file)
+    assert page.examples >= 2, f'{r}: {page.examples} example sections (minimum 2)'
+    assert page.faqs >= 3, f'{r}: {page.faqs} FAQ items (minimum 3)'
+    assert len(page.source_links) >= 2, f'{r}: {len(page.source_links)} distinct external links in the sources section (minimum 2)'
+    heading = 'References' if r.startswith('en/') else '참고 자료'
+    assert heading in page.h2, f'{r}: sources section must be titled {heading}'
+for file in BASIC:
+    assert not OLD_GUIDE_HEADINGS & set(pages[file].h2), f'{rel(file)}: still uses the old five-heading template'
+for i, a in enumerate(BASIC):
+    for b in BASIC[i + 1:]:
+        common = set(pages[a].h2) & set(pages[b].h2)
+        assert len(common) < 3, f'{rel(a)} and {rel(b)} share {len(common)} h2 headings: {sorted(common)}'
+for name in NOTES + calculators:
+    ko, en = pages[ROOT / f'guides/{name}.html'], pages[ROOT / f'en/guides/{name}.html']
+    floor = 2500 if name in NOTES else MIN_BODY
+    assert ko.body_chars >= max(floor, 0.7 * en.body_chars), f'guides/{name}.html: {ko.body_chars} characters, need >= {floor} and 70% of English ({en.body_chars})'
+
+# No sentence of 40+ characters may appear on three or more body pages
+# (calculator form panel, sources section and table headers excluded).
+seen = {}
+for file in BODY_PAGES:
+    for sentence in pages[file].sentences():
+        seen.setdefault(sentence, []).append(rel(file))
+repeated = {s: rs for s, rs in seen.items() if len(rs) >= 3}
+assert not repeated, 'Sentences repeated on 3+ body pages:\n' + '\n'.join(f'  {s[:80]}… {rs}' for s, rs in repeated.items())
+
 # Basic guides link to related numbers.
 for prefix in ('', 'en/'):
     for name in calculators:
@@ -281,11 +353,18 @@ for prefix in ('', 'en/'):
 # Privacy policies name every service that runs on the site.
 for file in (ROOT/'privacy.html', ROOT/'en/privacy.html'):
     text = texts[file]
-    for needle in ('Google Analytics', 'Microsoft Clarity', 'Google AdSense', 'Cloudflare', 'https://adssettings.google.com/', ISSUES):
+    for needle in ('Google Analytics', 'Microsoft Clarity', 'Google AdSense', 'Cloudflare', 'https://adssettings.google.com/', ISSUES,
+                   # Retention periods with official references.
+                   'support.google.com/analytics/answer/7667196', 'learn.microsoft.com/en-us/clarity/setup-and-installation/data-retention',
+                   # International transfer under PIPA Article 28-8 and the remedy bodies.
+                   'law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1020398611',
+                   'kopico.go.kr', '1833-6972', 'privacy.kisa.or.kr', '118', 'spo.go.kr', '1301', 'ecrm.police.go.kr', '182'):
+        assert needle in text, f'{rel(file)}: missing {needle}'
+    localized = ('2개월', '30일', '9개월', '제28조의8', '공소청', '민원상담') if file.parent == ROOT else ('2 months', '30 days', '9 months', 'Article 28-8', 'Public Prosecution Service', 'civil inquiries')
+    for needle in localized:
         assert needle in text, f'{rel(file)}: missing {needle}'
 
-for chars, r in sorted(warnings):
-    print(f'WARN: {r} body has {chars} characters (< {WARN_BODY})')
 print(f'PASS: {len(pages)} HTML pages; links, fragments, IDs, lang/canonical/GA4/AdSense/footer, unique titles and descriptions, '
-      f'{len(sitemap_urls)} sitemap URLs (>= {MIN_BODY} chars, no redirects or noindex), {len(noindex)} noindex pages, hreflang pairs, '
-      f'calculator pages, _redirects and privacy disclosures')
+      f'{len(sitemap_urls)} sitemap URLs (>= {MIN_BODY} chars, no redirects or noindex), {len(noindex)} noindex page, hreflang pairs, '
+      f'calculator pages, _redirects, privacy disclosures; {len(BODY_PAGES)} body pages with >= 2 examples, >= 3 FAQs, >= 2 references, '
+      f'no shared guide headings and no sentence repeated on 3+ pages')

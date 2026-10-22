@@ -57,36 +57,46 @@
 <div id="calcResult" class="result-container" aria-live="polite"><p class="result-label">결과</p><p id="resultValue" class="result-value"></p><p id="resultInfo" class="result-info"></p><p id="resultExplain" class="result-explain"></p></div>
 <noscript><p>이 계산기는 브라우저의 JavaScript로 계산합니다. JavaScript가 꺼져 있으면 위 공식에 직접 값을 넣어 계산해 주세요.</p></noscript>
 <p class="source">입력값은 이 페이지 안에서 브라우저가 계산하며, 운영자가 따로 받거나 저장하지 않습니다.</p>
-</section>
-<section aria-labelledby="meaning"><h2 id="meaning">Nu는 무엇과 무엇의 비인가</h2>
-<p>Nu = hL/k는 h를 k/L로 나눈 값으로 읽을 수 있습니다. k/L은 두께 L인 정지한 유체층을 순수 전도만으로 지나갈 때의 열전달 계수 척도입니다. 따라서 Nu는 실제 대류 열전달이 같은 길이의 전도에 비해 몇 배인지를 나타냅니다.</p>
-<p>Nu가 1에 가까우면 대류가 전도와 비슷한 수준이고, 커질수록 흐름이 열 수송을 크게 돕고 있다는 뜻입니다. 단, 이 비교는 L을 어떻게 정했는지에 따라 숫자가 바뀌므로 같은 정의끼리만 의미가 있습니다.</p>
+</section><section aria-labelledby="meaning"><h2 id="meaning">Nu는 무엇과 무엇의 비인가</h2>
+<p>계산기는 h × L ÷ k를 계산합니다. 이 식은 h를 k/L로 나눈 것과 같고, k/L은 두께 L인 정지 유체층이 전도만으로 낼 수 있는 열전달 계수입니다. 그래서 결과는 실제 대류가 같은 길이의 순수 전도보다 몇 배 강한지를 뜻합니다. 결과 숫자는 L을 무엇으로 잡았는지에 따라 달라지므로, 같은 길이 정의를 쓴 경우끼리만 비교합니다.</p>
 </section>
 <section aria-labelledby="variables"><h2 id="variables">변수와 SI 단위</h2>
 <div class="table-wrap"><table><caption>누셀트 수 계산기의 입력 변수</caption><thead><tr><th scope="col">기호</th><th scope="col">의미</th><th scope="col">SI 단위</th><th scope="col">예제 값</th></tr></thead><tbody>
 <tr><th scope="row">h</th><td>측정값이나 검증된 상관식에서 얻은 대류 열전달 계수</td><td>W/(m²·K)</td><td>50</td></tr>
-<tr><th scope="row">L</th><td>관 안지름, 평판 길이 등 형상에 맞게 정의한 길이</td><td>m</td><td>0.1</td></tr>
+<tr><th scope="row">L</th><td>관 안지름, 수력 지름, 평판 길이 등 형상에 맞게 정의한 길이</td><td>m</td><td>0.1</td></tr>
 <tr><th scope="row">k</th><td>고체 벽이 아닌 유체의 열전도율</td><td>W/(m·K)</td><td>0.6</td></tr>
 </tbody></table></div></section>
 <section aria-labelledby="source"><h2 id="source">h는 어디서 가져오나</h2>
-<p>h는 실험에서 측정하거나, 형상과 유동 조건에 맞는 검증된 상관식으로 구합니다. 대류 상관식은 흔히 Nu를 레이놀즈 수와 프란틀 수의 함수로 주기 때문에, 실무에서는 상관식으로 Nu를 먼저 구한 뒤 h = Nu·k/L로 되돌려 쓰는 경우가 많습니다. 이 페이지는 그 반대 방향, 즉 h가 이미 있을 때 Nu를 확인하거나 문헌 값과 비교하는 데 맞춰져 있습니다.</p>
+<p>h는 실험에서 측정하거나 형상과 유동 조건에 맞는 상관식으로 구합니다. 설계에서는 보통 상관식으로 Nu를 먼저 얻고 h = Nu·k/L로 바꿉니다. 이 계산기는 그 반대 방향에 맞춰져 있습니다. 시험 장치에서 측정한 h나 CFD가 출력한 벽 열전달 계수를 Nu로 바꾸면, 원형 관 층류 기준값 3.66·4.36이나 난류 상관식 결과와 같은 척도에서 비교할 수 있습니다.</p>
 </section>
 <section aria-labelledby="units"><h2 id="units">단위와 길이 정의</h2>
 <ul>
-<li>h는 W/(m²·K), k는 W/(m·K)입니다. 두 단위의 차이(m² 대 m)가 L과 함께 소거되어 Nu에 단위가 남지 않습니다.</li>
-<li>오래된 자료에서 kcal/(h·m²·°C) 단위의 h를 만났다면 1 kcal/h = 1.163 W이므로 1.163을 곱해 W/(m²·K)로 바꿉니다. 온도 차이는 °C와 K의 크기가 같아 따로 환산하지 않습니다.</li>
-<li>k에는 고체 벽이 아니라 유체의 열전도율을 넣습니다. 벽의 열전도율을 쓰는 비오 수(Bi)와 식 모양이 같아 혼동하기 쉽습니다.</li>
-<li>관 내부라면 안지름, 평판이라면 앞전에서 잰 거리(국소 Nu) 또는 전체 길이(평균 Nu)를 L로 씁니다.</li>
+<li>h는 W/(m²·K), k는 W/(m·K)입니다. 분모의 m² 가운데 하나가 L과 약분되어 Nu에는 단위가 남지 않습니다.</li>
+<li>오래된 자료의 kcal/(h·m²·°C) 단위 h는 1.163을 곱해 W/(m²·K)로 바꿉니다(1 kcal/h = 1.163 W). 온도 차는 °C와 K의 간격이 같아 따로 환산하지 않습니다.</li>
+<li>L을 mm로 넣으면 결과가 1000배 커집니다. 4 mm 관이라면 0.004를 넣습니다.</li>
+<li>k에는 유체의 열전도율을 넣습니다. 벽의 열전도율을 쓰는 수는 비오 수(Bi)입니다.</li>
 </ul>
 </section>
-<section aria-labelledby="criteria"><h2 id="criteria">결과를 비교하는 방법</h2>
-<p>예제는 h = 50 W/(m²·K), L = 0.1 m, k = 0.6 W/(m·K)로 Nu ≈ 8.33입니다. 같은 h와 k에서 L만 0.05 m로 바꾸면 Nu는 약 4.17로 절반이 됩니다. 열전달이 약해진 것이 아니라 기준 길이가 바뀐 것이므로, 서로 다른 L로 계산한 Nu를 나란히 놓고 비교하면 안 됩니다. 평균 h로 구한 평균 Nu와 위치별 h로 구한 국소 Nu도 서로 다른 양입니다.</p>
-<p>열·물질 확산 노트에서는 h = 120 W/(m²·K), L = 0.05 m, k = 0.6 W/(m·K)로 Nu = 10을 계산하고, 열유속을 구하려면 온도 차가 따로 필요하다는 점을 확인합니다.</p>
+<section aria-labelledby="criteria"><h2 id="criteria">계산기 입력으로 따라 하는 예제</h2>
+<section class="example" aria-labelledby="ex-default"><h3 id="ex-default">예제 1. “예제 값 채우기”에서 k만 바꿔 보기</h3><p><strong>입력:</strong> 버튼을 누르면 h = 50 W/(m²·K), L = 0.1 m, k = 0.6 W/(m·K)가 채워집니다. k = 0.6은 실온 물의 열전도율을 반올림한 값입니다.</p><p><strong>계산:</strong> Nu = 50 × 0.1 ÷ 0.6 = 8.33입니다. L만 0.05 m로 바꾸면 4.17로 절반이 됩니다.</p><p><strong>k를 바꾸면:</strong> 같은 h와 L에 20 °C 공기의 k = 0.0258 W/(m·K)(IAEA 표 3.1)를 넣으면 Nu = 193.8이고, 316 스테인리스강의 k = 14.0 W/(m·K)(IAEA 표 6.20, 300 K)를 잘못 넣으면 0.357이 나옵니다.</p><p><strong>해석:</strong> 같은 h라도 어떤 k로 나누느냐에 따라 Nu가 500배 넘게 달라집니다. 결과가 1보다 작게 나왔다면 대부분 유체 대신 고체의 k를 넣었거나 L의 단위가 틀린 경우입니다.</p></section>
+<section class="example" aria-labelledby="ex-measured"><h3 id="ex-measured">예제 2. 측정한 h를 Nu로 바꿔 층류 기준값과 비교하기</h3><p><strong>주어진 값:</strong> 안지름 10 mm 관에 20 °C 물이 흐르고, 시험에서 평균 h = 2000 W/(m²·K)를 얻었다고 가정합니다. 물의 k는 IAEA 표 3.3의 0.5995 W/(m·K)를 씁니다.</p><p><strong>입력과 계산:</strong> h 칸에 2000, L 칸에 0.01, k 칸에 0.5995를 넣으면 Nu = 33.4입니다.</p><p><strong>해석:</strong> 완전발달 층류의 3.66(벽온 일정)이나 4.36(열유속 일정)보다 7.7~9.1배 큽니다. 따라서 이 시험 구간은 완전발달 층류가 아닙니다. 난류이거나, 층류라도 입구 구간의 영향이 큰 경우입니다. 유속과 점성 계수로 Re를 계산해 어느 쪽인지 먼저 확인하고, 난류라면 Dittus–Boelter나 Gnielinski 식의 결과와 비교합니다.</p></section>
+<section class="example" aria-labelledby="ex-kcal"><h3 id="ex-kcal">예제 3. kcal 단위 h를 그대로 넣었을 때의 오차</h3><p><strong>주어진 값:</strong> 오래된 설계 자료에 h = 1000 kcal/(h·m²·°C)가 실려 있다고 가정합니다. 관 안지름은 25 mm, 유체는 60 °C 물(IAEA 표 3.3, k = 0.6510 W/(m·K))입니다.</p><p><strong>단위 변환:</strong> h = 1000 × 1.163 = 1163 W/(m²·K)입니다.</p><p><strong>계산:</strong> Nu = 1163 × 0.025 ÷ 0.6510 = 44.7입니다. 환산하지 않고 1000을 그대로 넣으면 38.4가 나와 14% 작습니다.</p><p><strong>해석:</strong> 환산 계수가 1.163으로 1에 가깝기 때문에 결과가 그럴듯해 보여서 실수를 알아채기 어렵습니다. 자료의 단위 표기를 먼저 확인합니다.</p></section>
+<p>열·물질 확산 노트는 h = 120 W/(m²·K), L = 0.05 m, k = 0.6 W/(m·K)로 Nu = 10을 계산한 뒤, 열유속을 구하려면 온도 차가 따로 필요하다는 점을 보여 줍니다.</p>
 </section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">누셀트 수 계산기 사용 질문</h2>
+<details><summary>원형이 아닌 덕트에서는 L에 무엇을 넣나요?</summary><p>상관식이 정한 길이를 넣으며, 관 유동이라면 보통 수력 지름 D<sub>h</sub> = 4A/P(A는 단면적, P는 젖은 둘레)를 씁니다. 예를 들어 20 mm × 10 mm 직사각형 덕트는 D<sub>h</sub> = 4 × 0.02 × 0.01 ÷ 0.06 = 0.0133 m입니다.</p></details>
+<details><summary>CFD가 출력한 벽 열전달 계수를 그대로 넣어도 되나요?</summary><p>그 h가 어떤 기준 온도로 정의되었는지 먼저 확인합니다. 소프트웨어에 따라 h를 벽 온도와 유체 평균 온도의 차로 정의하기도 하고, 사용자가 지정한 기준 온도와의 차로 정의하기도 합니다. 비교하려는 상관식과 같은 정의의 h를 넣어야 Nu를 비교할 수 있습니다.</p></details>
+<details><summary>계산한 Nu로 열량까지 구할 수 있나요?</summary><p>Nu만으로는 구할 수 없습니다. Nu에서 h를 되돌린 뒤 열전달 면적과 온도 차를 곱해야 합니다(Q = hAΔT). 관 유동이라면 유체 온도가 관을 따라 변하므로 대수 평균 온도차 같은 별도의 처리가 필요합니다.</p></details>
+</section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">참고 자료</h2><ul>
+<li>Idaho National Laboratory: <a href="https://lwrs.inl.gov/content/uploads/11/2024/03/RELAP-7_Theory_Manual.pdf" rel="noopener noreferrer">RELAP-7 Theory Manual, Rev. 2</a>. 원형 관 완전발달 층류 Nu 4.36·3.66, h = Nu·k/D<sub>h</sub>(식 589), 유체 평균 온도에서 평가한 k</li>
+<li>Michigan Technological University: <a href="https://pages.mtu.edu/~fmorriso/cm3120/lectures/2021_CM3120_module2_6alectureIV.pdf" rel="noopener noreferrer">CM3120 Module 2 Lecture IV</a>. Nu와 Bi가 정의는 비슷하지만 의미가 다르다는 경고</li>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering (2008)</a>. 물(표 3.3)·공기(표 3.1)·316 스테인리스강(표 6.20)의 열전도율</li>
+</ul></section>
 <section aria-labelledby="more"><h2 id="more">관련 해설과 계산기</h2>
 <h3>기본 해설</h3><ul><li><a href="/guides/nusselt">누셀트 수 해설: 예제와 주의점</a></li></ul>
-<h3>계산 노트</h3><ul><li><a href="/guides/transport-scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a>: 확산 길이와 이송 시간을 비교하고 열전달 계수가 어디서 오는지 구분합니다.</li></ul>
-<h3>관련 계산기</h3><ul><li><a href="/calculators/prandtl">프란틀 수 (Pr)</a>: 대류 열전달 상관식은 흔히 Nu를 Re와 Pr의 함수로 줍니다.</li><li><a href="/calculators/peclet">페클레 수 (Pe)</a>: Pe는 이송과 확산의 시간 비를 알려 주지만 열전달 계수 h를 주지는 않습니다.</li><li><a href="/calculators/schmidt">슈미트 수 (Sc)</a>: 물질전달 문제에서는 Sc가 열전달의 Pr 자리를 대신합니다.</li></ul>
+<h3>계산 노트</h3><ul><li><a href="/guides/transport-scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a>: 이 계산기로 구한 Nu가 확산 척도와 어떻게 다른지, 열유속으로 넘어가려면 무엇이 더 필요한지 다룹니다.</li></ul>
+<h3>관련 계산기</h3><ul><li><a href="/calculators/prandtl">프란틀 수 (Pr)</a>: 상관식으로 Nu를 구하기 전에 같은 온도의 물성으로 Pr부터 계산합니다.</li><li><a href="/calculators/peclet">페클레 수 (Pe)</a>: 이송과 확산의 비를 보여 줄 뿐 h를 주지 않으므로, Nu와 섞어 쓰지 않습니다.</li><li><a href="/calculators/schmidt">슈미트 수 (Sc)</a>: 물질전달 계수를 무차원화하는 셔우드 수 계산에서 Pr 대신 들어갑니다.</li></ul>
 </section>
 </main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>
 <script src="/calculators.js?v=20261022" defer></script>

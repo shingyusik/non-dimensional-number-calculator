@@ -59,7 +59,7 @@
 </section>
 <section aria-labelledby="meaning"><h2 id="meaning">Why divide by the speed of sound?</h2>
 <p>How much a gas changes density as it speeds up depends on its speed relative to the speed of sound, not on the absolute speed. The same 200 m/s gives different Mach numbers in cold and warm air. The Mach number is the first check on whether compressibility matters.</p>
-<p>Treating air as an ideal gas with γ = 1.4 and R = 287 J/(kg·K), the speed of sound is c = √(γRT). At 300 K that is √(1.4 × 287 × 300) ≈ 347 m/s. T must be an absolute temperature in kelvin.</p>
+<p>Treating air as an ideal gas with γ = 1.4 and R = 287 J/(kg·K), the speed of sound is c = √(γRT). At 300 K that is √(1.4 × 287 × 300) ≈ 347 m/s. T must be an absolute temperature in kelvin. If you only have a Celsius reading, OpenStax gives the approximation c ≈ 331 m/s × √(T / 273 K); at 293.15 K it returns 343.0 m/s.</p>
 </section>
 <section aria-labelledby="variables"><h2 id="variables">Variables and SI units</h2>
 <div class="table-wrap"><table><caption>Inputs of the Mach number calculator</caption><thead><tr><th scope="col">Symbol</th><th scope="col">Meaning</th><th scope="col">SI unit</th><th scope="col">Example</th></tr></thead><tbody>
@@ -68,9 +68,9 @@
 </tbody></table></div></section>
 <section aria-labelledby="units"><h2 id="units">Choosing the speed of sound</h2>
 <ul>
-<li>The 340 m/s placeholder is a rough room-temperature value for air. Recalculate c when temperature or altitude changes.</li>
-<li>Where temperature varies along the flow, as in a nozzle, use the local speed of sound at the point of interest.</li>
-<li>Convert km/h to m/s by dividing by 3.6. One knot is about 0.514 m/s.</li>
+<li>The 340 m/s placeholder is close to the sea-level value of 340.29 m/s (288.15 K) in the Cornell standard-atmosphere table. Recalculate c when temperature or altitude changes.</li>
+<li>Where temperature varies along the flow, as in a nozzle, use the local speed of sound computed from the static temperature at the point of interest.</li>
+<li>Convert km/h to m/s by dividing by 3.6. One knot is 1852 m / 3600 s ≈ 0.5144 m/s.</li>
 <li>Gases other than air have different γ and R, so do not reuse the value for air.</li>
 </ul>
 </section>
@@ -81,14 +81,39 @@
 <section aria-labelledby="check"><h2 id="check">Check with the example</h2>
 <p>The example uses v = 170 m/s and c = 340 m/s, so Ma = 0.5. The same 170 m/s in colder air with c = 300 m/s gives about 0.567. Remembering that the Mach number can rise while the speed stays the same avoids mistakes when comparing altitudes.</p>
 </section>
+<section aria-labelledby="worked"><h2 id="worked">Examples that start from raw operating data</h2>
+<section class="example" aria-labelledby="ex-knots"><h3 id="ex-knots">Example 1. A speed in knots divided by the sound speed at 5 000 m</h3>
+<p><strong>Given:</strong> A propeller aircraft is assumed to fly at a true airspeed of 300 kn at 5 000 m (the speed is assumed). In the standard atmosphere at 5 000 m, T = 255.65 K and a = 320.53 m/s (Cornell Table 1.1).</p>
+<p><strong>Unit conversion:</strong> 300 kn × 1852 m / 3600 s = 154.33 m/s.</p>
+<p><strong>Calculator input:</strong> Entering v = 154.33 and c = 320.53 gives Ma = 0.4815, labelled subsonic. Dividing the same speed by the sea-level sound speed of 340.29 m/s gives 0.4535, so ignoring altitude would understate the Mach number by about 6% (0.4815 / 0.4535 = 1.062).</p>
+<p><strong>Judgment:</strong> Because Ma is above 0.3, parts where the flow accelerates further, such as propeller tips or engine intakes, are safer to evaluate separately with compressibility included.</p>
+</section>
+<section class="example" aria-labelledby="ex-inlet"><h3 id="ex-inlet">Example 2. Static versus stagnation temperature at a CFD inlet</h3>
+<p><strong>Given:</strong> A duct inlet velocity of 150 m/s and an air temperature of 400 K are assumed operating conditions. Use γ = 1.4 and R = 287 J/(kg·K).</p>
+<p><strong>If 400 K is the static temperature:</strong> c = √(1.4 × 287 × 400) = 400.9 m/s, so entering v = 150 and c = 400.9 gives Ma = 0.3742. The stagnation temperature is then T<sub>0</sub> = 400 × (1 + 0.2 × 0.3742²) = 400 × 1.0280 = 411.2 K.</p>
+<p><strong>If 400 K is the stagnation temperature:</strong> c<sub>p</sub> = γR/(γ − 1) = 1004.5 J/(kg·K), and the static temperature is T = T<sub>0</sub> − v²/(2c<sub>p</sub>) = 400 − 11.20 = 388.80 K. The sound speed becomes 395.2 m/s and the Mach number 0.3795.</p>
+<p><strong>Judgment:</strong> The two readings differ by about 1.4% in Mach number and 11 K in temperature. Before filling in the sound-speed field, confirm whether your thermometer reads close to the stagnation temperature and which temperature your solver's inlet condition expects.</p>
+</section>
+</section>
 <section aria-labelledby="limits"><h2 id="limits">What the Mach number cannot tell you</h2>
 <p>Ma alone does not locate shock waves or give pressure distributions, drag or structural margins. Check viscous effects with the Reynolds number and molecular length scales with the Knudsen number. The gas-model note explains why those checks stay separate.</p>
 </section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">Using the Mach number calculator</h2>
+<details><summary>There is no temperature field. What goes in the sound-speed box if I only know the temperature?</summary><p>For air, compute c = √(1.4 × 287 × T) first and enter that. At 20 °C (293.15 K), for example, it is 343.2 m/s. For other gases, use that gas's γ and R, or look up the value at the same temperature in a table such as OpenStax Table 17.1.</p></details>
+<details><summary>If the result says transonic, should I avoid an incompressible analysis?</summary><p>The transonic label means Ma is 0.8 or more. Putting Ma = 0.8 into the estimate Δp/p ~ (γ/2)M² from the MIT 16.01 lecture notes gives 0.448, so pressure variations can exceed 40% of the static pressure. In this range, drop the constant-density assumption and use a compressible analysis that can also handle shocks that may form locally.</p></details>
+<details><summary>Can I enter a GPS-measured speed as the flow speed?</summary><p>GPS speed is measured relative to the ground, so with wind it differs from the speed relative to the air. For a vehicle flying into a 20 m/s headwind, the airspeed is 20 m/s higher than the ground speed. The Mach number needs the speed relative to the air.</p></details>
+</section>
 <section aria-labelledby="more"><h2 id="more">Related guides and calculators</h2>
 <h3>Guide</h3><ul><li><a href="/en/guides/mach">Mach number guide: worked example and cautions</a></li></ul>
-<h3>Calculation notes</h3><ul><li><a href="/en/guides/gas-models">Choosing gas-flow models: check Mach and Knudsen numbers separately</a>: Compressibility and molecular length scales, checked separately with isentropic relations.</li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/gas-models">Choosing gas-flow models: check Mach and Knudsen numbers separately</a>: Turns the Ma from this calculator into stagnation temperature, density and pressure ratios, then computes Kn for the same flow as a separate step.</li></ul>
 <h3>Related calculators</h3><ul><li><a href="/en/calculators/knudsen">Knudsen number (Kn)</a>: Compressibility (Ma) and molecular length scales (Kn) test different assumptions, so check them separately.</li><li><a href="/en/calculators/reynolds">Reynolds number (Re)</a>: Even in high-speed gas flow, the importance of viscosity is checked separately with Re.</li></ul>
 </section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">References</h2><ul>
+<li>OpenStax: <a href="https://openstax.org/books/university-physics-volume-1/pages/17-2-speed-of-sound" rel="noopener noreferrer">University Physics Volume 1, 17.2 Speed of Sound</a>. The approximation v ≈ 331 m/s × √(T / 273 K), 343 m/s for air at 20 °C, and sound speeds by medium in Table 17.1</li>
+<li>Cornell University MAE 5070: <a href="https://courses.cit.cornell.edu/mae5070/Introduction.pdf" rel="noopener noreferrer">Introduction to Flight Dynamics</a>. Standard atmosphere Table 1.1 entries at 0 m (340.29 m/s) and 5 000 m (255.65 K, 320.53 m/s)</li>
+<li>NASA Glenn Research Center: <a href="https://www.grc.nasa.gov/www/k-12/airplane/isentrop.html" rel="noopener noreferrer">Isentropic Flow Equations</a>. T/T<sub>0</sub> = [1 + (γ − 1)M²/2]<sup>−1</sup> and the density ratio relation</li>
+<li>MIT OpenCourseWare 16.01: <a href="https://ocw.mit.edu/courses/16-01-unified-engineering-i-ii-iii-iv-fall-2005-spring-2006/c6603238ec448ee22dc1c988898b51a5_f05_fall.pdf" rel="noopener noreferrer">Fluids Lecture 5 Notes (M. Drela)</a>. The pressure estimate Δp/p ~ (γ/2)M²</li>
+</ul></section>
 </main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
 <script src="/calculators.js?v=20261022" defer></script>
 <script src="/calculator-page.js?v=20261022" defer></script>

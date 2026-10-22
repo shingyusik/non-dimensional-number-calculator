@@ -72,6 +72,21 @@ Inputs: ρ = 998 kg/m³, v = 1.5 m/s, L = 0.05 m, μ = 0.001 Pa·s
 Result shown: (value on screen)
 Expected value and source: (textbook and page, or working)</pre>
 <p>The numbers above only illustrate the format. If you cannot cite a source for the expected value, include your working and it can be checked together.</p></section>
+<section aria-labelledby="good-report"><h2 id="good-report">Reports that are easy to reproduce, and reports that are not</h2>
+<p>The same problem can take very different amounts of time to check depending on what the report says. The two reports below are hypothetical examples describing the same situation.</p>
+<ul>
+<li>Hard to check: “The Reynolds calculator seems wrong.” There is no way to know what was entered or what it was compared with, so the operator cannot reproduce the result.</li>
+<li>Easy to check: “On /en/calculators/reynolds I entered ρ = 998.2, v = 1.2, L = 25, μ = 0.001 and got about 2.99 × 10⁷. The textbook example gives about 30,000.” This shows immediately that the 25 mm diameter was entered without converting to metres. 25 mm is 0.025 m, which gives Re ≈ 29,946 and agrees with the textbook.</li>
+</ul>
+<p>For layout problems or buttons that do not respond, these details help: browser name and version, device type and screen width (for example, a phone in portrait), whether the dark theme or Korean interface was on, whether the problem always or only sometimes happens, and if possible any error message from the browser’s developer console. If you attach a screenshot, check that the address bar or other tabs do not show personal information.</p></section>
+<section aria-labelledby="flow"><h2 id="flow">What happens after you report</h2>
+<ol>
+<li>The operator reads the issue and recalculates with the same inputs.</li>
+<li>If information needed to reproduce the problem is missing, the operator asks in an issue comment.</li>
+<li>If it is an error, the page is fixed; for a numerical error the corrected value is also added to the test script (tests/check_calculations.cjs). The fixing commit is linked from the issue and the issue is closed.</li>
+<li>If it turns out not to be an error (for example, the textbook used a different characteristic length), the reason is explained in a comment.</li>
+</ol>
+<p>The site is run by one person in spare time, so there is no fixed turnaround. Fixes appear on the site after deployment, and the change history before and after deployment is visible in the repository’s commit history.</p></section>
 <section aria-labelledby="selfcheck"><h2 id="selfcheck">Before you report</h2>
 <p>Units are the most common reason a result looks wrong. Check that lengths were not entered in mm, viscosity in cP or specific heat in kJ. Swapping dynamic viscosity μ with kinematic viscosity ν, or using a different characteristic length from your textbook, also changes the value. Each calculator page lists the usual conversions in its variables table and unit notes. If a difference remains after that, please report it.</p></section>
 <section aria-labelledby="privacy-requests"><h2 id="privacy-requests">Privacy requests</h2>

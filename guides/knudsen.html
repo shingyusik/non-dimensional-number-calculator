@@ -14,9 +14,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>누센 수 계산법·예제·해석 | 무차원수 계산기</title>
-<meta name="description" content="평균 자유 행로 6.8×10⁻⁸ m와 1 mm 유로로 Kn=6.8×10⁻⁵를 구하고, 연속체·미끄럼 유동 경계가 대략적인 안내일 수밖에 없는 이유를 다룹니다.">
-<meta name="robots" content="noindex, follow">
+<meta name="description" content="평균 자유 행로 67.3 nm와 5 μm 간극으로 Kn=0.0135를 구하고, 연속체·미끄럼 유동 경계가 대략적인 안내일 수밖에 없는 이유를 다룹니다.">
 <link rel="canonical" href="https://calctool.cc/guides/knudsen">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/knudsen"><link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/knudsen">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/guides/knudsen">
 <link rel="stylesheet" href="../style.css?v=20261022">
 <link rel="stylesheet" href="../guide.css?v=20261022">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
@@ -39,13 +40,52 @@
                 </svg>
             </button></div><p class="eyebrow">계산 방법과 해석</p><h1>누센 수 <small>(Knudsen Number)</small></h1><p>공식에 값을 넣는 방법과 결과를 읽을 때 확인할 조건을 정리했습니다.</p></header>
 <main>
-<section aria-labelledby="why"><h2 id="why">언제 쓰나요?</h2><p>분자가 충돌 사이에 이동하는 평균 거리와 장치의 길이를 비교합니다. 희박 기체, 진공 장치, 미세 유로에서 연속체 유체 모델이 적절한지 검토하는 출발점입니다.</p></section>
-<section aria-labelledby="inputs"><h2 id="inputs">공식과 입력값</h2><div class="formula-box"><strong>Kn = λ / L</strong></div><p>λ는 관심 기체 조건의 평균 자유 행로(m), L은 유로 지름이나 물체 크기 같은 특성 길이(m)입니다. 두 값 모두 같은 길이 단위로 입력하세요. 평균 자유 행로는 압력과 기체 상태에 따라 달라집니다.</p><a class="guide-cta" href="/calculators/knudsen">이 값으로 계산하기</a></section>
-<section aria-labelledby="example"><h2 id="example">직접 계산한 예제</h2><div class="example-box"><p>λ = 6.8×10⁻⁸ m, L = 0.001 m라면 Kn = 6.8×10⁻⁸ ÷ 0.001 = 6.8×10⁻⁵입니다.</p></div></section>
-<section aria-labelledby="meaning"><h2 id="meaning">결과는 어떻게 읽나요?</h2><p>이 예시처럼 λ가 L보다 훨씬 작으면 분자 이동 거리보다 장치가 충분히 큰 조건입니다. 이는 연속체 가정을 검토할 때 도움이 되지만 세부 모델 선택은 형상과 정확도 요구에 따라 달라집니다.</p></section>
-<section aria-labelledby="caution"><h2 id="caution">적용할 때 주의할 점</h2><p>계산기 화면의 유동 구간은 대략적인 안내입니다. 경계값은 문헌과 적용 대상에 따라 조금씩 다르며, 표면 근처 미끄럼 효과까지 계산하는 도구는 아닙니다.</p></section>
-<section aria-labelledby="related"><h2 id="related">관련 무차원수</h2><p>이 무차원수와 함께 계산하거나 비교하는 경우가 많은 수입니다.</p><ul><li><a href="/guides/mach">마하 수 (Ma)</a>: 분자 길이 척도(Kn)와 압축성(Ma)은 서로 다른 가정이므로 둘 다 확인합니다.</li><li><a href="/guides/reynolds">레이놀즈 수 (Re)</a>: Kn이 작아 연속체 가정이 성립할 때 Re 같은 연속체 지표로 유동을 해석할 수 있습니다.</li></ul></section>
-<p class="source">공식·개념 확인: <a href="https://ntrs.nasa.gov/api/citations/19930022543/downloads/19930022543.pdf" rel="noopener noreferrer">NASA — rarefied flow and Knudsen number</a>. 예제의 입력값과 계산 과정은 이 사이트에서 설명을 위해 구성했습니다.</p>
+<section aria-labelledby="why"><h2 id="why">분자 이동 거리와 장치 크기를 비교하는 이유</h2><p>Navier–Stokes 방정식과 Fourier 열전도 법칙은 기체 분자가 물체에 닿기 전에 서로 충분히 많이 충돌한다는 전제 위에 서 있습니다. 누센 수 Kn은 분자가 한 번 충돌한 뒤 다음 충돌까지 평균적으로 이동하는 거리 λ를 유로 폭, 간극, 물체 크기 같은 길이 L과 비교해서 이 전제가 맞는지 확인합니다. NASA 지원 고층 대기 온도계측 문헌 조사 보고서도 Kn이 매우 작으면 연속체 개념이 그대로 성립하고 유동이 Re와 Ma만으로 정해지며, Kn이 커지면 연속체 개념을 수정해야 한다고 설명합니다.</p><p>CFD 엔지니어가 Kn을 확인하는 시점은 대개 세 가지입니다. 진공 장비처럼 압력이 낮아 λ가 길어질 때, MEMS 소자처럼 L이 마이크로미터 수준으로 작을 때, 고고도 비행체나 행성 대기 진입체처럼 두 조건이 함께 나타날 때입니다. 앞의 두 경우는 지상 장비에서 흔히 만나고, 마지막 경우는 우주선이나 탐사선의 공력 가열을 예측할 때 피할 수 없습니다. 셋 모두 벽면 경계조건을 no-slip으로 둘지, 슬립 경계조건을 쓸지, 아예 입자 기반 해석(DSMC)으로 넘어갈지를 정하는 출발점이 됩니다.</p></section>
+<section aria-labelledby="inputs"><h2 id="inputs">Kn = λ/L 식과 평균 자유 행로 계산</h2><div class="formula-box"><strong>Kn = λ / L,&nbsp;&nbsp; λ = k<sub>B</sub>T / (√2 π d² p)</strong></div><p>MIT 재료 전달현상 강의 자료(3.185)는 Kn을 기체 분자 평균 자유 행로와 공정 길이의 비로 정의하고, 강체 구 모델로 Kn = k<sub>B</sub>T/(√2 π d² p L)이라는 식을 제시합니다. 분모의 L을 떼어 내면 위의 λ 식이 됩니다. 여기서 k<sub>B</sub>는 볼츠만 상수, T는 절대온도, d는 분자 지름, p는 압력입니다. 이 식에서 바로 알 수 있듯이 온도가 같으면 λ는 압력에 반비례합니다. 압력을 1/10로 낮추면 λ는 10배가 되고, 같은 장치에서 Kn도 10배가 됩니다.</p><p>Kn은 Re·Ma와도 연결됩니다. NIST 슬립 보정 논문의 식 (10)은 기체 운동론의 점성 관계를 μ = φρc̄λ로 쓰는데, c̄는 평균 분자 속도이고 음속과 같은 크기입니다. 이 관계를 Re = ρUL/μ와 Ma = U/a에 대입하면 Kn이 Ma/Re에 비례한다는 결과를 얻습니다. 비례 계수는 λ를 어떤 모델로 정의하느냐에 따라 달라집니다. NASA TM 107730도 앞전 근처의 저밀도 효과를 "low-density (low Reynolds number) effects"처럼 저 Reynolds 수 효과와 함께 적습니다.</p><p>계산기에는 λ와 L을 같은 길이 단위(m)로 넣습니다. nm는 10⁻⁹, μm는 10⁻⁶을 곱해서 바꿉니다.</p><a class="guide-cta" href="/calculators/knudsen">이 값으로 계산하기</a></section>
+<section aria-labelledby="scale"><h2 id="scale">압력을 낮추면 λ와 Kn이 얼마나 커지나</h2><p>NIST 논문은 공기 평균 자유 행로를 23 °C, 101.3 kPa에서 λ₀ = 67.3 nm로 두고, 다른 압력과 온도의 λ는 Willeke 관계식(식 (11))으로 보정합니다. 온도가 같으면 이 식은 λ = λ₀(p₀/p)로 줄어듭니다. 아래 표는 이 비례 관계로 환산한 값이며, 측정값이 아니라 기체 운동론에 따른 환산값입니다. 영역 이름은 고층 대기 보고서의 구분(Kn &lt; 0.01 연속체, 0.01~0.1 슬립, 0.1~10 천이, 10 초과 자유분자)을 따랐습니다.</p>
+<div class="table-wrap"><table><caption>23 °C 공기에서 압력별 평균 자유 행로와 Kn (λ₀ = 67.3 nm, λ∝1/p로 환산)</caption><thead><tr><th scope="col">압력 p</th><th scope="col">λ</th><th scope="col">Kn (L = 1 mm)</th><th scope="col">Kn (L = 25 mm)</th></tr></thead><tbody>
+<tr><th scope="row">101.3 kPa</th><td>67.3 nm</td><td>6.73 × 10⁻⁵ (연속체)</td><td>2.69 × 10⁻⁶ (연속체)</td></tr>
+<tr><th scope="row">10.13 kPa</th><td>673 nm</td><td>6.73 × 10⁻⁴ (연속체)</td><td>2.69 × 10⁻⁵ (연속체)</td></tr>
+<tr><th scope="row">1.013 kPa</th><td>6.73 μm</td><td>0.00673 (연속체)</td><td>2.69 × 10⁻⁴ (연속체)</td></tr>
+<tr><th scope="row">101.3 Pa</th><td>67.3 μm</td><td>0.0673 (슬립)</td><td>0.00269 (연속체)</td></tr>
+<tr><th scope="row">10 Pa</th><td>0.682 mm</td><td>0.682 (천이)</td><td>0.0273 (슬립)</td></tr>
+<tr><th scope="row">1 Pa</th><td>6.82 mm</td><td>6.82 (천이)</td><td>0.273 (천이)</td></tr>
+</tbody></table></div>
+<p>NIST 논문의 불확도 표에도 압력을 낮춘 조건의 평균 자유 행로가 673 nm로 실려 있어, 10.13 kPa 행과 같은 크기입니다. 표에서 보듯이 대기압의 공기는 1 mm 유로에서도 Kn이 10⁻⁴보다 작아서 연속체 가정에 여유가 큽니다. 반대로 수십 Pa 이하로 내려가면 지름 25 mm 배관도 슬립 영역에 들어갑니다. 진공 장비에서 CFD 결과가 압력 측정과 맞지 않을 때 먼저 확인할 항목이 이 표의 크기 감각입니다. 표를 읽을 때는 압력이 한 자릿수 내려갈 때마다 λ와 Kn이 정확히 한 자릿수씩 올라간다는 점만 기억하면 됩니다. 또 L이 25배 큰 배관에서는 같은 압력에서도 Kn이 1/25로 줄어들기 때문에, 같은 챔버 안에서도 넓은 배관과 좁은 틈은 서로 다른 칸에 놓입니다.</p></section>
+<section aria-labelledby="example"><h2 id="example">진공 장비·미세 간극·화성 대기 감속에서 Kn 구하기</h2>
+<section class="example" aria-labelledby="ex-mems"><h3 id="ex-mems">예제 1. 대기압 공기 속 5 μm 간극</h3><p><strong>주어진 값:</strong> 23 °C, 101.3 kPa 공기의 λ = 67.3 nm(NIST). 간극 L = 5 μm는 MEMS 구조물 사이 틈을 생각한 가정값입니다.</p><p><strong>단위 변환:</strong> λ = 67.3 nm = 67.3 × 10⁻⁹ m, L = 5 μm = 5 × 10⁻⁶ m입니다.</p><p><strong>계산:</strong> Kn = 67.3 × 10⁻⁹ ÷ (5 × 10⁻⁶) = 0.0135입니다. Kn = 0.01이 되는 간극은 67.3 nm ÷ 0.01 = 6.73 μm이고, Kn = 0.1이 되는 간극은 0.673 μm입니다.</p><p><strong>해석:</strong> 고층 대기 보고서의 구분으로는 슬립 영역 초입입니다. 그런데 NASA TM 107730이 인용한 Moss와 Bird의 그림은 Kn이 0.03을 넘을 때부터 Navier–Stokes 식에 슬립 효과를 넣어야 한다고 봅니다. 이 기준으로는 0.0135가 아직 no-slip으로 다룰 수 있는 범위입니다. 어느 기준을 따르느냐에 따라 같은 간극이 슬립 영역이 되기도 하고 연속체 영역이 되기도 하는 셈입니다. 문헌 경계가 이렇게 두 배 이상 차이 나는 구간에서는 no-slip 해석과 슬립 경계조건 해석을 둘 다 돌려 감쇠력이나 유량 차이를 비교하는 편이 안전합니다.</p></section>
+<section class="example" aria-labelledby="ex-vacuum"><h3 id="ex-vacuum">예제 2. 10 Pa 진공 챔버의 배관과 기판 틈</h3><p><strong>주어진 값:</strong> 챔버 압력 10 Pa, 기체 온도 23 °C, 배기 배관 안지름 25 mm, 기판 홀더와 벽 사이 틈 1 mm는 모두 가정한 운전 조건입니다. 기준 λ₀ = 67.3 nm(23 °C, 101.3 kPa, NIST)입니다.</p><p><strong>단위 변환:</strong> 10 Pa = 0.01 kPa이므로 압력비는 101.3 ÷ 0.01 = 10,130입니다. 온도가 같다고 보고 λ∝1/p를 적용하면 λ = 67.3 nm × 10,130 = 6.82 × 10⁻⁴ m(0.682 mm)입니다.</p><p>여기서 온도를 23 °C로 고정한 것은 계산을 단순하게 하려는 가정입니다. 실제 챔버에서 가열된 기판 주변 기체가 더 뜨겁다면 λ는 이 값보다 길어지고 Kn도 커집니다.</p><p><strong>계산:</strong> 배관은 Kn = 6.82 × 10⁻⁴ ÷ 0.025 = 0.0273, 기판 틈은 Kn = 6.82 × 10⁻⁴ ÷ 0.001 = 0.682입니다.</p><p><strong>해석:</strong> 같은 챔버 안에서도 배관은 슬립 영역이고 기판 틈은 천이 영역입니다. 장치 전체를 하나의 Kn으로 판단하지 말고, 해석 결과에 영향이 큰 가장 좁은 유로마다 Kn을 따로 계산해야 합니다. 천이 영역에서는 슬립 경계조건을 붙인 Navier–Stokes 해석도 신뢰하기 어려우므로 DSMC 같은 입자 기반 방법을 검토합니다.</p></section>
+<section class="example" aria-labelledby="ex-mgs"><h3 id="ex-mgs">예제 3. 화성 대기 감속 중 태양전지판 위 전력 션트</h3><p><strong>주어진 값:</strong> NASA의 Mars Global Surveyor 공력열 보고서는 유동장 해석 결과로 전력 션트 바로 위의 국소 평균 자유 행로를 약 3 cm로 얻었고, 션트 한 구간의 크기를 길이 약 12 in, 폭 2 in, 높이 1 in로 적었습니다.</p><p><strong>단위 변환:</strong> 1 in = 0.0254 m이므로 길이 0.3048 m, 폭 0.0508 m, 높이 0.0254 m입니다. λ = 3 cm = 0.03 m입니다.</p><p><strong>계산:</strong> 길이 기준 Kn = 0.03 ÷ 0.3048 = 0.0984, 폭 기준 Kn = 0.03 ÷ 0.0508 = 0.591, 높이 기준 Kn = 0.03 ÷ 0.0254 = 1.18입니다.</p><p>세 값 모두 같은 λ에서 나왔으므로, 차이는 오로지 분모에 넣은 치수에서 생깁니다. 인치 단위 도면을 그대로 쓰는 경우에는 λ도 인치로 바꾸거나 치수를 미터로 바꿔서 단위를 반드시 맞춰야 합니다.</p><p><strong>해석:</strong> 어떤 치수를 L로 고르느냐에 따라 슬립 경계 바로 아래부터 천이 영역 한가운데까지 결과가 바뀝니다. 보고서는 λ가 기기 크기와 같은 규모라고 판단했고, 국소 가열을 볼 때는 가장 작은 치수가 결정적입니다. 같은 보고서는 우주선 전체 기준으로도 공칭 근점 밀도에서 Kn이 약 0.2라서 천이 영역에 깊이 들어간다고 적었습니다. 자유류 λ 대신 물체 근처의 국소 λ를 쓰면 Kn을 더 정확하게 판단할 수 있다는 점도 같은 보고서에 나옵니다.</p></section></section>
+<section aria-labelledby="meaning"><h2 id="meaning">문헌마다 다른 Kn 영역 경계</h2><p>Kn 영역 경계는 물리 상수가 아니라 모델 선택을 돕는 관행값입니다. 고층 대기 보고서는 영역 구분을 제시하면서 "approximate only", 곧 근사일 뿐이라고 명시했습니다. 아래 표처럼 출처마다 숫자와 나누는 방식이 다릅니다.</p>
+<div class="table-wrap"><table><caption>출처별 Kn 영역 구분 비교</caption><thead><tr><th scope="col">출처</th><th scope="col">연속체·슬립</th><th scope="col">천이·자유분자</th></tr></thead><tbody>
+<tr><th scope="row">고층 대기 온도계측 문헌 조사(NASA 지원)</th><td>Kn &lt; 0.01 연속체, 0.01~0.1 슬립</td><td>0.1~10 천이, Kn &gt; 10 자유분자</td></tr>
+<tr><th scope="row">NASA TM 107730 (Moss·Bird 그림 인용)</th><td>Kn &lt; 0.2에서 Navier–Stokes 적용 가능, 0.03 초과 시 슬립 효과 포함</td><td>약 1부터 자유분자 효과 시작, 천이는 대략 0.2~1.0</td></tr>
+<tr><th scope="row">MIT 3.185 강의 자료</th><td>Kn &lt; 0.01이면 연속체 기체 모델</td><td>Kn &gt; 1이면 가시선(line-of-sight) 모델</td></tr>
+<tr><th scope="row">NASA Mars Global Surveyor 보고서</th><td>(별도 구분 없음)</td><td>0.1~10 천이, Kn &gt; 10 자유분자</td></tr>
+<tr><th scope="row">이 사이트 계산기 표시</th><td>Kn &lt; 0.01 연속체, 0.01~0.1 미끄럼</td><td>0.1 이상 천이/자유 분자</td></tr>
+</tbody></table></div>
+<p>판단 기준으로 쓰려면 경계값 하나보다 결과의 민감도를 보는 편이 낫습니다. Kn이 경계값의 절반에서 두 배 사이에 있으면 인접한 두 모델을 모두 적용해 보고, 관심 물리량(유량, 항력, 열유속)이 얼마나 달라지는지 확인합니다. Mars Global Surveyor 보고서에서도 천이 유동 효과가 자유분자 값에 비해 항력계수를 약 11% 낮췄습니다.</p></section>
+<section aria-labelledby="caution"><h2 id="caution">Kn 계산에서 틀리기 쉬운 지점</h2><ul>
+<li><strong>λ의 정의:</strong> NIST 논문에 따르면 같은 23 °C, 101.3 kPa 공기라도 Millikan은 점성 관계의 상수 φ = 0.3502를 써서 λ = 94.17 nm를 얻었고, 이후 연구자들은 φ = 0.491로 67.3 nm를 썼습니다. 상관식이나 슬립 보정식을 가져다 쓸 때는 그 식을 만든 사람이 쓴 λ 정의를 그대로 따라야 합니다.</li>
+<li><strong>온도 보정:</strong> λ∝1/p는 온도가 같을 때만 성립합니다. 온도도 바뀌면 NIST 식 (11)처럼 온도 항과 Sutherland 형태의 보정 항을 함께 적용합니다.</li>
+<li><strong>국소 λ와 자유류 λ:</strong> 충격층이나 팽창 영역에서는 밀도가 크게 변하므로, 물체 근처 국소 상태로 계산한 λ가 자유류 λ보다 실제 유동 영역을 잘 나타냅니다.</li>
+<li><strong>앞전 근처:</strong> NASA TM 107730은 L을 앞전에서 잰 거리 x로 잡으면 x = 0에서 Kn이 무한대가 되므로, 어떤 고도에서든 앞전 바로 근처는 저밀도 효과의 지배를 받는다고 지적합니다. 대부분은 이 영역이 매우 작아 무시하지만 고고도 극초음속 비행체에서는 따로 다뤄야 할 수 있습니다.</li>
+<li><strong>압축성과 별개:</strong> Kn이 작다는 결과는 연속체 가정만 지지할 뿐입니다. 밀도 변화를 무시할 수 있는지는 마하 수로 따로 판단합니다.</li>
+</ul></section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">누센 수 계산에서 자주 묻는 질문</h2>
+<details><summary>특성 길이 L은 장치의 어느 치수로 잡아야 하나요?</summary><p>유동을 제한하는 가장 작은 치수, 예를 들어 평행판 간극, 미세 유로 폭, 입자 지름을 먼저 고릅니다. 장치 전체 길이를 쓰면 Kn이 실제보다 작게 나와 희박 효과를 놓칩니다. 예제 3처럼 한 물체에서도 치수마다 Kn이 열 배 이상 달라질 수 있으므로, 보고서에는 어떤 L을 썼는지 함께 적습니다.</p></details>
+<details><summary>에어로졸 논문의 Kn이 이 계산기 값의 두 배인 이유는 무엇인가요?</summary><p>NIST 슬립 보정 논문을 비롯한 에어로졸 문헌은 Kn = 2λ/D<sub>p</sub>, 곧 입자 반지름 기준으로 정의합니다. 입자 지름을 L로 넣는 이 계산기의 Kn = λ/L과 비교하면 정확히 두 배입니다. 에어로졸 문헌의 경계값이나 보정식을 쓸 때는 어느 정의인지 먼저 맞춘 다음 비교합니다.</p></details>
+<details><summary>대기압 공기의 λ 약 68 nm를 다른 조건에 그대로 써도 되나요?</summary><p>안 됩니다. 이 값은 NIST가 정리한 23 °C, 101.3 kPa 공기의 67.3 nm를 반올림한 값입니다. 압력이 1/100이 되면 λ는 100배가 되고, 온도가 바뀌면 추가 보정이 필요합니다. 다른 기체라면 분자 지름이 달라 λ 자체가 다릅니다.</p></details>
+<details><summary>슬립 영역에서는 CFD 설정을 어떻게 바꾸나요?</summary><p>슬립 영역에서는 연속체 방정식을 그대로 쓰되 벽면에 속도 슬립과 온도 점프 경계조건을 붙이는 방식이 일반적입니다. NASA TM 107730도 Kn &gt; 0.03이면 Navier–Stokes 식에 슬립 효과를 포함해야 한다고 적었습니다. Kn이 0.1을 넘어 천이 영역으로 들어가면 Mars Global Surveyor 보고서처럼 DSMC로 해석하는 경우가 많습니다.</p></details>
+</section>
+<section aria-labelledby="related"><h2 id="related">관련 무차원수</h2><p>Kn으로 연속체 가정을 확인한 뒤에 압축성과 점성 효과를 판단할 때 이어서 계산하는 수입니다.</p><ul><li><a href="/guides/mach">마하 수 (Ma)</a>: Kn이 작아도 고속에서는 밀도 변화가 커질 수 있으므로 압축성은 Ma로 따로 판정합니다.</li><li><a href="/guides/reynolds">레이놀즈 수 (Re)</a>: Kn은 Ma/Re에 비례하므로, 같은 Ma에서 Re가 작을수록 희박 효과가 커집니다.</li></ul></section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">참고 자료</h2><ul>
+<li>University of Utah / NASA: <a href="https://ntrs.nasa.gov/api/citations/19740019690/downloads/19740019690.pdf" rel="noopener noreferrer">Survey of Literature on Convective Heat Transfer Coefficients and Recovery Factors for High Atmosphere Thermometry</a>. Kn 영역 구분(0.01, 0.1, 10)과 그 경계가 근사라는 설명, 작은 Kn에서 Re·Ma만으로 유동이 정해진다는 설명</li>
+<li>NIST: <a href="https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=861332" rel="noopener noreferrer">Slip Correction Measurements of Certified PSL Nanoparticles Using a Nanometer Differential Mobility Analyzer</a>. 공기 λ₀ = 67.3 nm(23 °C, 101.3 kPa), 압력·온도 보정식 (11), φ에 따른 λ 정의 차이, Kn = 2λ/D<sub>p</sub></li>
+<li>NASA Langley: <a href="https://ntrs.nasa.gov/api/citations/19930022543/downloads/19930022543.pdf" rel="noopener noreferrer">Reynolds Number Influences in Aeronautics (NASA TM 107730)</a>. Moss·Bird 그림에 따른 경계(0.03, 0.2, 1), 앞전 근처에서 Kn이 커지는 문제</li>
+<li>NASA: <a href="https://ntrs.nasa.gov/api/citations/19980041304/downloads/19980041304.pdf" rel="noopener noreferrer">Aerothermodynamics of the Mars Global Surveyor Spacecraft</a>. 전력 션트 위 국소 λ 약 3 cm와 션트 치수, 근점 Kn 약 0.2, 국소 λ 사용 권고, 항력계수 약 11% 차이</li>
+<li>MIT OpenCourseWare (3.185): <a href="https://ocw.mit.edu/courses/3-185-transport-phenomena-in-materials-engineering-fall-2003/a55c74dc21def01fc0054de35574d1e5_3_21.pdf" rel="noopener noreferrer">Transport Phenomena in Materials Engineering</a>. Kn = λ/L = k<sub>B</sub>T/(√2πσ²PL)와 연속체(&lt; 0.01)·가시선(&gt; 1) 모델 기준</li>
+</ul></section>
 <nav aria-label="다른 해설"><a href="/">전체 계산기</a><a href="/guides/reynolds">다음: 레이놀즈 수</a><a href="/guides/model-similarity">축소 모형에서 Re와 Fr을 동시에 맞출 수 있을까?</a></nav>
 <nav aria-label="이론 심화"><a href="/guides/gas-models">기체 유동 모델 선택: 마하 수와 누센 수를 따로 확인하기</a></nav>
 </main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>
