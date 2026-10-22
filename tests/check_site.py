@@ -1,12 +1,25 @@
-"""Run with python3 tests/check_site.py."""
+"""Run with python3 tests/check_site.py. Copies the repository files into a
+temporary directory, builds the site there with build.sh and checks that output,
+i.e. what Cloudflare Pages serves. It also checks that build.sh refuses unsafe
+output names, hidden files and symlinks."""
 from difflib import SequenceMatcher
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse
+import atexit
+import base64
+import hashlib
 import re
+import shutil
+import subprocess
+import tempfile
 import xml.etree.ElementTree as ET
 
-ROOT = Path(__file__).resolve().parents[1]
+REPO = Path(__file__).resolve().parents[1]
+WORK = Path(tempfile.mkdtemp(prefix='calctool-build-'))
+atexit.register(shutil.rmtree, WORK, ignore_errors=True)
+SRC = WORK / 'src'
+ROOT = SRC / 'dist'
 SITE = 'https://calctool.cc'
 GA4_ID = 'G-4L6KGPWDN7'
 ADSENSE = 'pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516'
@@ -40,8 +53,9 @@ class Page(HTMLParser):
         # and the text used for the repeated-sentence check.
         self.examples = self.faqs = 0
         self.source_links, self.h2, self._sentence_text = set(), [], []
+        self.script_srcs, self.scripts, self.handlers = [], [], []
         self._main = self._skip = self._footer = 0
-        self._in_title = False
+        self._in_title = self._in_script = False
         self._open, self._h2 = [], None
         self.feed(text)
         self.body_chars = len(re.sub(r'\s', '', ''.join(self.body)))
@@ -67,6 +81,12 @@ class Page(HTMLParser):
             self.lang = attrs.get('lang')
         if tag == 'title':
             self._in_title = True
+        if tag == 'script' and 'src' in attrs:
+            self.script_srcs.append(attrs['src'])
+        elif tag == 'script':
+            self._in_script = True
+            self.scripts.append('')
+        self.handlers += [value for name, value in attributes if name.startswith('on')]
         if tag == 'a' and 'href' in attrs:
             self.links.append(attrs['href'])
             if self._footer:
@@ -101,6 +121,8 @@ class Page(HTMLParser):
     def handle_endtag(self, tag):
         if tag == 'title':
             self._in_title = False
+        if tag == 'script':
+            self._in_script = False
         if tag == 'footer':
             self._footer -= 1
         for i in range(len(self._open) - 1, -1, -1):
@@ -118,6 +140,8 @@ class Page(HTMLParser):
             self._skip -= 1
 
     def handle_data(self, data):
+        if self._in_script:
+            self.scripts[-1] += data
         if self._in_title:
             self.title += data
         if self._main and not self._skip:
@@ -148,6 +172,102 @@ def file_of(url):
         return target / 'index.html'
     return target.with_suffix('.html')
 
+
+# Build output: every repository file is either published unchanged or listed
+# here as a development file, and development files never reach the output.
+DEV_FILES = {'.gitignore', 'README.md', 'DEPLOY.md', 'build.sh'}
+DEV_DIRS = ('tests/',)
+
+try:
+    listed = subprocess.run(['git', 'ls-files', '--cached', '--others', '--exclude-standard'],
+                            cwd=REPO, check=True, capture_output=True, text=True).stdout.splitlines()
+    source = {f for f in listed if (REPO / f).is_file()}
+except (OSError, subprocess.CalledProcessError):
+    source = {str(f.relative_to(REPO)) for f in REPO.rglob('*') if f.is_file()
+              and not f.relative_to(REPO).parts[0].startswith(('.git', 'dist', '__pycache__'))}
+
+
+def copy_source(dest):
+    for f in source:
+        (dest / f).parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(REPO / f, dest / f)
+
+
+def build(base, *args):
+    return subprocess.run(['sh', str(base / 'build.sh'), *args], cwd=WORK, capture_output=True, text=True)
+
+
+def tree(base):
+    return {str(f.relative_to(base)): f.read_bytes() for f in base.rglob('*') if f.is_file()}
+
+
+copy_source(SRC)
+for out in ('dist', 'again'):
+    result = build(SRC, out)
+    assert result.returncode == 0, f'build.sh {out} failed: {result.stderr}'
+again = SRC / 'again'
+
+# build.sh hardening, in a scratch copy so the checked build stays clean.
+SCRATCH = WORK / 'scratch'
+copy_source(SCRATCH)
+outside = WORK / 'x'
+outside.mkdir()
+(outside / 'keep').write_text('keep')
+(SCRATCH / '.hidden').mkdir()
+(SCRATCH / '.hidden' / 'keep').write_text('keep')
+for bad in ('', '../x', str(outside), '/tmp/x', '.hidden', '.', '..', 'a/b', 'dist/..', 'x y',
+            'calculators', 'en', 'guides', 'tests', 'index.html', 'tests/'):
+    before = tree(WORK)
+    result = build(SCRATCH, bad)
+    assert result.returncode != 0 and 'refusing' in result.stderr, f'build.sh accepted output {bad!r}'
+    assert tree(WORK) == before, f'build.sh {bad!r} changed files before refusing'
+(SCRATCH / '.hidden.html').write_text('hidden')
+(SCRATCH / 'guides' / '.draft.html').write_text('hidden')
+(SCRATCH / 'en' / '.drafts').mkdir()
+(SCRATCH / 'en' / '.drafts' / 'page.html').write_text('hidden')
+result = build(SCRATCH, 'out')
+assert result.returncode == 0, f'build.sh with dotfiles present failed: {result.stderr}'
+hidden = [f for f in tree(SCRATCH / 'out') if any(part.startswith('.') for part in Path(f).parts)]
+assert not hidden, f'build.sh published hidden files: {hidden}'
+for link, target in (('calculators/linked.html', '../index.html'), ('linked.html', 'index.html'),
+                     ('robots.txt', 'index.html'), ('guides', 'en/guides')):
+    path = SCRATCH / link
+    saved = path.with_name(path.name + '.saved')
+    if path.exists():
+        path.rename(saved)
+    path.symlink_to(target)
+    (SCRATCH / 'out' / 'keep').write_text('keep')
+    result = build(SCRATCH, 'out')
+    assert result.returncode != 0 and 'symlink' in result.stderr, f'build.sh accepted symlink {link}'
+    assert (SCRATCH / 'out' / 'keep').exists(), f'build.sh deleted the old output before refusing {link}'
+    path.unlink()
+    if saved.exists():
+        saved.rename(path)
+shutil.move(str(SCRATCH / 'en'), str(WORK / 'en-moved'))
+result = build(SCRATCH, 'out')
+assert result.returncode != 0, 'build.sh succeeded with a published directory missing'
+fake = WORK / 'fakebin'
+fake.mkdir()
+(fake / 'find').write_text('#!/bin/sh\necho "find: simulated failure" >&2\nexit 1\n')
+(fake / 'find').chmod(0o755)
+shutil.move(str(WORK / 'en-moved'), str(SCRATCH / 'en'))
+result = subprocess.run(['sh', str(SCRATCH / 'build.sh'), 'out'], cwd=WORK, capture_output=True, text=True,
+                        env={'PATH': f'{fake}:/usr/bin:/bin'})
+assert result.returncode != 0 and 'simulated failure' in result.stderr, 'build.sh ignored a find failure'
+assert (SCRATCH / 'out' / 'keep').exists(), 'build.sh deleted the old output after a find failure'
+
+
+built = tree(ROOT)
+assert built == tree(again), 'build.sh output differs between two runs'
+dev = {f for f in source if f in DEV_FILES or f.startswith(DEV_DIRS)}
+assert not dev & set(built), f'Development files in build output: {sorted(dev & set(built))}'
+assert set(built) <= source, f'Build output has files not in the repository: {sorted(set(built) - source)}'
+missing = source - dev - set(built)
+assert not missing, f'Files neither published by build.sh nor listed in DEV_FILES/DEV_DIRS: {sorted(missing)}'
+for f, data in built.items():
+    assert data == (REPO / f).read_bytes(), f'{f}: build output differs from the repository'
+for f in ('_redirects', '404.html', 'ads.txt', 'robots.txt', 'sitemap.xml', 'index.html'):
+    assert f in built, f'{f} missing from the build output root'
 
 texts = {p: p.read_text(encoding='utf-8') for p in ROOT.rglob('*.html')}
 pages = {p: Page(t) for p, t in texts.items()}
@@ -364,7 +484,79 @@ for file in (ROOT/'privacy.html', ROOT/'en/privacy.html'):
     for needle in localized:
         assert needle in text, f'{rel(file)}: missing {needle}'
 
-print(f'PASS: {len(pages)} HTML pages; links, fragments, IDs, lang/canonical/GA4/AdSense/footer, unique titles and descriptions, '
+# _headers: security headers on every path. The CSP is report-only; inline
+# scripts and handlers are allowed by hash, so editing one means updating
+# _headers with the hash printed by the failing assertion.
+rules, path = {}, None
+for line in (ROOT/'_headers').read_text(encoding='utf-8').splitlines():
+    assert len(line) <= 2000, f'_headers line longer than 2,000 characters: {line[:60]}...'
+    if not line.strip() or line.lstrip().startswith('#'):
+        continue
+    if not line[0].isspace():
+        path = line.strip()
+        rules[path] = {}
+        continue
+    name, _, value = line.strip().partition(':')
+    assert path and name.lower() not in rules[path], f'_headers: header {name} outside a rule or repeated'
+    rules[path][name.lower()] = value.strip()
+assert '/*' in rules, '_headers needs a /* rule'
+headers = rules['/*']
+assert headers.get('strict-transport-security') == 'max-age=31536000', 'HSTS must be exactly max-age=31536000 (no includeSubDomains/preload while www is unverified)'
+csp_text = headers.get('content-security-policy-report-only')
+assert csp_text, 'Content-Security-Policy-Report-Only missing'
+csp = {}
+for directive in csp_text.split(';'):
+    if directive.strip():
+        name, *sources = directive.split()
+        assert name not in csp, f'CSP directive {name} repeated'
+        csp[name] = sources
+assert headers.get('x-frame-options') == 'DENY' or csp.get('frame-ancestors') == ["'none'"], 'No frame protection'
+assert headers.get('permissions-policy'), 'Permissions-Policy missing'
+assert headers.get('x-content-type-options') == 'nosniff'
+assert headers.get('referrer-policy') == 'strict-origin-when-cross-origin'
+assert 'default-src' in csp and 'base-uri' in csp, 'CSP needs default-src and base-uri'
+assert csp.get('object-src') == ["'none'"], "CSP needs object-src 'none'"
+script_src = csp.get('script-src', csp['default-src'])
+
+
+def sha256(text):
+    return "'sha256-" + base64.b64encode(hashlib.sha256(text.encode()).digest()).decode() + "'"
+
+
+def allows(host):
+    return any(s in (f'https://{host}', f'{host}') or (s.startswith('https://*.') and host.endswith(s[9:]))
+               for s in script_src)
+
+
+inline = {sha256(t) for page in pages.values() for t in page.scripts}
+handlers = {sha256(h) for page in pages.values() for h in page.handlers}
+missing = sorted((inline | handlers) - set(script_src))
+assert not missing, f'script-src lacks hashes for inline scripts/handlers: {" ".join(missing)}'
+stale = sorted({s for s in script_src if s.startswith("'sha256-")} - inline - handlers)
+assert not stale, f'script-src has hashes no page uses: {" ".join(stale)}'
+assert not handlers or "'unsafe-hashes'" in script_src, "Inline event handlers need 'unsafe-hashes'"
+hosts = set()
+for file, page in pages.items():
+    loaded = page.script_srcs + [m for t in page.scripts for m in re.findall(r'\.src\s*=\s*["\'](https://[^"\']+)', t)]
+    for src in loaded:
+        url = urlparse(src)
+        if url.netloc:
+            assert url.scheme == 'https', f'{rel(file)}: non-https script {src}'
+            assert allows(url.netloc), f'{rel(file)}: script host {url.netloc} not in script-src'
+            hosts.add(url.netloc)
+        else:
+            assert "'self'" in script_src
+
+# Stylesheets imported from other hosts (Google Fonts in style.css) need style-src.
+style_src = csp.get('style-src', csp['default-src'])
+for css in [*ROOT.glob('*.css'), *pages]:
+    for host in re.findall(r"@import\s+url\(['\"]?https://([^/'\")]+)", css.read_text(encoding='utf-8')):
+        assert f'https://{host}' in style_src, f'{rel(css)}: stylesheet host {host} not in style-src'
+        if host == 'fonts.googleapis.com':
+            assert 'https://fonts.gstatic.com' in csp.get('font-src', []), 'Google Fonts needs https://fonts.gstatic.com in font-src'
+
+print(f'PASS: build.sh output ({len(built)} files, deterministic, no development files; unsafe output names, hidden files, symlinks and find failures refused); {len(pages)} HTML pages; links, fragments, IDs, lang/canonical/GA4/AdSense/footer, unique titles and descriptions, '
       f'{len(sitemap_urls)} sitemap URLs (>= {MIN_BODY} chars, no redirects or noindex), {len(noindex)} noindex page, hreflang pairs, '
       f'calculator pages, _redirects, privacy disclosures; {len(BODY_PAGES)} body pages with >= 2 examples, >= 3 FAQs, >= 2 references, '
-      f'no shared guide headings and no sentence repeated on 3+ pages')
+      f'no shared guide headings and no sentence repeated on 3+ pages; '
+      f'_headers (HSTS, frames, CSP report-only with {len(inline)} script and {len(handlers)} handler hashes, script hosts {sorted(hosts)})')
