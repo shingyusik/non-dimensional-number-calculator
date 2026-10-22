@@ -73,21 +73,47 @@
 <li>액체 속 분자 확산 계수는 대체로 10⁻⁹ m²/s 규모, 기체 속은 대체로 10⁻⁵ m²/s 규모입니다. 입력값의 자릿수가 이와 크게 다르면 단위를 확인하세요.</li>
 <li>자료가 cm²/s 단위라면 10⁻⁴를 곱해 m²/s로 바꿉니다.</li>
 <li>난류 혼합을 나타내는 난류 확산 계수를 D에 넣으면 분자 확산을 비교하는 Sc가 아니게 됩니다.</li>
-<li>μ와 ρ는 성분이 녹아 있는 매질(용매)의 값입니다.</li>
+<li>μ와 ρ는 성분이 녹아 있는 매질(용매)의 값이며, D와 같은 온도·압력에서 가져옵니다.</li>
 </ul>
 </section>
 <section aria-labelledby="criteria"><h2 id="criteria">결과 크기 읽기</h2>
 <p>예제는 물속 용질을 가정해 μ = 0.001 Pa·s, ρ = 1000 kg/m³, D = 1×10⁻⁹ m²/s로 Sc = 1000입니다. 기체 혼합물에서는 Sc가 1 안팎인 경우가 많고, 액체 속 용질은 수백 이상으로 커지는 경우가 많습니다. 같은 흐름에서도 열은 넓게 퍼지는데 용질은 얇은 층 안에 머무를 수 있다는 뜻입니다.</p>
+<p>결과가 0.01이나 10⁶처럼 이 범위를 크게 벗어나면 먼저 D의 단위를 의심합니다. cm²/s 값을 환산하지 않고 넣으면 Sc가 정확히 10⁴배 작게 나옵니다.</p>
 <p>해양학에서는 수온에 따른 Sc를 이용해 기체가 해수면을 통과하는 전달 속도를 추정합니다. R 패키지 marelac의 참조 문서가 이런 쓰임을 설명합니다.</p>
 </section>
 <section aria-labelledby="check"><h2 id="check">페클레 수와 연결하기</h2>
 <p>같은 길이와 속도를 쓰면 물질 페클레 수는 Re × Sc입니다. 열·물질 확산 노트에서는 v = 0.2 m/s, L = 0.05 m일 때 Re = 10000, Sc = 1000으로 물질 페클레 수 10⁷을 확인합니다. 같은 노트에서 0.25초 동안의 확산 길이 √(Dt)는 약 0.01581 mm로, 열확산 길이 0.2236 mm보다 훨씬 짧게 나옵니다. 이 사이트의 페클레 수 계산기에서 α 칸에 D를 넣으면 물질 페클레 수를 바로 구할 수 있습니다.</p>
 </section>
+<section aria-labelledby="worked"><h2 id="worked">자료표 값을 계산기에 옮기는 예제</h2>
+<section class="example" aria-labelledby="ex-water40"><h3 id="ex-water40">예제 1. 40 °C 물속 산소와 cm²/s 환산 실수</h3>
+<p><strong>주어진 값:</strong> 40 °C 물의 ρ = 992.2 kg/m³, μ = 6.529×10⁻⁴ Pa·s, ν = 0.6581×10⁻⁶ m²/s, Pr = 4.341입니다(IAEA 표 3.3, 포화액 값을 저압 액체 근사로 사용). Cornell 자료의 40 °C 산소 확산 계수는 0.0000324 cm²/s입니다(Wilke–Chang 추정값).</p>
+<p><strong>단위 변환:</strong> 0.0000324 cm²/s × 10⁻⁴ = 3.24×10⁻⁹ m²/s입니다.</p>
+<p><strong>계산기 입력:</strong> μ = 6.529e-4, ρ = 992.2, D = 3.24e-9를 넣으면 Sc = 203.1입니다. ν/D = 0.6581×10⁻⁶ ÷ 3.24×10⁻⁹로 검산해도 203.1이 나옵니다. Sc/Pr = 46.79이므로 이 온도에서도 산소는 열보다 약 47배 느리게 퍼집니다.</p>
+<p><strong>흔한 실수:</strong> 환산을 빠뜨리고 D = 3.24e-5를 넣으면 Sc = 0.0203이 나와 기체보다도 작은 값이 됩니다. 액체 속 용질인데 Sc가 1보다 작게 나오면 단위를 먼저 확인합니다.</p>
+</section>
+<section class="example" aria-labelledby="ex-air60"><h3 id="ex-air60">예제 2. 60 °C 공기 속 산소: 압력 조건 맞추기</h3>
+<p><strong>주어진 값:</strong> IAEA 표 3.1은 98.1 kPa 건조 공기의 60 °C 물성으로 ρ = 1.026 kg/m³, μ = 20.10×10⁻⁶ Pa·s를 제시합니다. Cornell 기체 확산 자료는 대기압(1 atm) 60 °C 산소-질소 쌍의 D를 0.274 cm²/s로 제시합니다. 공기를 질소로 근사합니다.</p>
+<p><strong>압력 보정:</strong> 기체 확산 계수는 같은 온도에서 압력에 반비례한다고 보고 D를 98.1 kPa로 옮깁니다. 2.74×10⁻⁵ × 101.325 / 98.1 = 2.830×10⁻⁵ m²/s입니다.</p>
+<p><strong>계산기 입력:</strong> μ = 20.10e-6, ρ = 1.026, D = 2.830e-5를 넣으면 Sc = 0.692입니다. 보정하지 않은 1 atm D를 98.1 kPa 밀도와 섞어 넣으면 0.715가 나와 약 3.3% 커집니다.</p>
+<p><strong>판단:</strong> 기체에서는 ν와 D가 모두 압력에 반비례하므로 Sc 자체는 압력에 거의 의존하지 않습니다. 오차는 서로 다른 압력의 자료를 섞을 때 생깁니다. 20 °C 공기 속 산소의 Sc는 기본 해설 예제에서 0.690이므로, 기체에서는 온도가 40 K 올라도 Sc가 거의 변하지 않습니다. 같은 온도 변화에서 물속 산소의 Sc는 5배 넘게 줄어듭니다.</p>
+</section>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">슈미트 수 계산기 입력 질문</h2>
+<details><summary>계산기에 ν만 알고 있으면 μ와 ρ 칸은 어떻게 채우나요?</summary><p>Sc = μ/(ρD) = ν/D이므로 ρ 칸에 1, μ 칸에 ν 값을 넣으면 같은 결과가 나옵니다. 예를 들어 예제 1의 ν = 0.6581×10⁻⁶ m²/s를 μ 칸에 넣고 ρ = 1로 두면 Sc = 203.1입니다. 단, 다른 계산에 μ와 ρ를 다시 쓸 예정이라면 실제 값을 넣어 두는 편이 덜 헷갈립니다.</p></details>
+<details><summary>여러 성분이 섞인 용액에서는 어떤 D를 넣나요?</summary><p>관심 있는 성분마다 Sc를 따로 계산합니다. 같은 용매라도 성분마다 D가 다르므로 Sc도 성분마다 다릅니다. 묽은 용액이면 용매 물성(μ, ρ)은 순수 용매 값으로 근사할 수 있습니다.</p></details>
+<details><summary>Cornell 확산 계수 표에 있는 온도 사이의 값이 필요하면 어떻게 하나요?</summary><p>표 사이를 직선으로 보간하면 대략값은 얻을 수 있지만, 액체 속 D는 20 °C에서 60 °C 사이에 두 배 넘게 변할 만큼 온도에 민감합니다. 보간한 D는 같은 온도의 μ, ρ와 짝을 맞춰 넣고, 결과에는 원래 추정식의 ±10% 불확도가 더해진다고 봅니다.</p></details>
+</section>
 <section aria-labelledby="more"><h2 id="more">관련 해설과 계산기</h2>
 <h3>기본 해설</h3><ul><li><a href="/guides/schmidt">슈미트 수 해설: 예제와 주의점</a></li></ul>
-<h3>계산 노트</h3><ul><li><a href="/guides/transport-scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a>: 확산 길이와 이송 시간을 비교하고 열전달 계수가 어디서 오는지 구분합니다.</li></ul>
-<h3>관련 계산기</h3><ul><li><a href="/calculators/prandtl">프란틀 수 (Pr)</a>: Sc는 열전달의 Pr에 대응하며, α 대신 D를 쓴다는 점만 다릅니다.</li><li><a href="/calculators/peclet">페클레 수 (Pe)</a>: 같은 L·v·물성이면 물질 페클레 수는 Re × Sc입니다.</li><li><a href="/calculators/nusselt">누셀트 수 (Nu)</a>: 열전달에서 Nu와 Pr을 함께 보듯, 물질전달 상관식에서는 Sc가 함께 쓰입니다.</li></ul>
+<h3>계산 노트</h3><ul><li><a href="/guides/transport-scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a>: 이 계산기로 구한 Sc를 Re와 곱해 물질 페클레 수를 만들고, 확산 길이를 열확산 길이와 나란히 비교합니다.</li></ul>
+<h3>관련 계산기</h3><ul><li><a href="/calculators/prandtl">프란틀 수 (Pr)</a>: 같은 용매의 μ, ρ에 c<sub>p</sub>, k를 더 넣어 Pr을 구하면 Sc/Pr로 Lewis 수를 얻습니다.</li><li><a href="/calculators/peclet">페클레 수 (Pe)</a>: α 칸에 이 계산기에서 쓴 D를 넣으면 물질 페클레 수가 나옵니다.</li><li><a href="/calculators/nusselt">누셀트 수 (Nu)</a>: 열전달 계수 대신 물질전달 계수와 D를 넣으면 셔우드 수에 해당하는 값을 같은 형식으로 구할 수 있습니다.</li></ul>
 </section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">참고 자료</h2><ul>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering (2008)</a>. 표 3.3 포화수 40 °C 물성, 표 3.1 98.1 kPa 건조 공기 60 °C 물성</li>
+<li>Cornell University: <a href="https://www.compost.css.cornell.edu/oxygen/oxygen.diff.water.html" rel="noopener noreferrer">Calculating the Oxygen Diffusion Coefficient in Water</a>. 40 °C 물속 산소 D 0.0000324 cm²/s와 Wilke–Chang ±10%</li>
+<li>Cornell University: <a href="https://www.compost.css.cornell.edu/oxygen/oxygen.diff.air.html" rel="noopener noreferrer">Calculating the Oxygen Diffusion Coefficient in Air</a>. 대기압 60 °C 산소-질소 D 0.274 cm²/s, 압력이 높아지면 확산 계수가 작아진다는 설명</li>
+<li>CRAN: <a href="https://cran.r-project.org/web/packages/marelac/refman/marelac.html" rel="noopener noreferrer">marelac reference manual</a>. 해수 기체의 Sc를 기체 전달 속도 추정에 쓰는 gas_schmidt 함수</li>
+</ul></section>
 </main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>
 <script src="/calculators.js?v=20261022" defer></script>
 <script src="/calculator-page.js?v=20261022" defer></script>

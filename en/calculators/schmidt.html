@@ -73,21 +73,47 @@
 <li>Molecular diffusivities are typically of order 10⁻⁹ m²/s in liquids and 10⁻⁵ m²/s in gases. A value many orders away from these is a cue to check units.</li>
 <li>Data in cm²/s convert to m²/s by multiplying by 10⁻⁴.</li>
 <li>Entering a turbulent (eddy) diffusivity as D no longer gives a Schmidt number for molecular diffusion.</li>
-<li>μ and ρ belong to the carrier fluid (the solvent).</li>
+<li>μ and ρ belong to the carrier fluid (the solvent) and should be taken at the same temperature and pressure as D.</li>
 </ul>
 </section>
 <section aria-labelledby="criteria"><h2 id="criteria">Reading the result</h2>
 <p>The example assumes a solute in water: μ = 0.001 Pa·s, ρ = 1000 kg/m³ and D = 1×10⁻⁹ m²/s, so Sc = 1000. Gas mixtures often have Sc around 1, while solutes in liquids commonly reach hundreds or more. In the same flow, heat can spread widely while a solute stays in a thin layer.</p>
+<p>If the result lands far outside these ranges, at 0.01 or 10⁶ for example, suspect the units of D first. Entering a cm²/s value without converting makes Sc exactly 10⁴ times too small.</p>
 <p>Oceanographers use temperature-dependent Schmidt numbers to estimate how fast gases cross the sea surface; the reference manual of the R package marelac describes this use.</p>
 </section>
 <section aria-labelledby="check"><h2 id="check">Link to the Péclet number</h2>
 <p>With the same length and speed, the mass Péclet number is Re × Sc. The thermal and mass diffusion note uses v = 0.2 m/s and L = 0.05 m to get Re = 10000 and Sc = 1000, so the mass Péclet number is 10⁷. The same note shows that over 0.25 s the diffusion length √(Dt) is about 0.01581 mm, far shorter than the thermal length of 0.2236 mm. Entering D in the α field of the Péclet calculator gives the mass Péclet number directly.</p>
 </section>
+<section aria-labelledby="worked"><h2 id="worked">Moving table data into the calculator</h2>
+<section class="example" aria-labelledby="ex-water40"><h3 id="ex-water40">Example 1. Oxygen in 40 °C water, and the cm²/s slip</h3>
+<p><strong>Given:</strong> Water at 40 °C has ρ = 992.2 kg/m³, μ = 6.529×10⁻⁴ Pa·s, ν = 0.6581×10⁻⁶ m²/s and Pr = 4.341 (IAEA Table 3.3, saturated liquid used as a low-pressure approximation). Cornell lists the oxygen diffusivity at 40 °C as 0.0000324 cm²/s (a Wilke–Chang estimate).</p>
+<p><strong>Unit conversion:</strong> 0.0000324 cm²/s × 10⁻⁴ = 3.24×10⁻⁹ m²/s.</p>
+<p><strong>Calculator input:</strong> μ = 6.529e-4, ρ = 992.2 and D = 3.24e-9 give Sc = 203.1. Checking with ν/D = 0.6581×10⁻⁶ ÷ 3.24×10⁻⁹ also gives 203.1. Sc/Pr = 46.79, so at this temperature oxygen still spreads about 47 times more slowly than heat.</p>
+<p><strong>Common slip:</strong> Skipping the conversion and entering D = 3.24e-5 gives Sc = 0.0203, smaller than for a gas. A liquid-phase solute with Sc below 1 is a reason to recheck units.</p>
+</section>
+<section class="example" aria-labelledby="ex-air60"><h3 id="ex-air60">Example 2. Oxygen in 60 °C air: matching the pressure</h3>
+<p><strong>Given:</strong> IAEA Table 3.1 gives dry air at 98.1 kPa and 60 °C as ρ = 1.026 kg/m³ and μ = 20.10×10⁻⁶ Pa·s. Cornell's gas-diffusion page lists D = 0.274 cm²/s for the oxygen-nitrogen pair at atmospheric pressure (1 atm) and 60 °C. Air is approximated as nitrogen.</p>
+<p><strong>Pressure correction:</strong> Treating gas diffusivity as inversely proportional to pressure at fixed temperature, move D to 98.1 kPa: 2.74×10⁻⁵ × 101.325 / 98.1 = 2.830×10⁻⁵ m²/s.</p>
+<p><strong>Calculator input:</strong> μ = 20.10e-6, ρ = 1.026 and D = 2.830e-5 give Sc = 0.692. Mixing the uncorrected 1 atm D with the 98.1 kPa density gives 0.715, about 3.3% high.</p>
+<p><strong>Judgment:</strong> In a gas both ν and D scale inversely with pressure, so Sc itself barely depends on pressure; the error comes from mixing data at different pressures. The guide's example gives Sc = 0.690 for oxygen in 20 °C air, so a 40 K rise hardly changes Sc in the gas, whereas the same rise cuts Sc for oxygen in water by more than a factor of five.</p>
+</section>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">Schmidt calculator input questions</h2>
+<details><summary>I only know ν. How do I fill the μ and ρ fields?</summary><p>Since Sc = μ/(ρD) = ν/D, entering ν in the μ field and 1 in the ρ field gives the same result. With ν = 0.6581×10⁻⁶ m²/s from Example 1 and ρ = 1, Sc = 203.1. If you will reuse μ and ρ in other calculations, entering the real values avoids confusion.</p></details>
+<details><summary>Which D do I use for a solution with several species?</summary><p>Compute Sc separately for each species of interest. Each species has its own D in the same solvent, and therefore its own Sc. For dilute solutions the solvent properties μ and ρ can be approximated by those of the pure solvent.</p></details>
+<details><summary>What if I need a value between the temperatures in the Cornell table?</summary><p>Linear interpolation gives a rough value, but liquid-phase D is temperature-sensitive enough to more than double between 20 °C and 60 °C. Pair the interpolated D with μ and ρ at the same temperature, and expect the ±10% uncertainty of the underlying estimate on top.</p></details>
+</section>
 <section aria-labelledby="more"><h2 id="more">Related guides and calculators</h2>
 <h3>Guide</h3><ul><li><a href="/en/guides/schmidt">Schmidt number guide: worked example and cautions</a></li></ul>
-<h3>Calculation notes</h3><ul><li><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a>: Diffusion lengths versus transit times, and where a heat-transfer coefficient comes from.</li></ul>
-<h3>Related calculators</h3><ul><li><a href="/en/calculators/prandtl">Prandtl number (Pr)</a>: Sc mirrors Pr in heat transfer, with D replacing α.</li><li><a href="/en/calculators/peclet">Péclet number (Pe)</a>: With the same L, v and properties, the mass Péclet number is Re × Sc.</li><li><a href="/en/calculators/nusselt">Nusselt number (Nu)</a>: Just as heat-transfer correlations pair Nu with Pr, mass-transfer correlations use Sc.</li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a>: Multiplies the Sc from this calculator by Re to get a mass Péclet number, then sets the diffusion length beside the thermal one.</li></ul>
+<h3>Related calculators</h3><ul><li><a href="/en/calculators/prandtl">Prandtl number (Pr)</a>: Add c<sub>p</sub> and k for the same solvent to get Pr; Sc/Pr is then the Lewis number.</li><li><a href="/en/calculators/peclet">Péclet number (Pe)</a>: Put the D used here in the α field to get the mass Péclet number.</li><li><a href="/en/calculators/nusselt">Nusselt number (Nu)</a>: Entering a mass transfer coefficient and D in place of h and k gives the Sherwood-number equivalent in the same form.</li></ul>
 </section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">References</h2><ul>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering (2008)</a>. Table 3.3 saturated water at 40 °C, Table 3.1 dry air at 98.1 kPa and 60 °C</li>
+<li>Cornell University: <a href="https://www.compost.css.cornell.edu/oxygen/oxygen.diff.water.html" rel="noopener noreferrer">Calculating the Oxygen Diffusion Coefficient in Water</a>. Oxygen D in water at 40 °C, 0.0000324 cm²/s, and the ±10% Wilke–Chang accuracy</li>
+<li>Cornell University: <a href="https://www.compost.css.cornell.edu/oxygen/oxygen.diff.air.html" rel="noopener noreferrer">Calculating the Oxygen Diffusion Coefficient in Air</a>. Oxygen-nitrogen D of 0.274 cm²/s at 60 °C and atmospheric pressure, and the decrease of D with pressure</li>
+<li>CRAN: <a href="https://cran.r-project.org/web/packages/marelac/refman/marelac.html" rel="noopener noreferrer">marelac reference manual</a>. The gas_schmidt function, which supplies seawater Schmidt numbers for gas transfer velocity estimates</li>
+</ul></section>
 </main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
 <script src="/calculators.js?v=20261022" defer></script>
 <script src="/calculator-page.js?v=20261022" defer></script>

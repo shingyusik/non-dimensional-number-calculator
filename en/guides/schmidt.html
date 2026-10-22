@@ -16,6 +16,8 @@
 <title>Schmidt Number: formula, example and interpretation | Dimensionless Number Calculator</title>
 <meta name="description" content="How a solute in water with D=1×10⁻⁹ m²/s leads to Sc=1000, and why molecular and turbulent diffusivities must never share the D field.">
 <link rel="canonical" href="https://calctool.cc/en/guides/schmidt">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/schmidt"><link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/schmidt">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/guides/schmidt">
 <link rel="stylesheet" href="../../style.css?v=20261022">
 <link rel="stylesheet" href="../../guide.css?v=20261022">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
@@ -38,13 +40,72 @@
                 </svg>
             </button></div><p class="eyebrow">Method and interpretation</p><h1>Schmidt Number</h1><p>See how to enter values, calculate a result, and check the limits of its interpretation.</p></header>
 <main>
-<section aria-labelledby="why"><h2 id="why">When is it useful?</h2><p>Schmidt number compares momentum diffusion with molecular mass diffusion. It is a mass-transfer counterpart of Prandtl number, useful for a dissolved or gaseous species carried by a flowing fluid.</p></section>
-<section aria-labelledby="inputs"><h2 id="inputs">Formula and inputs</h2><div class="formula-box"><strong>Sc = μ / (ρD)</strong></div><p>Enter dynamic viscosity μ in Pa·s, fluid density ρ in kg/m³, and molecular diffusivity D of the particular species in m²/s. Since ν = μ/ρ, the same ratio can be written Sc = ν/D. The species and medium both affect D.</p><a class="guide-cta" href="/en/calculators/schmidt">Open this calculator</a></section>
-<section aria-labelledby="example"><h2 id="example">Worked example</h2><div class="example-box"><p>With μ = 0.001 Pa·s, ρ = 1000 kg/m³, and D = 1×10⁻⁹ m²/s, Sc = 0.001 ÷ (1000 × 1×10⁻⁹) = 1000.</p></div></section>
-<section aria-labelledby="meaning"><h2 id="meaning">Interpreting the result</h2><p>For these chosen inputs, momentum diffusivity is 1000 times the species’ molecular diffusivity. Sc is a comparison ratio, not a concentration profile or mass-transfer rate.</p></section>
-<section aria-labelledby="caution"><h2 id="caution">Limits and cautions</h2><p>Use a diffusivity appropriate to the species, medium, and temperature. Substituting turbulent diffusivity for molecular D changes the interpretation.</p></section>
-<section aria-labelledby="related"><h2 id="related">Related dimensionless numbers</h2><p>Numbers that are often calculated or compared alongside this one.</p><ul><li><a href="/en/guides/prandtl">Prandtl number (Pr)</a>: Sc mirrors Pr in heat transfer, with D replacing α.</li><li><a href="/en/guides/peclet">Péclet number (Pe)</a>: With the same L, v and properties, the mass Péclet number is Re × Sc.</li><li><a href="/en/guides/nusselt">Nusselt number (Nu)</a>: Just as heat-transfer correlations pair Nu with Pr, mass-transfer correlations use Sc.</li></ul></section>
-<p class="source">Formula and concept reference: <a href="https://cran.r-project.org/web/packages/marelac/refman/marelac.html" rel="noopener noreferrer">CRAN — marelac reference manual, Schmidt number</a>. We created the sample inputs and calculations for this guide.</p>
+<section aria-labelledby="why"><h2 id="why">The two diffusivities the Schmidt number compares</h2>
+<p>Sc compares momentum diffusivity (kinematic viscosity ν) with the molecular diffusivity D of a species. The MIT 3.185 notes call ν/D the mass transfer Prandtl number, also known as the Schmidt number: it is Pr = ν/α with D in place of α.</p>
+<p>The Michigan Tech CM3120 notes group Pr, Sc and Le as ratios of the diffusivities ν, α and D, with Sc = Le·Pr and mass Péclet number Pe = Re·Sc. Sc is therefore fixed by species, solvent and temperature, not by flow speed or size. MIT 3.185 adds that mass transfer Prandtl numbers in liquids are uniformly much greater than one, because solute diffusion is far slower than viscous momentum transfer.</p>
+</section>
+<section aria-labelledby="inputs"><h2 id="inputs">Inputs: solvent properties and a species-pair diffusivity</h2>
+<div class="formula-box"><strong>Sc = μ / (ρD) = ν / D</strong></div>
+<p>μ is the solvent viscosity (Pa·s), ρ the solvent density (kg/m³) and D the molecular diffusivity of the species in that solvent (m²/s). D belongs to a species-solvent pair, not to one substance. Multiply cm²/s by 10⁻⁴ for m²/s: Cornell's 0.0000197 cm²/s is 1.97×10⁻⁹ m²/s.</p>
+<p>The calculator defaults μ = 0.001 Pa·s, ρ = 1000 kg/m³ and D = 1×10⁻⁹ m²/s give Sc = 0.001 ÷ (1000 × 1×10⁻⁹) = 1000, a rough small solute in water. Once species and temperature are known, replace them with sourced properties as in the examples.</p>
+<a class="guide-cta" href="/en/calculators/schmidt">Open this calculator</a></section>
+<section aria-labelledby="magnitude"><h2 id="magnitude">Sc and Pr magnitudes in water and air</h2>
+<p>ν and Pr: IAEA; D: Cornell; Sc = ν/D: our calculation; seawater CO₂: CRAN marelac example output.</p>
+<div class="table-wrap"><table><caption>Diffusivity and Schmidt number by species-solvent pair, with the solvent Prandtl number</caption><thead><tr><th scope="col">Species, solvent, temperature</th><th scope="col">ν (m²/s)</th><th scope="col">D (m²/s)</th><th scope="col">Sc = ν/D</th><th scope="col">Solvent Pr</th></tr></thead><tbody>
+<tr><td>Oxygen, water, 20 °C</td><td>1.0020 × 10⁻⁶</td><td>1.97 × 10⁻⁹</td><td>508.6</td><td>6.981</td></tr>
+<tr><td>Oxygen, water, 60 °C</td><td>4.757 × 10⁻⁷</td><td>4.82 × 10⁻⁹</td><td>98.69</td><td>3.005</td></tr>
+<tr><td>Oxygen, nitrogen (air approximation), 20 °C, 1 atm</td><td>1.5104 × 10⁻⁵</td><td>2.19 × 10⁻⁵</td><td>0.690</td><td>about 0.71</td></tr>
+<tr><td>CO₂, seawater (salinity 35), 20 °C</td><td>not listed</td><td>not listed</td><td>about 660</td><td>not listed</td></tr>
+</tbody></table></div>
+<p>Water: Pr about 7, oxygen Sc above 500; heat spreads fast, dissolved gas slowly. In gases D ≈ ν in order, so Sc stays near 1.</p>
+</section>
+<section aria-labelledby="example"><h2 id="example">Examples with dissolved and gaseous oxygen</h2>
+<section class="example" aria-labelledby="ex-o2-20"><h3 id="ex-o2-20">Example 1. Dissolved oxygen in water at 20 °C</h3>
+<p><strong>Given:</strong> Water at 20 °C: μ = 1.0000×10⁻³ Pa·s, ρ = 998.2 kg/m³, ν = 1.0020×10⁻⁶ m²/s, Pr = 6.981 (IAEA Table 3.3, saturated liquid used as a low-pressure approximation). Oxygen D = 0.0000197 cm²/s = 1.97×10⁻⁹ m²/s (Cornell, Wilke–Chang estimate).</p>
+<p><strong>Calculation:</strong> With μ, ρ and D in the calculator, Sc = 1.0000×10⁻³ ÷ (998.2 × 1.97×10⁻⁹) = 508.5. Using ν directly, 1.0020×10⁻⁶ ÷ 1.97×10⁻⁹ = 508.6.</p>
+<p><strong>Against Pr:</strong> Sc/Pr = 508.5 / 6.981 = 72.84, so thermal diffusivity is about 73 times the oxygen diffusivity. MIT 3.185 gives δ<sub>u</sub>/δ<sub>T</sub> = 0.975 Pr<sup>1/3</sup> for a high-Pr laminar flat-plate boundary layer. Applied to mass transfer, δ<sub>u</sub>/δ<sub>c</sub> = 0.975 × 508.5<sup>1/3</sup> = 7.78, against 0.975 × 6.981<sup>1/3</sup> = 1.86 for heat: the concentration layer is about 4.2 times thinner than the thermal layer.</p>
+<p><strong>Uncertainty:</strong> Wilke–Chang is usually within ±10% for dilute nondissociating solutes (Cornell), so Sc lies between 462 and 565.</p>
+</section>
+<section class="example" aria-labelledby="ex-o2-60"><h3 id="ex-o2-60">Example 2. The same calculation in water heated to 60 °C</h3>
+<p><strong>Given:</strong> Water at 60 °C: μ = 4.677×10⁻⁴ Pa·s, ρ = 983.2 kg/m³, ν = 4.757×10⁻⁷ m²/s, Pr = 3.005 (IAEA Table 3.3); oxygen D = 4.82×10⁻⁹ m²/s (Cornell).</p>
+<p><strong>Calculation:</strong> Sc = 4.677×10⁻⁴ ÷ (983.2 × 4.82×10⁻⁹) = 98.69, 5.15 times smaller than 508.5 at 20 °C. D rose 2.45 times and ν fell 2.11 times, and the two effects multiply.</p>
+<p><strong>Interpretation:</strong> δ<sub>u</sub>/δ<sub>c</sub> = 0.975 × 98.69<sup>1/3</sup> = 4.51, so the concentration layer is still thinner than the velocity layer. Do not freeze Sc at one temperature in a correlation; evaluate it at the boundary-layer temperature. With very different wall and bulk temperatures, compare Sc at both.</p>
+</section>
+<section class="example" aria-labelledby="ex-o2-air"><h3 id="ex-o2-air">Example 3. Oxygen in air at 20 °C</h3>
+<p><strong>Given:</strong> Cornell's gas-diffusion page lists D = 0.219 cm²/s for the oxygen-nitrogen pair at atmospheric pressure and 20 °C; treating air as nitrogen, D = 2.19×10⁻⁵ m²/s. Air ν = 1.5104×10⁻⁵ m²/s comes from IAEA Table 3.1 μ = 1.819×10⁻⁵ Pa·s and the 98.1 kPa density 1.166 kg/m³ scaled to 1 atm as an ideal gas, ρ = 1.2043 kg/m³.</p>
+<p><strong>Calculation:</strong> Sc = 1.5104×10⁻⁵ ÷ 2.19×10⁻⁵ = 0.690. At 20 °C, D in the gas is about 11,117 times D in water (2.19×10⁻⁵ / 1.97×10⁻⁹), which sets the liquid-gas gap in Sc.</p>
+<p><strong>Interpretation:</strong> Sc is close to air's Pr (about 0.71), so concentration and thermal layers are similar. The MIT ratio holds above about 0.6: 0.975 × 0.690<sup>1/3</sup> = 0.862, a concentration layer slightly thicker than the velocity layer.</p>
+</section>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">What Sc ≫ 1 means for concentration layers and meshes</h2>
+<p>With Sc in the hundreds, concentration changes crowd into a very thin wall layer, about 1/8 of the laminar velocity layer in Example 1. A CFD mesh sized for the velocity field may not resolve that gradient; if wall mass transfer is the key output, recheck the first cell height against the concentration layer.</p>
+<p>Turbulence changes the picture. MIT 3.185 notes that eddies carry heat and solute about as well as momentum, so ν<sub>t</sub>/D<sub>t</sub> is very close to one. Molecular Sc matters little in the turbulent core but controls the resistance right at the wall, where turbulence dies out.</p>
+<p>Oceanographers use Sc for air-sea gas exchange. The CRAN marelac function gas_schmidt estimates Sc for several gases in seawater at salinity 35 and 0 to 30 °C, returning about 660 for CO₂ at 20 °C, and gas_transfer combines Sc with the wind speed at 10 m to give a transfer velocity in m/s.</p>
+</section>
+<section aria-labelledby="caution"><h2 id="caution">Checks before trusting a diffusivity value</h2>
+<ul>
+<li>Never put a turbulent diffusivity in D; Sc would no longer be a molecular property ratio.</li>
+<li>Wilke–Chang assumes dilute nondissociating solutes; for concentrated or ionic solutions, find measured data for that system.</li>
+<li>μ and ρ belong to the solvent. Seawater differs from fresh water, so do not reuse marelac's seawater results for fresh water.</li>
+<li>IAEA Table 3.3 is saturated liquid: fine near atmospheric pressure, not at high pressure.</li>
+<li>Gas diffusivity tends to vary inversely with pressure. Cornell's gas page also notes that diffusion slows as pressure rises, so 1 atm values need a pressure correction for high-pressure processes.</li>
+</ul>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">Schmidt number questions</h2>
+<details><summary>Why is Pr about 7 in water while Sc for oxygen exceeds 500?</summary><p>Both use ν; only the denominators differ. In 20 °C water thermal diffusivity is about 73 times the oxygen diffusivity (Sc/Pr = 72.84 in Example 1). That ratio α/D is the Lewis number, matching Sc = Le·Pr in the Michigan Tech notes.</p></details>
+<details><summary>Why do gas mixtures give Sc near 1?</summary><p>In a gas, molecular motion carries both momentum and species, so ν and D are of the same order: oxygen in air (Example 3) has ν = 1.5104×10⁻⁵ m²/s, D = 2.19×10⁻⁵ m²/s and Sc = 0.690. In liquids only molecular diffusion slows sharply, pushing Sc into the hundreds.</p></details>
+<details><summary>Is the turbulent Schmidt number in a CFD setup the same as this Sc?</summary><p>No. This Sc is molecular viscosity over molecular diffusivity. The turbulent Schmidt number is the ratio of modelled turbulent viscosity to turbulent diffusivity, which MIT 3.185 describes as very close to one. Solvers take the two separately, and wall mass transfer is governed by the molecular Sc.</p></details>
+<details><summary>Why does air-sea gas exchange need Sc?</summary><p>Transfer velocity depends on wind and on gas diffusion in water; marelac's gas_transfer takes the 10 m wind speed and Sc, and a supplied Sc overrides the gas and temperature arguments.</p></details>
+</section>
+<section aria-labelledby="related"><h2 id="related">Related dimensionless numbers</h2><p>Once Sc fixes the diffusion properties of a species and solvent, these numbers carry it into an actual flow.</p><ul><li><a href="/en/guides/prandtl">Prandtl number (Pr)</a>: Side by side with Sc for the same solvent, Pr shows the relative thickness of thermal and concentration layers.</li><li><a href="/en/guides/peclet">Péclet number (Pe)</a>: Once speed and length are set, Re times Sc gives the ratio of convection to molecular diffusion.</li><li><a href="/en/guides/nusselt">Nusselt number (Nu)</a>: Replacing Pr with Sc in a heat transfer correlation gives the mass transfer analogue for the Sherwood number and mass transfer coefficient.</li></ul></section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">References</h2><ul>
+<li>MIT OpenCourseWare 3.185: <a href="https://ocw.mit.edu/courses/3-185-transport-phenomena-in-materials-engineering-fall-2003/a55c74dc21def01fc0054de35574d1e5_3_21.pdf" rel="noopener noreferrer">Transport Phenomena in Materials Engineering</a>. Sc as mass transfer Pr, boundary-layer ratio, turbulent ν<sub>t</sub>/D<sub>t</sub></li>
+<li>Michigan Technological University: <a href="https://pages.mtu.edu/~fmorriso/cm3120/lectures/2021_CM3120_module2_6alectureIV.pdf" rel="noopener noreferrer">CM3120 Module 2 Lecture IV (F. Morrison)</a>. Sc = Le·Pr, Pe = Re·Sc</li>
+<li>Cornell University: <a href="https://www.compost.css.cornell.edu/oxygen/oxygen.diff.water.html" rel="noopener noreferrer">Calculating the Oxygen Diffusion Coefficient in Water</a>. Oxygen D at 20 and 60 °C, ±10%</li>
+<li>Cornell University: <a href="https://www.compost.css.cornell.edu/oxygen/oxygen.diff.air.html" rel="noopener noreferrer">Calculating the Oxygen Diffusion Coefficient in Air</a>. Oxygen-nitrogen D at 20 °C, pressure effect</li>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering (2008)</a>. Tables 3.1 and 3.3</li>
+<li>CRAN: <a href="https://cran.r-project.org/web/packages/marelac/refman/marelac.html" rel="noopener noreferrer">marelac reference manual</a>. gas_schmidt and gas_transfer; formula here follows MIT and Michigan Tech, Sc = μ/(ρD)</li>
+</ul></section>
 <nav aria-label="Other guides"><a href="/">All calculators</a><a href="/en/guides/peclet">Next: Péclet Number</a><a href="/en/guides/pipe-flow">Cross-check Re, Pr and Pe for pipe flow</a></nav>
 <nav aria-label="Theory in depth"><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a></nav>
 </main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
