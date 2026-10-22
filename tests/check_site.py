@@ -5,6 +5,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse
 import atexit
+import base64
+import hashlib
 import re
 import shutil
 import subprocess
@@ -45,8 +47,9 @@ class Page(HTMLParser):
         self.links, self.ids, self.canonical, self.lang = [], set(), None, None
         self.alternates, self.meta, self.title = {}, {}, ''
         self.footer_links, self.body = [], []
+        self.script_srcs, self.scripts, self.handlers = [], [], []
         self._main = self._skip = self._footer = 0
-        self._in_title = False
+        self._in_title = self._in_script = False
         self.feed(text)
         self.body_chars = len(re.sub(r'\s', '', ''.join(self.body)))
 
@@ -59,6 +62,12 @@ class Page(HTMLParser):
             self.lang = attrs.get('lang')
         if tag == 'title':
             self._in_title = True
+        if tag == 'script' and 'src' in attrs:
+            self.script_srcs.append(attrs['src'])
+        elif tag == 'script':
+            self._in_script = True
+            self.scripts.append('')
+        self.handlers += [value for name, value in attributes if name.startswith('on')]
         if tag == 'a' and 'href' in attrs:
             self.links.append(attrs['href'])
             if self._footer:
@@ -80,6 +89,8 @@ class Page(HTMLParser):
     def handle_endtag(self, tag):
         if tag == 'title':
             self._in_title = False
+        if tag == 'script':
+            self._in_script = False
         if tag == 'footer':
             self._footer -= 1
         if tag == 'main':
@@ -88,6 +99,8 @@ class Page(HTMLParser):
             self._skip -= 1
 
     def handle_data(self, data):
+        if self._in_script:
+            self.scripts[-1] += data
         if self._in_title:
             self.title += data
         if self._main and not self._skip:
@@ -323,8 +336,72 @@ for file in (ROOT/'privacy.html', ROOT/'en/privacy.html'):
     for needle in ('Google Analytics', 'Microsoft Clarity', 'Google AdSense', 'Cloudflare', 'https://adssettings.google.com/', ISSUES):
         assert needle in text, f'{rel(file)}: missing {needle}'
 
+# _headers: security headers on every path. The CSP is report-only; inline
+# scripts and handlers are allowed by hash, so editing one means updating
+# _headers with the hash printed by the failing assertion.
+rules, path = {}, None
+for line in (ROOT/'_headers').read_text(encoding='utf-8').splitlines():
+    assert len(line) <= 2000, f'_headers line longer than 2,000 characters: {line[:60]}...'
+    if not line.strip() or line.lstrip().startswith('#'):
+        continue
+    if not line[0].isspace():
+        path = line.strip()
+        rules[path] = {}
+        continue
+    name, _, value = line.strip().partition(':')
+    assert path and name.lower() not in rules[path], f'_headers: header {name} outside a rule or repeated'
+    rules[path][name.lower()] = value.strip()
+assert '/*' in rules, '_headers needs a /* rule'
+headers = rules['/*']
+assert headers.get('strict-transport-security') == 'max-age=31536000', 'HSTS must be exactly max-age=31536000 (no includeSubDomains/preload while www is unverified)'
+csp_text = headers.get('content-security-policy-report-only')
+assert csp_text, 'Content-Security-Policy-Report-Only missing'
+csp = {}
+for directive in csp_text.split(';'):
+    if directive.strip():
+        name, *sources = directive.split()
+        assert name not in csp, f'CSP directive {name} repeated'
+        csp[name] = sources
+assert headers.get('x-frame-options') == 'DENY' or csp.get('frame-ancestors') == ["'none'"], 'No frame protection'
+assert headers.get('permissions-policy'), 'Permissions-Policy missing'
+assert headers.get('x-content-type-options') == 'nosniff'
+assert headers.get('referrer-policy') == 'strict-origin-when-cross-origin'
+assert 'default-src' in csp and 'base-uri' in csp, 'CSP needs default-src and base-uri'
+assert csp.get('object-src') == ["'none'"], "CSP needs object-src 'none'"
+script_src = csp.get('script-src', csp['default-src'])
+
+
+def sha256(text):
+    return "'sha256-" + base64.b64encode(hashlib.sha256(text.encode()).digest()).decode() + "'"
+
+
+def allows(host):
+    return any(s in (f'https://{host}', f'{host}') or (s.startswith('https://*.') and host.endswith(s[9:]))
+               for s in script_src)
+
+
+inline = {sha256(t) for page in pages.values() for t in page.scripts}
+handlers = {sha256(h) for page in pages.values() for h in page.handlers}
+missing = sorted((inline | handlers) - set(script_src))
+assert not missing, f'script-src lacks hashes for inline scripts/handlers: {" ".join(missing)}'
+stale = sorted({s for s in script_src if s.startswith("'sha256-")} - inline - handlers)
+assert not stale, f'script-src has hashes no page uses: {" ".join(stale)}'
+assert not handlers or "'unsafe-hashes'" in script_src, "Inline event handlers need 'unsafe-hashes'"
+hosts = set()
+for file, page in pages.items():
+    loaded = page.script_srcs + [m for t in page.scripts for m in re.findall(r'\.src\s*=\s*["\'](https://[^"\']+)', t)]
+    for src in loaded:
+        url = urlparse(src)
+        if url.netloc:
+            assert url.scheme == 'https', f'{rel(file)}: non-https script {src}'
+            assert allows(url.netloc), f'{rel(file)}: script host {url.netloc} not in script-src'
+            hosts.add(url.netloc)
+        else:
+            assert "'self'" in script_src
+
 for chars, r in sorted(warnings):
     print(f'WARN: {r} body has {chars} characters (< {WARN_BODY})')
 print(f'PASS: build.sh output ({len(built)} files, deterministic, no development files); {len(pages)} HTML pages; links, fragments, IDs, lang/canonical/GA4/AdSense/footer, unique titles and descriptions, '
       f'{len(sitemap_urls)} sitemap URLs (>= {MIN_BODY} chars, no redirects or noindex), {len(noindex)} noindex pages, hreflang pairs, '
-      f'calculator pages, _redirects and privacy disclosures')
+      f'calculator pages, _redirects, privacy disclosures; '
+      f'_headers (HSTS, frames, CSP report-only with {len(inline)} script and {len(handlers)} handler hashes, script hosts {sorted(hosts)})')

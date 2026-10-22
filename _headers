@@ -1,0 +1,7 @@
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Content-Security-Policy-Report-Only: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'sha256-0G9LtwRRK3fXui6ymLbFydQWqUi1JRV2f8Do8WH2Pas=' 'sha256-YgXww0VtwK1qIJMtZqcdv4VD8foxAPB+WpEitum0hKw=' 'sha256-a8eG38egIz2ByY1cW9nRfE0BW9gs2/rL/FEzSSv6yeA=' 'sha256-i8K0MVwzxtFko7nO0/v/7gaG2I7ECYcUPQoIYN2xzkU=' 'sha256-qtbzHYQRWqYbTa8DAc1IFciXrLlQMm9QM07r0NU+frI=' 'unsafe-hashes' 'sha256-OXqjjmv8hsJ7lR+n3ceuDu6KBNh8WlE7+5+vLocG1f4=' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://*.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https:; frame-src 'self' https:; font-src 'self' data:; media-src 'self' https:; worker-src 'self' blob:

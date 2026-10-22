@@ -11,7 +11,7 @@ case "$OUT" in
   '' | . | ./ | / | .. | ../) echo "build.sh: refusing output directory '$OUT'" >&2; exit 1 ;;
 esac
 
-SPECIAL='_redirects 404.html ads.txt robots.txt sitemap.xml'
+SPECIAL='_headers _redirects 404.html ads.txt robots.txt sitemap.xml'
 DIRS='calculators en guides'
 
 rm -rf "$OUT"
