@@ -70,23 +70,46 @@
 </tbody></table></div></section>
 <section aria-labelledby="units"><h2 id="units">주파수를 넣을 때 확인할 것</h2>
 <ul>
-<li>f는 Hz(초당 횟수)입니다. 회전수 rpm은 60으로 나눠 Hz로 바꿉니다.</li>
+<li>f는 Hz(초당 횟수)입니다. 회전수 rpm은 60으로 나눠 Hz로 바꿉니다. 3000 rpm은 50 Hz입니다.</li>
 <li>각진동수 ω(rad/s)를 알고 있다면 2π로 나눠야 f가 됩니다. ω를 그대로 넣으면 St가 약 6.28배 커집니다.</li>
-<li>원기둥 뒤 와류 방출에서 양력 변동은 방출 주파수와 같지만 항력 변동은 흔히 그 두 배 주파수로 나타납니다. 어떤 신호에서 f를 읽었는지 기록해 두세요.</li>
+<li>원기둥 뒤 와류 방출에서 양력 변동은 방출 주파수와 같지만 항력 변동은 그 두 배 주파수로 나타납니다. NASA NPARC 원기둥 검증 사례도 같은 이유로 항력 계수 대신 후류 한쪽의 속도 신호에서 주파수를 읽습니다.</li>
 <li>원기둥이라면 지름을, 다른 물체라면 흐름에 수직인 폭을 L로 쓰는 것이 일반적입니다.</li>
 </ul>
 </section>
 <section aria-labelledby="criteria"><h2 id="criteria">0.2라는 값을 어떻게 볼까</h2>
-<p>원기둥 뒤 와류 방출의 St는 꽤 넓은 레이놀즈 수 범위에서 0.2 안팎으로 알려져 있습니다. 하지만 Re, 표면 상태, 주변 교란에 따라 달라지므로 보편 상수처럼 쓰지 않습니다. 문헌 값과 비교할 때는 형상, L의 정의, 주파수를 측정한 신호, 그 실험의 Re를 함께 맞춰야 합니다.</p>
+<p>NASA TM 107730은 원기둥 소음 첨두 주파수로 구한 St가 60 &lt; Re &lt; 10⁶ 범위에서 거의 0.2로 일정하다고 보고합니다. 반면 NASA NPARC 사례가 인용한 Re = 150 실험값은 0.179–0.182입니다. 계산 결과가 0.2와 다르다고 바로 오류로 보지 말고, 그 흐름의 Re와 형상, L의 정의, 주파수를 측정한 신호를 먼저 맞춰 봅니다. 결과가 0.4 근처라면 2배 주파수 신호를 읽었을 가능성이 큽니다.</p>
 </section>
-<section aria-labelledby="check"><h2 id="check">예제와 계면 노트의 값</h2>
-<p>예제는 f = 10 Hz, 원기둥 지름 L = 0.1 m, 유속 v = 5 m/s로 St = 0.2입니다. 표면장력 노트에서는 지름 2 mm, 속도 0.5 m/s, 주파수 50 Hz를 써서 이송 시간 0.004 s와 진동 주기 0.02 s의 비로 같은 0.2를 다시 확인합니다. 속도나 주파수가 0이면 비교할 진동이 없거나 0으로 나누게 되므로, 계산기는 이런 입력을 오류로 안내합니다.</p>
+<section aria-labelledby="check"><h2 id="check">계산기 입력으로 따라 하는 예제</h2>
+<section class="example" aria-labelledby="ex-fill">
+<h3 id="ex-fill">예제 1. 예제 값 채우기 입력을 실제 상황으로 읽기</h3>
+<p><strong>주어진 값.</strong> "예제 값 채우기" 버튼은 f = 10 Hz, L = 0.1 m, v = 5 m/s를 넣습니다. 지름 100 mm인 기둥에 5 m/s 바람이 불고 후류에서 10 Hz 변동을 측정한 상황으로 가정합니다.</p>
+<p><strong>계산.</strong> St = 10 × 0.1 ÷ 5 = 0.2입니다. 20 °C, 1 atm 공기의 ν = 1.5104 × 10⁻⁵ m²/s(IAEA 표 3.1의 점성과 밀도로 환산)를 쓰면 Re = 5 × 0.1 ÷ (1.5104 × 10⁻⁵) ≈ 33,104입니다.</p>
+<p><strong>해석.</strong> Re가 60 &lt; Re &lt; 10⁶ 안에 있으므로 St = 0.2는 NASA TM 107730의 보고와 맞습니다. 풍속이 15 m/s로 오르면 St가 같다고 보고 f = 0.2 × 15 ÷ 0.1 = 30 Hz를 예상할 수 있습니다. 계산기에서 v만 15로 바꾸고 f를 30으로 넣어 St가 그대로 0.2인지 확인해 보면 됩니다.</p>
+</section>
+<section class="example" aria-labelledby="ex-omega">
+<h3 id="ex-omega">예제 2. 각진동수와 항력 신호를 잘못 넣었을 때</h3>
+<p><strong>주어진 값.</strong> 풍동에서 지름 20 mm 원기둥을 12 m/s로 시험하고, 후류 한쪽 열선 신호의 스펙트럼 첨두를 ω = 754 rad/s로 읽었다고 가정합니다(지름, 속도, 측정값은 가정값).</p>
+<p><strong>단위 변환.</strong> L = 20 mm = 0.02 m입니다. f = ω/(2π) = 754 ÷ 6.2832 ≈ 120.0 Hz입니다.</p>
+<p><strong>계산.</strong> 올바른 입력이면 St = 120.0 × 0.02 ÷ 12 ≈ 0.200이고, Re = 12 × 0.02 ÷ (1.5104 × 10⁻⁵) ≈ 15,890입니다. ω를 f 칸에 그대로 넣으면 St ≈ 1.257이 나옵니다. 같은 실험에서 항력 신호의 첨두 240.0 Hz를 넣으면 St ≈ 0.400이 됩니다.</p>
+<p><strong>해석.</strong> 1.257은 단위 실수, 0.400은 신호 선택 실수를 알려 줍니다. 원기둥에서 St가 0.2의 약 2π배나 2배로 나오면 계산식보다 입력을 먼저 확인합니다.</p>
+</section>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">스트로할 수 계산기 사용 질문</h2>
+<details><summary>v에는 어떤 속도를 넣나요?</summary><p>단일 원기둥이라면 물체 앞쪽의 교란되지 않은 자유류 속도를 넣습니다. 배관 속 탐침은 단면 평균 유속과 탐침 위치 유속이 다를 수 있고, 관군 속 관은 관 사이 간극 속도를 쓰는 자료가 많으므로 비교할 자료의 정의를 따릅니다.</p></details>
+<details><summary>St를 알고 주파수를 구하고 싶으면 어떻게 하나요?</summary><p>계산기는 St를 계산하므로, 예상 주파수는 f = St·v/L로 직접 구한 뒤 그 값을 넣어 St가 맞게 나오는지 확인합니다. 지름 30 mm 케이블에 10 m/s 바람이면 St = 0.2에서 f ≈ 66.7 Hz입니다.</p></details>
+<details><summary>속도나 주파수에 0을 넣으면 왜 오류가 나나요?</summary><p>속도 0은 분모가 0이 되어 St를 정의할 수 없고, 주파수 0은 비교할 주기 현상이 없다는 뜻입니다. 정지 유체 속에서 진동하는 물체라면 진동 속도 진폭 같은 다른 기준 속도를 정해야 합니다.</p></details>
+<details><summary>CFD 결과의 St를 실험값과 비교할 때 주의할 점은 무엇인가요?</summary><p>같은 Re와 같은 신호로 비교합니다. NASA NPARC 사례에서 Re = 150 실험값은 0.179–0.182였고, 1차 시간 적분 계산은 0.161, 2차 시간 적분 계산은 0.180이었습니다. 시간 적분 차수와 기록 길이에 따라 결과가 달라집니다.</p></details>
 </section>
 <section aria-labelledby="more"><h2 id="more">관련 해설과 계산기</h2>
-<h3>기본 해설</h3><ul><li><a href="/guides/strouhal">스트로할 수 해설: 예제와 주의점</a></li></ul>
-<h3>계산 노트</h3><ul><li><a href="/guides/interface-time-scales">표면장력과 비정상 유동: 힘의 비와 시간의 비 연결하기</a>: We·Re·Fr·St를 같은 길이로 계산하고 곡률 압력과 모세관 시간을 구분합니다.</li></ul>
+<h3>기본 해설</h3><ul><li><a href="/guides/strouhal">스트로할 수 해설: 예제와 주의점</a>: 케이블, 온도계 보호관, NASA CFD 검증 사례로 St ≈ 0.2를 쓰는 조건을 다룹니다.</li></ul>
+<h3>계산 노트</h3><ul><li><a href="/guides/interface-time-scales">표면장력과 비정상 유동: 힘의 비와 시간의 비 연결하기</a>: 이 계산기의 St를 이송 시간과 진동 주기의 비로 다시 확인하고, 모세관 시간과 비교하는 계산이 이어집니다.</li></ul>
 <h3>관련 계산기</h3><ul><li><a href="/calculators/reynolds">레이놀즈 수 (Re)</a>: 원기둥 뒤 와류 방출의 St는 Re에 따라 달라지므로 두 값을 함께 적습니다.</li><li><a href="/calculators/weber">웨버 수 (We)</a>: 모세관 시간 √(ρL³/σ)과 이송 시간 L/v의 비를 제곱하면 We가 됩니다. 경계면 진동은 St와 함께 비교합니다.</li><li><a href="/calculators/froude">프루드 수 (Fr)</a>: 자유 수면의 주기 운동에서는 중력 효과(Fr)와 진동 시간(St)을 함께 확인합니다.</li></ul>
 </section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">참고 자료</h2><ul>
+<li>NASA Langley: <a href="https://ntrs.nasa.gov/api/citations/19930022543/downloads/19930022543.pdf" rel="noopener noreferrer">Reynolds Number Influences in Aeronautics (NASA TM 107730)</a>. 60 &lt; Re &lt; 10⁶에서 원기둥 소음 첨두 St 거의 0.2</li>
+<li>NASA Glenn / NPARC Alliance: <a href="https://www.grc.nasa.gov/www/wind/valid/lamcyl/Study1_files/Study1.html" rel="noopener noreferrer">Laminar Flow over a Circular Cylinder: Study #1</a>. Re 150 실험 St 0.179–0.182, 계산 0.161·0.180, 항력 신호의 2배 주파수</li>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering (2008)</a>. 표 3.1 20 °C 공기 점성 1.819 × 10⁻⁵ Pa·s, 밀도 1.166 kg/m³(98.1 kPa)</li>
+</ul></section>
 </main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>
 <script src="/calculators.js?v=20261022" defer></script>
 <script src="/calculator-page.js?v=20261022" defer></script>

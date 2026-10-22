@@ -15,8 +15,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>스트로할 수 계산법·예제·해석 | 무차원수 계산기</title>
 <meta name="description" content="원통 뒤 와류 방출을 예로 St=fL/v=0.2를 계산하고, 주파수가 어떤 진동의 값인지 기록해야 다른 실험과 비교할 수 있는 이유를 설명합니다.">
-<meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://calctool.cc/guides/strouhal">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/strouhal"><link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/strouhal">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/guides/strouhal">
 <link rel="stylesheet" href="../style.css?v=20261022">
 <link rel="stylesheet" href="../guide.css?v=20261022">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
@@ -39,13 +40,79 @@
                 </svg>
             </button></div><p class="eyebrow">계산 방법과 해석</p><h1>스트로할 수 <small>(Strouhal Number)</small></h1><p>공식에 값을 넣는 방법과 결과를 읽을 때 확인할 조건을 정리했습니다.</p></header>
 <main>
-<section aria-labelledby="why"><h2 id="why">언제 쓰나요?</h2><p>흐름 속에서 반복되는 진동 주파수를 속도와 길이로 무차원화합니다. 원통 뒤 와류 방출이나 주기적인 유동 현상을 다른 크기·속도 조건과 비교할 때 씁니다.</p></section>
-<section aria-labelledby="inputs"><h2 id="inputs">공식과 입력값</h2><div class="formula-box"><strong>St = fL / v</strong></div><p>f는 관심 진동의 주파수(Hz), L은 특성 길이(m), v는 유동 속도(m/s)입니다. 원통 뒤 와류 방출을 분석한다면 원통 지름을 L로 쓰는 것이 일반적입니다. f가 무엇의 주파수인지 기록해야 결과를 비교할 수 있습니다.</p><a class="guide-cta" href="/calculators/strouhal">이 값으로 계산하기</a></section>
-<section aria-labelledby="example"><h2 id="example">직접 계산한 예제</h2><div class="example-box"><p>f = 10 Hz, 원통 지름 L = 0.1 m, 유속 v = 5 m/s라면 St = 10 × 0.1 ÷ 5 = 0.2입니다.</p></div></section>
-<section aria-labelledby="meaning"><h2 id="meaning">결과는 어떻게 읽나요?</h2><p>0.2라는 값은 이 예시의 진동 주기가 유동 통과 시간 척도와 어떤 비율인지 보여줍니다. 다른 실험과 비교할 때는 형상과 주파수 측정 대상을 먼저 맞춰야 합니다.</p></section>
-<section aria-labelledby="caution"><h2 id="caution">적용할 때 주의할 점</h2><p>주파수 0 또는 속도 0인 경우에는 분석 목적을 다시 정해야 합니다. 특히 속도 0을 분모에 넣어 얻는 계산 결과는 의미 있는 스트로할 수가 아닙니다.</p></section>
-<section aria-labelledby="related"><h2 id="related">관련 무차원수</h2><p>이 무차원수와 함께 계산하거나 비교하는 경우가 많은 수입니다.</p><ul><li><a href="/guides/reynolds">레이놀즈 수 (Re)</a>: 원기둥 뒤 와류 방출의 St는 Re에 따라 달라지므로 두 값을 함께 적습니다.</li><li><a href="/guides/weber">웨버 수 (We)</a>: 모세관 시간 √(ρL³/σ)과 이송 시간 L/v의 비를 제곱하면 We가 됩니다. 경계면 진동은 St와 함께 비교합니다.</li><li><a href="/guides/froude">프루드 수 (Fr)</a>: 자유 수면의 주기 운동에서는 중력 효과(Fr)와 진동 시간(St)을 함께 확인합니다.</li></ul></section>
-<p class="source">공식·개념 확인: <a href="https://www.grc.nasa.gov/www/wind/valid/lamcyl/Study1_files/Study1.html" rel="noopener noreferrer">NASA Glenn — Laminar Flow Over a Cylinder</a>. 예제의 입력값과 계산 과정은 이 사이트에서 설명을 위해 구성했습니다.</p>
+<section aria-labelledby="why"><h2 id="why">흐름이 만드는 주기를 무차원화하기</h2>
+<p>스트로할 수는 흐름 속에서 반복되는 현상의 주파수 f를 대표 길이 L과 속도 U로 무차원화한 값입니다. 식을 시간의 비로 다시 쓰면 의미가 분명해집니다.</p>
+<div class="formula-box"><strong>St = fL / U = (L/U) ÷ (1/f)</strong></div>
+<p>분자 L/U는 유체가 물체 크기만큼 지나가는 데 걸리는 시간이고, 분모 1/f는 진동 한 주기입니다. St = 0.2라면 유체가 원기둥 지름만큼 이동하는 동안 와류 방출이 한 주기의 5분의 1만큼 진행한다는 뜻이고, 한 주기 동안 유체는 지름의 5배를 이동합니다. CFD Direct의 CFD 교재는 운동량 방정식을 무차원화할 때 비정상 항 앞에 붙는 계수로 스트로할 수를 소개하고, 이를 비정상 관성과 정상 관성의 비로 설명합니다. 그래서 St가 비슷한 두 흐름은 크기와 속도가 달라도 시간 변화의 상대적 빠르기가 같다고 봅니다.</p>
+</section>
+<section aria-labelledby="inputs"><h2 id="inputs">f, L, U를 어디서 읽을까</h2>
+<p>계산기는 f(Hz), L(m), v(m/s)를 받아 fL/v를 계산합니다. 원기둥 뒤 와류 방출이라면 L은 원기둥 지름, U는 원기둥 앞쪽의 교란되지 않은 자유류 속도입니다. 가장 실수가 잦은 입력은 f입니다. 같은 흐름에서도 어떤 신호를 측정했는지에 따라 주파수가 두 배까지 달라지기 때문입니다.</p>
+<div class="table-wrap"><table><caption>원기둥 와류 방출에서 신호별로 읽히는 주파수</caption><thead><tr><th scope="col">측정 신호</th><th scope="col">읽히는 주파수</th><th scope="col">근거</th></tr></thead><tbody>
+<tr><td>양력 계수, 후류 한쪽(중심선에서 벗어난 위치)의 속도·압력</td><td>와류 방출 주파수 f</td><td>NASA NPARC 원기둥 검증 사례</td></tr>
+<tr><td>항력 계수</td><td>2f</td><td>같은 문서: 양쪽 와류의 영향을 모두 받음</td></tr>
+<tr><td>후류 중심선의 속도</td><td>2f</td><td>같은 문서: 양쪽 와류가 번갈아 지나감</td></tr>
+</tbody></table></div>
+<p>단위도 확인합니다. 회전수 rpm은 60으로 나눠 Hz로 바꾸고, 각진동수 ω(rad/s)는 2π로 나눠 f로 바꿉니다. ω를 그대로 넣으면 St가 약 6.28배 커집니다. 바람 속도가 km/h로 주어지면 3.6으로 나눠 m/s로 바꿉니다.</p>
+<a class="guide-cta" href="/calculators/strouhal">이 값으로 계산하기</a>
+</section>
+<section aria-labelledby="props"><h2 id="props">원기둥 St 값과 그 근거가 되는 Re 범위</h2>
+<p>원기둥 St ≈ 0.2는 자주 인용되지만, 출처마다 어떤 조건에서 나온 값인지가 다릅니다. 아래 표는 이 페이지에서 쓰는 값과 그 조건입니다.</p>
+<div class="table-wrap"><table><caption>원기둥 와류 방출 St의 출처별 값과 조건</caption><thead><tr><th scope="col">값</th><th scope="col">조건</th><th scope="col">출처</th></tr></thead><tbody>
+<tr><td>St 거의 0.2로 일정</td><td>원기둥 소음(Aeolian tone) 첨두 주파수, 60 &lt; Re &lt; 10⁶, 항력 위기 구간 포함</td><td>NASA TM 107730</td></tr>
+<tr><td>St 0.179–0.182</td><td>Re = 150 실험값(Roshko)</td><td>NASA NPARC 검증 사례</td></tr>
+<tr><td>St 0.150–0.183</td><td>같은 Re = 150 조건의 CFD 계산값(시간 적분 차수와 주파수 산출 방법에 따라 다름)</td><td>NASA NPARC 검증 사례</td></tr>
+</tbody></table></div>
+<p>NASA TM 107730에 따르면 원기둥 유동은 지름 기준 Re가 약 60을 넘으면 불안정해져 카르만 와류열이 생깁니다. 같은 범위에서 항력 계수는 5배 넘게 변하고 Re = 5 × 10⁵ 부근에서 항력 위기가 나타나지만, 소음 첨두 주파수로 본 St는 거의 0.2로 유지됩니다. 반면 Re = 150 실험값은 0.18 정도로 0.2보다 10 % 낮습니다. 따라서 Re가 수백 이하이면 0.2보다 작은 값을 쓰고, 10⁶을 넘는 영역은 이 자료만으로 판단하지 않습니다.</p>
+<p>Re를 확인하려면 동점성 계수 ν가 필요합니다. 20 °C 물은 IAEA 표 3.3의 ν = 1.0020 × 10⁻⁶ m²/s를 쓰고, 20 °C 공기는 IAEA 표 3.1의 μ = 1.819 × 10⁻⁵ Pa·s를 1 atm 환산 밀도 1.2043 kg/m³으로 나눈 ν = 1.5104 × 10⁻⁵ m²/s를 씁니다.</p>
+</section>
+<section aria-labelledby="example"><h2 id="example">바람에 우는 전선·배관 온도계 보호관·CFD 검증 계산</h2>
+<section class="example" aria-labelledby="ex-cable">
+<h3 id="ex-cable">예제 1. 바람을 맞는 지름 30 mm 케이블의 와류 방출 주파수</h3>
+<p><strong>주어진 값.</strong> 지름 30 mm인 케이블에 36 km/h의 바람이 수직으로 분다고 가정합니다(지름과 풍속은 가정값). 공기는 20 °C, 1 atm이고 ν = 1.5104 × 10⁻⁵ m²/s입니다.</p>
+<p><strong>단위 변환.</strong> D = 30 mm = 0.03 m, U = 36 km/h ÷ 3.6 = 10 m/s입니다.</p>
+<p><strong>계산.</strong> 먼저 Re = UD/ν = 10 × 0.03 ÷ (1.5104 × 10⁻⁵) ≈ 19,862입니다. 이 값은 NASA TM 107730이 St 거의 0.2를 보고한 60 &lt; Re &lt; 10⁶ 범위 안에 있으므로 St = 0.2를 씁니다. f = St·U/D = 0.2 × 10 ÷ 0.03 ≈ 66.7 Hz이고, 주기는 0.015 s입니다.</p>
+<p><strong>해석.</strong> 66.7 Hz는 사람이 들을 수 있는 낮은 음입니다. 바람이 15 m/s로 세지면 f는 속도에 비례해 100 Hz로 올라갑니다. 같은 식으로 지름 2 m 굴뚝에 20 m/s 바람이 불면 Re ≈ 2.65 × 10⁶이 되어 위 범위를 벗어납니다. 이때 St = 0.2를 그대로 쓰면 f = 2 Hz가 나오지만, 이 값은 근거 범위 밖의 추정이므로 구조물 고유진동수와 비교하는 설계 판단에는 해당 Re 범위의 자료가 따로 필요합니다.</p>
+</section>
+<section class="example" aria-labelledby="ex-probe">
+<h3 id="ex-probe">예제 2. 물 배관 속 온도계 보호관의 진동 주파수</h3>
+<p><strong>주어진 값.</strong> 20 °C 물이 흐르는 배관에 지름 10 mm인 원통형 온도계 보호관이 유동에 수직으로 꽂혀 있고, 보호관 위치의 유속은 2 m/s라고 가정합니다(지름과 유속은 가정값). 물의 동점성 계수는 ν = 1.0020 × 10⁻⁶ m²/s입니다.</p>
+<p><strong>단위 변환.</strong> D = 10 mm = 0.01 m입니다.</p>
+<p><strong>계산.</strong> Re = 2 × 0.01 ÷ (1.0020 × 10⁻⁶) ≈ 19,960으로 St ≈ 0.2를 쓸 수 있는 범위입니다. 와류 방출 주파수는 f = 0.2 × 2 ÷ 0.01 = 40 Hz입니다. 항력 방향(유동 방향) 힘은 2f로 변하므로 유동 방향 진동은 80 Hz에서 가진됩니다. 유속을 8 m/s로 올리면 Re ≈ 79,840, f = 160 Hz가 됩니다.</p>
+<p><strong>해석.</strong> 보호관 설계에서 확인할 것은 와류 방출 주파수 f와 그 두 배인 2f가 보호관 고유진동수에 가까워지는 유속이 운전 범위에 들어오는지입니다. 와류 방출 주파수가 구조물 고유진동수에 가까워지면 방출 주파수가 고유진동수에 고정되는 lock-in이 일어나 진폭이 커질 수 있습니다. 유속에 비례해 f가 오르므로, 최대 유속뿐 아니라 기동·정지 중에 지나가는 유속도 함께 봅니다.</p>
+</section>
+<section class="example" aria-labelledby="ex-nparc">
+<h3 id="ex-nparc">예제 3. NASA NPARC 원기둥 CFD 결과로 St 검산하기</h3>
+<p><strong>주어진 값.</strong> NASA NPARC 검증 사례는 Re = 150, 마하 0.2인 원기둥 층류를 계산합니다. 원기둥 지름은 D = 1.0 m, 자유류 속도는 U = 66.8163 m/s입니다. Run A의 후류 속도 신호에서 마지막 네 첨두 사이 평균 무차원 시간은 31.0이고, 이를 초로 바꾸는 기준값은 L<sub>r</sub> = 1.0 m, a<sub>r</sub> = 334.01 m/s입니다.</p>
+<p><strong>단위 변환.</strong> 주기는 t = 31.0 × L<sub>r</sub>/a<sub>r</sub> = 31.0 × 1.0 ÷ 334.01 ≈ 0.0928 s입니다. 주파수는 f = 1/t ≈ 10.77 Hz입니다(문서에는 10.777로 적혀 있습니다). 자유류 마하 수는 66.8163 ÷ 334.01 ≈ 0.200으로 문서 조건과 맞습니다.</p>
+<p><strong>계산.</strong> St = fD/U = 10.77 × 1.0 ÷ 66.8163 ≈ 0.161입니다. 실험 범위 0.179–0.182를 맞추려면 f가 11.96–12.16 Hz여야 합니다.</p>
+<p><strong>해석.</strong> 1차 시간 적분을 쓴 Run A의 St 0.161은 실험값 중앙(0.1805)보다 약 11 % 낮습니다. 같은 문서에서 2차 시간 적분과 Global Newton 반복을 쓴 Run D는 첨두 간격으로 0.180을 얻어 실험 범위에 들어갑니다. 비정상 CFD에서 St가 실험보다 낮게 나오면 시간 적분 차수와 시간 간격을 먼저 의심할 만하다는 뜻입니다. 이 검산은 계산기에 f = 10.77, L = 1, v = 66.8163을 넣어 그대로 따라 할 수 있습니다.</p>
+</section>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">St ≈ 0.2를 설계에 쓸 때의 판단 기준</h2>
+<ul>
+<li><strong>Re부터 계산합니다.</strong> Re가 약 60보다 작으면 주기적인 와류 방출 자체가 없습니다. 수백 이하에서는 Re = 150 실험값처럼 St가 0.18 정도로 낮아지고, 10⁶을 넘는 영역은 위 자료가 다루지 않습니다.</li>
+<li><strong>형상을 확인합니다.</strong> 0.2는 매끈한 단일 원기둥의 값입니다. 사각 기둥, 위로 갈수록 가늘어지는 굴뚝, 표면이 거친 케이블, 관군(튜브 다발) 속 관은 St가 다르고, 관군에서는 기준 속도도 관 사이 간극 속도로 바뀌는 경우가 많습니다. 이런 형상은 해당 형상을 다룬 자료의 St와 속도 정의를 그대로 따릅니다.</li>
+<li><strong>고유진동수와의 간격을 봅니다.</strong> 계산한 f와 2f가 구조물 고유진동수와 가까우면 lock-in으로 진폭이 커질 수 있습니다. St 하나로 진폭을 예측할 수는 없으므로, 이 계산은 위험한 유속 구간을 찾는 1차 선별로 씁니다.</li>
+<li><strong>속도는 물체 앞쪽 자유류 값을 씁니다.</strong> 배관 속 탐침이라면 단면 평균 유속과 탐침 위치 국소 유속이 다를 수 있으므로 어느 값을 썼는지 밝힙니다.</li>
+</ul>
+</section>
+<section aria-labelledby="caution"><h2 id="caution">주파수 측정과 해석에서 생기는 오류</h2>
+<p>NASA NPARC 사례는 같은 계산 결과에서도 주파수를 뽑는 방법에 따라 St가 달라진다는 점을 보여 줍니다. Run A에서 첨두 간격으로 구한 값은 0.161이었지만, 마지막 2000개 점으로 FFT를 하면 0.150, 3000개 점으로 하면 0.1667이 나왔습니다. 기록 길이가 주기 몇 개에 불과하면 FFT 주파수 분해능이 거칠어 이런 차이가 생깁니다. 주기를 충분히 많이 포함하도록 기록하고, 첨두 간격과 FFT 결과를 서로 비교합니다.</p>
+<p>또한 계산 초기의 과도 구간을 빼고 주기적 상태에 도달한 뒤의 신호만 씁니다. 신호를 후류 중심선에서 뽑으면 2f가 읽히므로 St가 0.4 근처로 나옵니다. 이 값을 새로운 현상으로 해석하기 전에 측정 위치와 신호 종류를 먼저 확인합니다.</p>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">와류 방출과 스트로할 수에 대해 자주 묻는 질문</h2>
+<details><summary>St ≈ 0.2는 어느 Re 범위에서 쓸 수 있나요?</summary><p>NASA TM 107730은 원기둥 소음 첨두 주파수로 본 St가 60 &lt; Re &lt; 10⁶ 전체에서 거의 0.2라고 보고합니다. 다만 Re = 150 실험값은 0.179–0.182로 낮으므로, 낮은 Re에서는 0.18 정도로 보고 10⁶ 이상은 별도 자료로 확인합니다.</p></details>
+<details><summary>계산한 St가 0.4 근처로 나오는 이유는 무엇인가요?</summary><p>항력 신호나 후류 중심선 속도에서 주파수를 읽었을 가능성이 큽니다. NASA NPARC 사례가 설명하듯 이 신호들은 양쪽 와류의 영향을 모두 받아 방출 주파수의 두 배로 변합니다. 양력이나 후류 한쪽 위치의 신호로 다시 읽습니다.</p></details>
+<details><summary>CFD로 구한 St가 실험보다 10 % 낮게 나옵니다. 무엇을 먼저 바꿔야 하나요?</summary><p>NASA NPARC 사례에서는 1차 시간 적분 결과가 0.161, 2차 시간 적분과 Global Newton 반복 결과가 0.180이었습니다. 시간 적분 차수와 시간 간격을 먼저 확인하고, 주기적 상태에서 충분히 긴 기록으로 주파수를 다시 구합니다.</p></details>
+<details><summary>원기둥이 아닌 물체에도 St = 0.2를 쓸 수 있나요?</summary><p>그대로 쓰지 않습니다. 0.2는 매끈한 원기둥 자료에서 나온 값입니다. 다른 단면은 L로 흐름에 수직인 폭을 쓰는 경우가 많지만, St 값과 기준 속도는 그 형상을 다룬 자료를 따릅니다.</p></details>
+</section>
+<section aria-labelledby="related"><h2 id="related">관련 무차원수</h2><p>와류 방출 주파수를 해석할 때는 Re로 영역을 확인하고, 경계면이나 자유 수면이 있으면 다른 시간 척도와도 비교합니다.</p><ul><li><a href="/guides/reynolds">레이놀즈 수 (Re)</a>: St ≈ 0.2를 쓸 수 있는지는 Re 범위로 정해지므로, 주파수를 보고할 때 Re를 함께 적습니다.</li><li><a href="/guides/weber">웨버 수 (We)</a>: 모세관 시간 √(ρL³/σ)을 이송 시간 L/v로 나눠 제곱하면 We입니다. 액적이나 제트 표면이 진동하는 문제에서 St와 함께 씁니다.</li><li><a href="/guides/froude">프루드 수 (Fr)</a>: 물결이나 출렁임처럼 중력이 복원력인 주기 운동은 Fr로 중력 효과를 확인하고 St로 주기를 비교합니다.</li></ul></section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">참고 자료</h2><ul>
+<li>NASA Langley: <a href="https://ntrs.nasa.gov/api/citations/19930022543/downloads/19930022543.pdf" rel="noopener noreferrer">Reynolds Number Influences in Aeronautics (NASA TM 107730)</a>. Re 약 60 이상에서 카르만 와류열, 60 &lt; Re &lt; 10⁶에서 항력 계수 5배 이상 변화, 소음 첨두 주파수 St 거의 0.2</li>
+<li>NASA Glenn / NPARC Alliance: <a href="https://www.grc.nasa.gov/www/wind/valid/lamcyl/Study1_files/Study1.html" rel="noopener noreferrer">Laminar Flow over a Circular Cylinder: Study #1</a>. Re 150 조건, D = 1.0 m, U = 66.8163 m/s, Run A St 0.161, FFT 0.150/0.1667, Run D 0.180, 실험 0.179–0.182, 항력·후류 중심선 신호의 2배 주파수</li>
+<li>CFD Direct: <a href="https://doc.cfd.direct/notes/cfd-general-principles/scale-similarity" rel="noopener noreferrer">Notes on CFD: Scale Similarity</a>. 무차원 운동량 방정식에서 스트로할 수를 비정상 관성과 정상 관성의 비로 설명</li>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering (2008)</a>. 표 3.1 공기 점성·밀도(20 °C, 98.1 kPa), 표 3.3 물 동점성 계수(20 °C)</li>
+</ul></section>
 <nav aria-label="다른 해설"><a href="/">전체 계산기</a><a href="/guides/froude">다음: 프루드 수</a><a href="/guides/model-similarity">축소 모형에서 Re와 Fr을 동시에 맞출 수 있을까?</a></nav>
 <nav aria-label="이론 심화"><a href="/guides/interface-time-scales">표면장력과 비정상 유동: 힘의 비와 시간의 비 연결하기</a></nav>
 </main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>

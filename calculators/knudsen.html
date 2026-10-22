@@ -59,7 +59,7 @@
 </section>
 <section aria-labelledby="meaning"><h2 id="meaning">분자 길이와 장치 길이 비교</h2>
 <p>Kn = λ/L은 기체 분자가 충돌과 충돌 사이에 이동하는 평균 거리 λ를 장치나 물체의 크기 L과 비교합니다. λ가 L보다 훨씬 짧으면 분자가 벽에 닿기 전에 서로 수없이 충돌하므로 기체를 연속체로 보고 점성·압력 같은 평균량으로 다룰 수 있습니다. λ가 L과 비슷해지면 벽 근처에서 속도가 미끄러지는 등 연속체 가정이 흔들립니다.</p>
-<p>기체 분자 운동론에서 λ는 같은 온도에서 압력에 반비례합니다. 압력을 절반으로 낮추면 λ는 두 배가 되므로, 진공 장치에서는 장치가 커도 Kn이 커질 수 있습니다.</p>
+<p>기체 분자 운동론에서 λ는 같은 온도에서 압력에 반비례합니다. 압력을 절반으로 낮추면 λ는 두 배가 되므로, 진공 장치에서는 장치가 커도 Kn이 커질 수 있습니다. 이 계산기는 λ를 직접 계산하지 않으므로, 압력과 온도가 바뀐 조건이라면 λ를 먼저 환산한 뒤 입력해야 합니다.</p>
 </section>
 <section aria-labelledby="variables"><h2 id="variables">변수와 SI 단위</h2>
 <div class="table-wrap"><table><caption>누센 수 계산기의 입력 변수</caption><thead><tr><th scope="col">기호</th><th scope="col">의미</th><th scope="col">SI 단위</th><th scope="col">예제 값</th></tr></thead><tbody>
@@ -68,22 +68,39 @@
 </tbody></table></div></section>
 <section aria-labelledby="units"><h2 id="units">λ와 L을 넣을 때</h2>
 <ul>
-<li>두 값 모두 m로 넣습니다. nm는 10⁻⁹, μm는 10⁻⁶을 곱합니다. 예제의 6.8×10⁻⁸ m는 68 nm입니다.</li>
-<li>예제의 λ는 계산 연습용 값입니다. 실제 조건에서는 기체 종류, 온도, 압력으로 λ를 계산하거나 자료에서 찾아야 합니다.</li>
+<li>두 값 모두 m로 넣습니다. nm는 10⁻⁹, μm는 10⁻⁶을 곱합니다. 입력란에는 8.24e-7처럼 지수 표기를 그대로 쓸 수 있습니다.</li>
+<li>기본 예제 값 6.8×10⁻⁸ m(68 nm)는 NIST가 23 °C, 101.3 kPa 공기에 대해 정리한 67.3 nm를 반올림한 값입니다. 이 조건에서 벗어나면 그대로 쓰지 않습니다.</li>
+<li>λ를 모르면 MIT 3.185 강의 자료의 강체 구 식 λ = k<sub>B</sub>T/(√2 π d² p)로 추정하거나, 기준값을 압력·온도에 맞게 환산합니다.</li>
 <li>L은 유로 지름, 두 벽 사이 간극, 입자 지름처럼 흐름을 제한하는 길이로 고릅니다. 같은 장치라도 어떤 L을 고르느냐에 따라 Kn이 바뀝니다.</li>
 </ul>
 </section>
 <section aria-labelledby="criteria"><h2 id="criteria">구간 경계를 읽는 법</h2>
-<p>계산기는 Kn &lt; 0.01을 연속체 유동, 0.01~0.1을 미끄럼 유동, 0.1 이상을 천이 또는 자유 분자 유동으로 표시합니다. 문헌에서는 대략 0.1~10을 천이 유동, 10 이상을 자유 분자 유동으로 더 나누기도 하며, 경계값은 자료와 적용 대상마다 조금씩 다릅니다. 이 표시는 어떤 모델을 검토할지 고르는 안내일 뿐이며, 벽 근처의 미끄럼 속도 자체를 계산하지는 않습니다.</p>
+<p>계산기는 Kn &lt; 0.01을 연속체 유동, 0.01~0.1을 미끄럼 유동, 0.1 이상을 천이 또는 자유 분자 유동으로 표시합니다. NASA 지원 고층 대기 온도계측 문헌 조사는 0.1~10을 천이, 10 초과를 자유분자 영역으로 더 나누면서도 이 경계가 근사일 뿐이라고 밝혔습니다. 결과가 0.005~0.02나 0.05~0.2처럼 경계 근처에 걸리면 표시된 이름 하나로 결정하지 말고 인접 모델 두 가지를 비교해 보는 편이 좋습니다. 이 표시는 벽 근처의 미끄럼 속도 자체를 계산하지는 않습니다.</p>
 </section>
 <section aria-labelledby="check"><h2 id="check">같은 기체, 다른 크기</h2>
-<p>예제는 λ = 6.8×10⁻⁸ m, L = 1 mm로 Kn = 6.8×10⁻⁵이며 연속체 유동으로 표시됩니다. 기체 유동 모델 노트에서는 같은 λ로 L을 1 μm까지 줄여 Kn = 0.068을 얻습니다. 기체 조건은 그대로인데 장치가 작아지는 것만으로 미끄럼 유동 구간에 들어가는 셈입니다. 압축성은 마하 수로 따로 판단해야 하며, Kn이 작다고 해서 밀도 변화를 무시해도 된다는 뜻은 아닙니다.</p>
+<p>예제는 λ = 6.8×10⁻⁸ m, L = 1 mm로 Kn = 6.8×10⁻⁵이며 연속체 유동으로 표시됩니다. 결과 칸에는 0.0001보다 작은 값이 6.8000e-5처럼 지수 표기로 나타납니다. 기체 유동 모델 노트에서는 같은 λ로 L을 1 μm까지 줄여 Kn = 0.068을 얻습니다. 기체 조건은 그대로인데 장치가 작아지는 것만으로 미끄럼 유동 구간에 들어가는 셈입니다. 압축성은 마하 수로 따로 판단해야 하며, Kn이 작다고 해서 밀도 변화를 무시해도 된다는 뜻은 아닙니다.</p>
+</section>
+<section aria-labelledby="calc-examples"><h2 id="calc-examples">압력과 온도를 환산해서 입력하는 예제</h2>
+<section class="example" aria-labelledby="ex-nist"><h3 id="ex-nist">예제 1. 8.27 kPa에서 측정한 20 nm 나노입자</h3><p><strong>주어진 값:</strong> NIST 연구진은 나노 미분 이동도 분석기의 압력을 8.27 kPa까지 낮춰 PSL 입자의 슬립 보정을 측정했습니다. 그중 가장 작은 입자 지름은 19.90 nm이고, 분석기 온도는 공칭 296.15 K(23 °C)입니다. 기준 평균 자유 행로는 같은 논문의 λ₀ = 67.3 nm(23 °C, 101.3 kPa)입니다.</p><p><strong>λ 환산:</strong> 온도가 기준과 같으므로 압력비만 곱합니다. 101.3 ÷ 8.27 = 12.25이고, λ = 67.3 nm × 12.25 = 824 nm = 8.24 × 10⁻⁷ m입니다.</p><p><strong>계산기 입력:</strong> λ에 8.24e-7, L에 1.99e-8을 넣으면 Kn = 41.4가 나오고 천이/자유 분자 유동으로 표시됩니다.</p><p><strong>해석:</strong> 에어로졸 문헌은 Kn = 2λ/D<sub>p</sub>를 쓰므로 같은 조건이 약 83이 됩니다. 논문 초록에 적힌 "Knudsen 수 최대 83"과 맞아떨어지며, 표 7c에는 8.27 kPa, 296.3 K 측정의 Kn이 82.934로 실려 있습니다. 0.1% 정도의 차이는 실제 측정 온도와 기준 압력 101.33 kPa 표기가 이 예제 가정과 조금 다르기 때문입니다. 문헌의 Kn과 비교할 때는 계산기 값에 2를 곱해야 한다는 점을 이 예제로 확인할 수 있습니다.</p></section>
+<section class="example" aria-labelledby="ex-11km"><h3 id="ex-11km">예제 2. 고도 11 km에서 지름 10 μm 열선</h3><p><strong>주어진 값:</strong> Cornell 비행역학 강의 자료의 표준대기 표에서 고도 11 000 m는 T = 216.65 K, p = 22 631.70 Pa입니다. 열선 지름 10 μm는 가정값입니다.</p><p><strong>λ 환산:</strong> 온도도 달라지므로 NIST 식 (11)을 씁니다. 온도비 216.65 ÷ 296.15 = 0.7316, 압력비 101 300 ÷ 22 631.70 = 4.476, Sutherland 형태 보정 (1 + 110.4/296.15) ÷ (1 + 110.4/216.65) = 0.9094입니다. 따라서 λ = 67.3 nm × 0.7316 × 4.476 × 0.9094 = 200 nm입니다. 압력비만 적용했다면 301 nm가 나와 50% 정도 과대평가합니다.</p><p><strong>계산기 입력:</strong> λ에 2.00e-7, L에 1e-5를 넣으면 Kn = 0.0200이고 미끄럼 유동으로 표시됩니다.</p><p><strong>해석:</strong> 해면에서는 연속체로 다루던 열선이 11 km에서는 미끄럼 영역에 들어갑니다. 식 (11)은 실온 부근에서 쓰던 보정식을 216.65 K까지 넓혀 적용한 것이므로 결과는 크기를 가늠하는 추정값으로 봅니다.</p></section>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">누센 수 계산기 사용 질문</h2>
+<details><summary>Kn이 10을 넘어도 자유 분자 유동으로 따로 표시되지 않는 이유는 무엇인가요?</summary><p>계산기는 0.1 이상을 한 구간으로 묶어 표시합니다. 천이와 자유분자를 나누는 경계로는 10이 흔히 쓰이지만, NASA TM 107730이 인용한 그림처럼 Kn 약 1부터 자유분자 효과가 시작된다고 보는 자료도 있습니다. 숫자가 10보다 훨씬 크면 자유분자 영역으로 읽으면 됩니다.</p></details>
+<details><summary>결과가 6.8000e-5처럼 나오는데 잘못 계산된 건가요?</summary><p>아닙니다. 결과가 0.0001보다 작거나 매우 크면 지수 표기로 보여 줍니다. 6.8000e-5는 6.8 × 10⁻⁵, 곧 0.000068입니다.</p></details>
+<details><summary>공기가 아닌 헬륨이나 아르곤도 계산할 수 있나요?</summary><p>계산식 Kn = λ/L은 기체 종류와 무관하므로 λ만 그 기체 값으로 넣으면 됩니다. 다만 기본 예제의 68 nm는 공기 값이라 다른 기체에 쓰면 안 됩니다. MIT 3.185 식의 분자 지름 d를 그 기체 값으로 바꿔 λ를 추정하고, 어떤 λ 정의를 썼는지 기록해 두세요.</p></details>
 </section>
 <section aria-labelledby="more"><h2 id="more">관련 해설과 계산기</h2>
 <h3>기본 해설</h3><ul><li><a href="/guides/knudsen">누센 수 해설: 예제와 주의점</a></li></ul>
-<h3>계산 노트</h3><ul><li><a href="/guides/gas-models">기체 유동 모델 선택: 마하 수와 누센 수를 따로 확인하기</a>: 압축성과 분자 길이 척도를 등엔트로피 관계와 함께 따로 검토합니다.</li></ul>
-<h3>관련 계산기</h3><ul><li><a href="/calculators/mach">마하 수 (Ma)</a>: 분자 길이 척도(Kn)와 압축성(Ma)은 서로 다른 가정이므로 둘 다 확인합니다.</li><li><a href="/calculators/reynolds">레이놀즈 수 (Re)</a>: Kn이 작아 연속체 가정이 성립할 때 Re 같은 연속체 지표로 유동을 해석할 수 있습니다.</li></ul>
+<h3>계산 노트</h3><ul><li><a href="/guides/gas-models">기체 유동 모델 선택: 마하 수와 누센 수를 따로 확인하기</a>: 여기서 구한 Kn을 마하 수 판정과 나란히 놓고, 등엔트로피 관계로 압축성 오차를 함께 점검하는 노트입니다.</li></ul>
+<h3>관련 계산기</h3><ul><li><a href="/calculators/mach">마하 수 (Ma)</a>: 같은 속도·온도 조건으로 Ma를 구해 밀도 변화가 무시할 만한지 확인합니다.</li><li><a href="/calculators/reynolds">레이놀즈 수 (Re)</a>: Kn이 0.01보다 작게 나온 경우에 이어서 관성과 점성의 비를 계산합니다.</li></ul>
 </section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">참고 자료</h2><ul>
+<li>NIST: <a href="https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=861332" rel="noopener noreferrer">Slip Correction Measurements of Certified PSL Nanoparticles Using a Nanometer Differential Mobility Analyzer</a>. λ₀ = 67.3 nm, 식 (11), 최저 압력 8.27 kPa와 최대 Kn 83, 19.90 nm 입자, Kn = 2λ/D<sub>p</sub></li>
+<li>Cornell University (MAE 5070): <a href="https://courses.cit.cornell.edu/mae5070/Introduction.pdf" rel="noopener noreferrer">Introduction to Flight Dynamics</a>. 표준대기 표 1.1의 11 000 m 온도·압력</li>
+<li>University of Utah / NASA: <a href="https://ntrs.nasa.gov/api/citations/19740019690/downloads/19740019690.pdf" rel="noopener noreferrer">Survey of Literature on Convective Heat Transfer Coefficients and Recovery Factors for High Atmosphere Thermometry</a>. Kn 영역 구분과 경계가 근사라는 설명</li>
+<li>MIT OpenCourseWare (3.185): <a href="https://ocw.mit.edu/courses/3-185-transport-phenomena-in-materials-engineering-fall-2003/a55c74dc21def01fc0054de35574d1e5_3_21.pdf" rel="noopener noreferrer">Transport Phenomena in Materials Engineering</a>. 강체 구 모델의 λ 식</li>
+<li>NASA Langley: <a href="https://ntrs.nasa.gov/api/citations/19930022543/downloads/19930022543.pdf" rel="noopener noreferrer">Reynolds Number Influences in Aeronautics (NASA TM 107730)</a>. Kn 약 1부터 자유분자 효과가 시작된다는 그림 설명</li>
+</ul></section>
 </main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>
 <script src="/calculators.js?v=20261022" defer></script>
 <script src="/calculator-page.js?v=20261022" defer></script>

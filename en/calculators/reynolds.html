@@ -73,26 +73,54 @@
 <section aria-labelledby="units"><h2 id="units">Getting the units right</h2>
 <ul>
 <li>Convert a diameter in mm to metres by dividing by 1000; a 10 mm bore is 0.01.</li>
-<li>Viscosity in centipoise (cP) converts with 1 cP = 0.001 Pa·s.</li>
+<li>Viscosity in centipoise (cP) converts with 1 cP = 0.001 Pa·s, so 0.4677 cP for 60 °C water is entered as 0.0004677.</li>
 <li>If your data give only kinematic viscosity ν in m²/s, enter μ = ρν. Putting ν in the μ field is off by a factor of the density.</li>
 <li>For a circular pipe, use the mean velocity (flow rate divided by area). Using the centre-line maximum inflates Re.</li>
+<li>Speeds in cm/s are divided by 100. When blood-flow data mix cm and cP, convert all three to SI before entering them.</li>
 </ul>
 </section>
 <section aria-labelledby="criteria"><h2 id="criteria">How far do 2300 and 4000 hold?</h2>
-<p>The laminar, transitional and turbulent label under the result assumes fully developed flow inside a smooth circular pipe: below 2300 is shown as laminar, above 4000 as turbulent, and the band between as transitional.</p>
-<p>These are guide values. With very low inlet disturbances, laminar flow can persist above 2300, while vibration or rough walls can trigger transition earlier. External flows over plates, cylinders and spheres use different length scales and transition at different Re, so ignore the label there. Non-circular ducts often use the hydraulic diameter 4A/P (area A, wetted perimeter P), but do not assume the circular-pipe thresholds carry over.</p>
+<p>The laminar, transitional and turbulent label under the result assumes fully developed flow inside a smooth circular pipe: below 2300 is shown as laminar, above 4000 as turbulent, and the band between as transitional. The comparisons are strict, so exactly 2300 and exactly 4000 are both shown as transitional.</p>
+<p>These are guide values. With very low inlet disturbances, laminar flow can persist above 2300, while vibration or rough walls can trigger transition earlier. The MIT HST notes add that flow leaving a narrow orifice into a wider tube can become turbulent at Re as low as 10. External flows over plates, cylinders and spheres use different length scales and transition at different Re, so ignore the label there. Non-circular ducts often use the hydraulic diameter 4A/P (area A, wetted perimeter P), but do not assume the circular-pipe thresholds carry over.</p>
 </section>
-<section aria-labelledby="check"><h2 id="check">Try the example</h2>
-<p>“Fill example values” enters ρ = 1000 kg/m³, v = 0.2 m/s, L = 0.01 m and μ = 0.001 Pa·s, giving Re = 2000. Change only the speed to 0.4 m/s and you get 4000. Re is proportional to ρ, v and L and inversely proportional to μ, so predicting how the result should move when one input doubles is a quick way to spot unit mistakes.</p>
+<section aria-labelledby="check"><h2 id="check">Calculator input examples</h2>
+<p>“Fill example values” enters ρ = 1000 kg/m³, v = 0.2 m/s, L = 0.01 m and μ = 0.001 Pa·s, giving Re = 2000. Re is proportional to ρ, v and L and inversely proportional to μ, so predicting how the result should move when one input doubles is a quick way to spot unit mistakes. The three examples below cover unit conversion, the boundary label, and a geometry where the label does not apply.</p>
+<section class="example" aria-labelledby="ex-hot-water"><h3 id="ex-hot-water">Example 1. A 60 °C hot-water line with viscosity in cP</h3>
+<p><strong>Conditions</strong>: a 25 mm inner diameter and 0.5 m/s mean velocity are assumed. Density 983.2 kg/m³ and viscosity 0.4677 cP (= 4.677×10⁻⁴ Pa·s) for 60 °C water are saturated-water values from IAEA Table 3.3.</p>
+<p><strong>Calculator input</strong>: v = 0.5, ρ = 983.2, L = 0.025, μ = 0.0004677 gives Re = 26,278, labelled turbulent.</p>
+<p><strong>What to check</strong>: entering the viscosity as 0.4677 (still in cP) gives 26.3, a thousandth of the right value, wrongly labelled laminar. A result a thousand times off usually means a missed mm or cP conversion.</p>
+</section>
+<section class="example" aria-labelledby="ex-4000"><h3 id="ex-4000">Example 2. Inputs that give exactly 4000</h3>
+<p><strong>Conditions</strong>: water-like round values ρ = 1000 kg/m³ and μ = 0.001 Pa·s, with L = 0.01 m and an assumed v = 0.4 m/s.</p>
+<p><strong>Calculator input</strong>: the result is Re = 4000, labelled transitional. Raising the speed slightly to 0.4001 m/s gives Re = 4,001, which switches the label to turbulent.</p>
+<p><strong>What to check</strong>: real flow does not change abruptly between 4000 and 4,001. Near a boundary, look at inlet conditions and wall roughness before the label, and compute pressure loss for both laminar and turbulent cases.</p>
+</section>
+<section class="example" aria-labelledby="ex-cylinder"><h3 id="ex-cylinder">Example 3. A 25 mm cylinder in a breeze</h3>
+<p><strong>Conditions</strong>: 20 °C air (ρ = 1.2043 kg/m³ from IAEA Table 3.1 scaled to 1 atm, μ = 1.819×10⁻⁵ Pa·s) flows at an assumed 5 m/s past a cylinder 25 mm in diameter.</p>
+<p><strong>Calculator input</strong>: v = 5, ρ = 1.2043, L = 0.025, μ = 1.819e-5 gives Re = 8,276, and the screen says turbulent.</p>
+<p><strong>What to check</strong>: that label is based on pipe flow and means nothing for a cylinder. The NASA Glenn cylinder validation case describes periodic vortex pairs shed from the cylinder at Re = 150, so a cylinder wake is already unsteady far below 2300. For external flow, use this Re to look up Strouhal-number or drag-coefficient data.</p>
+</section>
 </section>
 <section aria-labelledby="limits"><h2 id="limits">What Re cannot tell you</h2>
 <p>Re characterises the flow but does not give pressure loss or heat transfer. Pressure loss also needs the pipe length and a friction factor; heat transfer needs the Prandtl number and a heat-transfer coefficient. The pressure-loss note shows how two pipes with the same Re can lose very different amounts of pressure.</p>
 </section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">Questions about the Reynolds calculator</h2>
+<details><summary>My result looks about 1000 times off. What should I check first?</summary><p>Check whether the diameter went in as mm or the viscosity as cP. Each causes a factor of 1000, and when both mistakes happen together they cancel and produce a value that only looks right by accident.</p></details>
+<details><summary>I only know the kinematic viscosity ν. How do I enter it?</summary><p>Put 1 in the ρ field and ν in the μ field; ρvL/μ then becomes vL/ν and gives the same Re. If you know density and viscosity separately, entering them keeps a clearer record of the inputs.</p></details>
+<details><summary>How should I read the laminar or turbulent label for non-circular ducts or external flow?</summary><p>Ignore the label, which is based on round pipes, and use only the Re value. Compare a hydraulic-diameter Re with duct correlations, and an external-flow Re with test data that use the same length definition.</p></details>
+<details><summary>Can I work backwards to the speed that gives a target Re?</summary><p>The calculator only computes Re, so rearrange to v = Re × μ/(ρL). For the 60 °C line in Example 1, Re = 2300 needs 2300 × 4.677×10⁻⁴ ÷ (983.2 × 0.025) = 0.0438 m/s. Entering that speed again and checking that the result is close to 2300 catches arithmetic slips.</p></details>
+</section>
 <section aria-labelledby="more"><h2 id="more">Related guides and calculators</h2>
 <h3>Guide</h3><ul><li><a href="/en/guides/reynolds">Reynolds number guide: worked example and cautions</a></li></ul>
-<h3>Calculation notes</h3><ul><li><a href="/en/guides/pipe-flow">Cross-check Re, Pr and Pe for pipe flow</a>: One input set through three calculators, checking that Pe = Re × Pr.</li><li><a href="/en/guides/model-similarity">Can a scale model match both Re and Fr?</a>: Two candidate speeds for a 1:10 model and why they conflict.</li><li><a href="/en/guides/pipe-energy">Pipe pressure loss: from conservation laws to Poiseuille flow</a>: Mass and energy balances show why the same Re can give different pressure losses.</li><li><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a>: Diffusion lengths versus transit times, and where a heat-transfer coefficient comes from.</li><li><a href="/en/guides/interface-time-scales">Surface tension and unsteady flow: connect force ratios to time ratios</a>: We, Re, Fr and St on one length scale; curvature pressure versus capillary time.</li></ul>
-<h3>Related calculators</h3><ul><li><a href="/en/calculators/froude">Froude number (Fr)</a>: In free-surface scale models, Re and Fr generally cannot both be matched with the same fluid.</li><li><a href="/en/calculators/weber">Weber number (We)</a>: With the same L and v, We/Re = μv/σ, which compares viscosity with surface tension directly.</li><li><a href="/en/calculators/strouhal">Strouhal number (St)</a>: Vortex-shedding frequencies are reported as St, and only compare well when the Re of each test is recorded.</li><li><a href="/en/calculators/peclet">Péclet number (Pe)</a>: With the same L, v and properties, the thermal Péclet number equals Re × Pr.</li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/pipe-flow">Cross-check Re, Pr and Pe for pipe flow</a>: multiply the Re from this page by Pr and compare it with the Péclet calculator, step by step.</li><li><a href="/en/guides/model-similarity">Can a scale model match both Re and Fr?</a>: computing model and full-scale Re here shows why matching both is hard.</li><li><a href="/en/guides/pipe-energy">Pipe pressure loss: from conservation laws to Poiseuille flow</a>: continue from a laminar Re to the pressure loss it implies.</li><li><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a>: why the same Re gives different thermal boundary layers in different fluids.</li><li><a href="/en/guides/interface-time-scales">Surface tension and unsteady flow: connect force ratios to time ratios</a>: Re and We on one length scale for drops and bubbles.</li></ul>
+<h3>Related calculators</h3><ul><li><a href="/en/calculators/froude">Froude number (Fr)</a>: switch here for free-surface model tests where Fr, not Re, must be matched.</li><li><a href="/en/calculators/weber">Weber number (We)</a>: add surface tension to the same ρ, v and L and compare We with Re directly.</li><li><a href="/en/calculators/strouhal">Strouhal number (St)</a>: puts the shedding frequency of a cylinder wake like Example 3 in dimensionless form.</li><li><a href="/en/calculators/peclet">Péclet number (Pe)</a>: the same v and L with a thermal diffusivity give the thermal Pe, which should equal Re × Pr.</li></ul>
 </section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">References</h2><ul>
+<li>MIT OpenCourseWare (HST.542J): <a href="https://ocw.mit.edu/courses/hst-542j-quantitative-physiology-organ-transport-systems-spring-2004/5384df8b0795c292af407d5cfb4a3106_fluid_mechanics.pdf" rel="noopener noreferrer">Physiological Fluid Mechanics</a>. The 2300 round-pipe value and low transition Re behind orifices</li>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering</a>. 60 °C water (Table 3.3) for Example 1 and air (Table 3.1) for Example 3</li>
+<li>NASA Glenn / NPARC Alliance: <a href="https://www.grc.nasa.gov/www/wind/valid/lamcyl/Study1_files/Study1.html" rel="noopener noreferrer">Laminar Flow over a Circular Cylinder: Study #1</a>. Periodic vortex shedding behind a cylinder at Re = 150</li>
+<li>NASA Glenn Research Center: <a href="https://www.grc.nasa.gov/www/k-12/airplane/reynolds.html" rel="noopener noreferrer">Reynolds Number</a>. Definition Re = ρVL/μ = VL/ν</li>
+</ul></section>
 </main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
 <script src="/calculators.js?v=20261022" defer></script>
 <script src="/calculator-page.js?v=20261022" defer></script>

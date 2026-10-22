@@ -57,36 +57,46 @@
 <div id="calcResult" class="result-container" aria-live="polite"><p class="result-label">Result</p><p id="resultValue" class="result-value"></p><p id="resultInfo" class="result-info"></p><p id="resultExplain" class="result-explain"></p></div>
 <noscript><p>This calculator runs in your browser with JavaScript. If JavaScript is off, apply the formula above by hand.</p></noscript>
 <p class="source">Your inputs are calculated by your browser on this page; the operator does not receive or store them.</p>
-</section>
-<section aria-labelledby="meaning"><h2 id="meaning">What Nu is a ratio of</h2>
-<p>Nu = hL/k can be read as h divided by k/L. The quantity k/L is the heat-transfer coefficient of a stagnant fluid layer of thickness L conducting heat with no flow, so Nu says how many times stronger the actual convection is than conduction over the same length.</p>
-<p>Nu near 1 means convection is comparable to conduction; larger values mean the flow is doing much of the heat transport. The number changes with the choice of L, so comparisons only make sense between cases that define L the same way.</p>
+</section><section aria-labelledby="meaning"><h2 id="meaning">What Nu is a ratio of</h2>
+<p>The calculator evaluates h × L ÷ k. That is h divided by k/L, the coefficient a stagnant fluid layer of thickness L would give by conduction alone, so the result says how many times stronger the actual convection is than pure conduction over the same length. Because the number depends on how L is chosen, compare only cases that define L the same way.</p>
 </section>
 <section aria-labelledby="variables"><h2 id="variables">Variables and SI units</h2>
 <div class="table-wrap"><table><caption>Inputs of the Nusselt number calculator</caption><thead><tr><th scope="col">Symbol</th><th scope="col">Meaning</th><th scope="col">SI unit</th><th scope="col">Example</th></tr></thead><tbody>
 <tr><th scope="row">h</th><td>Convective coefficient from measurement or a validated correlation</td><td>W/(m²·K)</td><td>50</td></tr>
-<tr><th scope="row">L</th><td>Length defined for the geometry, such as pipe diameter or plate length</td><td>m</td><td>0.1</td></tr>
+<tr><th scope="row">L</th><td>Length defined for the geometry, such as pipe diameter, hydraulic diameter or plate length</td><td>m</td><td>0.1</td></tr>
 <tr><th scope="row">k</th><td>Thermal conductivity of the fluid, not the wall</td><td>W/(m·K)</td><td>0.6</td></tr>
 </tbody></table></div></section>
 <section aria-labelledby="source"><h2 id="source">Where does h come from?</h2>
-<p>h comes from measurements or from a validated correlation for the geometry and flow. Correlations usually give Nu as a function of the Reynolds and Prandtl numbers, so in practice Nu is found first and converted back with h = Nu·k/L. This page works in the other direction: when you already have h, it gives Nu for checking against a reference or another case.</p>
+<p>h comes from measurements or from a correlation for the geometry and flow. Design work usually finds Nu from a correlation first and converts it with h = Nu·k/L. This calculator runs the other way: convert an h measured on a test rig, or a wall heat-transfer coefficient reported by CFD, into Nu, and it can be set against the laminar tube values 3.66 and 4.36 or a turbulent correlation on the same scale.</p>
 </section>
 <section aria-labelledby="units"><h2 id="units">Units and length definitions</h2>
 <ul>
-<li>h is in W/(m²·K) and k in W/(m·K). The difference between m² and m cancels with L, leaving Nu dimensionless.</li>
-<li>Older data in kcal/(h·m²·°C) convert with 1 kcal/h = 1.163 W: multiply by 1.163 for W/(m²·K). A temperature difference in °C equals the same difference in K.</li>
-<li>k is the conductivity of the fluid, not of the solid wall. The Biot number has the same form but uses the wall’s conductivity, which makes the two easy to confuse.</li>
-<li>Use the inner diameter for pipes; for plates use the distance from the leading edge (local Nu) or the plate length (mean Nu).</li>
+<li>h is in W/(m²·K) and k in W/(m·K); one metre of the m² cancels with L, leaving Nu dimensionless.</li>
+<li>Older data in kcal/(h·m²·°C) convert by multiplying by 1.163 (1 kcal/h = 1.163 W). A temperature difference in °C equals the same difference in K.</li>
+<li>Entering L in mm makes the result 1000 times too large; a 4 mm tube is 0.004.</li>
+<li>k is the fluid's conductivity. The number that uses the wall's conductivity is the Biot number.</li>
 </ul>
 </section>
-<section aria-labelledby="criteria"><h2 id="criteria">Comparing results</h2>
-<p>The example uses h = 50 W/(m²·K), L = 0.1 m and k = 0.6 W/(m·K), giving Nu ≈ 8.33. Keep h and k but change L to 0.05 m and Nu halves to about 4.17. Heat transfer did not weaken; only the reference length changed, so never compare Nu values built on different L. A mean Nu from an average h is also a different quantity from a local Nu at one position.</p>
-<p>The thermal and mass diffusion note works through h = 120 W/(m²·K), L = 0.05 m and k = 0.6 W/(m·K) for Nu = 10, and shows that a heat flux additionally needs a temperature difference.</p>
+<section aria-labelledby="criteria"><h2 id="criteria">Examples you can reproduce in the calculator</h2>
+<section class="example" aria-labelledby="ex-default"><h3 id="ex-default">Example 1. Changing only k in the "Fill example values" case</h3><p><strong>Inputs:</strong> the button fills h = 50 W/(m²·K), L = 0.1 m and k = 0.6 W/(m·K), the last being a rounded room-temperature water conductivity.</p><p><strong>Calculation:</strong> Nu = 50 × 0.1 ÷ 0.6 = 8.33. Changing L to 0.05 m halves it to 4.17.</p><p><strong>Changing k:</strong> with the same h and L, 20 °C air at k = 0.0258 W/(m·K) (IAEA Table 3.1) gives Nu = 193.8, while mistakenly entering type 316 stainless steel at k = 14.0 W/(m·K) (IAEA Table 6.20, 300 K) gives 0.357.</p><p><strong>Interpretation:</strong> the same h yields Nu values more than 500 times apart depending on the k. A result below 1 usually means a solid's k was entered instead of the fluid's, or L has the wrong unit.</p></section>
+<section class="example" aria-labelledby="ex-measured"><h3 id="ex-measured">Example 2. Converting a measured h to Nu and comparing with laminar values</h3><p><strong>Given:</strong> 20 °C water flows in a 10 mm tube, and a test is assumed to have given a mean h = 2000 W/(m²·K). Water k is 0.5995 W/(m·K) from IAEA Table 3.3.</p><p><strong>Inputs and calculation:</strong> h = 2000, L = 0.01 and k = 0.5995 give Nu = 33.4.</p><p><strong>Interpretation:</strong> that is 7.7 to 9.1 times the fully developed laminar values of 3.66 (constant wall temperature) and 4.36 (constant heat flux), so the test section is not in fully developed laminar flow. It is either turbulent or strongly affected by the entry region. Compute Re from the velocity and viscosity to tell which, and if turbulent compare with Dittus–Boelter or Gnielinski.</p></section>
+<section class="example" aria-labelledby="ex-kcal"><h3 id="ex-kcal">Example 3. The error from entering an h in kcal units</h3><p><strong>Given:</strong> an old design sheet is assumed to list h = 1000 kcal/(h·m²·°C) for a 25 mm pipe carrying 60 °C water (IAEA Table 3.3, k = 0.6510 W/(m·K)).</p><p><strong>Unit conversion:</strong> h = 1000 × 1.163 = 1163 W/(m²·K).</p><p><strong>Calculation:</strong> Nu = 1163 × 0.025 ÷ 0.6510 = 44.7. Entering 1000 unconverted gives 38.4, 14% low.</p><p><strong>Interpretation:</strong> because the factor 1.163 is close to 1, the wrong result still looks plausible. Check the unit label on the data first.</p></section>
+<p>The thermal and mass diffusion note computes Nu = 10 from h = 120 W/(m²·K), L = 0.05 m and k = 0.6 W/(m·K), then shows that a heat flux additionally needs a temperature difference.</p>
 </section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">Using the Nusselt number calculator</h2>
+<details><summary>What do I enter for L in a non-circular duct?</summary><p>The length the correlation defines; for duct flow this is usually the hydraulic diameter D<sub>h</sub> = 4A/P, with A the cross-section and P the wetted perimeter. A 20 mm × 10 mm rectangular duct has D<sub>h</sub> = 4 × 0.02 × 0.01 ÷ 0.06 = 0.0133 m.</p></details>
+<details><summary>Can I enter the wall heat-transfer coefficient reported by CFD?</summary><p>First check the reference temperature behind it. Depending on the software, h may be defined from the difference between wall and bulk temperature or between the wall and a user-set reference temperature. Only an h defined the same way as in the correlation gives a comparable Nu.</p></details>
+<details><summary>Can I get the heat rate from Nu?</summary><p>Not from Nu alone. Convert back to h, then multiply by area and temperature difference (Q = hAΔT). In pipe flow the fluid temperature changes along the pipe, so something like a log-mean temperature difference is also needed.</p></details>
+</section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">References</h2><ul>
+<li>Idaho National Laboratory: <a href="https://lwrs.inl.gov/content/uploads/11/2024/03/RELAP-7_Theory_Manual.pdf" rel="noopener noreferrer">RELAP-7 Theory Manual, Rev. 2</a>. Fully developed laminar tube values 4.36 and 3.66, h = Nu·k/D<sub>h</sub> (eq 589), k evaluated at the fluid bulk temperature</li>
+<li>Michigan Technological University: <a href="https://pages.mtu.edu/~fmorriso/cm3120/lectures/2021_CM3120_module2_6alectureIV.pdf" rel="noopener noreferrer">CM3120 Module 2 Lecture IV</a>. Warning that Nu and Bi have similar definitions but different meanings</li>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering (2008)</a>. Conductivity of water (Table 3.3), air (Table 3.1) and type 316 stainless steel (Table 6.20)</li>
+</ul></section>
 <section aria-labelledby="more"><h2 id="more">Related guides and calculators</h2>
 <h3>Guide</h3><ul><li><a href="/en/guides/nusselt">Nusselt number guide: worked example and cautions</a></li></ul>
-<h3>Calculation notes</h3><ul><li><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a>: Diffusion lengths versus transit times, and where a heat-transfer coefficient comes from.</li></ul>
-<h3>Related calculators</h3><ul><li><a href="/en/calculators/prandtl">Prandtl number (Pr)</a>: Convective heat-transfer correlations commonly give Nu as a function of Re and Pr.</li><li><a href="/en/calculators/peclet">Péclet number (Pe)</a>: Pe compares advection and diffusion times but does not supply the heat-transfer coefficient h.</li><li><a href="/en/calculators/schmidt">Schmidt number (Sc)</a>: In mass-transfer problems, Sc takes the place that Pr has in heat transfer.</li></ul>
+<h3>Calculation notes</h3><ul><li><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a>: How the Nu from this calculator differs from diffusion scales, and what else a heat flux needs.</li></ul>
+<h3>Related calculators</h3><ul><li><a href="/en/calculators/prandtl">Prandtl number (Pr)</a>: Compute Pr from properties at the same temperature before using a Nu correlation.</li><li><a href="/en/calculators/peclet">Péclet number (Pe)</a>: Gives the advection-to-diffusion ratio but no h, so do not use it in place of Nu.</li><li><a href="/en/calculators/schmidt">Schmidt number (Sc)</a>: Takes the place of Pr when a Sherwood number is used for mass-transfer coefficients.</li></ul>
 </section>
 </main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>
 <script src="/calculators.js?v=20261022" defer></script>

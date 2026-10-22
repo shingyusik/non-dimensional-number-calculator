@@ -88,26 +88,31 @@
 <p>사이트는 Cloudflare Pages로 호스팅되며 모든 요청은 Cloudflare를 거쳐 전달됩니다. 이 과정에서 Cloudflare는 IP 주소와 트래픽 정보를 처리합니다. 2026년 10월 22일 사이트 응답을 확인했을 때 Cloudflare가 쿠키를 설정하는 헤더(Set-Cookie)는 없었습니다. 다만 봇 확인 같은 보안 기능이 작동하면 Cloudflare의 보안 쿠키가 쓰일 수 있습니다. 자세한 내용은 <a href="https://www.cloudflare.com/policies/privacy/">Cloudflare 개인정보처리방침</a>과 <a href="https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/">Cloudflare 쿠키 안내</a>를 참고해 주세요.</p></section>
 
 <section aria-labelledby="p6"><h2 id="p6">6. 보유 기간과 파기</h2>
-<ul>
-<li>운영자는 방문자 정보를 저장하는 자체 서버나 데이터베이스를 두지 않으므로, 운영자가 따로 보관하다 파기할 방문자 정보는 없습니다.</li>
-<li>각 서비스가 수집한 정보는 해당 서비스의 보유 기간 설정과 정책에 따라 보관되고 삭제됩니다. 관련 안내: <a href="https://support.google.com/analytics/answer/7667196">Google Analytics 데이터 보관</a>, <a href="https://learn.microsoft.com/en-us/clarity/setup-and-installation/data-retention">Clarity 데이터 보관</a>, <a href="https://policies.google.com/privacy">Google 개인정보처리방침</a>, <a href="https://www.cloudflare.com/policies/privacy/">Cloudflare 개인정보처리방침</a>.</li>
-<li>GitHub Issues의 글은 작성자가 직접 수정·삭제할 수 있으며, 개인정보가 담긴 글은 요청을 받으면 운영자가 숨기거나 삭제합니다.</li>
-</ul></section>
+<p>운영자는 방문자 정보를 저장하는 자체 서버나 데이터베이스를 두지 않으므로, 운영자가 따로 보관하다 파기할 방문자 정보는 없습니다. 각 서비스가 수집한 정보는 해당 회사가 보관하고 삭제하며, 보유 기간은 아래와 같습니다.</p>
+<div class="table-wrap"><table><caption>서비스별 보유 기간</caption><thead><tr><th scope="col">서비스</th><th scope="col">보유 기간</th><th scope="col">근거 문서</th></tr></thead><tbody>
+<tr><th scope="row">Google Analytics 4</th><td>쿠키·사용자 식별자·광고 식별자와 연결된 사용자 수준 및 이벤트 수준 데이터는 Google이 안내하는 제품 기본값 기준으로 2개월 보관됩니다. 표준 속성에서는 관리자가 2개월 또는 14개월 중에서 고를 수 있으며, 이 사이트에 적용된 값은 이 기본값과 다를 수 있습니다. 새 활동이 있으면 사용자 식별자의 보관 기간을 다시 시작하는 설정도 있습니다. 이 보관 설정은 표준 집계 보고서에는 적용되지 않습니다.</td><td><a href="https://support.google.com/analytics/answer/7667196?hl=ko">Google Analytics 데이터 보관</a>, <a href="https://support.google.com/analytics/answer/7579450?hl=ko">탐색 분석 시작하기(기본 보관 기간 안내)</a></td></tr>
+<tr><th scope="row">Google AdSense</th><td>Google 개인정보처리방침과 Google의 데이터 보관 안내에 따라 보관되고 삭제됩니다. 운영자는 광고 데이터의 보관 기간을 정하지 않습니다.</td><td><a href="https://policies.google.com/technologies/retention?hl=ko">Google 데이터 보관 방식</a></td></tr>
+<tr><th scope="row">Microsoft Clarity</th><td>세션 재생(녹화) 데이터는 30일 보관됩니다. 클릭 데이터·페이지별 집계 데이터와 히트맵, 라벨이나 즐겨찾기를 지정한 세션은 9개월 보관됩니다. Microsoft는 30일이 지난 뒤에도 녹화의 1% 또는 하루 10개 가운데 많은 쪽을 최대 9개월 보관한다고 안내합니다. 보관 기간이 지나면 백업을 포함해 Clarity 서버의 데이터가 삭제됩니다.</td><td><a href="https://learn.microsoft.com/en-us/clarity/setup-and-installation/data-retention">Clarity Data Retention</a>, <a href="https://learn.microsoft.com/en-us/clarity/session-recordings/recordings-overview">Clarity Recordings overview</a></td></tr>
+<tr><th scope="row">Cloudflare</th><td>접속·트래픽 정보는 Cloudflare 개인정보처리방침에 따라 보관되고 삭제됩니다. 운영자는 Cloudflare 로그를 따로 내려받아 보관하지 않습니다.</td><td><a href="https://www.cloudflare.com/privacypolicy/">Cloudflare 개인정보처리방침</a></td></tr>
+</tbody></table></div>
+<p>위 기간은 2026년 10월 22일에 각 회사의 공식 문서에서 확인한 값입니다. 회사가 기본값이나 정책을 바꾸면 그 회사의 문서가 우선합니다.</p>
+<p>GitHub Issues의 글은 작성자가 직접 수정·삭제할 수 있으며, 개인정보가 담긴 글은 요청을 받으면 운영자가 숨기거나 삭제합니다.</p></section>
 
 <section aria-labelledby="p7"><h2 id="p7">7. 제3자 처리와 국외 이전</h2>
 <p>운영자는 이용자 정보를 따로 모아 판매하거나 다른 사람에게 넘기지 않습니다. 다만 2항의 서비스는 사이트에 설치된 코드를 통해 이용자의 브라우저에서 직접 정보를 수집하며, 각 회사는 자체 약관과 개인정보처리방침에 따라 정보를 처리합니다. Microsoft Clarity 이용약관은 운영자와 Microsoft를 각각 독립적인 개인정보 처리자로 규정합니다.</p>
-<p>이 회사들은 한국 밖에서도 정보를 처리합니다. 정보는 이용자가 페이지를 여는 시점에 브라우저에서 인터넷을 통해 각 회사로 전송됩니다.</p>
-<div class="table-wrap"><table><caption>국외에서 정보를 처리하는 회사</caption><thead><tr><th scope="col">받는 자</th><th scope="col">처리 국가</th><th scope="col">항목·목적</th><th scope="col">보유 기간</th><th scope="col">연락 경로</th></tr></thead><tbody>
-<tr><th scope="row">Google LLC</th><td>미국을 포함해 Google이 시설을 운영하는 국가</td><td>2항의 Google Analytics 4·AdSense 항목, 통계·광고</td><td>Google 정책과 설정에 따름</td><td><a href="https://policies.google.com/privacy">Google 개인정보처리방침</a></td></tr>
-<tr><th scope="row">Microsoft Corporation</th><td>미국을 포함해 Microsoft가 시설을 운영하는 국가</td><td>2항의 Clarity 항목, 사용성 분석과 Microsoft Advertising</td><td>Microsoft 정책과 설정에 따름</td><td><a href="https://privacy.microsoft.com/en-us/privacystatement">Microsoft 개인정보처리방침</a></td></tr>
-<tr><th scope="row">Cloudflare, Inc.</th><td>미국, 유럽경제지역 등 Cloudflare가 시설을 운영하는 국가</td><td>2항의 접속·트래픽 정보, 호스팅·보안</td><td>Cloudflare 정책에 따름</td><td><a href="https://www.cloudflare.com/policies/privacy/">Cloudflare 개인정보처리방침</a></td></tr>
+<p>이 회사들은 한국 밖에서 정보를 처리합니다. 「개인정보 보호법」 제28조의8은 개인정보를 국외로 제공(조회되는 경우 포함)·처리위탁·보관하는 경우를 국외 이전으로 정하고, 같은 조 제2항에서 이전되는 항목, 이전 국가·시기·방법, 이전받는 자의 명칭과 연락처, 이용 목적과 보유·이용 기간, 이전을 거부하는 방법·절차와 거부의 효과를 알리도록 정합니다. 사이트는 이 사항을 아래 표로 공개합니다.</p>
+<p>이전의 근거와 관련하여 운영자가 확인한 사실은 다음과 같습니다. 사이트는 회원가입이 없어 이용자와 별도의 이용계약을 맺지 않으며, 국외 이전에 대한 별도 동의를 받는 화면도 현재 운영하지 않습니다. 개인정보보호위원회는 해외 사업자가 국내 정보주체의 개인정보를 직접 수집하는 경우는 법상 국외 이전에 해당하지 않는다고 설명합니다(<a href="https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS292&amp;mCode=I040010000&amp;nttId=10972">개인정보보호위원회 해설</a>). 서비스마다 이 직접 수집에 해당하는지, 운영자의 처리위탁에 해당하는지는 각 회사의 약관과 처리 방식에 따라 달라지므로, 아래 내용은 어느 경우에도 이용자가 알아야 할 사항을 모두 적은 것입니다. 법령 원문은 <a href="https://law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1020398611">국가법령정보센터 제28조의8</a>에서 볼 수 있습니다.</p>
+<div class="table-wrap"><table><caption>국외에서 정보를 처리하는 회사와 이전 내용</caption><thead><tr><th scope="col">이전받는 자와 연락처</th><th scope="col">이전 국가</th><th scope="col">이전 항목</th><th scope="col">이용 목적</th><th scope="col">이전 시기와 방법</th><th scope="col">보유·이용 기간</th></tr></thead><tbody>
+<tr><th scope="row">Google LLC, <a href="https://support.google.com/policies/contact/general_privacy_form">Google 개인정보 문의 양식</a></th><td>미국을 포함하여 Google이 서버를 운영하는 국가(Google은 전 세계 여러 국가의 서버에서 정보를 처리할 수 있다고 안내합니다)</td><td>2항의 Google Analytics 4·AdSense 항목(페이지 조회, 기기·브라우저 정보, 쿠키·광고 식별자, 상호작용 정보)</td><td>이용 통계 분석, 광고 게재와 성과 측정</td><td>페이지를 열 때마다 브라우저가 인터넷을 통해 Google 서버로 전송</td><td>6항의 Google Analytics 4·AdSense 기간</td></tr>
+<tr><th scope="row">Microsoft Corporation, <a href="https://www.microsoft.com/en-us/privacy/privacy-support-requests">Microsoft 개인정보 지원·요청 페이지</a></th><td>미국과 Microsoft·계열사·서비스 제공자가 시설을 둔 국가(Clarity 데이터는 Microsoft Azure 클라우드에 저장)</td><td>2항의 Clarity 항목(클릭·스크롤 등 상호작용, 화면 구성 정보, 쿠키 식별자, 기기·브라우저 정보)</td><td>사용성 분석, Microsoft Advertising</td><td>홈·/privacy·/terms를 열 때 브라우저가 인터넷을 통해 Microsoft 서버로 전송</td><td>6항의 Clarity 기간</td></tr>
+<tr><th scope="row">Cloudflare, Inc., 개인정보 문의 privacyquestions@cloudflare.com</th><td>주로 미국과 유럽경제지역(Cloudflare는 운영을 위해 다른 국가에서 접근하거나 이전할 수 있다고 안내합니다)</td><td>2항의 접속·트래픽 정보(IP 주소, 요청 주소와 시각, 브라우저 정보)</td><td>사이트 호스팅과 전송, 보안</td><td>사이트에 접속할 때마다 요청이 Cloudflare 네트워크를 거쳐 전송</td><td>6항의 Cloudflare 기간</td></tr>
 </tbody></table></div>
-<p>이용자는 8항의 방법으로 분석·광고 쿠키를 거부할 수 있습니다. 거부해도 계산기와 해설은 그대로 이용할 수 있으며, 광고는 개인 맞춤이 아닌 형태로 표시될 수 있습니다. Cloudflare를 거치는 접속 정보 처리는 사이트를 전송하는 데 필요하므로 거부하면 사이트에 접속할 수 없습니다.</p></section>
+<p>이전을 거부하는 방법과 효과는 다음과 같습니다. Google Analytics 4·AdSense·Clarity로 가는 정보는 8항의 방법(브라우저 쿠키 차단, Google 광고 설정, Google Analytics 차단 부가기능, 스크립트 차단 기능)으로 막거나 줄일 수 있습니다. 거부해도 계산기와 해설은 그대로 이용할 수 있으며, 광고는 개인 맞춤이 아닌 형태로 표시될 수 있습니다. Cloudflare를 거치는 접속 정보 처리는 사이트를 전송하는 데 필요하므로, 거부하려면 사이트에 접속하지 않는 방법밖에 없습니다. 거부 절차에 관해 궁금한 점은 10항의 GitHub Issues로 문의할 수 있습니다.</p></section>
 
 <section aria-labelledby="p8"><h2 id="p8">8. 쿠키 등 자동 수집 장치의 설치·운영과 거부</h2>
 <p>쿠키는 웹사이트가 브라우저에 저장하는 작은 텍스트 파일입니다. 사이트에서는 2항의 서비스가 쿠키와 유사 기술을 사용합니다. Clarity의 경우 공식 안내에 _clck, _clsk 같은 자사 쿠키와 CLID, MUID 같은 제3자 쿠키가 나와 있으며, 실제로 설정되는지는 브라우저와 실행 환경에 따라 다릅니다.</p>
 <ul>
-<li>브라우저 설정: 쿠키를 차단하거나 삭제할 수 있습니다. 예: <a href="https://support.google.com/chrome/answer/95647">Chrome 쿠키 관리 안내</a>. 제3자 쿠키만 차단하면 자사 쿠키를 쓰는 분석은 계속될 수 있습니다.</li>
+<li>브라우저 설정: 쿠키를 차단하거나 삭제할 수 있고, 브라우저의 추적 방지·스크립트 차단 기능으로 분석·광고 스크립트가 실행되지 않게 할 수도 있습니다. 예: <a href="https://support.google.com/chrome/answer/95647">Chrome 쿠키 관리 안내</a>. 제3자 쿠키만 차단하면 자사 쿠키를 쓰는 분석은 계속될 수 있습니다.</li>
 <li>개인 맞춤 광고: <a href="https://adssettings.google.com/">Google 광고 설정</a>, <a href="https://optout.aboutads.info/">aboutads.info</a>, <a href="https://youronlinechoices.eu/">Your Online Choices</a>.</li>
 <li>Google Analytics: <a href="https://tools.google.com/dlpage/gaoptout">Google Analytics 차단 브라우저 부가기능</a>. 이 부가기능은 Google Analytics에만 적용되며 Clarity, AdSense, Cloudflare의 처리에는 적용되지 않습니다.</li>
 </ul>
@@ -122,8 +127,17 @@
 <section aria-labelledby="p11"><h2 id="p11">11. 안전성 확보 조치</h2>
 <p>사이트는 HTTPS로 제공됩니다. 운영자는 방문자 정보를 저장하는 자체 서버나 데이터베이스를 두지 않아, 운영자 쪽에서 방문자 정보가 유출될 저장소를 만들지 않습니다.</p></section>
 
-<section aria-labelledby="p12"><h2 id="p12">12. 방침의 변경</h2>
-<p>이 방침은 2026년 10월 22일부터 적용되며 2026년 1월에 게시한 영문 방침을 대체합니다. 방침을 바꾸면 이 페이지에 새 시행일과 함께 게시합니다. 이전 판은 <a href="https://github.com/shingyusik/non-dimensional-number-calculator/commits/main/privacy.html">저장소의 변경 기록</a>에서 볼 수 있습니다. 영어 번역은 <a href="/en/privacy">Privacy Policy</a>에 있으며, 두 판의 내용이 다를 경우 한국어판을 기준으로 합니다.</p></section>
+<section aria-labelledby="p13"><h2 id="p13">12. 권익침해 구제방법</h2>
+<p>개인정보 침해에 관한 상담·신고나 분쟁조정이 필요하면 아래 기관에 문의할 수 있습니다.</p>
+<ul>
+<li>개인정보분쟁조정위원회: 전화 1833-6972, <a href="https://www.kopico.go.kr">www.kopico.go.kr</a></li>
+<li>개인정보침해신고센터(한국인터넷진흥원 운영): 국번 없이 118, <a href="https://privacy.kisa.or.kr">privacy.kisa.or.kr</a></li>
+<li>공소청(본청): 국번 없이 1301(유료), <a href="https://www.spo.go.kr">www.spo.go.kr</a>. 이 주소는 기존 대검찰청 누리집 주소이며, 2026년 10월 22일 확인 시 누리집과 1301 콜센터가 공소청 명칭으로 표시됩니다.</li>
+<li>경찰청 사이버범죄 신고시스템: 민원상담 182(유료), <a href="https://ecrm.police.go.kr">ecrm.police.go.kr</a>. 긴급신고 번호 112와는 다른 민원상담 번호입니다.</li>
+</ul></section>
+
+<section aria-labelledby="p12"><h2 id="p12">13. 방침의 변경</h2>
+<p>이 방침은 2026년 10월 22일부터 적용되며 2026년 1월에 게시한 영문 방침을 대체합니다. 2026년 10월 22일 판에서는 서비스별 보유 기간, 국외 이전 사항, 권익침해 구제방법을 추가했습니다. 방침을 바꾸면 이 페이지에 새 시행일과 함께 게시합니다. 이전 판은 <a href="https://github.com/shingyusik/non-dimensional-number-calculator/commits/main/privacy.html">저장소의 변경 기록</a>에서 볼 수 있습니다. 영어 번역은 <a href="/en/privacy">Privacy Policy</a>에 있으며, 두 판의 내용이 다를 경우 한국어판을 기준으로 합니다.</p></section>
 </main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>
 <script src="/guide.js?v=20261022" defer></script>
 </body></html>

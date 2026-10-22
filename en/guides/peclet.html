@@ -14,8 +14,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Péclet Number: formula, example and interpretation | Dimensionless Number Calculator</title>
-<meta name="description" content="Our Péclet calculator uses thermal diffusivity α. Work through Pe=10,000, learn to switch to a mass-transfer Pe, and see what values near 1 imply.">
+<meta name="description" content="Our Péclet calculator uses thermal diffusivity α. Work through Pe=13,937 for 20 °C water in a pipe, learn to switch to a mass-transfer Pe, and see what values near 1 imply.">
 <link rel="canonical" href="https://calctool.cc/en/guides/peclet">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/peclet"><link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/peclet">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/guides/peclet">
 <link rel="stylesheet" href="../../style.css?v=20261022">
 <link rel="stylesheet" href="../../guide.css?v=20261022">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
@@ -38,13 +40,73 @@
                 </svg>
             </button></div><p class="eyebrow">Method and interpretation</p><h1>Péclet Number</h1><p>See how to enter values, calculate a result, and check the limits of its interpretation.</p></header>
 <main>
-<section aria-labelledby="why"><h2 id="why">When is it useful?</h2><p>Péclet number compares transport by flow with transport by diffusion. This calculator asks for thermal diffusivity α, so it computes a heat-transfer Péclet number. A mass-transfer Péclet number would instead use the species diffusivity.</p></section>
-<section aria-labelledby="inputs"><h2 id="inputs">Formula and inputs</h2><div class="formula-box"><strong>Pe = vL / α</strong></div><p>Enter characteristic speed v in m/s, length L in m, and thermal diffusivity α in m²/s. The units of vL and α are both m²/s. Define the speed and length for the actual process being compared.</p><a class="guide-cta" href="/en/calculators/peclet">Open this calculator</a></section>
-<section aria-labelledby="example"><h2 id="example">Worked example</h2><div class="example-box"><p>For v = 0.01 m/s, L = 0.1 m, and α = 1×10⁻⁷ m²/s, Pe = 0.01 × 0.1 ÷ 1×10⁻⁷ = 10,000.</p></div></section>
-<section aria-labelledby="meaning"><h2 id="meaning">Interpreting the result</h2><p>The large value in this example indicates strong flow transport relative to thermal diffusion on the chosen length scale. Around Pe = 1, both effects can matter; no single cutoff applies universally.</p></section>
-<section aria-labelledby="caution"><h2 id="caution">Limits and cautions</h2><p>Boundary conditions and geometry still shape the actual temperature field. In turbulent flow, an effective diffusivity may be defined differently, so a molecular-only Pe does not equal total heat transfer.</p></section>
-<section aria-labelledby="related"><h2 id="related">Related dimensionless numbers</h2><p>Numbers that are often calculated or compared alongside this one.</p><ul><li><a href="/en/guides/prandtl">Prandtl number (Pr)</a>: With the same L, v and properties, the thermal Péclet number also equals Re × Pr.</li><li><a href="/en/guides/schmidt">Schmidt number (Sc)</a>: Using molecular diffusivity D instead of α gives the mass Péclet number, equal to Re × Sc.</li><li><a href="/en/guides/nusselt">Nusselt number (Nu)</a>: Pe compares advection with diffusion; the size of surface heat transfer is handled separately by Nu.</li></ul></section>
-<p class="source">Formula and concept reference: <a href="https://courses.ems.psu.edu/ce574/node/820" rel="noopener noreferrer">Penn State — Dimensionless numbers in transport</a>. We created the sample inputs and calculations for this guide.</p>
+<section aria-labelledby="why"><h2 id="why">What gets carried versus what spreads</h2>
+<p>Pe compares transport by the flow (advection) with spreading by molecular motion (diffusion). Over a length L with a temperature difference ΔT, advection carries roughly ρc<sub>p</sub>UΔT/L per unit volume and conduction roughly kΔT/L². Their ratio is UL/(k/ρc<sub>p</sub>) = UL/α, the coefficient that appears on the diffusion term of the dimensionless energy equation.</p>
+<p>As times: the flow crosses L in L/U, diffusion needs about L²/α, and their ratio is Pe. At Pe = 100 the flow crosses L a hundred times before heat diffuses across it once. For 20 °C water at 0.1 m/s and L = 10 mm, the transit time is 0.1 s and the diffusion time about 697 s.</p>
+<p>With the same U, L and properties, Pe<sub>h</sub> = Re × Pr; with a species diffusivity D in place of α, Pe<sub>m</sub> = Re × Sc. The calculator takes α as its third input, so it returns the thermal Pe unless you enter D.</p>
+</section>
+<section aria-labelledby="inputs"><h2 id="inputs">Choosing the diffusivity and the length</h2><div class="formula-box"><strong>Pe = vL / α</strong></div>
+<p>v is a representative speed (m/s), L the comparison length (m) and α = k/(ρc<sub>p</sub>) (m²/s); vL and α share units, so Pe has none. In a pipe, the diameter suits diffusion across the section and the pipe length suits spreading along the axis. Pe scales with L, so always state which L you used. In a 20 mm pipe, taking 2 m of length as L makes Pe 100 times the diameter-based value; both are correct answers to different questions.</p>
+<div class="table-wrap"><table><caption>Typical diffusivities and Pe at vL = 1×10⁻³ m²/s (for example 0.1 m/s × 10 mm)</caption><thead><tr><th scope="col">Fluid and diffusing quantity</th><th scope="col">Diffusivity [m²/s]</th><th scope="col">Pr or Sc</th><th scope="col">Pe at vL = 1×10⁻³ m²/s</th></tr></thead><tbody>
+<tr><th scope="row">Water 20 °C, heat</th><td>α = 1.435 × 10⁻⁷</td><td>Pr 6.981</td><td>6,968</td></tr>
+<tr><th scope="row">Water 60 °C, heat</th><td>α = 1.583 × 10⁻⁷</td><td>Pr 3.005</td><td>6,318</td></tr>
+<tr><th scope="row">Air 20 °C, 1 atm, heat</th><td>α = 2.142 × 10⁻⁵</td><td>Pr ≈ 0.71</td><td>46.7</td></tr>
+<tr><th scope="row">Dissolved oxygen in water 20 °C</th><td>D = 1.97 × 10⁻⁹</td><td>Sc ≈ 509</td><td>507,614</td></tr>
+</tbody></table></div>
+<p>Water α uses k, ρ and c<sub>p</sub> from IAEA Table 3.3 (saturated liquid, taken as low-pressure water). Air α uses k = 0.0258 W/(m·K) and c<sub>p</sub> = 1000 J/(kg·K) from IAEA Table 3.1 (98.1 kPa) with density scaled to 1 atm as an ideal gas, 1.2043 kg/m³. The oxygen value is Cornell's Wilke–Chang estimate (about ±10%). At equal vL, oxygen in water has over ten thousand times the Pe of heat in air.</p>
+<a class="guide-cta" href="/en/calculators/peclet">Open this calculator</a></section>
+<section aria-labelledby="example"><h2 id="example">Examples: water pipe, dissolved oxygen, groundwater column</h2>
+<section class="example" aria-labelledby="ex-water-tube"><h3 id="ex-water-tube">Example 1. Thermal Péclet number for 20 °C water in a pipe</h3>
+<p><strong>Given</strong>: an inner diameter of 20 mm and a mean velocity of 0.1 m/s are assumed operating conditions. Properties are the 20 °C values from IAEA Table 3.3: ρ = 998.2 kg/m³, μ = 1.0000×10⁻³ Pa·s, k = 0.5995 W/(m·K), c<sub>p</sub> = 4185 J/(kg·K), Pr = 6.981.</p>
+<p><strong>Unit conversion</strong>: L = 20 mm = 0.02 m. α = 0.5995 ÷ (998.2 × 4185) = 1.435 × 10⁻⁷ m²/s.</p>
+<p><strong>Calculation</strong>: Pe = 0.1 × 0.02 ÷ 1.435 × 10⁻⁷ = 13,937. As a check, Re = 998.2 × 0.1 × 0.02 ÷ 0.001 = 1,996.4, and multiplying by Pr gives 1,996.4 × 6.981 = 13,937, the same value.</p>
+<p><strong>Interpretation</strong>: the flow is laminar, yet advection dominates heat transport. The common laminar thermal entry-length estimate 0.05 × Re × Pr × D gives 0.05 × 13,937 × 0.02 = 13.9 m, so in a tube a few metres long the fully developed Nu = 3.66 underestimates heat transfer.</p>
+</section>
+<section class="example" aria-labelledby="ex-oxygen"><h3 id="ex-oxygen">Example 2. Mass Péclet number for dissolved oxygen in the same pipe</h3>
+<p><strong>Given</strong>: the same pipe and assumed velocity as Example 1, with the oxygen diffusivity in 20 °C water D = 1.97 × 10⁻⁹ m²/s (Cornell, Wilke–Chang estimate).</p>
+<p><strong>Calculation</strong>: Pe<sub>m</sub> = 0.1 × 0.02 ÷ 1.97 × 10⁻⁹ = 1.02 × 10⁶. Since Sc = ν/D = 1.0020×10⁻⁶ ÷ 1.97×10⁻⁹ ≈ 509, Re × Sc gives the same magnitude. The ratio to the thermal Pe is α/D = 72.8.</p>
+<p><strong>As a diffusion distance</strong>: 1 m takes 1 ÷ 0.1 = 10 s. Heat spreads about √(αt) = √(1.435×10⁻⁷ × 10) ≈ 1.20 mm, oxygen only √(Dt) ≈ 0.140 mm; both are small against the 10 mm radius, and the concentration layer stays much thinner.</p>
+<p><strong>Interpretation</strong>: the same flow gives Pe values about 73 times apart. Using the thermal Pe for mass transfer overstates diffusion. That is also why mass-transfer-limited devices, such as an oxygen-consuming biofilm or an electrode at the wall, need Sc in place of Pr in heat-transfer-style correlations.</p>
+</section>
+<section class="example" aria-labelledby="ex-column"><h3 id="ex-column">Example 3. Groundwater sand column with a Darcy velocity</h3>
+<p><strong>Given</strong>: column length L = 0.3 m, Darcy velocity u = 2×10⁻⁶ m/s, porosity φ = 0.4 and hydrodynamic dispersion coefficient D<sub>h</sub> = 1×10⁻⁸ m²/s, all assumed for illustration. The definition follows Penn State CE 574: Pe = Lu/(φD<sub>h</sub>).</p>
+<p><strong>Calculation</strong>: the advection time is τ<sub>a</sub> = φL/u = 0.4 × 0.3 ÷ 2×10⁻⁶ = 60,000 s (about 16.7 hours), and the dispersion time is τ<sub>d</sub> = L²/D<sub>h</sub> = 0.09 ÷ 1×10⁻⁸ = 9,000,000 s (about 104 days). Pe = τ<sub>d</sub>/τ<sub>a</sub> = 150.</p>
+<p><strong>Using the calculator</strong>: Darcy velocity is per total cross-section, so enter the pore velocity u/φ = 5×10⁻⁶ m/s as v and D<sub>h</sub> as α to get 150. Entering u gives a Pe smaller by φ, here 60.</p>
+<p><strong>Interpretation</strong>: Penn State notes that larger Pe means stronger advection and sharper breakthrough fronts. At 150 the front clearly moves with the flow, yet dispersive spreading remains measurable.</p>
+</section>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">What different Pe ranges tell you</h2>
+<ul>
+<li><strong>Pe ≪ 1</strong>: diffusion outruns the flow; the field is close to the pure conduction or diffusion solution.</li>
+<li><strong>Pe around 1</strong>: neither advection nor diffusion can be dropped.</li>
+<li><strong>Pe ≫ 1</strong>: diffusion survives only in thin layers at walls or fronts. MIT 3.185 derives δ<sub>T</sub>/x = 3.6/√Pe for a uniform velocity, so at Pe = 10,000 δ<sub>T</sub> is about 3.6% of x.</li>
+</ul>
+<p>The same notes list Pe as the test of whether a continuous-flow reactor behaves as plug flow or as a well-mixed tank (CSTR): large axial Pe means plug flow, small means strong axial mixing. Cutoffs such as 1, 10 or 100 depend on geometry and boundary conditions and are not universal.</p>
+</section>
+<section aria-labelledby="caution"><h2 id="caution">Where Péclet numbers are easy to misread</h2>
+<ul>
+<li><strong>Turbulence</strong>: eddy mixing can exceed molecular diffusion by orders of magnitude, so a molecular Pe says nothing about it; wall heat transfer still comes from Nu.</li>
+<li><strong>Porous media</strong>: mixing up Darcy and pore velocity, or diffusivity and dispersion coefficient, shifts Pe by a few times to orders of magnitude.</li>
+<li><strong>Local versus global</strong>: boundary layers use a local Pe<sub>x</sub> from the leading edge; a whole device uses its length. Do not compare the two directly.</li>
+<li><strong>Numerical grids</strong>: Penn State mentions L taken as the grid spacing. A large cell Pe can make central differencing oscillate, prompting upwinding or refinement; it measures discretisation quality, not physics.</li>
+</ul>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">Common questions about using the Péclet number</h2>
+<details><summary>For pipe flow, should L be the diameter or the pipe length?</summary><p>Use the diameter for how fast heat evens out across the radius, and the pipe length for whether axial conduction is negligible. Heat-exchanger correlations use diameter-based Re and Pr, so compare on that basis.</p></details>
+<details><summary>Re × Pr and vL/α give slightly different answers. Why?</summary><p>They are equal by definition; the gap is property rounding. Example 1 gives 13,937 both ways, but air's tabulated Pr 0.71 recomputes from μc<sub>p</sub>/k as 0.705, nearly 1% off. Compute Pr from one consistent property set.</p></details>
+<details><summary>In a groundwater problem, can I put the Darcy velocity straight into the v field?</summary><p>Under Penn State's Pe = Lu/(φD<sub>h</sub>), enter u/φ. In Example 3, entering u at porosity 0.4 gives 60 instead of 150. Some texts define u as pore velocity already, so check. Putting a molecular diffusivity where a dispersion coefficient belongs is another common slip that inflates Pe.</p></details>
+<details><summary>Is the Péclet number still meaningful in turbulent flow?</summary><p>A molecular Pe still compares fluids and flows but not actual mixing. Turbulent mixing needs an effective diffusivity from an eddy viscosity, which depends on the turbulence model.</p></details>
+<details><summary>Above what Pe can diffusion be neglected?</summary><p>No single value. At large Pe diffusion may be negligible in the bulk, but it controls transfer in the wall layer; even at 13,937 in Example 1 heat reaches the wall by conduction.</p></details>
+</section>
+<section aria-labelledby="related"><h2 id="related">Related dimensionless numbers</h2><p>These numbers multiply into Pe or are read beside it.</p><ul><li><a href="/en/guides/prandtl">Prandtl number (Pr)</a>: dividing the thermal Pe by Re leaves Pr, so checking both quickly reveals a wrong property input.</li><li><a href="/en/guides/schmidt">Schmidt number (Sc)</a>: the mass Pe equals Re × Sc, and with Sc in the hundreds to thousands for liquids it ends up far above the thermal Pe.</li><li><a href="/en/guides/nusselt">Nusselt number (Nu)</a>: Pe only compares transport inside the fluid; the heat actually delivered at a wall comes from Nu and the heat-transfer coefficient.</li></ul></section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">References</h2><ul>
+<li>Penn State CE 574: <a href="https://courses.ems.psu.edu/ce574/node/820" rel="noopener noreferrer">6.6 Dimensionless Numbers</a>. Porous-media Pe = Lu/(φD<sub>h</sub>) with Darcy velocity; grid-spacing L; sharper fronts at large Pe</li>
+<li>Michigan Technological University: <a href="https://pages.mtu.edu/~fmorriso/cm3120/lectures/2021_CM3120_module2_6alectureIV.pdf" rel="noopener noreferrer">CM3120 Module 2 Lecture IV</a>. Pe = Re × Pr and Pe = Re × Sc as convective-to-diffusive rate ratios</li>
+<li>MIT OpenCourseWare (3.185): <a href="https://ocw.mit.edu/courses/3-185-transport-phenomena-in-materials-engineering-fall-2003/a55c74dc21def01fc0054de35574d1e5_3_21.pdf" rel="noopener noreferrer">Transport Phenomena in Materials Engineering</a>. Derivation of δ<sub>T</sub>/x = 3.6/√Pe, Pe as the plug-flow versus CSTR criterion</li>
+<li>CFD Direct: <a href="https://doc.cfd.direct/notes/cfd-general-principles/scale-similarity" rel="noopener noreferrer">Notes on CFD: Scale Similarity</a>. Pe in the dimensionless energy equation and Pe = Re × Pr</li>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering</a>. Tables 3.1 (dry air) and 3.3 (saturated water)</li>
+<li>Cornell University: <a href="https://www.compost.css.cornell.edu/oxygen/oxygen.diff.water.html" rel="noopener noreferrer">Calculating the Oxygen Diffusion Coefficient in Water</a>. Oxygen diffusivity in 20 °C water, 1.97×10⁻⁹ m²/s (Wilke–Chang estimate)</li>
+</ul></section>
 <nav aria-label="Other guides"><a href="/">All calculators</a><a href="/en/guides/strouhal">Next: Strouhal Number</a><a href="/en/guides/pipe-flow">Cross-check Re, Pr and Pe for pipe flow</a></nav>
 <nav aria-label="Theory in depth"><a href="/en/guides/transport-scales">Thermal and mass diffusion: the distinct roles of Pr, Sc, Pe and Nu</a></nav>
 </main><footer><p class="footer-links"><a href="/">Home</a> · <a href="/en/guides/">Guides</a> · <a href="/en/about">About</a> · <a href="/en/contact">Contact</a> · <a href="/en/privacy">Privacy Policy</a> · <a href="/en/terms">Terms of Use</a></p><p>© 2026 Dimensionless Number Calculator · calctool.cc</p></footer>

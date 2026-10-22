@@ -15,8 +15,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>슈미트 수 계산법·예제·해석 | 무차원수 계산기</title>
 <meta name="description" content="물속 용질처럼 D=1×10⁻⁹ m²/s일 때 Sc가 1000이 되는 계산 과정과, 분자 확산 계수와 난류 확산 계수를 섞으면 안 되는 이유.">
-<meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://calctool.cc/guides/schmidt">
+<link rel="alternate" hreflang="ko" href="https://calctool.cc/guides/schmidt"><link rel="alternate" hreflang="en" href="https://calctool.cc/en/guides/schmidt">
+<link rel="alternate" hreflang="x-default" href="https://calctool.cc/guides/schmidt">
 <link rel="stylesheet" href="../style.css?v=20261022">
 <link rel="stylesheet" href="../guide.css?v=20261022">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9649208039336516" crossorigin="anonymous"></script>
@@ -39,13 +40,72 @@
                 </svg>
             </button></div><p class="eyebrow">계산 방법과 해석</p><h1>슈미트 수 <small>(Schmidt Number)</small></h1><p>공식에 값을 넣는 방법과 결과를 읽을 때 확인할 조건을 정리했습니다.</p></header>
 <main>
-<section aria-labelledby="why"><h2 id="why">언제 쓰나요?</h2><p>운동량 확산율과 물질의 분자 확산율을 비교합니다. 용질이 흐르는 물속에서 퍼지거나 기체 성분이 이동하는 문제에서 프란틀 수의 질량전달 대응물로 사용합니다.</p></section>
-<section aria-labelledby="inputs"><h2 id="inputs">공식과 입력값</h2><div class="formula-box"><strong>Sc = μ / (ρD)</strong></div><p>μ는 점성 계수(Pa·s), ρ는 유체 밀도(kg/m³), D는 관심 성분의 분자 확산 계수(m²/s)입니다. μ/ρ가 운동 점성 계수 ν이므로 Sc = ν/D로도 쓸 수 있습니다. D는 어떤 성분이 어떤 매질에서 확산하는지에 따라 달라집니다.</p><a class="guide-cta" href="/calculators/schmidt">이 값으로 계산하기</a></section>
-<section aria-labelledby="example"><h2 id="example">직접 계산한 예제</h2><div class="example-box"><p>μ = 0.001 Pa·s, ρ = 1000 kg/m³, D = 1×10⁻⁹ m²/s라면 Sc = 0.001 ÷ (1000 × 1×10⁻⁹) = 1000입니다.</p></div></section>
-<section aria-labelledby="meaning"><h2 id="meaning">결과는 어떻게 읽나요?</h2><p>이 예시에서 운동량 확산율은 입력한 성분의 분자 확산율보다 1000배 큽니다. 이 비는 질량전달 문제를 비교하는 지표이며 실제 농도 분포나 전달량 자체는 아닙니다.</p></section>
-<section aria-labelledby="caution"><h2 id="caution">적용할 때 주의할 점</h2><p>확산 계수는 성분·매질·온도에 맞는 자료를 사용하세요. 분자 확산 계수와 난류 확산 계수를 같은 D로 섞으면 물리적 의미가 바뀝니다.</p></section>
-<section aria-labelledby="related"><h2 id="related">관련 무차원수</h2><p>이 무차원수와 함께 계산하거나 비교하는 경우가 많은 수입니다.</p><ul><li><a href="/guides/prandtl">프란틀 수 (Pr)</a>: Sc는 열전달의 Pr에 대응하며, α 대신 D를 쓴다는 점만 다릅니다.</li><li><a href="/guides/peclet">페클레 수 (Pe)</a>: 같은 L·v·물성이면 물질 페클레 수는 Re × Sc입니다.</li><li><a href="/guides/nusselt">누셀트 수 (Nu)</a>: 열전달에서 Nu와 Pr을 함께 보듯, 물질전달 상관식에서는 Sc가 함께 쓰입니다.</li></ul></section>
-<p class="source">공식·개념 확인: <a href="https://cran.r-project.org/web/packages/marelac/refman/marelac.html" rel="noopener noreferrer">CRAN — marelac reference manual, Schmidt number</a>. 예제의 입력값과 계산 과정은 이 사이트에서 설명을 위해 구성했습니다.</p>
+<section aria-labelledby="why"><h2 id="why">슈미트 수가 비교하는 두 가지 확산</h2>
+<p>슈미트 수는 운동량 확산율(동점성 계수 ν)과 어떤 성분의 분자 확산 계수 D를 비교합니다. MIT 3.185 강의 자료는 ν/D를 물질전달 프란틀 수라고 부르고, 이 값을 슈미트 수라고도 한다고 설명합니다. 열전달의 Pr = ν/α에서 열확산 계수 α 자리에 D를 넣은 형태입니다.</p>
+<p>Michigan Tech CM3120 강의 자료는 Pr, Sc, Le가 확산 계수 ν, α, D의 크기를 비교하는 물성의 비라고 정리하고, Sc = Le·Pr, 물질 페클레 수 Pe = Re·Sc 관계를 제시합니다. 따라서 Sc는 흐름 속도나 크기와 상관없이 성분과 용매, 온도가 정해지면 결정되는 값입니다. MIT 3.185 자료는 액체 속 물질전달 프란틀 수가 예외 없이 1보다 훨씬 크다고 설명합니다. 용질의 분자 확산이 점성에 의한 운동량 전달보다 훨씬 느리기 때문입니다.</p>
+</section>
+<section aria-labelledby="inputs"><h2 id="inputs">입력값: 용매 물성과 성분 쌍의 확산 계수</h2>
+<div class="formula-box"><strong>Sc = μ / (ρD) = ν / D</strong></div>
+<p>μ는 용매(매질)의 점성 계수(Pa·s), ρ는 용매의 밀도(kg/m³), D는 관심 성분이 그 용매 안에서 갖는 분자 확산 계수(m²/s)입니다. D는 한 물질의 고유값이 아니라 '어떤 성분이 어떤 매질 속에서' 확산하는지로 정해지는 쌍의 물성입니다. 자료가 cm²/s 단위라면 10⁻⁴를 곱해 m²/s로 바꿉니다. 예를 들어 Cornell 자료의 0.0000197 cm²/s는 1.97×10⁻⁹ m²/s입니다.</p>
+<p>계산기 기본값 μ = 0.001 Pa·s, ρ = 1000 kg/m³, D = 1×10⁻⁹ m²/s를 넣으면 Sc = 0.001 ÷ (1000 × 1×10⁻⁹) = 1000이 나옵니다. 물속 작은 용질을 대략 나타낸 값이며, 실제 성분과 온도가 정해지면 아래 예제처럼 출처가 있는 물성으로 바꿔 넣습니다.</p>
+<a class="guide-cta" href="/calculators/schmidt">이 값으로 계산하기</a></section>
+<section aria-labelledby="magnitude"><h2 id="magnitude">물과 공기에서 본 Sc와 Pr의 크기</h2>
+<p>아래 표에서 ν와 Pr은 IAEA 물성표, D는 Cornell 자료에서 가져왔고, Sc = ν/D는 이 사이트에서 계산했습니다. 해수 속 CO₂ 값은 CRAN marelac 문서의 예제 출력입니다.</p>
+<div class="table-wrap"><table><caption>성분·용매 조합별 확산 계수와 슈미트 수, 같은 용매의 프란틀 수</caption><thead><tr><th scope="col">성분과 용매, 온도</th><th scope="col">ν (m²/s)</th><th scope="col">D (m²/s)</th><th scope="col">Sc = ν/D</th><th scope="col">용매 Pr</th></tr></thead><tbody>
+<tr><td>산소, 물, 20 °C</td><td>1.0020 × 10⁻⁶</td><td>1.97 × 10⁻⁹</td><td>508.6</td><td>6.981</td></tr>
+<tr><td>산소, 물, 60 °C</td><td>4.757 × 10⁻⁷</td><td>4.82 × 10⁻⁹</td><td>98.69</td><td>3.005</td></tr>
+<tr><td>산소, 질소(공기 근사), 20 °C, 1 atm</td><td>1.5104 × 10⁻⁵</td><td>2.19 × 10⁻⁵</td><td>0.690</td><td>약 0.71</td></tr>
+<tr><td>CO₂, 해수(염분 35), 20 °C</td><td>표에 없음</td><td>표에 없음</td><td>약 660</td><td>표에 없음</td></tr>
+</tbody></table></div>
+<p>같은 물에서 Pr은 약 7인데 산소의 Sc는 500을 넘습니다. 열은 물속에서 비교적 빨리 퍼지지만 녹은 기체는 훨씬 느리게 퍼진다는 뜻입니다. 반대로 기체 혼합물에서는 분자 확산 계수가 동점성 계수와 같은 자릿수라서 Sc가 1 안팎에 머뭅니다.</p>
+</section>
+<section aria-labelledby="example"><h2 id="example">용존 산소와 기체 산소로 계산한 예제</h2>
+<section class="example" aria-labelledby="ex-o2-20"><h3 id="ex-o2-20">예제 1. 20 °C 물속 용존 산소</h3>
+<p><strong>주어진 값:</strong> 20 °C 물의 μ = 1.0000×10⁻³ Pa·s, ρ = 998.2 kg/m³, ν = 1.0020×10⁻⁶ m²/s, Pr = 6.981입니다(IAEA 표 3.3, 포화액 값을 저압 액체 근사로 사용). 산소의 확산 계수는 0.0000197 cm²/s, 즉 1.97×10⁻⁹ m²/s입니다(Cornell, Wilke–Chang 추정값).</p>
+<p><strong>계산:</strong> 계산기에 μ, ρ, D를 넣으면 Sc = 1.0000×10⁻³ ÷ (998.2 × 1.97×10⁻⁹) = 508.5입니다. 표의 ν로 직접 나누면 1.0020×10⁻⁶ ÷ 1.97×10⁻⁹ = 508.6으로, 반올림 차이만 있습니다.</p>
+<p><strong>Pr과 비교:</strong> Sc/Pr = 508.5 / 6.981 = 72.84이므로 열확산 계수가 산소 확산 계수보다 약 73배 큽니다. MIT 3.185 자료는 Pr이 큰 층류 평판 경계층에서 속도 경계층과 열경계층 두께의 비를 δ<sub>u</sub>/δ<sub>T</sub> = 0.975 Pr<sup>1/3</sup>로 제시합니다. 같은 식을 물질전달에 대응시키면 δ<sub>u</sub>/δ<sub>c</sub> = 0.975 × 508.5<sup>1/3</sup> = 7.78이고, 열경계층에서는 0.975 × 6.981<sup>1/3</sup> = 1.86입니다. 농도 경계층은 열경계층보다 약 4.2배 얇습니다.</p>
+<p><strong>불확도:</strong> Cornell 자료는 Wilke–Chang 식이 묽은 비해리성 용질에서 대개 ±10% 이내라고 설명합니다. D가 ±10% 달라지면 Sc는 462~565 범위가 됩니다.</p>
+</section>
+<section class="example" aria-labelledby="ex-o2-60"><h3 id="ex-o2-60">예제 2. 60 °C로 데운 물에서 같은 계산</h3>
+<p><strong>주어진 값:</strong> 60 °C 물의 μ = 4.677×10⁻⁴ Pa·s, ρ = 983.2 kg/m³, ν = 4.757×10⁻⁷ m²/s, Pr = 3.005(IAEA 표 3.3), 산소의 D = 4.82×10⁻⁹ m²/s(Cornell)입니다.</p>
+<p><strong>계산:</strong> Sc = 4.677×10⁻⁴ ÷ (983.2 × 4.82×10⁻⁹) = 98.69입니다. 20 °C의 508.5보다 5.15배 작습니다. 온도가 오르면서 D는 2.45배 커지고 ν는 2.11배 작아졌기 때문에 두 효과가 곱해져 Sc가 크게 줄었습니다.</p>
+<p><strong>해석:</strong> δ<sub>u</sub>/δ<sub>c</sub> = 0.975 × 98.69<sup>1/3</sup> = 4.51로, 농도 경계층이 여전히 속도 경계층보다 얇습니다. 온도가 다른 두 조건에서 물질전달 상관식을 쓸 때 Sc를 한 온도 값으로 고정하면 결과가 크게 틀릴 수 있습니다. 물성은 경계층의 대표 온도에서 다시 구합니다. 벽면 온도와 주류 온도가 크게 다르면 두 온도에서 Sc를 각각 계산해 결과가 얼마나 달라지는지 확인해 두는 편이 좋습니다.</p>
+</section>
+<section class="example" aria-labelledby="ex-o2-air"><h3 id="ex-o2-air">예제 3. 20 °C 공기 속 산소</h3>
+<p><strong>주어진 값:</strong> Cornell의 기체 확산 자료는 대기압·20 °C에서 산소-질소 쌍의 D를 0.219 cm²/s로 제시합니다. 이 예제에서는 공기를 질소로 근사해 D = 2.19×10⁻⁵ m²/s를 씁니다. 공기의 ν는 IAEA 표 3.1의 μ = 1.819×10⁻⁵ Pa·s와, 98.1 kPa 밀도 1.166 kg/m³를 1 atm으로 이상기체 비례 환산한 ρ = 1.2043 kg/m³로 계산한 1.5104×10⁻⁵ m²/s입니다.</p>
+<p><strong>계산:</strong> Sc = 1.5104×10⁻⁵ ÷ 2.19×10⁻⁵ = 0.690입니다. 같은 20 °C에서 기체 속 D는 물속 D의 약 11,117배(2.19×10⁻⁵ / 1.97×10⁻⁹)입니다. 같은 산소 분자라도 공기 속에서는 물속보다 1만 배 이상 빨리 퍼진다는 뜻이며, 이 차이가 액체와 기체의 Sc 자릿수를 가릅니다.</p>
+<p><strong>해석:</strong> Sc가 공기의 Pr(약 0.71)과 비슷하므로 산소 농도 경계층과 열경계층 두께도 비슷합니다. MIT 3.185 자료의 두께비 식은 Pr이 약 0.6 이상일 때 쓸 만하다고 되어 있어 이 조건에도 적용할 수 있습니다. 0.975 × 0.690<sup>1/3</sup> = 0.862이므로 농도 경계층이 속도 경계층보다 조금 두껍습니다.</p>
+</section>
+</section>
+<section aria-labelledby="meaning"><h2 id="meaning">Sc ≫ 1이 농도 경계층과 격자에 주는 의미</h2>
+<p>Sc가 수백인 액체 물질전달에서는 농도 변화가 벽 근처의 매우 얇은 층에 몰립니다. 예제 1에서 농도 경계층 두께는 층류 속도 경계층의 약 1/8입니다. 속도장을 기준으로 맞춘 CFD 격자가 농도 기울기를 충분히 분해하지 못하는 경우가 생기는 이유입니다. 벽면 물질전달률이 결과의 핵심이라면 첫 격자 높이를 농도 경계층 기준으로 다시 점검합니다.</p>
+<p>난류에서는 사정이 조금 다릅니다. MIT 3.185 자료는 난류 에디가 열과 용질을 운동량과 거의 같은 정도로 옮기므로 난류 점성 계수와 난류 확산 계수의 비 ν<sub>t</sub>/D<sub>t</sub>가 1에 매우 가깝다고 설명합니다. 난류 핵심부에서는 분자 Sc가 크게 작용하지 않지만, 난류가 약해지는 벽 바로 옆에서는 분자 Sc가 물질전달 저항을 좌우합니다.</p>
+<p>해양학에서는 해수면 기체 교환을 계산할 때 Sc를 씁니다. CRAN marelac의 gas_schmidt 함수는 염분 35, 수온 0~30 °C 해수에서 여러 기체의 Sc를 추정하고, 20 °C CO₂의 Sc를 약 660으로 출력합니다. gas_transfer 함수는 해수면 10 m 높이 풍속과 이 Sc를 입력으로 받아 기체 전달 속도(m/s)를 계산합니다.</p>
+</section>
+<section aria-labelledby="caution"><h2 id="caution">확산 계수 자료를 쓸 때 확인할 점</h2>
+<ul>
+<li>분자 확산 계수와 난류 확산 계수를 섞지 않습니다. 난류 혼합을 나타내는 값을 D에 넣으면 Sc는 분자 물성의 비가 아니게 되고, 위 예제의 경계층 두께 해석도 의미를 잃습니다.</li>
+<li>Wilke–Chang 같은 추정식은 묽은 비해리성 용질을 전제로 합니다. 진한 용액이나 이온성 용질에는 측정값이나 그 계에 맞는 자료를 찾습니다.</li>
+<li>μ와 ρ는 성분이 녹아 있는 용매의 값입니다. 해수는 염분 때문에 담수와 물성이 다르므로, marelac처럼 해수 조건으로 만든 자료를 담수 계산에 그대로 옮기지 않습니다.</li>
+<li>IAEA 표 3.3의 물 물성은 포화액 값입니다. 대기압 근처 액체에 근사로 쓸 수 있지만 고압 조건이라면 조건에 맞는 자료를 확인합니다.</li>
+<li>기체의 D는 압력에 반비례하는 경향이 있습니다. Cornell 기체 확산 자료도 압력이 높아지면 확산이 느려진다고 설명하므로, 1 atm 값을 고압 공정에 쓸 때는 압력 보정이 필요합니다.</li>
+</ul>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">슈미트 수 계산에서 자주 묻는 질문</h2>
+<details><summary>같은 물인데 Pr은 7 정도이고 산소의 Sc는 500이 넘는 이유는 무엇인가요?</summary><p>두 수의 분자는 같은 ν이고 분모만 다릅니다. 20 °C 물에서 열확산 계수는 산소 확산 계수보다 약 73배 크므로(예제 1의 Sc/Pr = 72.84) Sc가 Pr보다 그만큼 커집니다. 이 비 α/D가 Lewis 수이며, Michigan Tech 자료의 Sc = Le·Pr 관계와 같습니다.</p></details>
+<details><summary>기체 혼합물의 Sc는 왜 1 근처에 모이나요?</summary><p>기체에서는 운동량과 성분 분자가 모두 분자의 열운동으로 옮겨지므로 ν와 D가 같은 자릿수입니다. 예제 3의 공기 속 산소는 ν = 1.5104×10⁻⁵ m²/s, D = 2.19×10⁻⁵ m²/s로 Sc = 0.690입니다. 액체에서는 분자 확산만 크게 느려져 Sc가 수백 이상이 됩니다.</p></details>
+<details><summary>CFD에서 입력하는 난류 슈미트 수와 이 계산기의 Sc는 같은 값인가요?</summary><p>다릅니다. 이 계산기의 Sc는 분자 점성과 분자 확산의 비입니다. 난류 슈미트 수는 난류 모델이 만든 난류 점성과 난류 확산의 비이며, MIT 3.185 자료는 그 값이 1에 매우 가깝다고 설명합니다. 해석 프로그램에서는 두 값을 따로 입력하고, 벽 근처 물질전달은 분자 Sc가 좌우합니다.</p></details>
+<details><summary>해수면 기체 교환을 계산할 때 Sc가 왜 필요한가요?</summary><p>기체 전달 속도는 풍속뿐 아니라 그 기체가 물속에서 얼마나 빨리 확산하는지에 따라 달라집니다. CRAN marelac의 gas_transfer 함수는 10 m 높이 풍속과 Sc를 함께 받아 전달 속도를 계산하고, Sc를 직접 넣으면 기체 종류와 온도 인수보다 그 값을 우선합니다.</p></details>
+</section>
+<section aria-labelledby="related"><h2 id="related">관련 무차원수</h2><p>Sc로 용매와 성분의 확산 성질을 정한 뒤, 실제 흐름에서 물질전달 크기를 구할 때 이어서 쓰는 수입니다.</p><ul><li><a href="/guides/prandtl">프란틀 수 (Pr)</a>: 같은 용매의 Pr과 Sc를 나란히 놓으면 열경계층과 농도 경계층의 상대 두께를 비교할 수 있습니다.</li><li><a href="/guides/peclet">페클레 수 (Pe)</a>: 유속과 길이를 정하면 Re에 Sc를 곱해 대류와 분자 확산의 비를 구합니다.</li><li><a href="/guides/nusselt">누셀트 수 (Nu)</a>: 열전달 상관식의 Pr 자리에 Sc를 넣은 물질전달 대응식으로 셔우드 수와 물질전달 계수를 구합니다.</li></ul></section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">참고 자료</h2><ul>
+<li>MIT OpenCourseWare 3.185: <a href="https://ocw.mit.edu/courses/3-185-transport-phenomena-in-materials-engineering-fall-2003/a55c74dc21def01fc0054de35574d1e5_3_21.pdf" rel="noopener noreferrer">Transport Phenomena in Materials Engineering</a>. ν/D를 물질전달 프란틀 수(슈미트 수)로 부르는 정의, 액체에서 매우 크다는 설명, δ<sub>u</sub>/δ<sub>T</sub> = 0.975 Pr<sup>1/3</sup>, 난류 ν<sub>t</sub>/D<sub>t</sub> ≈ 1</li>
+<li>Michigan Technological University: <a href="https://pages.mtu.edu/~fmorriso/cm3120/lectures/2021_CM3120_module2_6alectureIV.pdf" rel="noopener noreferrer">CM3120 Module 2 Lecture IV (F. Morrison)</a>. Pr·Sc·Le가 확산 계수의 비라는 설명, Sc = Le·Pr, Pe = Re·Sc</li>
+<li>Cornell University: <a href="https://www.compost.css.cornell.edu/oxygen/oxygen.diff.water.html" rel="noopener noreferrer">Calculating the Oxygen Diffusion Coefficient in Water</a>. 물속 산소 D 20 °C 0.0000197 cm²/s, 60 °C 0.0000482 cm²/s, Wilke–Chang ±10%</li>
+<li>Cornell University: <a href="https://www.compost.css.cornell.edu/oxygen/oxygen.diff.air.html" rel="noopener noreferrer">Calculating the Oxygen Diffusion Coefficient in Air</a>. 대기압 20 °C 산소-질소 D = 0.219 cm²/s, 압력이 높아지면 확산이 느려진다는 설명</li>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering (2008)</a>. 표 3.3 포화수 20 °C·60 °C 물성, 표 3.1 건조 공기 20 °C 물성</li>
+<li>CRAN: <a href="https://cran.r-project.org/web/packages/marelac/refman/marelac.html" rel="noopener noreferrer">marelac reference manual</a>. gas_schmidt(염분 35, 0~30 °C)와 20 °C CO₂ 예제 출력 약 660, gas_transfer의 풍속·Sc 입력. 이 페이지의 식은 MIT·Michigan Tech 자료의 Sc = μ/(ρD)를 따릅니다</li>
+</ul></section>
 <nav aria-label="다른 해설"><a href="/">전체 계산기</a><a href="/guides/peclet">다음: 페클레 수</a><a href="/guides/pipe-flow">관 유동에서 Re·Pr·Pe를 함께 검산하기</a></nav>
 <nav aria-label="이론 심화"><a href="/guides/transport-scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a></nav>
 </main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>

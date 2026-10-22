@@ -58,35 +58,67 @@
 <noscript><p>이 계산기는 브라우저의 JavaScript로 계산합니다. JavaScript가 꺼져 있으면 위 공식에 직접 값을 넣어 계산해 주세요.</p></noscript>
 <p class="source">입력값은 이 페이지 안에서 브라우저가 계산하며, 운영자가 따로 받거나 저장하지 않습니다.</p>
 </section>
-<section aria-labelledby="meaning"><h2 id="meaning">이송과 확산을 시간으로 비교하기</h2>
-<p>Pe = vL/α는 두 시간의 비로 읽으면 이해하기 쉽습니다. 흐름이 길이 L을 지나가는 이송 시간은 L/v이고, 같은 길이를 확산으로 퍼지는 데 걸리는 시간 척도는 L²/α입니다. 확산 시간을 이송 시간으로 나누면 vL/α가 됩니다. Pe가 1보다 훨씬 크면 열이 퍼지기 전에 흐름에 실려 가고, 훨씬 작으면 흐름보다 확산이 빠릅니다.</p>
-<p>관 유동 노트의 예에서는 이송 시간 0.05 s, 확산 시간 700 s로 그 비가 14000입니다. 이 시간들은 선택한 L로 만든 척도이며 실제 가열 시간을 예측한 값은 아닙니다.</p>
+<section aria-labelledby="meaning"><h2 id="meaning">결과를 두 시간의 비로 읽기</h2>
+<p>계산 결과는 확산 시간 L²/α를 이송 시간 L/v로 나눈 값입니다. 아래 예제 1의 60 °C 물을 보면 지름 15 mm를 0.5 m/s로 지나는 이송 시간은 0.03 s이고, 같은 지름을 열이 확산으로 가로지르는 시간 척도는 약 1,421 s입니다. 두 시간의 비가 곧 Pe = 47,378입니다. 이 시간들은 선택한 L로 만든 척도일 뿐, 실제로 유체가 데워지는 데 걸리는 시간을 예측한 값은 아닙니다.</p>
+<p>결과 문구는 Pe가 클수록 이송 효과가 상대적으로 크다는 방향만 알려 줍니다. 층류·난류처럼 구간을 나누어 표시하지 않는 이유는 Pe에 모든 문제에 통하는 경계값이 없기 때문입니다.</p>
 </section>
 <section aria-labelledby="variables"><h2 id="variables">변수와 SI 단위</h2>
 <div class="table-wrap"><table><caption>페클레 수 계산기의 입력 변수</caption><thead><tr><th scope="col">기호</th><th scope="col">의미</th><th scope="col">SI 단위</th><th scope="col">예제 값</th></tr></thead><tbody>
 <tr><th scope="row">v</th><td>분석하는 길이를 따라 흐르는 대표 속도</td><td>m/s</td><td>0.01</td></tr>
 <tr><th scope="row">L</th><td>이송과 확산을 비교할 길이</td><td>m</td><td>0.1</td></tr>
 <tr><th scope="row">α</th><td>α = k/(ρcₚ)</td><td>m²/s</td><td>1e-7</td></tr>
-</tbody></table></div></section>
+</tbody></table></div>
+<p>‘예제 값 채우기’ 버튼은 v = 0.01 m/s, L = 0.1 m, α = 1×10⁻⁷ m²/s를 넣고 Pe = 10,000을 돌려줍니다. 입력 방식을 확인하기 위한 값이며 특정 장치를 나타내지는 않습니다.</p></section>
 <section aria-labelledby="units"><h2 id="units">α를 직접 모를 때</h2>
 <ul>
-<li>α는 k/(ρcₚ)로 구합니다. 관 유동 노트의 물 예제는 0.6 ÷ (1000 × 4200) ≈ 1.43×10⁻⁷ m²/s입니다.</li>
-<li>mm²/s 단위의 자료라면 10⁻⁶을 곱해 m²/s로 바꿉니다.</li>
-<li>같은 L, v, 물성을 쓴다면 레이놀즈 수와 프란틀 수를 곱해도 같은 값이 나오므로 검산에 활용할 수 있습니다.</li>
+<li>물성표에 k, ρ, cₚ만 있다면 α = k/(ρcₚ)로 계산해서 넣습니다. IAEA 표 3.3의 60 °C 포화수 값으로는 0.6510 ÷ (983.2 × 4183) = 1.583 × 10⁻⁷ m²/s입니다.</li>
+<li>입력 칸은 지수 표기를 받으므로 1.583e-7처럼 적으면 됩니다. mm²/s 단위 자료는 10⁻⁶을 곱해 m²/s로 바꿉니다.</li>
+<li>Re와 Pr을 이미 계산했다면 두 값을 곱한 결과와 이 계산기 결과를 비교해 입력 실수를 찾을 수 있습니다. 두 결과가 1% 이상 어긋나면 물성 출처나 단위가 섞였는지 확인합니다.</li>
 <li>v와 L은 비교하려는 방향과 길이에 맞춰 고릅니다. 관 단면을 가로지르는 확산을 보려면 지름, 관 길이 방향의 이송을 보려면 관 길이가 더 적절할 수 있습니다.</li>
 </ul>
 </section>
 <section aria-labelledby="mass"><h2 id="mass">물질 페클레 수로 쓰는 법</h2>
-<p>α 칸에 관심 성분의 분자 확산 계수 D(m²/s)를 넣으면 vL/D, 즉 물질 페클레 수가 계산됩니다. 이 값은 레이놀즈 수와 슈미트 수의 곱과 같습니다. 이때 결과 해석 문장의 ‘열확산’은 ‘물질 확산’으로 바꿔 읽으면 됩니다. 액체 속 D는 열확산 계수보다 훨씬 작은 경우가 많아 같은 흐름에서도 물질 페클레 수가 크게 나옵니다.</p>
+<p>α 칸에 관심 성분의 분자 확산계수 D(m²/s)를 넣으면 vL/D, 즉 물질 페클레 수가 계산됩니다. 이 값은 레이놀즈 수와 슈미트 수의 곱과 같습니다. 이때 결과 해석 문장의 ‘열확산’은 ‘물질 확산’으로 바꿔 읽으면 됩니다. 20 °C 물 속 산소 확산계수는 1.97 × 10⁻⁹ m²/s(Cornell, Wilke–Chang 추정)로 같은 온도 물의 α보다 약 73배 작으므로, 같은 흐름에서 물질 Pe가 그만큼 크게 나옵니다.</p>
+</section>
+<section aria-labelledby="calc-examples"><h2 id="calc-examples">계산기 입력 예제</h2>
+<section class="example" aria-labelledby="ex-hx-tube"><h3 id="ex-hx-tube">예제 1. 60 °C 물이 흐르는 열교환기 관</h3>
+<p><strong>입력 조건</strong>: 관 안지름 15 mm와 유속 0.5 m/s는 가정한 운전 조건입니다. 물성은 IAEA 표 3.3의 60 °C 포화수 값(ρ = 983.2 kg/m³, μ = 4.677×10⁻⁴ Pa·s, k = 0.6510 W/(m·K), cₚ = 4183 J/(kg·K), Pr = 3.005)이며, 저압 액체의 근사값으로 씁니다.</p>
+<p><strong>계산기 입력</strong>: v = 0.5, L = 0.015, α = 1.583e-7을 넣으면 Pe = 47,378이 나옵니다.</p>
+<p><strong>교차 확인</strong>: Re = 983.2 × 0.5 × 0.015 ÷ 4.677×10⁻⁴ = 15,767이고, 여기에 Pr = 3.005를 곱하면 47,378로 일치합니다.</p>
+<p><strong>판단</strong>: Re로 보아 난류 영역이므로, 이 Pe는 분자 확산 기준의 비교값입니다. 관 벽 열전달은 이 값이 아니라 난류 열전달 상관식으로 구한 누셀트 수로 계산합니다.</p>
+</section>
+<section class="example" aria-labelledby="ex-air-duct"><h3 id="ex-air-duct">예제 2. 20 °C 공기 덕트에서 Pe와 Re 비교</h3>
+<p><strong>입력 조건</strong>: 대표 길이 0.2 m와 풍속 2 m/s는 가정값입니다. 공기 물성은 IAEA 표 3.1의 k = 0.0258 W/(m·K), cₚ = 1000 J/(kg·K)를 쓰고, 표의 98.1 kPa 밀도를 1 atm으로 이상기체 비례 환산한 1.2043 kg/m³를 씁니다. 그러면 α = 0.0258 ÷ (1.2043 × 1000) = 2.142 × 10⁻⁵ m²/s입니다.</p>
+<p><strong>계산기 입력</strong>: v = 2, L = 0.2, α = 2.142e-5를 넣으면 Pe = 18,674입니다.</p>
+<p><strong>교차 확인</strong>: 1 atm 환산 동점성계수 1.5104×10⁻⁵ m²/s로 Re = 2 × 0.2 ÷ 1.5104×10⁻⁵ = 26,483입니다. 같은 물성으로 Pr = ν/α를 구하면 0.705이고, Re × Pr ≈ 1.87 × 10⁴로 계산기 결과와 맞습니다.</p>
+<p><strong>판단</strong>: 공기는 Pr이 1보다 조금 작아서 Pe가 Re보다 약간 작게 나옵니다. 물이라면 같은 Re에서 Pe가 Re의 3~7배가 되므로, 유체가 바뀌면 열 경계층과 속도 경계층의 상대 두께도 달라집니다.</p>
+</section>
+<section class="example" aria-labelledby="ex-cell-pe"><h3 id="ex-cell-pe">예제 3. CFD 격자 간격으로 셀 페클레 수 구하기</h3>
+<p><strong>입력 조건</strong>: 20 °C 물(α = 1.435 × 10⁻⁷ m²/s, IAEA 표 3.3 값으로 계산)이 0.1 m/s로 흐르는 영역을 격자 간격 0.5 mm로 나눈다고 가정합니다. Penn State 자료는 Pe의 길이로 격자 간격을 쓰는 경우도 있다고 설명합니다.</p>
+<p><strong>계산기 입력</strong>: v = 0.1, L = 0.0005, α = 1.435e-7을 넣으면 셀 Pe = 348입니다. 같은 격자에서 용존 산소(D = 1.97 × 10⁻⁹ m²/s)의 셀 Pe는 2.54 × 10⁴입니다.</p>
+<p><strong>판단</strong>: 1차원 정상 이류-확산 문제에서 중심 차분이 진동 없는 해를 주려면 셀 Pe가 2 이하여야 한다는 것이 교과서적인 기준입니다. 이 조건을 맞추려면 격자 간격이 2α/v = 2.87 μm 이하가 되어야 하므로, 실제 해석에서는 상류 차분 계열 기법을 쓰고 그 수치 확산이 결과에 주는 영향을 격자 의존성 검토로 확인합니다.</p>
+</section>
 </section>
 <section aria-labelledby="criteria"><h2 id="criteria">크기를 해석할 때 주의할 점</h2>
-<p>예제는 v = 0.01 m/s, L = 0.1 m, α = 1×10⁻⁷ m²/s로 Pe = 10,000입니다. Pe가 1 안팎이면 이송과 확산을 모두 고려해야 하지만, 특정 숫자 하나가 모든 문제의 경계가 되지는 않습니다. 난류에서는 소용돌이에 의한 혼합이 분자 확산보다 훨씬 강할 수 있으므로, 분자 열확산 계수만 넣은 Pe를 실제 열 분포나 열전달량으로 해석하지 마세요. 표면에서 전달되는 열의 크기는 누셀트 수와 열전달 계수로 따로 다룹니다.</p>
+<p>Pe가 1 안팎이면 이송과 확산을 모두 고려해야 하지만, 특정 숫자 하나가 모든 문제의 경계가 되지는 않습니다. 난류에서는 소용돌이에 의한 혼합이 분자 확산보다 훨씬 강할 수 있으므로, 분자 열확산계수만 넣은 Pe를 실제 열 분포나 열전달량으로 해석하지 마세요. 다공성 매질 자료를 넣을 때는 Darcy 유속을 공극률로 나눈 공극 유속을 v에 넣어야 Penn State 정의와 같은 값이 나옵니다.</p>
+</section>
+<section class="faq" aria-labelledby="faq"><h2 id="faq">페클레 수 계산기 사용 질문</h2>
+<details><summary>α 칸에 확산계수 D를 넣었는데 결과 설명에 ‘이송 효과’라고만 나옵니다. 맞게 계산된 건가요?</summary><p>맞습니다. 계산식은 vL을 세 번째 입력으로 나누는 것뿐이므로, D를 넣으면 물질 페클레 수가 그대로 계산됩니다. 결과 설명의 확산을 물질 확산으로 바꿔 읽으면 됩니다.</p></details>
+<details><summary>1e-7 같은 아주 작은 값은 어떻게 입력하나요?</summary><p>숫자 칸은 지수 표기를 받으므로 1e-7, 1.435e-7처럼 적습니다. 0.0000001처럼 0을 늘어놓으면 자릿수를 틀리기 쉬우니 지수 표기를 권합니다.</p></details>
+<details><summary>공기에서는 Pe가 Re와 거의 같게 나오는데 정상인가요?</summary><p>정상입니다. 같은 v와 L에서 Pe/Re = ν/α = Pr이고, 20 °C 공기의 Pr은 약 0.71입니다. 예제 2에서도 Pe 18,674가 Re 26,483보다 약 30% 작게 나왔습니다.</p></details>
+<details><summary>이 계산기로 CFD 격자의 셀 페클레 수를 확인해도 되나요?</summary><p>L 칸에 격자 간격을 넣으면 됩니다. 다만 이 값은 이산화 기법을 고르는 기준이지 물리 현상의 판단 기준이 아니므로, 같은 결과를 장치 전체의 이류·확산 비와 섞어 쓰지 않습니다.</p></details>
 </section>
 <section aria-labelledby="more"><h2 id="more">관련 해설과 계산기</h2>
 <h3>기본 해설</h3><ul><li><a href="/guides/peclet">페클레 수 해설: 예제와 주의점</a></li></ul>
-<h3>계산 노트</h3><ul><li><a href="/guides/pipe-flow">관 유동에서 Re·Pr·Pe를 함께 검산하기</a>: 같은 입력으로 세 계산기를 연결하고 Pe = Re × Pr이 맞는지 확인합니다.</li><li><a href="/guides/transport-scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a>: 확산 길이와 이송 시간을 비교하고 열전달 계수가 어디서 오는지 구분합니다.</li></ul>
-<h3>관련 계산기</h3><ul><li><a href="/calculators/prandtl">프란틀 수 (Pr)</a>: 같은 L·v·물성이면 열 페클레 수는 Re × Pr로도 구할 수 있습니다.</li><li><a href="/calculators/schmidt">슈미트 수 (Sc)</a>: α 대신 분자 확산 계수 D를 쓰면 물질 페클레 수가 되고 Re × Sc와 같습니다.</li><li><a href="/calculators/nusselt">누셀트 수 (Nu)</a>: Pe가 이송과 확산을 비교한다면, 표면 열전달의 크기는 Nu로 따로 다룹니다.</li></ul>
+<h3>계산 노트</h3><ul><li><a href="/guides/pipe-flow">관 유동에서 Re·Pr·Pe를 함께 검산하기</a>: 이 계산기의 결과를 레이놀즈·프란틀 계산기 결과의 곱과 맞춰 보는 과정을 한 흐름으로 따라갈 수 있습니다.</li><li><a href="/guides/transport-scales">열·물질 확산과 경계층: Pr·Sc·Pe·Nu의 다른 역할</a>: 여기서 구한 Pe가 경계층 두께나 확산 거리로 어떻게 이어지는지 정리한 노트입니다.</li></ul>
+<h3>관련 계산기</h3><ul><li><a href="/calculators/prandtl">프란틀 수 (Pr)</a>: k, μ, cₚ로 Pr을 구해 두면 Re와 곱해 이 계산기 결과를 검산할 수 있습니다.</li><li><a href="/calculators/schmidt">슈미트 수 (Sc)</a>: 확산계수 D가 있으면 Sc를 먼저 구하고, Re × Sc를 이 계산기의 물질 Pe와 비교합니다.</li><li><a href="/calculators/nusselt">누셀트 수 (Nu)</a>: 벽에서 오가는 열량이 필요할 때는 Pe 대신 이 계산기로 넘어갑니다.</li></ul>
 </section>
+<section class="sources" aria-labelledby="sources"><h2 id="sources">참고 자료</h2><ul>
+<li>IAEA: <a href="https://www-pub.iaea.org/MTCD/Publications/PDF/IAEA-THPH_web.pdf" rel="noopener noreferrer">Thermophysical Properties of Materials for Nuclear Engineering</a>. 예제 1·3의 물(표 3.3)과 예제 2의 공기(표 3.1) 물성</li>
+<li>Michigan Technological University: <a href="https://pages.mtu.edu/~fmorriso/cm3120/lectures/2021_CM3120_module2_6alectureIV.pdf" rel="noopener noreferrer">CM3120 Module 2 Lecture IV</a>. 교차 확인에 쓴 Pe = Re × Pr, Pe = Re × Sc 관계</li>
+<li>Penn State CE 574: <a href="https://courses.ems.psu.edu/ce574/node/820" rel="noopener noreferrer">6.6 Dimensionless Numbers</a>. 다공성 매질 Pe 정의와 격자 간격을 길이로 쓰는 경우</li>
+<li>Cornell University: <a href="https://www.compost.css.cornell.edu/oxygen/oxygen.diff.water.html" rel="noopener noreferrer">Calculating the Oxygen Diffusion Coefficient in Water</a>. 20 °C 물 속 산소 확산계수</li>
+</ul></section>
 </main><footer><p class="footer-links"><a href="/">홈</a> · <a href="/guides/">해설 목록</a> · <a href="/about">소개</a> · <a href="/contact">문의</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p><p>© 2026 무차원수 계산기 · calctool.cc</p></footer>
 <script src="/calculators.js?v=20261022" defer></script>
 <script src="/calculator-page.js?v=20261022" defer></script>
