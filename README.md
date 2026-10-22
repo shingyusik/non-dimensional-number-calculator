@@ -11,9 +11,9 @@ Static bilingual calculator and worked guides served at https://calctool.cc.
 - `calculators.js`: calculator formulas shared by the home modal and calculator pages. `script.js`: home page language and modal. `calculator-page.js`: calculator pages. `guide.js`: language and theme controls on all other pages.
 - `_redirects`: `/reynolds` etc. → `/calculators/<name>` (301).
 
-The Korean basic guides (`guides/<name>.html`) are `noindex, follow` until they pass 1,000 characters; the list lives in `NOINDEX_THIN` in `tests/check_site.py`.
+Only `404.html` is `noindex`; every other page is in the sitemap.
 
-Worked inputs are illustrative, not measured datasets or certified property tables. Each notebook identifies its assumptions, intermediate results, limitations and references.
+Body pages (basic guides, calculation notes and calculator pages) mark examples as `<section class="example">`, FAQs as `<details>` inside `<section class="faq">`, and references as external links inside `<section class="sources">`. Example inputs are either property values from the cited references (with their conditions) or operating conditions labelled as assumptions on the page. `tests/examples/*.cjs` recompute every published result and check that the rounded value appears on both language versions.
 
 ## Validation
 
@@ -23,7 +23,9 @@ node tests/check_calculations.cjs
 git diff --check
 ```
 
-Checks cover local links, lang/canonical/hreflang, analytics and ad tags, footers, unique titles and descriptions, sitemap entries (final URLs, minimum body length, no noindex pages), redirects, the privacy disclosures and numerical examples using shipped formulas. Desktop/mobile layout requires browser verification.
+`python3 tests/check_sources.py` opens every reference link (network required; run manually).
+
+Checks cover local links, lang/canonical/hreflang, analytics and ad tags, footers, unique titles and descriptions, sitemap entries (final URLs, at least 1,500 characters of body text, no noindex pages), examples/FAQs/references per body page, repeated headings and sentences, redirects, the privacy disclosures and numerical examples using shipped formulas. Desktop/mobile layout requires browser verification.
 
 ## Deployment
 
