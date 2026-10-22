@@ -78,3 +78,39 @@ for (const [slug,results] of Object.entries({
     for (const result of results) assert.ok(page.includes(result),`${prefix}${slug}: missing published result ${result}`);
 }
 console.log('PASS: four theory examples, independent pressure-loss calculation, thermal/species identities, ideal-gas ratios, interface/time identities and bilingual published values');
+
+// Page examples: each file in tests/examples computes its inputs -> outputs and
+// checks that the rounded strings printed on the pages match the computed values.
+const SUPERSCRIPT = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'};
+// Parse a printed number such as "29,946", "0.0316", "1.51 × 10⁻⁵" or "6.8e-5".
+// Returns the value and half a unit of the last printed digit.
+function parsePrinted(text) {
+    const match = text.replace(/\u2212/g, '-').match(/^(-?[\d,]*\.?\d+)(?:\s*(?:×\s*10([⁻⁰¹²³⁴⁵⁶⁷⁸⁹]+)|×\s*10\^(-?\d+)|e(-?\d+)))?$/);
+    assert.ok(match, `Cannot parse printed number "${text}"`);
+    const mantissa = match[1].replace(/,/g, '');
+    const exponent = match[2] ? Number([...match[2]].map(c => SUPERSCRIPT[c]).join('')) : Number(match[3] ?? match[4] ?? 0);
+    const decimals = mantissa.includes('.') ? mantissa.split('.')[1].length : 0;
+    return {value: Number(mantissa) * 10 ** exponent, half: 0.5 * 10 ** (exponent - decimals)};
+}
+const pageCache = {};
+const readPage = file => pageCache[file] ??= fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
+let exampleCount = 0, printedCount = 0;
+const examples = {
+    calc, near,
+    // Assert that `value` rounds to `printed` and that `printed` appears on every page in `files`.
+    shows(value, printed, files) {
+        const {value: shown, half} = parsePrinted(printed);
+        assert.ok(Math.abs(value - shown) <= half * (1 + 1e-9), `${printed} does not match computed ${value}`);
+        for (const file of files) assert.ok(readPage(file).includes(printed), `${file}: missing published value ${printed}`);
+        printedCount++;
+    },
+    // Assert that a literal string (an input or a quoted value) appears on every page in `files`.
+    printed(text, files) {
+        for (const file of files) assert.ok(readPage(file).includes(text), `${file}: missing text ${text}`);
+    },
+    example() { exampleCount++; },
+};
+const exampleDir = path.join(__dirname, 'examples');
+const exampleFiles = fs.existsSync(exampleDir) ? fs.readdirSync(exampleDir).filter(f => f.endsWith('.cjs')).sort() : [];
+for (const file of exampleFiles) require(path.join(exampleDir, file))(examples);
+console.log(`PASS: ${exampleCount} page examples in ${exampleFiles.length} files, ${printedCount} published rounded values checked`);
