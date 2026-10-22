@@ -281,7 +281,15 @@ for prefix in ('', 'en/'):
 # Privacy policies name every service that runs on the site.
 for file in (ROOT/'privacy.html', ROOT/'en/privacy.html'):
     text = texts[file]
-    for needle in ('Google Analytics', 'Microsoft Clarity', 'Google AdSense', 'Cloudflare', 'https://adssettings.google.com/', ISSUES):
+    for needle in ('Google Analytics', 'Microsoft Clarity', 'Google AdSense', 'Cloudflare', 'https://adssettings.google.com/', ISSUES,
+                   # Retention periods with official references.
+                   'support.google.com/analytics/answer/7667196', 'learn.microsoft.com/en-us/clarity/setup-and-installation/data-retention',
+                   # International transfer under PIPA Article 28-8 and the remedy bodies.
+                   'law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1020398611',
+                   'kopico.go.kr', '1833-6972', 'privacy.kisa.or.kr', '118', 'spo.go.kr', '1301', 'ecrm.police.go.kr', '182'):
+        assert needle in text, f'{rel(file)}: missing {needle}'
+    localized = ('2개월', '30일', '9개월', '제28조의8', '공소청', '민원상담') if file.parent == ROOT else ('2 months', '30 days', '9 months', 'Article 28-8', 'Public Prosecution Service', 'civil inquiries')
+    for needle in localized:
         assert needle in text, f'{rel(file)}: missing {needle}'
 
 for chars, r in sorted(warnings):
